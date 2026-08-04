@@ -1,0 +1,14 @@
+# Never commit candidate personal data
+*.pdf
+*.doc
+*.docx
+resumes/
+cvs/
+**/File\ responses/
+*.mp4
+*.m4a
+*.mp3
+
+# Local scratch
+.DS_Store
+*.tmp
