@@ -10,6 +10,8 @@ lost in a chat scroll.
 
 ---
 
+📊 **[Live dashboard](https://claude.ai/code/artifact/ae2e9ede-19c2-49ee-bd38-648300047f73)** — status, next actions and every link, readable on a phone. Ask me to refresh it any time.
+
 ## Start here — your next 3 actions
 
 1. **Fill the gaps.** Open [`config/hiring-brief.md`](config/hiring-brief.md) and
