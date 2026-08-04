@@ -25,6 +25,22 @@ Then say **"screen the new applications"** whenever you like, and I take over.
 
 ---
 
+## Your Drive workspace (already created)
+
+📁 **[Hiring 2026 — Sales Executive & Digital Marketing Executive](https://drive.google.com/drive/folders/1nAfvV-s0PsBUihysYbAuOeUb6UowjYoZ)**
+
+| | |
+|---|---|
+| [01 — Sales Executive](https://drive.google.com/drive/folders/1EUs8tahhThOPnnFIffOCXZ7tNyT2BLE8) | Move the SE form's response sheet and CV folder here |
+| ↳ [Sales Executive — Candidate Tracker](https://docs.google.com/spreadsheets/d/1RbyVG7MEu-sd9Lp7f0BVBZeu__wOiLN3PVuJhpx7YXs/edit) | Scoring columns match the rubric exactly |
+| [02 — Digital Marketing Executive](https://drive.google.com/drive/folders/1YDOv2xRLSZ_FM-XeU5nqXZHx64sT5UTf) | Move the DME form's response sheet and CV folder here |
+| ↳ [Digital Marketing Executive — Candidate Tracker](https://docs.google.com/spreadsheets/d/1t0OvcvF3ctIMBq-7PgnmOleLvhAqrSUS5EziEaZg5t4/edit) | Scoring columns match the rubric exactly |
+| [03 — Job Descriptions & Posting Copy](https://drive.google.com/drive/folders/1A42UV2ko6stxItwK5xCBpx7ESdr49is2) | Editable Google Docs of both JDs |
+| ↳ [Sales Executive — Job Description](https://docs.google.com/document/d/1EA2urMdAbjs3SL_MSVC2hlpiHl1v7tnNsujNt00zkLM/edit) | Share this with anyone who needs to review |
+| ↳ [Digital Marketing Executive — Job Description](https://docs.google.com/document/d/1aTVGZ-7iqDUoXVkRhQhGejco8aaI3oaEbsviSWmXers/edit) | |
+
+---
+
 ## What's in here
 
 ### The job descriptions
