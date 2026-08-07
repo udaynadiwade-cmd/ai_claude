@@ -1,12 +1,8 @@
 # Hiring Brief — Single Source of Truth
 
-Everything in this repo reads from this file. Change a value here, tell me
-"refresh the JDs", and I will propagate it everywhere.
+Change a value here and tell me "refresh the JDs" — I propagate it everywhere.
 
-## Status legend
-- `CONFIRMED` — you told me this directly.
-- `ASSUMED` — I filled it in from market research. Correct it if wrong.
-- `NEEDED` — I cannot finalise a postable JD without this.
+`CONFIRMED` = you told me · `ASSUMED` = my inference, correct it · `NEEDED` = blocks posting
 
 ---
 
@@ -14,63 +10,95 @@ Everything in this repo reads from this file. Change a value here, tell me
 
 | Field | Value | Status |
 |---|---|---|
-| Legal / brand name | `[NEEDED]` | NEEDED |
-| Industry | Consumer / D2C, high-ticket considered purchase | ASSUMED |
-| What we sell | `[NEEDED — one line, plain English]` | NEEDED |
+| Name | **Befach** (Befach International) | CONFIRMED |
+| Business | **B2B e-commerce** — global sourcing, imports, international logistics | CONFIRMED |
+| Stage | Startup | CONFIRMED |
+| Base | **Hyderabad** | CONFIRMED |
 | Website | `[NEEDED]` | NEEDED |
-| Team size | `[NEEDED]` | NEEDED |
 | Careers email | `[NEEDED]` | NEEDED |
 
-## Both roles
+## Location preference — CONFIRMED
+
+Ranked, applies to every role:
+
+1. **Hyderabad-based** — strongly preferred
+2. Telangana or Andhra Pradesh
+3. India-wide
+
+Scoring: tier 1 full marks, tier 2 partial, tier 3 acceptable but flag relocation
+intent. Do not hard-reject on tier 3 alone.
+
+## The hiring standard — CONFIRMED
+
+`screening/befach-hiring-standard.md`. Attitude 35 · Aptitude 35 ·
+Communication 30. Years of experience is not scored.
+
+---
+
+## Salary bands — CONFIRMED (monthly fixed + incentive)
+
+| Level | Fixed / month | Notes |
+|---|---|---|
+| Sales Intern | ₹10,000 + incentive | |
+| Sales Executive — fresher | ₹10,000 + incentive | |
+| Sales Executive — ~1 yr exp | ₹20,000 – ₹25,000 + incentive | **Currently open** |
+
+**Incentive structure: `[NEEDED]`.** This is now the most important missing
+value in the entire brief. At a ₹10–25k fixed, the incentive is not a sweetener
+— it is the offer. Candidates will decide on that number alone.
+
+---
+
+## ⚠️ Two unresolved conflicts
+
+### 1. B2B company, B2C sales JD
+
+Befach is B2B e-commerce. But the Sales Executive JD was built to a **B2C/D2C**
+brief with a preference for candidates from **loans and real estate plots**.
+
+Those are different jobs. B2B sourcing sales means longer cycles, procurement
+committees, importers and trading businesses as buyers — not walk-in consumers.
+
+**Reading pending confirmation:** the *company* sells B2B, and the loans/plots
+preference was about the *type of person* — aggressive closers who handle
+high-ticket, multi-touch, trust-heavy sales. That instinct transfers well to
+B2B sourcing.
+
+**Until confirmed, the sales JD is on hold.** Rewriting it wrong wastes the post.
+
+### 2. Salary band vs. experience target
+
+₹20–25k/month tops out around ₹3 LPA. A 3-year loan or property closer in
+Hyderabad is on ₹25–40k/month and will not move for this.
+
+**This band buys fresher to ~1 year.** That is not a problem — it aligns with
+the Befach standard, which scores attitude over experience. But the JD must be
+repositioned: **attitude-first, entry-level, hungry, big incentive upside** —
+not "1–3 years with a proven track record."
+
+Recommended reframe: hire for the 8–9/10 attitude, train the selling.
+
+---
+
+## Role 1 — Sales Executive (open)
 
 | Field | Value | Status |
 |---|---|---|
-| Location / city | `[NEEDED]` — India, on-site | NEEDED |
-| Work mode | On-site (5.5 or 6 day week — confirm) | ASSUMED |
-| Employment type | Full-time, permanent | ASSUMED |
-| Reports to | Founder / Business Head | ASSUMED |
-| Notice period accepted | Up to 30 days | ASSUMED |
-
-## Role 1 — Sales Executive
-
-| Field | Value | Status |
-|---|---|---|
-| Experience | 1–3 years | CONFIRMED |
-| Sales motion | B2C / D2C — direct to consumer | CONFIRMED |
-| Preferred background | Loans / lending, real estate plots & property, insurance, high-ticket consumer finance | CONFIRMED |
-| Core traits | Exceptional spoken communication, genuinely enjoys talking to people, aggressive closer, hungry for orders | CONFIRMED |
-| Headcount | 1 (confirm if more) | ASSUMED |
-| Fixed CTC band | `[NEEDED]` — market: ₹3.0–5.0 LPA fixed for 1–3 yrs | NEEDED |
-| Incentive structure | `[NEEDED]` — see note below | NEEDED |
-| Languages required | English + `[NEEDED — regional language]` | NEEDED |
-| Two-wheeler / travel needed | `[NEEDED]` | NEEDED |
-
-> **Note on incentives:** For the profile you described — loan and plot sellers —
-> incentive is the single biggest applicant filter. Candidates from that world
-> read the incentive line before the fixed. A stated, uncapped incentive will
-> roughly double your qualified application rate versus "as per industry
-> standards". Give me a number or a % of value sold.
+| Level | Fresher to ~1 year | CONFIRMED (from band) |
+| Fixed | ₹10,000 (fresher) / ₹20–25,000 (~1 yr) per month | CONFIRMED |
+| Incentive | `[NEEDED]` | NEEDED |
+| Sales motion | B2B sourcing/imports — **pending confirmation** | NEEDED |
+| Location | Hyderabad, on-site | CONFIRMED |
+| Languages | English + `[NEEDED — Telugu? Hindi?]` | NEEDED |
+| Headcount | `[NEEDED]` | NEEDED |
 
 ## Role 2 — Digital Marketing Executive
 
 | Field | Value | Status |
 |---|---|---|
-| Experience | 1–3 years | CONFIRMED |
-| Scope | Full-stack: paid performance + SEO/content + organic social/creative + email/CRM automation | CONFIRMED |
-| Headcount | 1 | ASSUMED |
-| Fixed CTC band | `[NEEDED]` — market: ₹3.0–6.0 LPA for a genuine full-stack 1–3 yr | NEEDED |
-| Monthly ad budget they'd own | `[NEEDED]` | NEEDED |
-| Existing stack | `[NEEDED]` — GA4? Meta Business Suite? CRM? | NEEDED |
-| In-house designer available | `[NEEDED]` | NEEDED |
+| Scope | Paid + SEO + social + email | CONFIRMED |
+| Fixed band | `[NEEDED]` | NEEDED |
+| Ad budget owned | `[NEEDED]` | NEEDED |
+| Location | Hyderabad, on-site | CONFIRMED |
 
-> **Note on scope:** You asked for all four pillars in one person at 1–3 years.
-> That combination exists but is uncommon, and it is the main reason this role
-> will take longer to fill than the sales role. My screening rubric therefore
-> weights **paid performance + measurement** as must-have and treats deep SEO and
-> design polish as nice-to-have, so you do not reject strong candidates for
-> failing an unrealistic bar. See `screening/rubric-digital-marketing-executive.md`.
-
-## Application intake — CONFIRMED
-
-Google Form → responses land in a Google Sheet → resume uploads land in a Drive
-folder. Setup instructions: `pipeline/intake-setup.md`.
+> Is this role still open, or is the Sales Executive the only live one right now?
