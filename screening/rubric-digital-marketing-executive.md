@@ -1,117 +1,106 @@
-# Screening Rubric — Digital Marketing Executive
+# Rubric — Digital Marketing Executive
 
-100 points. Weighted toward **paid performance and measurement**, because that is
-where the revenue is and because a true four-pillar expert at 1–3 years barely
-exists. Screening for all four equally would leave you with an empty shortlist.
+**Read `befach-hiring-standard.md` first.** That file is the frame: Attitude 35 ·
+Aptitude 35 · Communication 30. This file supplies only what is specific to
+this role.
 
-## Gate 0 — Hard filters (fail = auto-Reject)
+---
+
+## Gate 0 — Hard filters (fail = Reject before scoring)
 
 | Filter | Rule |
 |---|---|
-| Location | Cannot work on-site in `[CITY]` and not willing to relocate |
-| Hands-on gate | Has never personally managed a live ad budget **and** has no portfolio evidence of hands-on work |
+| Location | Cannot work on-site in `[CITY]` and unwilling to relocate |
+| Hands-on gate | Never personally touched an ad account **and** no portfolio evidence of hands-on work |
 | Compensation | Expected fixed CTC more than 25% above the top of our band |
-| Completeness | No CV, or Q8 (the campaign question) blank or pure filler |
-| Agency-report-only | Experience is exclusively pulling reports on accounts someone else ran |
+| Completeness | No CV, or the campaign question blank / pure filler |
+| Report-only | Experience is exclusively pulling reports on accounts someone else ran |
+
+> The hands-on gate is about *doing*, not about budget size or years. Someone
+> who ran ₹5,000/month for their own project passes. Someone who watched a
+> ₹5L/month account does not.
 
 ---
 
-## Scoring
+## APTITUDE — 35 pts (role-specific)
 
-### 1. Paid performance depth — 30 pts
-*Source: Q6, Q7, Q8.*
+### Role skill — 20 pts
 
-| Evidence | Pts |
-|---|---|
-| Ran Google Ads **and** Meta with real budget; Q8 gives channel, budget, before/after CPL with credible numbers | 26–30 |
-| Ran one of the two platforms well with a real budget and specific numbers | 19–25 |
-| Ran campaigns but describes them without numbers | 11–18 |
-| Assisted on campaigns, no ownership | 4–10 |
-| No hands-on paid experience | 0–3 |
-
-> The before/after CPL answer is the highest-signal item in the whole form.
-> Anyone who can state it accurately has genuinely sat in the account.
-
-### 2. Measurement and analytics — 20 pts
-*Source: Q6, Q9. This is what separates a marketer from a poster.*
+**Paid performance — 9 pts**
 
 | Evidence | Pts |
 |---|---|
-| GA4 fluent **and** set up conversion tracking end-to-end themselves (GTM / pixel / CAPI) | 17–20 |
-| GA4 fluent, tracking set up with help | 12–16 |
-| Reads GA4 but has not configured anything | 7–11 |
-| Reports on platform-native metrics only | 3–6 |
-| No analytics exposure | 0–2 |
-
-### 3. SEO and content — 15 pts
-
-| Evidence | Pts |
-|---|---|
-| On-page + technical + off-page, with Search Console and Semrush/Ahrefs, and can point to ranking or traffic gains | 13–15 |
-| Solid on-page and keyword research, some tooling | 9–12 |
-| Basic understanding, mostly content writing | 5–8 |
-| Aware of SEO, no execution | 2–4 |
-| None | 0–1 |
-
-### 4. Organic social and creative — 12 pts
-
-| Evidence | Pts |
-|---|---|
-| Ran a content calendar, produced short-form video, portfolio link works and looks good | 10–12 |
-| Managed social, static creative in Canva | 7–9 |
-| Posted content under direction | 4–6 |
-| None | 0–3 |
-
-### 5. Email, CRM and automation — 8 pts
-
-| Evidence | Pts |
-|---|---|
-| Built lifecycle sequences in Mailchimp/HubSpot/Zoho and measured them | 7–8 |
-| Sent campaigns, basic segmentation | 4–6 |
-| Exposure only | 1–3 |
+| Ran Google Ads **and** Meta with real budget; can state channel, budget, before/after CPL credibly | 8–9 |
+| Ran one platform well, with specific numbers | 6–7 |
+| Ran campaigns but describes them without numbers | 3–5 |
+| Assisted only | 1–2 |
 | None | 0 |
 
-### 6. High-ticket / lead-gen context — 10 pts
-*Source: Q10. Direct relevance to our funnel — the lead is closed by a human.*
+> The before/after CPL answer is the single highest-signal item in the whole
+> application. Anyone who states it accurately has genuinely sat in the account.
 
-| Evidence | Pts |
-|---|---|
-| Marketed property, loans, insurance, education or healthcare with a sales team closing, and tracked lead-to-sale | 9–10 |
-| Lead-gen marketing in another high-ticket category | 6–8 |
-| E-commerce or app installs only — different mechanics | 3–5 |
-| Brand or awareness work only | 0–2 |
+**Measurement — 5 pts.** GA4 fluency, and whether they set up conversion
+tracking themselves (GTM, pixel, CAPI). Full marks only for end-to-end setup
+done personally. This is what separates a marketer from a poster.
 
-### 7. Written communication — 5 pts
-*They will write your ad copy and landing pages. Judge Q8 as a writing sample.*
+**Breadth across the other pillars — 6 pts.** SEO (on-page, technical, Search
+Console, Semrush/Ahrefs) · organic social and short-form creative · email and
+CRM automation. Score coverage, not mastery.
 
-| Evidence | Pts |
-|---|---|
-| Clear, specific, well-organised, no errors | 4–5 |
-| Adequate | 2–3 |
-| Sloppy or padded with buzzwords | 0–1 |
+> **Deliberate weighting.** All four pillars at 1–3 years is rare. Paid and
+> measurement carry 14 of the 20; breadth carries 6. Screening all four equally
+> produces an empty shortlist.
+
+### Relevant education — 8 pts
+Per Uday's standard, marketing skews toward an MBA or a marketing/communications
+background — scored on **what they actually learned and can apply**, never on
+school tier. A self-taught marketer with certifications and a live portfolio
+scores as well as a degree holder who cannot explain a funnel.
+Google Ads / Meta Blueprint / GA4 certifications count here.
+
+### Clarity and ability to think — 7 pts
+Tested directly by Part C of the practical exercise — reading a table where CPL
+rises and CTR falls, and correctly naming creative fatigue or audience
+saturation. Anyone who has genuinely managed a budget sees that pattern
+immediately.
 
 ---
 
-## Bands
+## ATTITUDE — 35 pts
 
-| Score | Verdict | Action |
-|---|---|---|
-| 70–100 | **Interview** | Send the practical task, then interview |
-| 55–69 | **Strong maybe** | Interview if the top band is thin — likely a specialist worth building around |
-| 40–54 | **Maybe** | Hold |
-| Under 40 | **Reject** | Courteous decline |
+Score per `befach-hiring-standard.md`. Role-specific signals:
 
-> Thresholds are lower than the sales rubric on purpose. The four-pillar bar is
-> deliberately hard; a 65 here is a genuinely useful hire.
+| Positive | Negative |
+|---|---|
+| Ran campaigns for their own project, side venture, or free for someone | Only ever executed a brief handed to them |
+| Killed a campaign that wasn't working and said so | Every past campaign was a success |
+| Taught themselves a channel because the job needed it | Waited for training |
+| Portfolio exists and they built it | Portfolio is screenshots with no numbers |
+| Honest about which pillar they're weakest at | Claims equal excellence at all four with 18 months' experience |
 
-## The one thing that overrides the score
+---
 
-A candidate who scores 55 but whose Q8 answer shows they took CPL from ₹800 to
-₹310 on a ₹3L/month budget and can explain exactly how — interview them. Real
-numbers with a real causal story beat a broad checklist of tools every time.
-I will flag these as **"score says maybe, evidence says interview"**.
+## COMMUNICATION — 30 pts
 
-## Bias guards
+Score per the standard. Role-specific weight: **they will write your ad copy and
+landing pages**, so the written application is a direct work sample, not a proxy.
 
-Same as the sales rubric: no scoring on college tier, name, gender, age, photo,
-or employer brand recognition. Portfolio and numbers only.
+- Is the campaign answer specific and well-organised, or padded with buzzwords?
+- Do they talk in leads and cost, or in reach and impressions? That's a
+  priorities signal, and priorities are 10 of the 30.
+
+---
+
+## Bands and the override
+
+Use the standard's bands. The override that matters here:
+
+**A candidate who scores mid-range but whose campaign answer shows they took CPL
+from ₹800 to ₹310 on a ₹3L budget — and can explain exactly how — gets
+interviewed.** Real numbers with a causal story beat a broad checklist of tools
+every time. Flag as *"score says maybe, evidence says interview."*
+
+## Assessment sequence
+
+Phone screen → 90-minute practical exercise (scored /60) → final conversation
+where they defend it. Full kit in `interview-kits.md`.
