@@ -86,10 +86,10 @@ Recommended reframe: hire for the 8–9/10 attitude, train the selling.
 |---|---|---|
 | Level | Fresher to ~1 year | CONFIRMED (from band) |
 | Fixed | ₹10,000 (fresher) / ₹20–25,000 (~1 yr) per month | CONFIRMED |
-| Incentive | `[NEEDED]` | NEEDED |
-| Sales motion | B2B sourcing/imports — **pending confirmation** | NEEDED |
+| Incentive | Paid per order closed, **varies by product**. Exact % or per-order figure still NEEDED | PARTIAL |
+| Sales motion | **B2B** — sourcing, imports, logistics to business buyers | ASSUMED (Claude's call, correct if wrong) |
 | Location | Hyderabad, on-site | CONFIRMED |
-| Languages | English + `[NEEDED — Telugu? Hindi?]` | NEEDED |
+| Languages | English essential, Hindi useful, **Telugu optional not required** | CONFIRMED |
 | Headcount | `[NEEDED]` | NEEDED |
 
 ## Role 2 — Digital Marketing Executive

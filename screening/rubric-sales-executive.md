@@ -10,7 +10,7 @@ this role. It does not override the standard.
 
 | Filter | Rule |
 |---|---|
-| Location | Cannot work on-site in `[CITY]` and unwilling to relocate |
+| Location | Cannot work on-site in Hyderabad and unwilling to relocate |
 | Compensation | Expected fixed CTC more than 25% above the top of our band |
 | Completeness | No CV, or the target-vs-achieved question blank / pure filler |
 
@@ -39,13 +39,22 @@ this role. It does not override the standard.
 
 **Category fit — 8 pts**
 
+Befach sells **B2B** — sourcing, imports and logistics to business buyers. Score
+proximity to that motion: business buyers, multi-touch, trust-heavy, price
+negotiated.
+
 | Background | Pts |
 |---|---|
-| Home loans, personal loans, LAP, real estate plots, property | 7–8 |
-| Insurance, mutual funds, other high-ticket consumer finance | 5–6 |
-| Other high-ticket B2C, multi-touch consultative (cars, education, healthcare, premium retail) | 3–4 |
+| B2B sales to businesses — trading, import/export, logistics, manufacturing, wholesale, distribution | 7–8 |
+| Other B2B or SME sales (software, services, equipment) with real closing ownership | 5–6 |
+| High-ticket consultative B2C — loans, property, insurance. **The temperament transfers even though the buyer doesn't** | 4–5 |
+| Other B2C, multi-touch (cars, education, healthcare) | 2–3 |
 | Low-ticket or transactional retail | 1–2 |
-| B2B only, or inside sales with no closing | 0–1 |
+| No selling of any kind, including nothing self-initiated | 0 |
+
+> Deliberately generous to loans/property backgrounds. Uday named that profile
+> for a reason — the hunger and the multi-touch instinct are what we want. The
+> B2B knowledge is teachable; that temperament is not.
 
 ### Relevant education — 8 pts
 No specific degree required for this role. Score on whether their education

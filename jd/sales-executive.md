@@ -1,96 +1,93 @@
-# Sales Executive
+# Sales Executive — Befach
 
-**Location:** `[CITY]`, India · On-site
-**Experience:** 1–3 years
-**Type:** Full-time, permanent
-**Fixed CTC:** `[₹X.X – ₹X.X LPA]` + **uncapped incentives**
-**Reports to:** `[Business Head / Founder]`
+**Location:** Hyderabad · On-site
+**Experience:** Fresher to ~1 year — *we are not counting years*
+**Fixed:** ₹10,000/month (fresher) · ₹20,000–25,000/month (~1 yr) **+ incentive on every order closed**
+**Reports to:** Founder
+
+> **Assumption made, correct me if wrong:** Befach sells **B2B** — sourcing,
+> imports and logistics to businesses. This JD is written for that motion. The
+> earlier loans/plots preference is treated as a *person* signal (hungry,
+> high-trust, multi-touch closer), not a category requirement.
 
 ---
 
 ## About the role
 
-We sell directly to consumers, and every sale is a considered decision someone
-makes with real money. That means the person on our side of the conversation
-matters more than the brochure. We are looking for a Sales Executive who can
-pick up a cold lead, build trust in the first ninety seconds, handle the
-objections that come with a high-ticket purchase, and close.
+Befach is a startup. We help businesses source products globally and get them
+imported and delivered. That means our customers are business owners — importers,
+traders, manufacturers, retailers — and every deal involves money, trust and
+several conversations before anyone commits.
 
-If you have sold **loans, plots, property, or insurance**, you already know this
-job. You know what it means to work a pipeline that does not close on the first
-call. You know the difference between a lead that is warm and a lead that is
-just polite. And you know that the month is only as good as the number you put
-on the board.
+We are not looking for someone with a long CV. We are looking for someone with a
+particular temperament: you want to get it done, you enjoy talking to people,
+you try things, and when something doesn't work you try a different way.
 
-We are not looking for someone who processes enquiries. We are looking for
-someone who chases them.
+If you have that, we will teach you the selling.
 
-## What you will do
+## What you will actually do
 
-- Own a pipeline of inbound and self-generated leads end to end — first call to
-  closed sale.
-- Make a high volume of outbound calls daily and convert conversations into
-  scheduled meetings, site visits or demos.
-- Qualify hard and early. Understand budget, intent and timeline before you
-  invest a week in someone.
-- Handle price, trust and "let me think about it" objections without dropping
-  the deal or dropping the price.
-- Follow up relentlessly and systematically. Most of our business closes on the
-  fourth to seventh touch, not the first.
-- Keep the CRM clean and current — every call logged, every next step dated. If
-  it is not in the system, it did not happen.
-- Hit and beat a monthly sales target. Report your own numbers weekly without
-  being asked.
-- Feed the marketing team real intelligence from the field: what customers
-  actually object to, which lead sources convert, what competitors are saying.
+- Call and message business owners every day — new prospects and warm enquiries.
+- Understand what they're trying to source, what volumes, and what it's worth to them.
+- Get them a quote, chase it, and get to a decision. Most deals take several touches.
+- Handle "your price is high", "I'll think about it" and silence — without
+  dropping the deal or the price.
+- Keep every conversation logged with a dated next step.
+- Hit a monthly number and report it yourself, without being chased.
+- Tell us what you're hearing from the market — what customers ask for, what
+  they object to, who they're comparing us against.
 
-## What we are looking for
+## What we're looking for
 
-**Must have**
+**This is 80% of the decision:**
 
-- 1–3 years in a direct, target-carrying B2C sales role. You have personally
-  closed deals, not supported someone who did.
-- Outstanding spoken communication in English and `[REGIONAL LANGUAGE]`. Clear,
-  confident, warm, and persuasive on the phone and face to face.
-- A genuine liking for talking to people. This role involves conversation all
-  day, most days, often with strangers, often with people who say no.
-- A closer's temperament — comfortable asking for the order, comfortable hearing
-  no, back on the phone thirty seconds later.
-- Evidence you have hit targets. Come prepared with your numbers: target versus
-  achieved, deal sizes, conversion rate.
-- Comfort with a CRM or at minimum disciplined self-tracking in a spreadsheet.
+- **Attitude.** You take the problem as yours. You don't wait to be told the
+  next step. You'd rather try something and be wrong than wait for instructions.
+- **You've done things.** A project, a side hustle, a college venture, freelance
+  work, anything you started yourself. It doesn't have to have worked. We care
+  that you tried — and what you did next.
+- **You genuinely like talking to people.** This job is conversation, all day,
+  mostly with strangers, often with people who say no.
+- **Solutions, not problems.** When something is in the way, you come with two
+  ways round it.
+- **You can think.** You can look at a situation you haven't seen before and
+  reason your way through it.
 
-**Strongly preferred**
+**Practical:**
 
-- Background selling **home loans, personal loans, LAP, real estate plots,
-  residential or commercial property, or insurance**. High-ticket, high-trust,
-  multi-touch selling is exactly the muscle we need.
-- Experience working a lead flow generated by digital ad campaigns.
-- An existing local network in `[CITY]`.
+- Clear, confident spoken and written **English**. Hindi useful. **Telugu is a
+  plus, not a requirement.**
+- Based in Hyderabad, or willing to move here.
+- Comfortable with a phone, a spreadsheet, and following a process.
 
-**Not required**
-
-- A specific degree. We care what you have sold and how much of it.
+**Not required:** a specific degree, a specific college, or prior sales
+experience. If you've sold something — anything, including your own idea to
+someone — tell us about it.
 
 ## What we offer
 
-- Fixed salary of `[₹X.X – ₹X.X LPA]` plus **uncapped incentive** — `[STATE THE
-  STRUCTURE: e.g. X% of value sold, paid monthly]`. Our top performers should
-  out-earn their fixed.
-- A steady flow of qualified leads from a dedicated digital marketing function —
-  you sell, you do not spend your day hunting for phone numbers.
-- Direct access to the decision maker. Short chain of command, fast approvals.
-- `[Add: incentives on over-achievement, travel allowance, insurance, etc.]`
+- ₹10,000/month to start as a fresher; ₹20,000–25,000/month with about a year of
+  relevant experience.
+- **Incentive on every order you close**, based on the product sold. Your
+  earnings are meant to grow well past your fixed.
+- A startup where you sit close to the founder, see the whole business, and get
+  decisions in hours instead of weeks.
+- Real responsibility early. If you're good, the role grows faster than any
+  timeline we could write down.
+
+**Be clear-eyed:** the fixed salary is startup-level. If you want a large
+guaranteed number, this isn't it. If you want to earn on what you close and grow
+fast, talk to us.
 
 ## How to apply
 
-Apply through this form — it takes about four minutes and replaces the
-back-and-forth:
+Email your CV to **`[CAREERS EMAIL]`** with the subject **"Sales Executive — Hyderabad"**.
 
-**`[GOOGLE FORM LINK]`**
+In the email, answer three things in a few lines each:
 
-Attach your CV and, in the field provided, tell us in two or three lines: **what
-you sold, your monthly target, and what you actually achieved against it.**
-Applications that answer that question honestly get read first.
+1. **Something you started that didn't work.** What happened, and what you did next.
+2. **Have you sold anything before?** Anything counts — a product, a service,
+   your own idea. What was it and how did it go?
+3. **Your current/expected salary and notice period.**
 
-We review applications twice a week and reply to every applicant either way.
+We read every application and reply either way.
