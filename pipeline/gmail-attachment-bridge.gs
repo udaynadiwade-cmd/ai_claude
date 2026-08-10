@@ -1,31 +1,29 @@
 /**
- * Befach Hiring — Gmail → Drive CV bridge  (v2, simplified)
+ * Befach Hiring — Gmail → Drive CV bridge  (v3)
  *
- * WHY: Claude can read Google Drive but cannot download Gmail attachments —
- * no such capability exists. This script is the bridge. Install once; after
- * that every CV that arrives by email lands in Drive on its own and Claude
- * does the rest. There is no per-resume manual step.
+ * Claude can read Google Drive but cannot download Gmail attachments. This
+ * script is the bridge: it runs in Uday's own Google account, finds document
+ * attachments, and copies them into the Drive folder Claude watches.
  *
- * v2 changes: filtering removed. This script now saves every document
- * attachment that isn't from a known-noise sender, and Claude decides what is
- * and isn't a CV when it reads them. Fewer moving parts, fewer silent skips.
+ * ── INSTALL ───────────────────────────────────────────────────────────────
+ *  1. script.google.com — check the avatar top-right is uday.nadiwade@gmail.com
+ *  2. Open your project, click in the code, Ctrl+A, Delete, paste this whole
+ *     file, Ctrl+S.  (First line must be the /** below — not "function".)
+ *  3. Function dropdown → `saveCvAttachments` → Run → approve permissions
+ *  4. Function dropdown → `installHourlyTrigger` → Run.  Once, ever.
  *
- * ── SETUP ─────────────────────────────────────────────────────────────────
- *  1. script.google.com  ← make sure the avatar top-right is uday.nadiwade@gmail.com
- *  2. New project → delete the sample code → paste this whole file → Save
- *  3. Function dropdown → `diagnose` → Run → approve permissions
- *     → open "Execution log" and send Uday's Claude session what it printed
- *  4. If diagnose looks right: Function dropdown → `installHourlyTrigger` → Run
- *
- * That's it. It now runs by itself every hour.
+ * v3: adds .txt (WhatsApp chat exports from WorkIndia carry candidate details)
+ *     and widens the noise denylist using what this inbox actually receives.
  */
 
 var TARGET_FOLDER_ID = '1NPR9g7yGVq5ARP3036T_NoRJv7XaCGXd';
 var DONE_LABEL = 'Recruitment/CV-Saved';
-var LOOKBACK_DAYS = 90;   // generous on first run; harmless afterwards
+var LOOKBACK_DAYS = 90;
 var MAX_THREADS = 150;
 
+/** Attachment types worth saving. */
 var DOC_TYPES = [
+  'text/plain',
   'application/pdf',
   'application/msword',
   'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
@@ -36,47 +34,52 @@ var DOC_TYPES = [
 
 /**
  * Senders that mail documents constantly and never mail job applications.
- * This is the only filter left, and it exists purely to stop the folder
- * filling with bank statements and broker notes.
+ * This is the only filter; it exists to keep broker notes and fund mailers
+ * out of the CV folder. Add to it whenever noise gets through.
  */
 var NOISE = [
-  'zerodha.net', 'icici.bank.in', 'camsonline.com', 'kfintech.com',
-  'incometax.gov.in', 'nse.co.in', 'bseindia.com', 'zoom.us',
-  'policybazaar.com', 'careinsurance.com', 'sundarammutual.com',
-  'wealthcompany.in', 'anthropic.com', 'jio.com', 'airtel.com',
-  'wetrade.org', 'iiflcapital.com', 'dcal.co.in',
+  // brokers, exchanges, depositories
+  'zerodha.net', 'reportsmailer', 'shoonya.com', 'bseindia.in', 'bseindia.com',
+  'nse.co.in', 'mcxindia.com', 'nsdl.co.in', 'cdslindia.com',
+  // banks, funds, registrars
+  'icici.bank.in', 'camsonline.com', 'kfintech.com', 'sundarammutual.com',
+  'wealthcompany.in', 'policybazaar.com', 'careinsurance.com',
+  // government, utilities, vendors
+  'incometax.gov.in', 'zoom.us', 'anthropic.com', 'jio.com', 'airtel.com',
+  'wetrade.org', 'iiflcapital.com', 'dcal.co.in', 'alilokhandwalaofficial.com',
+  // job-board marketing (not applicants)
+  'linkedin.com', 'indeed.com', 'internshala.com', 'unstop.news',
+  // generic no-reply patterns
   'newsletters-noreply', 'notifications-noreply', 'messages-noreply',
-  'groups-noreply', 'invoice+statements', 'no-reply-margin',
-  'no-reply-contract', 'donotreply', 'estatement'
+  'groups-noreply', 'invoice+statements', 'donotreply', 'estatement',
+  'no-reply-margin', 'no-reply-contract', 'no-reply-account'
 ];
 
-// ── Diagnostic — run this FIRST ─────────────────────────────────────────────
+// ── Diagnostic ──────────────────────────────────────────────────────────────
 
 function diagnose() {
-  Logger.log('=== BEFACH CV BRIDGE — DIAGNOSTIC ===');
+  Logger.log('=== BEFACH CV BRIDGE v3 — DIAGNOSTIC ===');
 
   try {
     Logger.log('Running as: ' + Session.getEffectiveUser().getEmail());
   } catch (e) {
-    Logger.log('Running as: could not determine (' + e + ')');
+    Logger.log('Running as: unknown (' + e + ')');
   }
 
   try {
     var folder = DriveApp.getFolderById(TARGET_FOLDER_ID);
-    Logger.log('Drive folder OK: "' + folder.getName() + '"');
     var files = folder.getFiles();
     var n = 0;
     while (files.hasNext()) { files.next(); n++; }
-    Logger.log('Files currently in folder: ' + n);
+    Logger.log('Drive folder OK: "' + folder.getName() + '" — ' + n + ' files');
   } catch (e) {
     Logger.log('DRIVE FOLDER FAILED: ' + e);
     Logger.log('--> Wrong Google account, or no access to that folder.');
     return;
   }
 
-  var query = 'has:attachment newer_than:' + LOOKBACK_DAYS + 'd';
-  var threads = GmailApp.search(query, 0, 20);
-  Logger.log('Gmail threads with attachments (sample of 20): ' + threads.length);
+  var threads = GmailApp.search('has:attachment newer_than:' + LOOKBACK_DAYS + 'd', 0, 20);
+  Logger.log('Sample of 20 threads with attachments:');
 
   for (var i = 0; i < threads.length && i < 10; i++) {
     var msgs = threads[i].getMessages();
@@ -87,11 +90,11 @@ function diagnose() {
                    ' | file=' + atts[k].getName() +
                    ' | type=' + atts[k].getContentType() +
                    ' | noise=' + isNoise(String(msgs[j].getFrom()).toLowerCase()) +
-                   ' | docType=' + (DOC_TYPES.indexOf(atts[k].getContentType()) !== -1));
+                   ' | willSave=' + (DOC_TYPES.indexOf(atts[k].getContentType()) !== -1));
       }
     }
   }
-  Logger.log('=== END DIAGNOSTIC ===');
+  Logger.log('=== END ===');
 }
 
 // ── Main ────────────────────────────────────────────────────────────────────
@@ -142,8 +145,8 @@ function isNoise(from) {
 }
 
 /**
- * Sender and date go into the filename: Claude sees the file in Drive with no
- * link back to the email it came from, so the name has to carry that context.
+ * Sender and date go into the filename — Claude sees the file in Drive with no
+ * link back to the email, so the name has to carry that context.
  */
 function buildFilename(msg, att) {
   var date = Utilities.formatDate(msg.getDate(),
