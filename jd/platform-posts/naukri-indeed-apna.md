@@ -183,7 +183,116 @@ We review applications twice a week and reply to every applicant either way.
 
 ---
 
+## RESEARCH MANAGER
+
+> **Post this on Naukri, iimjobs and Indeed only.** Apna, WorkIndia, Shine and
+> Foundit are built for high-volume frontline hiring and will cost you screening
+> time without producing a single qualified applicant at this level. See
+> `pipeline/POSTING-PLAYBOOK.md` for the outreach strategy that actually fills
+> this role.
+
+### Structured fields
+
+| Field | Value |
+|---|---|
+| Job title | `Research Manager - Market Research, Consumer Insights, Market Sizing (4-7 Yrs)` |
+| Role | Market Research Manager / Research Manager |
+| Industry | `[Real Estate / BFSI / Consumer]` |
+| Functional area | Research & Analytics / Marketing & Communication |
+| Employment type | Full Time, Permanent |
+| Experience | 4 – 7 years |
+| Location | `[CITY]` |
+| Salary | `[₹X.X – ₹X.X LPA]` — state it |
+| Vacancies | `[1]` |
+| Education | Any Graduate / Post Graduate (do not restrict to specific institutes) |
+| Key skills | Market Research, Consumer Insights, Market Sizing, Competitive Intelligence, Competitor Analysis, Pricing Research, Primary Research, Secondary Research, Qualitative Research, Quantitative Research, Survey Design, In-Depth Interviews, Focus Group Discussion, Data Analysis, Business Research, Feasibility Study, Market Intelligence, Report Writing, Excel, SQL, SPSS, Power BI |
+
+> **On the title:** always keep "Market Research" or "Consumer Insights" in the
+> searchable title. "Research Manager" alone pulls UX, academic and R&D profiles
+> and wastes your screening time on people who were never a fit.
+
+### Job description body
+
+```
+TO APPLY: Please complete this 6-minute form — [GOOGLE FORM LINK]
+Applications through the form are reviewed first.
+
+ABOUT THE ROLE
+
+We sell a high-ticket, considered purchase. Right now, every decision we make about pricing, location, positioning and which customer to chase is made on instinct and on whatever the last customer said. That works until it doesn't.
+
+This role exists to replace instinct with evidence — fast enough to be useful. You will size markets, map competitors, understand why people buy from us and why they walk, and turn all of it into decisions someone actually takes on Monday.
+
+This is not a role where you produce a quarterly deck nobody reads. You will sit between sales and marketing, and the test of your work is whether it changed what those two teams did next week.
+
+KEY RESPONSIBILITIES
+
+Market and demand:
+- Size our markets and the ones we are considering — top-down and bottom-up, and reconcile the two when they disagree.
+- Maintain a live competitor map: who they are, what they charge, what they promise, how they sell, where they are weak.
+- Track market pricing and tell us when to move, and by how much.
+- Evaluate new locations, segments and product lines before we commit money — demand, competition, willingness to pay, and the honest downside case.
+
+Customer and buyer research:
+- Run primary research directly: customer interviews, buyer surveys, lost-deal interviews, field visits. You will be on the phone and in the field yourself.
+- Own the lost-deal debrief. Every deal we don't win gets a reason, and the reasons get counted.
+- Build and keep current the buyer profile: who they are, what triggers the purchase, what they compare us against, what kills the deal.
+- Turn qualitative signal into something countable.
+
+Secondary research and data:
+- Work industry, government, portal, listing, lending and filing data.
+- Where we buy data or commission an agency, write the brief, pick the partner, hold them to quality, and check their numbers.
+- Keep one source of truth for market numbers, so we stop quoting three different figures in the same meeting.
+
+Turning research into decisions:
+- Publish a one-page recommendation: the decision, the evidence, your confidence, and what would change your mind.
+- Feed sales the objection and competitor intelligence they need on live calls.
+- Feed marketing the segment, message and channel evidence behind campaigns.
+- Say clearly when the data does not support a conclusion.
+
+CANDIDATE REQUIREMENTS
+
+Must have:
+- 4-7 years in market research, consumer insights, business research, strategy or consulting, with studies you personally designed and ran — not only coordinated.
+- Both halves of the craft: primary (survey design, interviewing, sampling, fieldwork) and secondary (desk research, data sourcing, triangulation).
+- Genuine numeracy — comfortable in Excel/Sheets at pivot, lookup and basic-statistics level, and clear on why a sample of 40 self-selected respondents does not support the claim someone wants to make from it.
+- The ability to write. Findings that cannot be read in five minutes do not get used.
+- Market sizing you can defend. We will ask you to do one live.
+
+Strongly preferred:
+- Research in real estate, lending/BFSI, insurance or another high-ticket considered purchase where a salesperson closes the deal.
+- Time at a research or advisory firm, or in the in-house insights team of a consumer brand.
+- SQL, a BI tool (Power BI, Looker Studio, Tableau), or Python/R.
+- Fieldwork experience in [CITY] and the surrounding region, in the local language.
+- Experience commissioning and managing external agencies and data vendors.
+
+Not required: a specific degree or institute. Economics, statistics, MBA, urban planning, psychology and geography all produce good researchers. We care whether your conclusions held up.
+
+WHAT WE OFFER
+
+- [₹X.X - ₹X.X LPA] fixed.
+- Direct access to the decision maker. Your research goes to the person who acts on it, in the same week, with nobody in between filtering it.
+- A real research budget for panels, data subscriptions and fieldwork.
+- Closed-loop feedback most researchers never get: our sales team tells you whether the buyer you described is the buyer who actually showed up.
+- [Analyst headcount / insurance / learning budget / conference travel]
+
+HOW TO APPLY
+
+Complete the form: [GOOGLE FORM LINK]
+Attach your CV and describe one piece of research you ran end to end: the question you were asked, the method you chose and why, what you found, and the decision it changed. That last part matters most.
+
+We review applications twice a week and reply to every applicant either way.
+```
+
+---
+
 ## Platform-specific adjustments
+
+**iimjobs** (Research Manager only) — the audience is consulting, strategy and
+research at 3–10 years, which is exactly this role's pool and exactly wrong for
+the other two. Lead the post with the decision-access line rather than the
+responsibilities; that is the differentiator against an agency job, and it is
+what this audience is reading for.
 
 **Apna / WorkIndia** — built for frontline hiring and mobile-first candidates.
 Trim the sales JD to the first 6 responsibilities and the must-have list; long

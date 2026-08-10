@@ -66,6 +66,41 @@ Paste into the form's confirmation message.
 
 ---
 
+## 3b. Practical exercise — Research Manager
+
+**Subject:** `Next step — {{Role}} at {{Company}}`
+
+> Hi `{{Name}}`,
+>
+> Good speaking with you. The next step is a short exercise. I know you have
+> almost certainly done unpaid work for a hiring process before and I want to be
+> straight about the scope: **two hours, hard stop.** If you are past two hours,
+> send what you have and note where you ran out — how you prioritise under a
+> constraint is part of what we are reading.
+>
+> Nothing you produce will be used by us. It is four short parts, and the last
+> one is a single page.
+>
+> `{{Paste Parts A–D from screening/interview-kits.md}}`
+>
+> Could you send it back by `{{Date}}`? Any format — a doc is fine, no deck
+> needed.
+>
+> One thing worth saying in advance: we are not scoring you on getting the
+> "right" market number. We are scoring how you get to it and what you flag as
+> uncertain.
+>
+> Best,
+> `{{Your name}}`
+
+> **Why the scope promise is in the first paragraph:** at 4–7 years, an
+> unbounded take-home is the single most common reason a strong candidate exits
+> a process — often silently, by simply not replying. Naming the limit and the
+> "we will not use this" line up front costs you nothing and materially improves
+> your completion rate in this pool.
+
+---
+
 ## 4. Roleplay invitation — Sales Executive
 
 **Subject:** `Next step — {{Role}} at {{Company}}`

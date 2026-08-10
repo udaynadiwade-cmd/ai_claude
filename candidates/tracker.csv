@@ -1,3 +1,4 @@
 candidate_id,date_applied,role,name,phone,email,city,relocate,years_exp,current_employer,source_platform,fixed_current,fixed_expected,notice_period,cv_link,score_total,s1,s2,s3,s4,s5,s6,verdict,verdict_reason,stage,next_action,next_action_date,notes
 SE-0001,,Sales Executive,,,,,,,,,,,,,,,,,,,,,,Applied,,,EXAMPLE ROW - delete once real applications arrive. Score columns s1-s6 map to the six criteria in screening/rubric-sales-executive.md
 DM-0001,,Digital Marketing Executive,,,,,,,,,,,,,,,,,,,,,,Applied,,,EXAMPLE ROW - for DME the columns map to the seven criteria in rubric-digital-marketing-executive.md (s7 appended in notes)
+RM-0001,,Research Manager,,,,,,,,,,,,,,,,,,,,,,Applied,,,EXAMPLE ROW - for Research Manager the columns map to the six criteria in rubric-research-manager.md. Note: expect notice_period of 60-90 days here and do not treat it as a negative signal

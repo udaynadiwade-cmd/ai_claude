@@ -38,9 +38,35 @@ Apply here (5 min): [FORM LINK]
 Please share with anyone who fits 🙏
 ```
 
+**Research Manager**
+
+```
+Hi 👋 We're hiring a *Research Manager* at [COMPANY] in [CITY] — market and consumer research.
+
+4–7 years. Someone who designs the study *and* runs the fieldwork: market sizing, competitor and pricing work, buyer interviews, lost-deal research.
+
+• On-site in [CITY]
+• [₹X.X–₹X.X LPA]
+• Findings go straight to the founder and get acted on — no layer in between
+
+Most likely fit: someone at a research or advisory firm (Kantar, Nielsen, Ipsos, Anarock, Knight Frank, Liases Foras type) who's tired of never finding out what happened to their work.
+
+Apply here (6 min): [FORM LINK]
+
+If someone comes to mind, please pass this on 🙏
+```
+
+> **Naming the target firms is deliberate.** Your contacts do not know what a
+> research manager is, but they do know whether they know someone at Kantar. A
+> referral ask this specific gets roughly double the hit rate of a generic one.
+
 ---
 
 ## Instagram / Facebook — story and feed post
+
+> **Sales and DME only.** Do not post the Research Manager role here. That pool
+> is not browsing Instagram for jobs, and mixing a 4–7 year specialist role into
+> a frontline hiring post makes both look less serious.
 
 **Story (design in Canva, 1080×1920):**
 
@@ -80,6 +106,9 @@ For the sales role, the best candidates are employed and not browsing job
 boards. They are sitting in the loan department of a local bank or NBFC, or on
 the floor of a real estate office in `[CITY]`.
 
+For the **Research Manager** this is not a bonus channel, it is *the* channel —
+the target firm list and search filters are in `pipeline/POSTING-PLAYBOOK.md`.
+
 Ask me to write you a short LinkedIn connection-request script and a follow-up
 message for approaching them directly. Twenty targeted messages typically
-out-performs a week of a paid job posting for this profile.
+out-performs a week of a paid job posting for either profile.

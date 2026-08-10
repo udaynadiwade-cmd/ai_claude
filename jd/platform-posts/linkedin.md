@@ -2,7 +2,11 @@
 
 Two formats per role: the **job posting** (structured fields) and the
 **personal feed post**. The personal post reliably out-performs the job posting
-for roles at this level — do both.
+at these levels — do both.
+
+For the **Research Manager** there is a third and more important format: direct
+outreach. LinkedIn is that role's primary channel, not a supplementary one —
+see section E.
 
 ---
 
@@ -111,7 +115,59 @@ HOW TO APPLY
 
 ---
 
-## C. Personal feed post — post from your own profile
+## C. Job posting — Research Manager
+
+**Job title:** `Research Manager (Market & Consumer Insights)`
+**Seniority:** Mid-Senior level · **Function:** Research / Analyst
+**Industries:** `[Real Estate / Financial Services / Consumer]`
+**Skills:** Market Research, Consumer Insights, Market Sizing, Competitive
+Intelligence, Quantitative Research, Qualitative Research, Survey Design, Data
+Analysis, Business Research, Market Intelligence
+**Apply:** External website → `[GOOGLE FORM LINK]`
+
+**Description:**
+
+```
+We sell a high-ticket, considered purchase. Right now, every decision we make about pricing, location, positioning and which customer to chase is made on instinct and on whatever the last customer said. That works until it doesn't.
+
+This role exists to replace instinct with evidence — fast enough to be useful.
+
+You'll sit between sales and marketing, and the test of your work is whether it changed what those two teams did next week. Not whether the deck was good.
+
+WHAT YOU'LL DO
+• Size our markets, and the ones we're considering — top-down and bottom-up, reconciled
+• Keep a live competitor map: pricing, promise, sales motion, weak points
+• Run primary research yourself — buyer interviews, surveys, lost-deal debriefs, fieldwork. You'll be on the phone and in the field, not only briefing an agency
+• Evaluate new locations, segments and products before we commit money, including the honest downside case
+• Work the secondary sources — industry, government, portal, lending and filing data — and hold any agency we commission to a real standard
+• Publish one-page recommendations: the decision, the evidence, your confidence, and what would change your mind
+
+MUST HAVE
+• 4–7 years in market research, consumer insights, business research, strategy or consulting — studies you designed and ran, not only coordinated
+• Both halves of the craft: primary (survey design, interviewing, sampling, fieldwork) and secondary (desk research, sourcing, triangulation)
+• Genuine numeracy, and a clear view on why 40 self-selected respondents don't support the claim someone wants to make from them
+• The ability to write. Findings that can't be read in five minutes don't get used
+• Market sizing you can defend — we'll ask you to do one live
+
+STRONGLY PREFERRED
+Research in real estate, lending/BFSI, insurance or another high-ticket considered purchase · time at a research or advisory firm, or an in-house insights team · SQL, Power BI/Looker/Tableau, or Python/R · fieldwork in [CITY] in the local language · agency and vendor management
+
+NOT REQUIRED
+A specific degree or institute. Economics, statistics, MBA, urban planning, psychology and geography all produce good researchers. We care whether your conclusions held up.
+
+WHAT WE OFFER
+• [₹X.X–₹X.X LPA]
+• Direct access to the decision maker — your research goes to the person who acts on it, the same week, with nobody in between filtering it
+• A real budget for panels, data and fieldwork
+• Closed-loop feedback most researchers never get: our sales team tells you whether the buyer you described is the buyer who actually showed up
+
+HOW TO APPLY
+[GOOGLE FORM LINK] — attach your CV and describe one piece of research you ran end to end: the question, the method and why you chose it, what you found, and the decision it changed. That last part matters most.
+```
+
+---
+
+## D. Personal feed post — post from your own profile
 
 Post these separately, two or three days apart. Add a photo of the team or
 office; posts with images get materially more reach.
@@ -155,6 +211,42 @@ Application asks for one campaign: channel, budget, starting CPL, ending CPL. Nu
 
 Shares appreciated. 🙏
 ```
+
+**Research Manager**
+
+```
+We're hiring a Research Manager in [CITY]. Market and consumer research.
+
+If you're currently doing research at an agency, you'll recognise this feeling: you produce a genuinely good piece of work, you hand it to the client, and you never find out what happened to it. Sometimes you find out it was ignored.
+
+That's the thing I'm actually offering. Your findings go to me, in the same week, and I act on them or I tell you why not. Then our sales team tells you whether the buyer you described is the buyer who actually walked in. You'll know within a quarter whether you were right.
+
+4–7 years. Both halves of the craft — you design the study and you run the fieldwork. You'll size markets, map competitors, run lost-deal interviews, and tell me when the data doesn't support what I want to believe. That last part is most of the value.
+
+The application asks for one thing: a piece of research you ran end to end, and the decision it changed. If nothing changed, that's a fine answer too — tell me why not.
+
+[LINK]
+
+Shares appreciated, and DMs open if you'd rather ask first. 🙏
+```
+
+> **On this post:** this pool is passive, not applying. The post is really a
+> permission structure for people who weren't looking — which is why it opens
+> with a frustration rather than a requirements list, and why the DM line
+> matters. Expect more conversations than applications, and treat that as the
+> post working, not failing.
+
+---
+
+## E. Direct outreach — the actual strategy for the Research Manager
+
+For the two executive roles, outreach is a bonus. For this one it is the primary
+channel. Target firms and search filters are in
+`pipeline/POSTING-PLAYBOOK.md`. Ask me for the connection-request and follow-up
+scripts and I will write them against your final company details — twenty
+targeted messages will out-perform every board on the list combined.
+
+---
 
 > **Also do this:** turn on LinkedIn's "Open to hiring" photo frame, and ask
 > every person on your team to reshare the post the same day. Employee reshares
