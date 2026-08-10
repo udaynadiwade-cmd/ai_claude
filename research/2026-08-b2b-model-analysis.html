@@ -1,0 +1,667 @@
+<title>Where the Margin Actually Sits — India B2B Commerce, FY25</title>
+<style>
+  :root {
+    --ground:      #F7F8F7;
+    --surface:     #FFFFFF;
+    --surface-2:   #EFF2F1;
+    --ink:         #10201F;
+    --ink-mid:     #3C4E4B;
+    --ink-muted:   #61726F;
+    --rule:        #D6DEDB;
+    --rule-strong: #B4C1BD;
+    --accent:      #0E6B62;
+    --accent-soft: #E0EEEB;
+    --signal:      #96631A;
+    --signal-soft: #F5EBD9;
+    --negative:    #9B3922;
+    --negative-soft:#F6E5E0;
+    --shadow:      0 1px 2px rgba(16,32,31,.06), 0 8px 24px -12px rgba(16,32,31,.16);
+
+    --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, 'Book Antiqua', Georgia, serif;
+    --sans:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    --mono:  ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:      #0B1312;
+      --surface:     #121D1B;
+      --surface-2:   #182523;
+      --ink:         #E9EEEC;
+      --ink-mid:     #B6C6C2;
+      --ink-muted:   #8B9C99;
+      --rule:        #24332F;
+      --rule-strong: #354844;
+      --accent:      #4FBFA8;
+      --accent-soft: #16302C;
+      --signal:      #D9A441;
+      --signal-soft: #2E2617;
+      --negative:    #E0836A;
+      --negative-soft:#33201A;
+      --shadow:      0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --ground:      #0B1312;
+    --surface:     #121D1B;
+    --surface-2:   #182523;
+    --ink:         #E9EEEC;
+    --ink-mid:     #B6C6C2;
+    --ink-muted:   #8B9C99;
+    --rule:        #24332F;
+    --rule-strong: #354844;
+    --accent:      #4FBFA8;
+    --accent-soft: #16302C;
+    --signal:      #D9A441;
+    --signal-soft: #2E2617;
+    --negative:    #E0836A;
+    --negative-soft:#33201A;
+    --shadow:      0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.62;
+    margin: 0;
+    padding: 0 24px 120px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap { max-width: 780px; margin: 0 auto; }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    padding: 72px 0 32px;
+    border-bottom: 2px solid var(--ink);
+    display: flex; flex-direction: column; gap: 20px;
+  }
+  .kicker {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    display: flex; flex-wrap: wrap; gap: 10px 18px;
+  }
+  .kicker span { color: var(--ink-muted); }
+  h1 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: clamp(2.3rem, 6vw, 3.4rem);
+    line-height: 1.08;
+    letter-spacing: -.018em;
+    text-wrap: balance;
+    margin: 0;
+  }
+  .standfirst {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: var(--ink-mid);
+    margin: 0;
+    max-width: 62ch;
+  }
+
+  /* ---------- typography ---------- */
+  h2 {
+    font-family: var(--serif);
+    font-weight: 400;
+    font-size: 1.75rem;
+    line-height: 1.2;
+    letter-spacing: -.012em;
+    text-wrap: balance;
+    margin: 0;
+    padding-top: 8px;
+    border-top: 1px solid var(--rule-strong);
+  }
+  h3 {
+    font-family: var(--sans);
+    font-weight: 650;
+    font-size: 1.02rem;
+    letter-spacing: -.005em;
+    text-wrap: balance;
+    margin: 0;
+  }
+  p { margin: 0; max-width: 68ch; }
+  section { display: flex; flex-direction: column; gap: 18px; padding-top: 52px; }
+  .block { display: flex; flex-direction: column; gap: 12px; }
+  strong { font-weight: 650; }
+  em { font-style: italic; color: var(--ink-mid); }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+  a:focus-visible, summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+  code, .num { font-family: var(--mono); font-variant-numeric: tabular-nums; font-size: .93em; }
+
+  /* ---------- provenance chips ---------- */
+  .chip {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    padding: 2px 6px;
+    border-radius: 3px;
+    white-space: nowrap;
+    vertical-align: 2px;
+    font-weight: 500;
+  }
+  .chip-fact    { background: var(--accent-soft);   color: var(--accent); }
+  .chip-derived { background: var(--signal-soft);   color: var(--signal); }
+  .chip-est     { background: var(--negative-soft); color: var(--negative); }
+
+  .legend {
+    display: flex; flex-wrap: wrap; gap: 8px 20px;
+    padding: 16px 18px;
+    background: var(--surface-2);
+    border-radius: 4px;
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    align-items: center;
+  }
+  .legend > div { display: flex; gap: 8px; align-items: baseline; }
+
+  /* ---------- verdict ---------- */
+  .verdict {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--accent);
+    border-radius: 3px;
+    padding: 28px 30px;
+    display: flex; flex-direction: column; gap: 14px;
+    box-shadow: var(--shadow);
+    margin-top: 40px;
+  }
+  .verdict .label {
+    font-family: var(--mono);
+    font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .verdict p { font-size: 1.05rem; }
+
+  /* ---------- tables ---------- */
+  .scroller { overflow-x: auto; border: 1px solid var(--rule); border-radius: 3px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 620px; }
+  caption {
+    text-align: left; padding: 14px 16px 12px;
+    font-size: 13px; color: var(--ink-muted); border-bottom: 1px solid var(--rule);
+  }
+  th, td { padding: 11px 16px; text-align: left; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  thead th {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase;
+    color: var(--ink-muted); font-weight: 500; background: var(--surface-2);
+    border-bottom: 1px solid var(--rule-strong);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  .n { font-family: var(--mono); font-variant-numeric: tabular-nums; text-align: right; white-space: nowrap; }
+  th.n { text-align: right; }
+  .pos { color: var(--accent); font-weight: 600; }
+  .neg { color: var(--negative); font-weight: 600; }
+  .row-hero td { background: var(--accent-soft); }
+  .row-worst td { background: var(--negative-soft); }
+  .co { font-weight: 650; white-space: nowrap; }
+  .sub { display: block; font-size: 12.5px; color: var(--ink-muted); font-weight: 400; margin-top: 2px; }
+
+  /* ---------- callouts ---------- */
+  .note {
+    border-left: 2px solid var(--rule-strong);
+    padding: 4px 0 4px 20px;
+    color: var(--ink-mid);
+    font-size: 15.5px;
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .warn {
+    background: var(--signal-soft);
+    border: 1px solid var(--signal);
+    border-radius: 3px;
+    padding: 20px 22px;
+    display: flex; flex-direction: column; gap: 10px;
+    font-size: 15.5px;
+  }
+  .warn .label {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--signal); font-weight: 600;
+  }
+
+  /* ---------- derivation ---------- */
+  .derivation {
+    background: var(--surface-2);
+    border-radius: 3px;
+    padding: 20px 22px;
+    font-family: var(--mono);
+    font-size: 13px;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.9;
+    overflow-x: auto;
+    color: var(--ink-mid);
+  }
+  .derivation b { color: var(--ink); font-weight: 600; }
+  .derivation .op { color: var(--ink-muted); }
+
+  /* ---------- phases (a real sequence, so numbered) ---------- */
+  .phases { display: flex; flex-direction: column; gap: 2px; }
+  .phase {
+    display: grid; grid-template-columns: 62px 1fr; gap: 20px;
+    padding: 20px 0; border-top: 1px solid var(--rule);
+  }
+  .phase:last-child { border-bottom: 1px solid var(--rule); }
+  .phase-n {
+    font-family: var(--mono); font-size: 11px; letter-spacing: .08em;
+    color: var(--accent); text-transform: uppercase; padding-top: 3px;
+  }
+  .phase-n b { display: block; font-size: 22px; letter-spacing: -.02em; color: var(--ink); font-weight: 600; }
+  .phase-body { display: flex; flex-direction: column; gap: 8px; }
+
+  /* ---------- ask list ---------- */
+  ol.ask, ul.plain { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 11px; max-width: 68ch; }
+  ol.ask li::marker { font-family: var(--mono); font-size: .85em; color: var(--accent); }
+  ul.plain li::marker { color: var(--accent); }
+
+  /* ---------- sources ---------- */
+  details { border-top: 1px solid var(--rule-strong); padding-top: 18px; }
+  summary { cursor: pointer; font-family: var(--mono); font-size: 11.5px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+  .srcs { margin-top: 18px; display: flex; flex-direction: column; gap: 9px; font-size: 14px; color: var(--ink-mid); }
+  .srcs .tier { font-family: var(--mono); font-size: 10.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--ink-muted); margin-top: 12px; }
+
+  footer { margin-top: 64px; padding-top: 20px; border-top: 1px solid var(--rule); font-size: 13.5px; color: var(--ink-muted); }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; padding: 0 18px 80px; }
+    .verdict { padding: 22px 20px; }
+    .phase { grid-template-columns: 1fr; gap: 8px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">
+      Research note <span>·</span> <span>B2B commerce, India</span> <span>·</span> <span>August 2026</span>
+    </div>
+    <h1>Where the margin actually sits</h1>
+    <p class="standfirst">Five Indian B2B commerce companies, one fiscal year, a 63-point spread in net margin — and what it means for an import platform deciding what to become.</p>
+  </header>
+
+  <div class="verdict">
+    <div class="label">Bottom line</div>
+    <p><strong>Do not build a bigger catalogue. Build a narrower one, put your own brand on it, and lend against it.</strong></p>
+    <p>FY25 filings say the same thing five different ways: in Indian B2B commerce, revenue is close to a vanity metric and the profit sits in credit and private label, not in moving goods. The highest-margin business in the set earns <span class="num">39.7%</span> net on one-sixteenth the revenue of the largest. The largest profitable operator makes an estimated <strong>57% of its profit from a lending book that is under 5% of its revenue.</strong></p>
+    <p>For Befach, the structural threat is not competition — it is that every successful transaction teaches your buyer how to replace you. Private label and embedded trade finance are the only two mechanisms that survive that. Catalogue, logistics and QC do not.</p>
+  </div>
+
+  <div class="legend" style="margin-top:28px">
+    <div><span class="chip chip-fact">Fact</span> traceable to a named source, cited below</div>
+    <div><span class="chip chip-derived">Derived</span> my calculation from cited facts, working shown</div>
+    <div><span class="chip chip-est">Assumption</span> my judgement, not researched — challenge it</div>
+  </div>
+
+  <section>
+    <h2>The table that settles the argument</h2>
+    <p>Five companies, all filed under “B2B commerce”, all FY25 (year ended 31 March 2025). They are not doing the same thing, and the accounts show it.</p>
+
+    <div class="scroller">
+      <table>
+        <caption>FY25 revenue and profitability <span class="chip chip-fact">Fact</span> — margins <span class="chip chip-derived">Derived</span></caption>
+        <thead>
+          <tr>
+            <th>Company</th>
+            <th>Model</th>
+            <th class="n">Revenue ₹Cr</th>
+            <th class="n">PAT ₹Cr</th>
+            <th class="n">Net margin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-hero">
+            <td class="co">IndiaMART</td>
+            <td>Asset-light listings &amp; lead-gen subscription<span class="sub">Never touches the goods</span></td>
+            <td class="n">1,388</td>
+            <td class="n pos">+551</td>
+            <td class="n pos">+39.7%</td>
+          </tr>
+          <tr>
+            <td class="co">OfBusiness</td>
+            <td>Inventory-led industrial raw materials + captive NBFC<span class="sub">Group consolidated</span></td>
+            <td class="n">22,241</td>
+            <td class="n pos">+597</td>
+            <td class="n pos">+2.7%</td>
+          </tr>
+          <tr>
+            <td class="co">Infra.Market</td>
+            <td>Inventory-led building materials + private label<span class="sub">PAT down 42% YoY on 27% revenue growth</span></td>
+            <td class="n">18,472</td>
+            <td class="n pos">+220</td>
+            <td class="n pos">+1.2%</td>
+          </tr>
+          <tr>
+            <td class="co">Zetwerk</td>
+            <td>Managed marketplace, custom manufacturing<span class="sub">Revenue down 11% YoY; loss halved</span></td>
+            <td class="n">12,798</td>
+            <td class="n neg">−371</td>
+            <td class="n neg">−2.9%</td>
+          </tr>
+          <tr class="row-worst">
+            <td class="co">Udaan</td>
+            <td>Inventory-led horizontal wholesale<span class="sub">Retreated from lifestyle, electronics, general merchandise</span></td>
+            <td class="n">4,561</td>
+            <td class="n neg">−1,055</td>
+            <td class="n neg">−23.1%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3>Three things this says</h3>
+      <p><strong>1 — Revenue is nearly meaningless here.</strong> IndiaMART earns <span class="num">92%</span> of OfBusiness's absolute profit on <span class="num">6.2%</span> of its revenue <span class="chip chip-derived">Derived</span>. Inventory-led models book the full value of goods as revenue, so a ₹22,000 Cr topline and a ₹1,388 Cr topline can end up at the same profit. When anyone in this sector quotes GMV or revenue growth at you, that number is not evidence of anything.</p>
+      <p><strong>2 — Horizontal is dead; vertical survives.</strong> Udaan is the purest horizontal play in the set and it lost <span class="num">₹1,055 Cr</span> even <em>after</em> cutting revenue 20% and exiting whole categories to stem the bleeding. The two profitable operators are each locked to one buyer type and one materials family. This is not a coincidence and it is not a scale problem — Udaan had the scale.</p>
+      <p><strong>3 — Profitability at scale is thin enough to be fragile.</strong> Infra.Market grew revenue 27% and its profit <em>fell 42%</em>. At <span class="num">1.2%</span> net margin, a working-capital shock or a freight spike wipes out the year. Thin-margin distribution at scale is not a safe destination; it is a treadmill.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The real finding: the commerce is a customer-acquisition channel for the lending book</h2>
+    <p>OfBusiness is the sector's profitability poster child. Decompose it and the picture changes completely. Its NBFC arm <strong>Oxyzo</strong> reported FY25 PAT of about <span class="num">₹340 Cr</span> at a <span class="num">33.4%</span> PAT margin <span class="chip chip-fact">Fact</span>. Working backwards:</p>
+
+    <div class="derivation">
+      Oxyzo revenue <span class="op">=</span> 339 <span class="op">÷</span> 0.334 <span class="op">≈</span> <b>₹1,015 Cr</b><br>
+      Commerce revenue <span class="op">=</span> 22,241 <span class="op">−</span> 1,015 <span class="op">≈</span> <b>₹21,226 Cr</b><br>
+      Commerce PAT <span class="op">=</span> 597 <span class="op">−</span> 340 <span class="op">≈</span> <b>₹257 Cr</b><br>
+      <br>
+      Lending <span class="op">→</span> <b>4.6%</b> of revenue, <b>57%</b> of profit, <b>33.4%</b> margin<br>
+      Commerce <span class="op">→</span> <b>95.4%</b> of revenue, <b>43%</b> of profit, <b>1.2%</b> margin
+    </div>
+
+    <p><span class="chip chip-derived">Derived</span> This is arithmetic on two published figures, not audited segment reporting. Consolidated accounts eliminate intra-group items, so treat it as directional — but the direction is not subtle. <strong>A lending book under 5% of revenue produces the majority of the profit.</strong></p>
+
+    <div class="note">
+      <p>This is the single most transferable insight in Indian B2B, and it inverts the usual reading. The commerce operation is not the business that happens to have a lending arm. The commerce operation is the origination engine — it acquires SME borrowers at negative cost, and generates the transaction data that lets you underwrite them better than a bank can.</p>
+    </div>
+
+    <div class="warn">
+      <div class="label">Disconfirming evidence — read this before you act on it</div>
+      <p>A <span class="num">33.4%</span> PAT margin on a lending book is a benign-credit-cycle number. Credit costs are the one line that can go from 2% to 8% in three quarters and erase several years of commerce profit. Every Indian NBFC looked excellent in FY25. The model is right; the margin is not a constant.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What this means for Befach specifically</h2>
+    <p>Befach sits in a structurally better position than any company in that table, and has a structural problem none of them have.</p>
+
+    <div class="block">
+      <h3>The advantage is real</h3>
+      <p>Import is not domestic distribution. In domestic wholesale you compete against an incumbent distributor's price and you fight for 3–8 points. In import you compete against <em>the buyer's own inability to import</em> — which is a different and far more valuable thing to be selling. Landed cost is a ten-variable problem (FOB, freight, insurance, BCD, IGST, AIDC, surcharge, CHA, port, last-mile), and every one of those variables is a place a first-time importer gets hurt. That complexity is the moat, and it is a moat price competition cannot erode.</p>
+      <p>The market is not the constraint. India imported <strong><span class="num">$131.63 Bn</span> from China in FY2025-26</strong> — about 17% of all merchandise imports, with the bilateral deficit at <span class="num">$112.16 Bn</span> <span class="chip chip-fact">Fact</span>. The first half of calendar 2026 alone ran <span class="num">$79.41 Bn</span>, so it is accelerating, not plateauing.</p>
+    </div>
+
+    <div class="warn">
+      <div class="label">The problem that decides your business model</div>
+      <p><strong>Every successful shipment teaches your customer how to remove you.</strong> Once a buyer has your factory's name on a packing list, has watched your QC process, and has seen the duty calculation, their rational move on reorder is to go direct. This is why sourcing agencies do not compound — revenue is re-earned every year rather than accumulated, and your best customers churn <em>because</em> you served them well.</p>
+      <p>Only two mechanisms survive this: <strong>a brand the factory cannot sell them</strong>, and <strong>capital they cannot get elsewhere.</strong> Catalogue depth, QC quality, logistics reliability and price transparency are all necessary, and none of them are defensible.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The models, scored against that problem</h2>
+    <div class="scroller">
+      <table>
+        <caption>Take rates and cost-to-serve are <span class="chip chip-est">Assumption</span> — category-typical, not measured from your book</caption>
+        <thead>
+          <tr>
+            <th>Model</th>
+            <th class="n">Margin</th>
+            <th>Capital</th>
+            <th>Survives disintermediation?</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="co">Sourcing commission<span class="sub">befach.in today</span></td>
+            <td class="n">3–5% of FOB</td>
+            <td>None</td>
+            <td class="neg">No — actively accelerates it</td>
+          </tr>
+          <tr>
+            <td class="co">Import-ready catalogue<span class="sub">befach.com/shop, 2,400 SKUs</span></td>
+            <td class="n">20–35% GM</td>
+            <td>Heavy, 90–150 days</td>
+            <td class="neg">No — buyer learns the SKU, sources it</td>
+          </tr>
+          <tr>
+            <td class="co">Managed marketplace<span class="sub">Landed-cost guarantee, you never own goods</span></td>
+            <td class="n">6–12% of landed</td>
+            <td>Light</td>
+            <td>Partly — the guarantee has value</td>
+          </tr>
+          <tr class="row-hero">
+            <td class="co">Private label</td>
+            <td class="n">28–40% GM</td>
+            <td>Heavy + brand spend</td>
+            <td class="pos">Yes — factory cannot sell your brand</td>
+          </tr>
+          <tr class="row-hero">
+            <td class="co">Embedded trade finance</td>
+            <td class="n">10–14% ROA</td>
+            <td>Book-scaled</td>
+            <td class="pos">Yes — and it deepens with tenure</td>
+          </tr>
+          <tr>
+            <td class="co">SaaS / compliance tooling</td>
+            <td class="n">High %, small ₹</td>
+            <td>Light</td>
+            <td>Yes, but SME willingness-to-pay is thin</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>The two rows that survive the disintermediation test are the two rows OfBusiness and Infra.Market actually make their money on. That is the whole argument, and it was arrived at independently from two directions.</p>
+  </section>
+
+  <section>
+    <h2>Why finance stacks rather than competes</h2>
+    <p>The reason to add credit is not that it is a better business than commerce. It is that <strong>it earns a second margin on a transaction you are already doing</strong>, against collateral you already control, using data nobody else has. One illustrative shipment:</p>
+
+    <div class="derivation">
+      <b>Shipment:</b> FOB ₹40.0L <span class="op">·</span> landed ₹50.0L <span class="op">(freight + duty + GST + CHA ≈ 25%)</span><br>
+      <br>
+      <b>A. Commerce</b> — managed marketplace @ 9% of landed<br>
+      <span class="op">  revenue</span> 4.50L <span class="op">−  cost to serve</span> 2.70L <span class="op">→ contribution</span> <b>₹1.80L</b><br>
+      <br>
+      <b>B. Finance</b> — fund ₹35.0L for 90 days<br>
+      <span class="op">  interest @18%</span> 1.55L <span class="op">−  cost of funds @11%</span> 0.95L <span class="op">→ spread</span> 0.60L<br>
+      <span class="op">  + processing fee @1.5%</span> 0.53L <span class="op">−  credit cost @2% p.a.</span> 0.17L<br>
+      <span class="op">  → contribution</span> <b>₹0.96L</b><br>
+      <br>
+      <b>A + B on one shipment</b> <span class="op">=</span> <b>₹2.76L</b> <span class="op">vs</span> ₹1.80L commerce-only <span class="op">=</span> <b>+53%</b><br>
+      <b>Capital efficiency</b> <span class="op">:</span> ₹35L × 4.06 turns/yr <span class="op">→</span> <b>11.1% ROA</b>
+    </div>
+
+    <p><span class="chip chip-est">Assumption</span> Every input above is mine, not measured — your real take rate, cost to serve and cost of funds will move these materially. The <em>structure</em> is the finding, not the numbers: a second margin on the same shipment, at roughly half the contribution of the commerce leg, on capital that turns four times a year.</p>
+
+    <div class="note">
+      <p><strong>And the underwriting edge is genuine.</strong> You see the proforma invoice, the bill of lading, the bill of entry, the QC report and the reorder interval. A bank lending to the same SME sees a balance sheet and a GST return. You are underwriting a specific shipment with known collateral and a known sell-through cycle. That is a structurally better risk than the unsecured working-capital loan the same borrower would otherwise take at 24–30%.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Which vertical to own first</h2>
+    <p>Import economics diverge sharply by category. Scored against the six things that actually determine whether an import platform compounds:</p>
+
+    <div class="scroller">
+      <table>
+        <caption>My scoring, 1–5 per axis <span class="chip chip-est">Assumption</span> — the framework is defensible, the individual scores are debatable</caption>
+        <thead>
+          <tr>
+            <th>Vertical</th>
+            <th class="n">Import<br>intensity</th>
+            <th class="n">Buyer<br>fragmentation</th>
+            <th class="n">Repeat<br>rate</th>
+            <th class="n">Low<br>obsolescence</th>
+            <th class="n">Remote<br>QC</th>
+            <th class="n">Private-label<br>headroom</th>
+            <th class="n">Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-hero">
+            <td class="co">Industrial &amp; MRO consumables, tools</td>
+            <td class="n">4</td><td class="n">5</td><td class="n">5</td><td class="n">5</td><td class="n">4</td><td class="n">5</td>
+            <td class="n pos">28</td>
+          </tr>
+          <tr>
+            <td class="co">Building materials &amp; hardware</td>
+            <td class="n">5</td><td class="n">4</td><td class="n">4</td><td class="n">5</td><td class="n">4</td><td class="n">5</td>
+            <td class="n">27</td>
+          </tr>
+          <tr>
+            <td class="co">Packaging</td>
+            <td class="n">3</td><td class="n">5</td><td class="n">5</td><td class="n">4</td><td class="n">4</td><td class="n">3</td>
+            <td class="n">24</td>
+          </tr>
+          <tr>
+            <td class="co">Textiles &amp; home furnishing</td>
+            <td class="n">4</td><td class="n">5</td><td class="n">3</td><td class="n">2</td><td class="n">3</td><td class="n">4</td>
+            <td class="n">21</td>
+          </tr>
+          <tr>
+            <td class="co">Solar balance-of-system</td>
+            <td class="n">5</td><td class="n">3</td><td class="n">3</td><td class="n">3</td><td class="n">3</td><td class="n">3</td>
+            <td class="n">20</td>
+          </tr>
+          <tr>
+            <td class="co">Electronics &amp; components</td>
+            <td class="n">5</td><td class="n">3</td><td class="n">4</td><td class="n">1</td><td class="n">2</td><td class="n">1</td>
+            <td class="n neg">16</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><strong>Industrial and MRO consumables is the beachhead.</strong> Highest repeat rate of any B2B category, buyers are small enough to be fragmented and numerous, nothing goes obsolete, specs are simple enough for remote QC, and — critically — nobody asks for the factory's brand on a box of abrasives or fasteners. It is the category where private label is easiest and where the Grainger and McMaster-Carr playbooks are proven, both of which are fundamentally private-label distributors, not marketplaces.</p>
+
+    <div class="warn">
+      <div class="label">Two flags on this section</div>
+      <p><strong>Electronics scores worst despite being the largest import line.</strong> Big markets are not good markets: obsolescence destroys inventory-led models, buyers demand named brands, and remote QC on components is unreliable. Do not chase the dollar volume.</p>
+      <p><strong>Solar needs a policy check before anything else.</strong> India's ALMM regime restricts non-listed modules in subsidised and government-linked projects, which materially affects Chinese module imports. Balance-of-system components are less exposed. I have not verified the current ALMM scope for this note — <em>verify before committing anything to solar.</em></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The sequence</h2>
+    <p>Order matters more than selection here. You cannot start with finance — no book, no data, no lender relationship. Each phase produces the asset the next phase requires.</p>
+
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-n"><b>01</b>0–6 mo</div>
+        <div class="phase-body">
+          <h3>Narrow, and instrument repeat rate</h3>
+          <p>Cut to one vertical. Stop selling everything to everyone — 2,400 SKUs across all categories is a catalogue, not a position. Then measure the only metric that matters: <strong>what share of buyers place a second order within 90 days, and a third within 180.</strong> Everything downstream depends on this number and it is the first thing I would want to see.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-n"><b>02</b>6–18 mo</div>
+        <div class="phase-body">
+          <h3>Private-label the top 20 SKUs</h3>
+          <p>Take the twenty highest-repeat items and put your mark on them. This converts a 9% take rate into a 30% gross margin and — the actual point — makes the buyer's direct-to-factory route stop working. This is the single highest-leverage move available to you, and it is Infra.Market's real engine.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-n"><b>03</b>12–24 mo</div>
+        <div class="phase-body">
+          <h3>Trade finance — through a partner NBFC first</h3>
+          <p>Co-lending or a direct-assignment arrangement, not your own book and not your own licence. You bring origination and shipment-level underwriting data; they bring the balance sheet and the regulatory perimeter. This tests whether your data actually predicts repayment before you put your own capital at risk.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-n"><b>04</b>24 mo +</div>
+        <div class="phase-body">
+          <h3>Own the book — only if the data has earned it</h3>
+          <p>An NBFC licence is justified by a proven loss curve across at least one full cycle, not by ambition. Oxyzo took roughly five years to become the profit centre. Compressing that timeline is how a good commerce business gets killed by a bad credit book.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Sizing — what I can defend and what I cannot</h2>
+    <p>The top-down anchor is solid. The chain below it is not, and I would rather show you exactly where it stops being evidence.</p>
+
+    <div class="derivation">
+      <b>₹ / $ chain — India imports from China</b><br>
+      $131.63 Bn <span class="op">FY26 total</span> <span class="chip chip-fact">Fact</span><br>
+      <span class="op">× 15–20%</span>  SME / long-tail share <span class="op">→</span> $20–26 Bn <span class="chip chip-est">Assumption</span><br>
+      <span class="op">× ~40%</span>    platform-serviceable categories <span class="op">→</span> $8–10 Bn <span class="chip chip-est">Assumption</span><br>
+      <span class="op">× 5–10%</span>   digitally intermediated today <span class="op">→</span> <b>$0.4–1.0 Bn</b> <span class="chip chip-est">Assumption</span>
+    </div>
+
+    <p>Two of those three multipliers are my judgement with no source behind them. The 15–20% SME share is the weakest link and it swings the answer by more than everything else combined.</p>
+
+    <div class="note">
+      <p><strong>How to close it properly — and this is worth paying for.</strong> Customs bill-of-entry line data (Volza, Zauba, Export Genius) lists actual importer names, HS codes, consignment values and shipment frequency. Cross-referenced against the DGFT IEC registry, that converts this entire estimate from a top-down guess into a <em>bottom-up census</em>: how many Indian firms import your category, at what ticket size, how often, and who they buy from. It also hands you a named, prioritised prospect list as a by-product. This is the highest-return research purchase available to you and it costs a few lakh, not a few crore.</p>
+    </div>
+
+    <div class="warn">
+      <div class="label">A worked example of why you should distrust market-size headlines</div>
+      <p>RedSeer sizes India's eB2B market at <strong>$90–100 Bn GMV by 2030</strong>, growing 40–45% from $5–6 Bn in 2022. Bain &amp; Accel put B2B e-commerce at <strong>$350 Bn by 2027</strong>, with marketplace GMV at $55 Bn.</p>
+      <p>These cannot both be describing the same thing, and averaging them would be worse than using either. RedSeer is measuring GMV transacted <em>on</em> eB2B platforms; Bain's $350 Bn is total B2B trade <em>digitally influenced</em>, a far broader definition — while its $55 Bn marketplace figure is actually the more conservative of the two on a like-for-like basis. <strong>Whenever you see a B2B market size quoted without its definition, it is not a number, it is a marketing asset.</strong></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What I need from you to make this specific</h2>
+    <p>Everything above is the outside view. Six numbers turn it into your plan, and the first one is worth the other five combined.</p>
+    <ol class="ask">
+      <li><strong>Cohort repeat rate.</strong> Of buyers acquired in any given quarter, what share ordered again within 90 days? Within 180? If you have not instrumented this, instrumenting it is the highest-priority thing in this document.</li>
+      <li><strong>Is revenue booked gross or net?</strong> Full consignment value or your commission? This changes every ratio and is the most common place Indian B2B numbers mislead — including internally.</li>
+      <li><strong>Do you take title to inventory today,</strong> and if so, what is the average days-on-hand and how is it funded?</li>
+      <li><strong>Customer concentration.</strong> What share of value sits with your top 5 and top 20 buyers?</li>
+      <li><strong>Realised gross margin by category</strong> on the last 50 shipments — not list margin, realised after claims, rework, demurrage and FX.</li>
+      <li><strong>Capital position.</strong> What can you deploy into working capital or a credit book, and at what cost of funds?</li>
+    </ol>
+    <div class="note">
+      <p>If the repeat rate is above roughly 40% at 180 days, the private-label-plus-finance path is straightforwardly correct and the only question is sequencing. If it is below 20%, you have a disintermediation problem that is already acute, and the priority changes: fix retention before adding any new business line, because lending into a churning book is how this goes wrong fastest.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Where I would argue against myself</h2>
+    <ul class="plain">
+      <li><strong>Private label is not a guaranteed margin.</strong> Infra.Market runs the exact playbook I am recommending and its PAT still fell 42% in FY25 on 27% revenue growth. Brand needs continuous investment and invites direct competition once it works.</li>
+      <li><strong>Asset-light is profitable but may be capped.</strong> IndiaMART's 39.7% margin comes with net additions of only about 14,000 paying subscribers across two years. High margin and structural growth ceiling can be the same business, so “just be IndiaMART” is not free either.</li>
+      <li><strong>Credit concentrates risk you currently do not carry.</strong> A commerce business with a bad quarter loses a quarter. A lender with a bad vintage loses several years. The upside case and the ruin case both live in the same line item.</li>
+      <li><strong>ONDC is a real but slow-moving variable.</strong> Its B2B layer is early and its headline transaction counts are dominated by low-value B2C categories. I would not build a strategy on it, and I would not ignore it either — watch it, do not bet on it.</li>
+    </ul>
+  </section>
+
+  <details>
+    <summary>Sources — ranked by tier</summary>
+    <div class="srcs">
+      <div class="tier">Tier 1 — statutory and government</div>
+      <div>India–China trade: DGFT/Ministry of Commerce merchandise data as reported — <a href="https://www.newsbytesapp.com/news/business/india-imports-record-13163b-from-china-as-dependence-deepens/tldr">FY2025-26 imports of $131.63 Bn</a> · <a href="https://m.thewire.in/article/trade/indias-imports-from-china-reach-80-bn-in-first-half-of-2026-trade-deficit-widens/amp">H1 2026 at $79.41 Bn</a></div>
+      <div>MSME credit gap: <a href="https://www.sidbi.in/uploads/Understanding_Indian_MSME_sector_Progress_and_Challenges_13_05_25_Final.pdf">SIDBI, Understanding the Indian MSME Sector (May 2025)</a> — note estimates range ₹20–30 lakh crore depending on methodology; treat any single figure with suspicion</div>
+
+      <div class="tier">Tier 2 — industry research</div>
+      <div><a href="https://www.indianretailer.com/article/technology/digital-trends/india-s-b2b-e-commerce-market-set-to-reach-100-bn-gmv-by-2030.a8144">RedSeer — India eB2B to $90–100 Bn GMV by 2030</a> · <a href="https://www.business-standard.com/industry/news/e-comm-b2b-market-likely-to-reach-up-to-100-billion-by-2030-report-123062000179_1.html">Business Standard on the same</a> · <a href="https://www.deloitte.com/in/en/about/press-room/ondc-b2b-digital-commerce-revolution-in-india-deloitte-insights.html">Deloitte — ONDC and B2B digital commerce</a></div>
+
+      <div class="tier">Tier 3 — trade press with primary filing analysis</div>
+      <div><a href="https://entrackr.com/fintrackr/inframarket-reports-over-2-bn-gross-revenue-in-fy25-profit-falls-42-10991551">Entrackr — Infra.Market FY25, revenue ₹18,472 Cr, PAT ₹220 Cr</a></div>
+      <div><a href="https://snackfax.com/business/udaan-cuts-losses-sharply-in-fy25-as-revenue-slides-after-strategic-pullback/">Udaan FY25 — revenue ₹4,561 Cr, loss ₹1,055 Cr</a></div>
+      <div><a href="https://india.entrepreneur.com/news-and-trends/indiamart-closes-fy25-with-a-net-profit-of-inr-181-crore/490851">IndiaMART FY25</a> · <a href="https://corporate.indiamart.com/2025/04/29/indiamart-intermesh-limited-closes-the-year-with-strong-q4fy25-results-with-13-revenue-growth/">company Q4FY25 release</a> · <a href="https://images.assettype.com/bloombergquint/2025-12-17/4dhv0xxf/HDFC_Securities_Institutional_Equities___IndiaMart_InterMesh_Update.pdf">HDFC Securities on subscriber stagnation</a></div>
+      <div><a href="https://the-ken.com/story/1bn-lender-oxyzos-long-stride-out-of-5bn-parent-ofbusiness-shadow/">The Ken — Oxyzo's relationship to OfBusiness</a> · <a href="https://valueforstartups.in/ofbusiness_investor_report">OfBusiness FY25 group figures</a> · <a href="https://valueforstartups.in/zetwerk_investor_report">Zetwerk FY25</a></div>
+      <div><a href="https://inc42.com/features/jumbotail-solv-deal-zero-profits-2x-valuation-jump-questions-galore/">Inc42 — sceptical read on the Jumbotail–Solv deal</a> · <a href="https://jumbotail.com/jumbotail-raises-120m-series-d-funding/">Jumbotail $120M Series D and Solv acquisition</a></div>
+      <div><a href="https://indiadispatch.com/p/how-big-is-indias-e-commerce-market">India Dispatch — on why Indian e-commerce market sizes disagree</a></div>
+
+      <div class="tier">Not used as evidence</div>
+      <div>befach.com is blocked by this environment's network egress proxy. Everything stated about Befach's current model comes from indexed search results and should be corrected by you where wrong.</div>
+    </div>
+  </details>
+
+  <footer>
+    Prepared as a research note, August 2026. Figures marked <span class="chip chip-fact">Fact</span> are traceable to the sources above; <span class="chip chip-derived">Derived</span> shows its working; <span class="chip chip-est">Assumption</span> is my judgement and should be challenged. Conclusions change if the repeat-rate and gross-vs-net questions resolve differently than assumed.
+  </footer>
+
+</div>
