@@ -11,11 +11,12 @@ Change a value here and tell me "refresh the JDs" — I propagate it everywhere.
 | Field | Value | Status |
 |---|---|---|
 | Name | **Befach** (Befach International) | CONFIRMED |
-| Business | **B2B e-commerce** — global sourcing, imports, international logistics | CONFIRMED |
+| Business | **B2B e-commerce** (parent) — global sourcing, imports, international logistics. **D'Cal is a separate B2C product line: a physical hard-water softener sold direct to consumers.** | CONFIRMED |
 | Stage | Startup | CONFIRMED |
-| Base | **Hyderabad** | CONFIRMED |
-| Website | `[NEEDED]` | NEEDED |
-| Careers email | `[NEEDED]` | NEEDED |
+| Base | **Hyderabad** — office at **Banjara Hills** | CONFIRMED 2026-08-11 |
+| Website | `dcal.co.in` (D'Cal product) | CONFIRMED |
+| Careers email | `uday.nadiwade@gmail.com` | CONFIRMED |
+| Office street address | `[NEEDED]` — plot/door no., road, PIN for Banjara Hills, to complete WorkIndia listing | NEEDED |
 
 ## Location preference — CONFIRMED
 
@@ -39,58 +40,28 @@ Communication 30. Years of experience is not scored.
 
 | Level | Fixed / month | Notes |
 |---|---|---|
-| Sales Intern | ₹10,000 + incentive | |
-| Sales Executive — fresher | ₹10,000 + incentive | |
-| Sales Executive — ~1 yr exp | ₹20,000 – ₹25,000 + incentive | **Currently open** |
+| Sales Executive — D'Cal (0–2 yrs) | ₹20,000, negotiable up to ₹25,000 for an exceptional candidate | + incentives, **currently open** |
 
-**Incentive structure: `[NEEDED]`.** This is now the most important missing
-value in the entire brief. At a ₹10–25k fixed, the incentive is not a sweetener
-— it is the offer. Candidates will decide on that number alone.
+**Incentive structure: `[NEEDED]`.** At a ₹20–25k fixed, the incentive is not
+a sweetener — it is a large part of the offer. Candidates will ask.
 
 ---
 
-## ⚠️ Two unresolved conflicts
-
-### 1. B2B company, B2C sales JD
-
-Befach is B2B e-commerce. But the Sales Executive JD was built to a **B2C/D2C**
-brief with a preference for candidates from **loans and real estate plots**.
-
-Those are different jobs. B2B sourcing sales means longer cycles, procurement
-committees, importers and trading businesses as buyers — not walk-in consumers.
-
-**Reading pending confirmation:** the *company* sells B2B, and the loans/plots
-preference was about the *type of person* — aggressive closers who handle
-high-ticket, multi-touch, trust-heavy sales. That instinct transfers well to
-B2B sourcing.
-
-**Until confirmed, the sales JD is on hold.** Rewriting it wrong wastes the post.
-
-### 2. Salary band vs. experience target
-
-₹20–25k/month tops out around ₹3 LPA. A 3-year loan or property closer in
-Hyderabad is on ₹25–40k/month and will not move for this.
-
-**This band buys fresher to ~1 year.** That is not a problem — it aligns with
-the Befach standard, which scores attitude over experience. But the JD must be
-repositioned: **attitude-first, entry-level, hungry, big incentive upside** —
-not "1–3 years with a proven track record."
-
-Recommended reframe: hire for the 8–9/10 attitude, train the selling.
-
----
-
-## Role 1 — Sales Executive (open)
+## Role 1 — Sales Executive, D'Cal Hard Water Softener (open)
 
 | Field | Value | Status |
 |---|---|---|
-| Level | Fresher to ~1 year | CONFIRMED (from band) |
-| Fixed | ₹10,000 (fresher) / ₹20–25,000 (~1 yr) per month | CONFIRMED |
-| Incentive | Paid per order closed, **varies by product**. Exact % or per-order figure still NEEDED | PARTIAL |
-| Sales motion | **B2B** — sourcing, imports, logistics to business buyers | ASSUMED (Claude's call, correct if wrong) |
-| Location | Hyderabad, on-site | CONFIRMED |
-| Languages | English essential, Hindi useful, **Telugu optional not required** | CONFIRMED |
+| Level | 0–2 years | CONFIRMED |
+| Fixed | ₹20,000/month, negotiable up to ₹25,000 for a strong candidate + incentives | CONFIRMED |
+| Sales motion | **B2C** — D'Cal hard water softener, direct to home/business consumers | CONFIRMED 2026-08-11 |
+| Location | Hyderabad — office at **Banjara Hills** | CONFIRMED |
+| Languages | **Hindi, English, Telugu + other regional languages — multilingual is a core requirement**, not optional | CONFIRMED 2026-08-11 |
+| Attitude bar | Very high — hardworking, founder-mentality required | CONFIRMED 2026-08-11 |
 | Headcount | `[NEEDED]` | NEEDED |
+| WorkIndia contact number | 9392389369 | CONFIRMED |
+| WorkIndia contact email | uday.nadiwade@gmail.com | CONFIRMED |
+| Two-wheeler required | No | CONFIRMED |
+| WorkIndia account | Was run by Rajesh Saraf; migration to uday.nadiwade@gmail.com in progress — not yet confirmed done | PARTIAL |
 
 ## Role 2 — Digital Marketing Executive
 

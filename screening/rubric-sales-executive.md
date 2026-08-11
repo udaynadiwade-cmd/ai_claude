@@ -10,8 +10,9 @@ this role. It does not override the standard.
 
 | Filter | Rule |
 |---|---|
-| Location | Cannot work on-site in Hyderabad and unwilling to relocate |
-| Compensation | Expected fixed CTC more than 25% above the top of our band |
+| Location | Cannot work on-site at our Banjara Hills, Hyderabad office and unwilling to relocate |
+| Languages | Not fluent in at least Hindi, English, and Telugu — this is a core requirement, not a plus, for a consumer-facing D'Cal role |
+| Compensation | Expected fixed CTC more than 25% above the top of our band (₹25,000/month) |
 | Completeness | No CV, or the target-vs-achieved question blank / pure filler |
 
 > **Note:** "no sales experience" is deliberately **not** a hard filter. Per the
@@ -39,22 +40,18 @@ this role. It does not override the standard.
 
 **Category fit — 8 pts**
 
-Befach sells **B2B** — sourcing, imports and logistics to business buyers. Score
-proximity to that motion: business buyers, multi-touch, trust-heavy, price
-negotiated.
+Befach sells **D'Cal, a physical hard-water-softener product, direct to
+consumers** (B2C) — not to businesses. Score proximity to that motion: a real
+product, a consumer buyer, in-person/phone close.
 
 | Background | Pts |
 |---|---|
-| B2B sales to businesses — trading, import/export, logistics, manufacturing, wholesale, distribution | 7–8 |
-| Other B2B or SME sales (software, services, equipment) with real closing ownership | 5–6 |
-| High-ticket consultative B2C — loans, property, insurance. **The temperament transfers even though the buyer doesn't** | 4–5 |
-| Other B2C, multi-touch (cars, education, healthcare) | 2–3 |
+| Direct consumer sales of a physical/installed product — water purifiers, solar, appliances, home improvement, security systems | 7–8 |
+| High-ticket consultative B2C — loans, property, insurance. Multi-touch, trust-heavy, price-sensitive — same muscle | 6–7 |
+| Other B2C, multi-touch (cars, education, healthcare, premium retail) | 4–5 |
+| B2B or SME sales — the buyer differs but real closing ownership still counts | 2–4 |
 | Low-ticket or transactional retail | 1–2 |
 | No selling of any kind, including nothing self-initiated | 0 |
-
-> Deliberately generous to loans/property backgrounds. Uday named that profile
-> for a reason — the hunger and the multi-touch instinct are what we want. The
-> B2B knowledge is teachable; that temperament is not.
 
 ### Relevant education — 8 pts
 No specific degree required for this role. Score on whether their education
@@ -87,7 +84,9 @@ Weight it lightly. Flag as an interview question, never a deduction.
 ## COMMUNICATION — 30 pts
 
 Score per the standard. **For this role, communication is effectively the
-product** — treat the score as provisional until the phone screen.
+product** — treat the score as provisional until the phone screen. Score
+fluency across Hindi, English, and Telugu specifically; a candidate strong in
+only one language is capped, regardless of how well they speak it.
 
 - Cap at 22 without a voice sample, and say so explicitly.
 - A submitted voice note that is clear, warm and well-paced can reach the top band.
