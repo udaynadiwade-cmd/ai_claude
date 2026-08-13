@@ -1,0 +1,325 @@
+<title>The B2B Blinkit</title>
+<style>
+  :root {
+    --ground:#F7F8F7; --surface:#FFFFFF; --surface-2:#EFF2F1;
+    --ink:#10201F; --ink-mid:#3C4E4B; --ink-muted:#61726F;
+    --rule:#D6DEDB; --rule-strong:#B4C1BD;
+    --accent:#0E6B62; --accent-soft:#E0EEEB;
+    --signal:#96631A; --signal-soft:#F5EBD9;
+    --negative:#9B3922; --negative-soft:#F6E5E0;
+    --shadow:0 1px 2px rgba(16,32,31,.06), 0 8px 24px -12px rgba(16,32,31,.16);
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+      --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+      --rule:#24332F; --rule-strong:#354844;
+      --accent:#4FBFA8; --accent-soft:#16302C;
+      --signal:#D9A441; --signal-soft:#2E2617;
+      --negative:#E0836A; --negative-soft:#33201A;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+    --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+    --rule:#24332F; --rule-strong:#354844;
+    --accent:#4FBFA8; --accent-soft:#16302C;
+    --signal:#D9A441; --signal-soft:#2E2617;
+    --negative:#E0836A; --negative-soft:#33201A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  * { box-sizing:border-box; }
+  body { background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:17px;
+         line-height:1.62; margin:0; padding:0 24px 120px; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:800px; margin:0 auto; }
+  .masthead { padding:72px 0 32px; border-bottom:2px solid var(--ink);
+              display:flex; flex-direction:column; gap:20px; }
+  .kicker { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--accent); display:flex; flex-wrap:wrap; gap:10px 18px; }
+  .kicker span { color:var(--ink-muted); }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.3rem,6vw,3.4rem); line-height:1.08;
+       letter-spacing:-.018em; text-wrap:balance; margin:0; }
+  .standfirst { font-family:var(--serif); font-size:1.2rem; line-height:1.5; color:var(--ink-mid);
+                margin:0; max-width:62ch; }
+  h2 { font-family:var(--serif); font-weight:400; font-size:1.75rem; line-height:1.2; letter-spacing:-.012em;
+       text-wrap:balance; margin:0; padding-top:8px; border-top:1px solid var(--rule-strong); }
+  h3 { font-family:var(--sans); font-weight:650; font-size:1.02rem; letter-spacing:-.005em;
+       text-wrap:balance; margin:0; }
+  p { margin:0; max-width:68ch; }
+  section { display:flex; flex-direction:column; gap:18px; padding-top:52px; }
+  .block { display:flex; flex-direction:column; gap:12px; }
+  strong { font-weight:650; }
+  em { font-style:italic; color:var(--ink-mid); }
+  a { color:var(--accent); text-decoration-thickness:1px; text-underline-offset:2px; }
+  a:focus-visible, summary:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+  code, .num { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.93em; }
+  .chip { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+          padding:2px 6px; border-radius:3px; white-space:nowrap; vertical-align:2px; font-weight:500; }
+  .chip-fact { background:var(--accent-soft); color:var(--accent); }
+  .chip-derived { background:var(--signal-soft); color:var(--signal); }
+  .chip-est { background:var(--negative-soft); color:var(--negative); }
+  .legend { display:flex; flex-wrap:wrap; gap:8px 20px; padding:16px 18px; background:var(--surface-2);
+            border-radius:4px; font-size:13.5px; color:var(--ink-mid); align-items:center; }
+  .legend > div { display:flex; gap:8px; align-items:baseline; }
+  .verdict { background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+             border-radius:3px; padding:28px 30px; display:flex; flex-direction:column; gap:14px;
+             box-shadow:var(--shadow); margin-top:40px; }
+  .verdict .label { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+                    color:var(--accent); }
+  .verdict p { font-size:1.05rem; }
+  .scroller { overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:14.5px; min-width:640px; }
+  caption { text-align:left; padding:14px 16px 12px; font-size:13px; color:var(--ink-muted);
+            border-bottom:1px solid var(--rule); }
+  th, td { padding:11px 14px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+             color:var(--ink-muted); font-weight:500; background:var(--surface-2);
+             border-bottom:1px solid var(--rule-strong); }
+  tbody tr:last-child td { border-bottom:none; }
+  .n { font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+  th.n { text-align:right; }
+  .pos { color:var(--accent); font-weight:600; }
+  .neg { color:var(--negative); font-weight:600; }
+  .row-hero td { background:var(--accent-soft); }
+  .row-worst td { background:var(--negative-soft); }
+  .co { font-weight:650; }
+  .sub { display:block; font-size:12.5px; color:var(--ink-muted); font-weight:400; margin-top:2px; }
+  .note { border-left:2px solid var(--rule-strong); padding:4px 0 4px 20px; color:var(--ink-mid);
+          font-size:15.5px; display:flex; flex-direction:column; gap:10px; }
+  .warn { background:var(--signal-soft); border:1px solid var(--signal); border-radius:3px;
+          padding:20px 22px; display:flex; flex-direction:column; gap:10px; font-size:15.5px; }
+  .warn .label { font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+                 color:var(--signal); font-weight:600; }
+  .big { background:var(--accent-soft); border:1px solid var(--accent); border-radius:3px;
+         padding:22px 24px; display:flex; flex-direction:column; gap:10px; font-size:15.5px; }
+  .big .label { font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+                color:var(--accent); font-weight:600; }
+  .derivation { background:var(--surface-2); border-radius:3px; padding:20px 22px; font-family:var(--mono);
+                font-size:13px; font-variant-numeric:tabular-nums; line-height:1.9; overflow-x:auto;
+                color:var(--ink-mid); }
+  .derivation b { color:var(--ink); font-weight:600; }
+  .derivation .op { color:var(--ink-muted); }
+  ol.ask, ul.plain { margin:0; padding-left:22px; display:flex; flex-direction:column; gap:11px; max-width:68ch; }
+  ol.ask li::marker { font-family:var(--mono); font-size:.85em; color:var(--accent); }
+  ul.plain li::marker { color:var(--accent); }
+  details { border-top:1px solid var(--rule-strong); padding-top:18px; }
+  summary { cursor:pointer; font-family:var(--mono); font-size:11.5px; letter-spacing:.12em;
+            text-transform:uppercase; color:var(--accent); }
+  .srcs { margin-top:18px; display:flex; flex-direction:column; gap:9px; font-size:14px; color:var(--ink-mid); }
+  footer { margin-top:64px; padding-top:20px; border-top:1px solid var(--rule); font-size:13.5px;
+           color:var(--ink-muted); }
+  @media (max-width:560px) { body { font-size:16px; padding:0 18px 80px; } .verdict { padding:22px 20px; } }
+  @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Research note <span>·</span> <span>Business model design</span> <span>·</span> <span>August 2026</span></div>
+    <h1>The B2B Blinkit</h1>
+    <p class="standfirst">Quick commerce needs 1,140 orders a day per dark store to work in B2C. In B2B the same model breaks even at roughly 52 — and the value proposition is stronger, not weaker.</p>
+  </header>
+
+  <div class="verdict">
+    <div class="label">Bottom line</div>
+    <p><strong>The idea is right, and the economics are better in B2B than in B2C — by a factor of about twenty.</strong></p>
+    <p>But you have described Blinkit's <em>surface</em>. What it actually did was move inventory out of the household and into the dark store. **The B2B version of that is not convenience — it is balance-sheet relief**, and it is worth far more to a business than a consumer.</p>
+    <p><strong>Start with electrical goods to electricians and small contractors.</strong> It is the only category that clears all seven preconditions: real urgency, sufficient density, high frequency, concentrated SKUs, adequate order value, two-wheeler deliverable, and not already served by Blinkit, Swiggy or HyperPure.</p>
+  </div>
+
+  <div class="legend" style="margin-top:28px">
+    <div><span class="chip chip-fact">Fact</span> named source</div>
+    <div><span class="chip chip-derived">Derived</span> my calculation, working shown</div>
+    <div><span class="chip chip-est">Assumption</span> my judgement — challenge it</div>
+  </div>
+
+  <section>
+    <h2>What Blinkit actually did</h2>
+    <p>Your framing is that they sold convenience where there was no pain. That is right, and it is incomplete. The deeper effect:</p>
+
+    <div class="big">
+      <div class="label">The real mechanism</div>
+      <p><strong>Blinkit moved inventory from the household to the dark store.</strong></p>
+      <p>Before: you kept a stocked pantry because running out was costly. After: why hold anything when it arrives in ten minutes? Households quietly stopped carrying inventory — and Blinkit took that inventory onto its own balance sheet in exchange for owning the demand.</p>
+      <p>The consumer did not buy speed. <strong>The consumer stopped being a warehouse.</strong></p>
+    </div>
+
+    <p>Now translate that to a business, where inventory is not a mild inconvenience but <strong>working capital sitting dead on a shelf</strong>:</p>
+
+    <div class="note">
+      <p>An electrical retailer deliberately under-stocks the long tail because holding it is uneconomic <em>for him</em> — his capital is finite and he allocates it to fast-movers. An electrician carries a van full of guesses. A garage holds parts it may not need for months.</p>
+      <p><strong>"Don't hold the stock. I'll hold it, and get it to you in forty-five minutes"</strong> is not a convenience pitch. It is an offer to take working capital off a small business's balance sheet — and small businesses in India are chronically short of exactly that.</p>
+    </div>
+
+    <p>This is why the B2B version is a stronger proposition than the B2C one. Blinkit had to <em>manufacture</em> urgency in a household that was not really suffering. In B2B, <strong>the cost of a stockout is already being paid, in idle labour and blocked capacity, every week.</strong></p>
+  </section>
+
+  <section>
+    <h2>The economics — and why B2B relaxes them enormously</h2>
+    <p>Blinkit is the first EBITDA-profitable quick commerce player in India, and its numbers show how brutal this model is at consumer order values:</p>
+
+    <div class="scroller">
+      <table>
+        <caption>Blinkit, Q4 FY26 <span class="chip chip-fact">Fact</span> — per-store figures <span class="chip chip-derived">Derived</span></caption>
+        <thead><tr><th>Metric</th><th class="n">Value</th></tr></thead>
+        <tbody>
+          <tr><td class="co">Net order value, Q4 FY26</td><td class="n">₹14,386 Cr</td></tr>
+          <tr><td class="co">Dark stores</td><td class="n">2,243</td></tr>
+          <tr><td class="co">Average order value</td><td class="n">₹525–625</td></tr>
+          <tr><td class="co">Break-even AOV</td><td class="n">₹500–550</td></tr>
+          <tr class="row-worst"><td class="co">Contribution margin per order</td><td class="n neg">−₹10 to +₹15</td></tr>
+          <tr><td class="co">Adjusted EBITDA</td><td class="n">₹37 Cr</td></tr>
+          <tr class="row-worst"><td class="co">EBITDA as % of NOV</td><td class="n neg">0.26%</td></tr>
+          <tr class="row-worst"><td class="co"><strong>Orders per day, per store</strong></td><td class="n neg"><strong>~1,140</strong></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p><span class="chip chip-derived">Derived</span> ₹14,386 Cr ÷ 2,243 stores ÷ 90 days = ₹7.13 lakh per store per day; at ₹625 AOV that is ~1,140 orders daily. **Blinkit needs over a thousand orders a day, per store, and still earns a quarter of one percent.**</p>
+
+    <p>Now run the same structure at business order values:</p>
+
+    <div class="derivation">
+      <b>Per order</b> <span class="op">— B2B electrical, illustrative</span><br>
+      Average order value        <span class="op">₹</span> <b>3,000</b><br>
+      Gross margin @15%          <span class="op">₹</span> <b>450</b><br>
+      <span class="op">  − two-wheeler delivery</span>   120<br>
+      <span class="op">  − pick, pack, ops       </span>   30<br>
+      <span class="op">  = contribution           </span> <span class="op">₹</span> <b>300</b>  <span class="op">(vs Blinkit's ₹15 at best)</span><br>
+      <br>
+      <b>Per dark store, per month</b><br>
+      Rent, 1,500–2,500 sq ft    <span class="op">₹</span> 1.50L<br>
+      Staff, 3                   <span class="op">₹</span> 1.20L<br>
+      Utilities, misc            <span class="op">₹</span> 0.50L<br>
+      Riders, 6                  <span class="op">₹</span> 1.50L<br>
+      <span class="op">  = total                 </span> <span class="op">₹</span> <b>4.70L</b><br>
+      <br>
+      <b>Break-even</b> <span class="op">=</span> 4.70L <span class="op">÷</span> 300 <span class="op">=</span> <b>~1,570 orders/month</b> <span class="op">=</span> <b>~52 per day</b><br>
+      <br>
+      <b>vs Blinkit's ~1,140 per day</b> <span class="op">→</span> <b>a 22× lower density requirement</b>
+    </div>
+
+    <p><span class="chip chip-est">Assumption</span> Every input above is mine. AOV and gross margin are the two that matter and both are measurable in your first month. But the <em>structure</em> is robust: <strong>higher order value is what makes quick commerce work, and B2B order values are five to ten times consumer ones.</strong></p>
+
+    <div class="big">
+      <div class="label">What that 22× actually buys you</div>
+      <p>At ~52 orders a day, a zone needs roughly <strong>180 active customers ordering twice a week</strong> <span class="chip chip-derived">Derived</span> — not the tens of thousands of households Blinkit requires. That is one trade cluster. It means you can be viable in a single Hyderabad zone rather than needing a city, and it means the capital to prove this is lakhs, not crores.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The seven preconditions</h2>
+    <p>Quick commerce only works where all of these hold at once. Most B2B categories fail at least two.</p>
+    <ol class="ask">
+      <li><strong>Urgency</strong> — waiting has an immediate, quantifiable cost to the buyer</li>
+      <li><strong>Density</strong> — enough buyers of that type within a 4–6 km radius</li>
+      <li><strong>Frequency</strong> — they order at least weekly</li>
+      <li><strong>SKU concentration</strong> — a few hundred SKUs cover most urgent demand</li>
+      <li><strong>Order value</strong> — high enough that ₹120 of delivery is not the whole margin</li>
+      <li><strong>Two-wheeler deliverable</strong> — the moment you need a tempo, the model breaks</li>
+      <li><strong>Not already served</strong> — by Blinkit, Zepto, Swiggy or HyperPure</li>
+    </ol>
+    <p>Precondition 6 is the one people miss, and it eliminates more categories than any other. <strong>A coil of wire fits on a bike. A cable drum, a tyre, a sack of flour or a bathroom fitting does not.</strong></p>
+  </section>
+
+  <section>
+    <h2>Category screen</h2>
+    <div class="scroller">
+      <table>
+        <caption>Scored against the seven preconditions <span class="chip chip-est">Assumption</span></caption>
+        <thead>
+          <tr><th>Category</th><th class="n">Urgency</th><th class="n">Density</th><th class="n">Freq.</th><th class="n">SKU conc.</th><th class="n">AOV</th><th class="n">On a bike</th><th class="n">Open</th><th class="n">Total</th></tr>
+        </thead>
+        <tbody>
+          <tr class="row-hero">
+            <td class="co">Electrical — to electricians &amp; small contractors<span class="sub">MCBs, switches, sockets, fittings, connectors, tools, short wire runs</span></td>
+            <td class="n">5</td><td class="n">5</td><td class="n">5</td><td class="n">4</td><td class="n">4</td><td class="n">4</td><td class="n">5</td><td class="n pos">32</td>
+          </tr>
+          <tr>
+            <td class="co">Auto parts — to garages<span class="sub">Filters, bulbs, wipers, pads, sensors, oils</span></td>
+            <td class="n">5</td><td class="n">3</td><td class="n">4</td><td class="n">2</td><td class="n">4</td><td class="n">4</td><td class="n">5</td><td class="n">27</td>
+          </tr>
+          <tr>
+            <td class="co">Pharmacy — to chemists</td>
+            <td class="n">5</td><td class="n">5</td><td class="n">5</td><td class="n">4</td><td class="n">3</td><td class="n">5</td><td class="n neg">1</td><td class="n">28</td>
+          </tr>
+          <tr>
+            <td class="co">Salon &amp; beauty supplies</td>
+            <td class="n">3</td><td class="n">4</td><td class="n">4</td><td class="n">5</td><td class="n">2</td><td class="n">5</td><td class="n">5</td><td class="n">28</td>
+          </tr>
+          <tr>
+            <td class="co">Restaurant ingredients</td>
+            <td class="n">5</td><td class="n">5</td><td class="n">5</td><td class="n">3</td><td class="n">4</td><td class="n neg">1</td><td class="n neg">1</td><td class="n neg">24</td>
+          </tr>
+          <tr>
+            <td class="co">Hardware &amp; sanitaryware</td>
+            <td class="n">4</td><td class="n">4</td><td class="n">3</td><td class="n">2</td><td class="n">4</td><td class="n neg">1</td><td class="n">4</td><td class="n neg">22</td>
+          </tr>
+          <tr>
+            <td class="co">Artificial jewellery</td>
+            <td class="n neg">1</td><td class="n">3</td><td class="n">2</td><td class="n">2</td><td class="n">4</td><td class="n">5</td><td class="n">5</td><td class="n neg">22</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="block">
+      <h3>Why electrical wins</h3>
+      <p><strong>Urgency is real and already priced.</strong> Trade guidance says local electricians buy daily and rank availability of the exact item above price. <span class="chip chip-fact">Fact</span> A dead MCB stops a job; labour keeps running.</p>
+      <p><strong>Density is the best of any candidate.</strong> Electricians are numerous and dispersed across every residential and commercial pocket of a city — unlike garages, which cluster on arterial roads, or salons, whose order value is too small.</p>
+      <p><strong>The SKUs fit on a bike.</strong> Switches, sockets, MCBs, holders, connectors, tape, lugs, cable ties, tools and short wire lengths — the urgent items are all small. The bulky items (cable drums, panels) are the <em>planned</em> purchases, which go on a normal next-day route.</p>
+      <p><strong>And nobody serves it.</strong> Blinkit does not stock MCBs. HyperPure serves restaurants. The category has no funded B2B player at all.</p>
+    </div>
+
+    <div class="warn">
+      <div class="label">Why auto parts scores lower despite equal urgency</div>
+      <p>A garage with a car on the lift has the highest cost-of-waiting of any buyer in this document. But it fails on <strong>SKU concentration</strong> — the fitment matrix means the specific part needed is rarely the one you stocked, and a quick-commerce promise you cannot keep is worse than no promise. Density is also weaker: garages cluster on main roads rather than spreading through neighbourhoods.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What could kill this</h2>
+    <ul class="plain">
+      <li><strong>Blinkit or Zepto entering B2B.</strong> The real threat. They already have 2,000+ dark stores, rider fleets and the software. What they do not have is electrical assortment, trade credit, or the supplier relationships — and their store footprint is optimised for consumer SKUs. It is a real but non-trivial extension. <strong>Assume you have two to three years, not ten.</strong></li>
+      <li><strong>Credit.</strong> Blinkit's model is prepaid; the electrical trade runs on 15–30 day terms. Quick commerce plus credit is a harder business than either alone, and it is the single biggest difference between your model and theirs.</li>
+      <li><strong>Order value coming in below assumption.</strong> If real AOV is ₹1,200 rather than ₹3,000, contribution falls to ~₹60 and break-even jumps to ~260 orders a day. <strong>Measure this before you sign a lease.</strong></li>
+      <li><strong>Bulky-item drift.</strong> Customers will ask you to bring the cable drum too. Every time you say yes, the model degrades toward being an ordinary distributor with an expensive promise attached.</li>
+      <li><strong>Capital.</strong> Blinkit reached profitability at 2,243 stores after years of funding. You will be profitable per store far sooner — but citywide coverage still needs 8–12 stores, and a national story needs hundreds.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What to do</h2>
+    <ol class="ask">
+      <li><strong>One zone, one dark store, no app.</strong> Pick the densest electrician cluster in Hyderabad. Take 1,500 sq ft. Stock 300–500 SKUs. Take orders on WhatsApp. Deliver on two bikes. <strong>Prove the order rate before you build software.</strong></li>
+      <li><strong>Measure four things:</strong> orders per day, average order value, delivery cost per order, and repeat rate at 30 days. Those four decide everything and none of them need a platform to measure.</li>
+      <li><strong>The go condition:</strong> 50+ orders a day sustained for four weeks at an AOV above ₹2,000. Hit it and you clone the zone. Miss it and you have learned it for a few lakh rather than a few crore.</li>
+      <li><strong>Add the tail deliberately.</strong> Your defensibility is not speed — Blinkit can match speed. It is <strong>carrying the 3,000 slow-moving SKUs no retailer will stock</strong>, and knowing which substitutes for what when you are out. That is inventory science, and it is the part of this business your Six Sigma training actually wins.</li>
+    </ol>
+
+    <div class="note">
+      <p><strong>The pitch, in one line, for the field test:</strong> <em>"Stop carrying stock. Tell us what you need and we will have it to you in forty-five minutes, six days a week."</em> If electricians in Hyderabad respond to that, you have a business. If they shrug, the urgency is not what the literature claims and you have saved yourself a year.</p>
+    </div>
+  </section>
+
+  <details>
+    <summary>Sources</summary>
+    <div class="srcs">
+      <div><a href="https://globalwebsters.com/blog/quick-commerce-unit-economics-blinkit-zepto-instamart/">Blinkit and Zepto unit economics 2026 — AOV, break-even AOV, contribution margin per order</a></div>
+      <div><a href="https://quashbugs.com/blog/blinkit-surpasses-zomato-in-quick-commerce">Blinkit Q3/Q4 FY26 — NOV, dark store count, adjusted EBITDA, first EBITDA-profitable quick commerce player</a></div>
+      <div><a href="https://www.business-standard.com/companies/start-ups/blinkit-targets-2-000-dark-stores-by-2026-end-while-profitable-ceo-124080101329_1.html">Blinkit dark store expansion targets</a></div>
+      <div><a href="https://www.ibef.org/blogs/the-rise-of-quick-commerce-in-india-revolutionising-retail-and-last-mile-delivery">IBEF — quick commerce in India, dark store model</a></div>
+      <div><a href="https://www.shriramfinance.in/business-loan/articles/how-to-open-electrical-shop-business-in-india">Electrician buying behaviour — daily purchase, availability and credit ranked above price</a></div>
+      <div>Electricals market size, FMEG supply chain fragmentation and the QCO regime are cited in the earlier notes in this series.</div>
+    </div>
+  </details>
+
+  <footer>
+    Research note, August 2026 · fifth in this series. Blinkit's figures are sourced; the B2B unit economics are my construction and every input is an assumption you can measure in a month. The conclusion changes if real order value lands below ₹2,000.
+  </footer>
+
+</div>
