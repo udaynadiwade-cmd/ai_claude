@@ -92,41 +92,53 @@ process. This asks you to be a procurement professional who distributes.
 
 ---
 
-## Re-ranked
-
-| Option | Fit to verified profile | Scale | Verdict |
-|---|---|---|---|
-| **Managed procurement / VMI for mid-market manufacturers** | **Highest** | Good | **New joint-first** |
-| **Vertical distributor + own brand + VMI (electricals)** | High | **Highest** | **Joint-first** |
-| Artificial jewellery | Medium — uses sourcing-as-trading, not sourcing-as-discipline | Modest | Third |
-| Auto aftermarket | Medium | High | Fourth |
-
-Electricals keeps its place on market size and the availability pain. Managed
-procurement joins it because it is the only option where **twenty years of your career
-is the moat.**
-
-They also combine: **manufacturers buy electrical MRO.** A managed-procurement wedge
-into factories, with electrical consumables as the first category, uses both theses at
-once — and it changes the customer from "electrical retailer" to "factory procurement
-head", which is a customer you already know how to sell to.
-
 ---
 
-## What I would ask you now
+# ⚠️ Correction — this memo's ranking was biased, and the founder caught it
 
-1. **How current are Genpact-era relationships?** A warm introduction to two or three
-   manufacturing procurement heads in Telangana would compress the first six months
-   more than any research I can do.
-2. **Rajesh's ceramics and cement background** — is there live commodity or
-   building-materials network there, or is it a 1991 degree and nothing more? It is the
-   one thread in this profile I cannot weigh without you.
-3. **What did gcom do**, and why did it end? It tells me what you have already learned
-   about building a platform.
-4. **Does the D'Cal award record come with government or CII relationships** you still
-   hold? Telangana industrial connections matter for a factory-facing model.
+**Added after founder review.** Three factual corrections and one methodological one.
 
-**And one correction to something I said earlier:** I told you the field test was the
-next action and that more analysis was not. That still holds — but the test now has two
-tracks, not one. Thirty conversations in the electrical trade, **and five with
-manufacturing procurement heads about their indirect spend.** The second set costs you
-nothing but calls, and you are uniquely qualified to run them.
+**Factual:**
+- **gcom was Befach imports' earlier name**, not a separate prior venture. My question
+  about "why did it end" was based on a wrong premise.
+- **The CII and Coca-Cola awards are not commercially load-bearing.** Ignore them.
+- **Manufacturing procurement contacts are available independently.** Genpact-era
+  relationships are not the access route and should not have been treated as one.
+
+**Methodological, and more important:**
+
+> *"Do not necessarily try to drive the business models towards the experiences that I
+> have. I never had experience in selling food but I sell rice today."*
+
+This is correct and it invalidates the ranking that was in this section. I learned that
+Uday ran a procurement practice and immediately promoted **managed procurement** to
+joint-first. That is letting a resume select a market, which is backwards — and the rice
+example disproves the assumption underneath it.
+
+**The right order is: market selects, capability filters, capability optimises.**
+
+1. **Market selects** — size, growth, fragmentation, pain intensity, crowding
+2. **Capability filters** — can they execute it, or hire someone who can
+3. **Capability optimises** — once inside, where the edge gets applied
+
+Re-derived on market logic alone, with the profile used only as a feasibility test:
+
+| Option | Market case | Feasible? | Verdict |
+|---|---|---|---|
+| **Electricals / FMEG** | ₹8.7 lakh Cr, documented availability pain, daily purchase urgency, no funded competitor | Yes — one category hire | **First** |
+| **Auto aftermarket** | ₹99,948 Cr, counterfeit pain, only Boodmo | Yes — harder ops | Second |
+| **Artificial jewellery** | ~₹42,000 Cr, fully open, no regulatory surface | Yes — least new capability needed | Third |
+| Managed procurement for manufacturers | Contested by Moglix and ProcMart; slow enterprise cycles; lacks the frequency and fragmentation that make distribution compound | Yes, easily | **Fourth — demoted** |
+
+**Managed procurement drops back.** Not because the capability fit is wrong — it is the
+best fit in the document — but because capability fit was never supposed to be the
+selector. On market logic it is a contested, slow-cycle, low-frequency business, and
+those are the criteria that decide.
+
+**What survives from this memo:** the correction that "sourcing" means procurement as a
+discipline rather than supplier contacts; the upgraded read on fundability; and VMI as
+the retention mechanism inside whichever category wins. Those are capability findings
+applied at stages 2 and 3, which is where they belong.
+
+**The next action is unchanged:** the thirty-conversation field test in the Hyderabad
+electrical trade.

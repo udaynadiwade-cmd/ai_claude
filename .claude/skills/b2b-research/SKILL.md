@@ -32,8 +32,33 @@ co-founder of gcom. Background in commodity trade and sales. Co-founder Befach 4
 > **Read "sourcing" correctly.** It does not mean "knows some China suppliers." Uday ran
 > a **commodity procurement practice at VP level** — category management, should-cost
 > modelling, spend analytics, supplier rationalisation, negotiation, procurement
-> transformation. Combined with MBB and PMP, procurement *as a discipline* is a
-> product they could sell, not just a capability they use.
+> transformation. Combined with MBB and PMP, that is a consulting-grade discipline.
+
+**Corrections from the founder** `[ADDED 2026-08]`
+- **gcom was Befach imports' earlier name**, not a separate prior venture.
+- **The CII and Coca-Cola awards are not commercially load-bearing.** Do not build
+  arguments on them.
+- **Manufacturing procurement contacts are available to them independently.** Do not
+  treat Genpact-era relationships as the access route.
+
+### How to use this profile — the rule
+
+> **The market selects the business. The profile only tells you whether they can
+> execute it and how fast. Never let the resume pick the category.**
+
+Their own counter-example: *"I never had experience in selling food but I sell rice
+today."* Capability in this team is acquired, not inherited, and a resume is a lagging
+indicator of what they can do.
+
+Apply it in this order:
+1. **Market selects** — size, growth, fragmentation, pain intensity, crowding
+2. **Capability filters** — can they execute it, or hire someone who can?
+3. **Capability optimises** — once inside, where does their edge get applied?
+
+A recommendation that only makes sense because of their CV is a biased recommendation.
+Flag it as such and re-derive it from the market.
+
+**Strengths, in their own words:**
 
 **Strengths, in their own words:**
 - **Sourcing** — China factory-direct plus domestic; the deepest capability
