@@ -9,6 +9,34 @@ The user's standing definition of this role. **Append to this file as they add
 skills; do not rewrite what is already here.** Sections marked `[ADDED <date>]`
 came later — keep that provenance.
 
+## Founder profile — strengths and constraints `[ADDED 2026-08]`
+
+Screen every recommendation against this. A category that does not use these is the
+wrong category, however attractive the market.
+
+**Strengths, in their own words:**
+- **Sourcing** — China factory-direct plus domestic; the deepest capability
+- **Logistics** — import, customs, distribution
+- **E-commerce / tech platform** — can build and run the ordering layer
+- **Marketing and branding** — *unusual in B2B distribution, and the reason private
+  label is a live option rather than a theory*
+- **Systems and process excellence — Master Black Belt.** Treat this as a first-class
+  strength, not a credential. It means DMAIC, variation reduction, statistical process
+  control and service-level engineering are available in-house. Fill rate, OTIF,
+  order-to-delivery cycle time and inventory accuracy are the metrics of distribution,
+  and they are exactly what this training optimises.
+
+**Explicit requirement — acquire once, monetise forever.** They do not want a business
+that re-acquires customers continuously. Favour models with automatic reorder,
+modellable consumption, switching costs and low churn. Weight repeat rate, revenue
+retention and share-of-wallet above new-customer growth in any evaluation.
+
+**Not strengths:** product R&D, manufacturing, and any category requiring deep prior
+technical expertise they would have to acquire personally rather than hire.
+
+**Constraints:** founder is 57, goal is big revenue and an IPO, 7–9 year sector clock,
+Hyderabad-first, one category one city to start, one pivot left.
+
 ## Standing context
 
 - The user operates **befach.com** — an end-to-end India import platform:
