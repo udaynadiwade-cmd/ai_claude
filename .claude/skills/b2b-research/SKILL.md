@@ -14,6 +14,27 @@ came later — keep that provenance.
 Screen every recommendation against this. A category that does not use these is the
 wrong category, however attractive the market.
 
+**Verified credentials** `[ADDED 2026-08, from indexed secondary sources — LinkedIn is
+blocked by this environment's proxy, so confirm with them]`
+
+*Uday Nadiwade* — BE, **NIT Allahabad**; MBA, **XLRI**. ~20 years corporate. At
+**Genpact: Vice President, Commodity Procurement Practice / Strategic Sourcing**, and
+earlier AVP leading IT Operations. **PMP.** **Master Black Belt.** Prior: ACME
+Telepower, Sun Global Solutions, Sankalp Embedded Systems. Co-founder Befach 4x (2018).
+Awards: Telangana State Industries Best Innovation (micro enterprise) 2019, Retail
+Startup Awards 2020, CII product innovation, Coca-Cola Sustainable Enterprise.
+
+*Rajesh Saraf* — BE **ceramics and cement technology**, VTU (1987–91). Previously
+co-founder of gcom. Background in commodity trade and sales. Co-founder Befach 4x.
+
+*Together:* **40+ combined years across global supply chain, commodity trade and sales.**
+
+> **Read "sourcing" correctly.** It does not mean "knows some China suppliers." Uday ran
+> a **commodity procurement practice at VP level** — category management, should-cost
+> modelling, spend analytics, supplier rationalisation, negotiation, procurement
+> transformation. Combined with MBB and PMP, procurement *as a discipline* is a
+> product they could sell, not just a capability they use.
+
 **Strengths, in their own words:**
 - **Sourcing** — China factory-direct plus domestic; the deepest capability
 - **Logistics** — import, customs, distribution
