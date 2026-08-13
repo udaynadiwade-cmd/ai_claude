@@ -3,6 +3,14 @@
 Everything for these three hires lives here. One place, versioned, so nothing
 gets lost in a chat scroll.
 
+> 🔀 **Two hiring systems now exist in this workspace.** Six Befach-specific
+> `hiring-*` skills were added, and they overlap this folder. Read
+> [`hiring/README.md`](hiring/README.md) first — it rules on which system
+> governs what, resolves the three real conflicts, and flags one thing that
+> needs your answer: **these three roles were written against a company profile
+> that does not match Befach.** Nothing here has been deleted or changed
+> pending that answer.
+
 **Roles open:** Sales Executive · Digital Marketing Executive · Research Manager
 **Level:** 1–3 years for the two executive roles · 4–7 years for the Research Manager · on-site India
 **Intake:** Google Form → Sheet + Drive
