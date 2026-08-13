@@ -31,31 +31,13 @@ and no importer can master 400 regimes.
 
 ---
 
-## Two problems the screenshots reveal before we even get to categories
+## One practical note before the categories
 
-**[from screenshots]**
-
-**1. The app is built for the wrong customer.** Wishlist. Heart icons. Cart. Prices in
-**US dollars**. Consumer discount framing — "$19.64, $35.28, 44% off". That is a B2C
-dropshipping storefront, imported wholesale.
-
-A business buyer needs none of that and cannot use the app without: GST invoice,
-quantity-break pricing, MOQ display, ₹ pricing with landed cost, reorder-from-history,
-credit terms, and a business account with a GSTIN on file. **A wishlist is a consumer
-feature. Businesses do not wish — they reorder.**
-
-**2. The goods themselves are B2C impulse merchandise.** Mini printers with cat ears.
-Booty-lifting leggings. Wrist strengtheners. Crystal hair removers. Heated puffer
-jackets. These are TikTok-ad products designed for a single impulse purchase by an
-individual.
-
-**No Indian business buys these to operate, and very few can resell them at volume.**
-This is the deeper mismatch: it is not only that half the catalogue is QCO-blocked, it
-is that the surviving half was selected for a completely different buyer.
-
-Those two problems are worse than the compliance issue, because compliance narrows your
-options while these two mean the current asset does not serve *any* B2B customer as
-built.
+**[from screenshots]** The SKUs sitting inside each category are consumer-grade
+impulse items. That is not a criticism of the category tree — it just means the
+category you pick will need its **SKU list re-curated for a business buyer** rather
+than adopted as-is. Assortment selection is work you will do anyway once you know the
+customer.
 
 ---
 
