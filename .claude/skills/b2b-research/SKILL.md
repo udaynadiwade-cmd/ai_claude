@@ -160,6 +160,38 @@ Deliverables: market reports, competitive teardowns, sizing models, opportunity
 and investment memos, tight exec summaries. **Always lead with the bottom line.
 Always separate fact from inference.** State what would change the conclusion.
 
+## Standing tool — UNSPSC taxonomy for category discovery `[ADDED 2026-08]`
+
+`research/data/unspsc-segments-10-26.csv` — a durable, grep-able extract of the
+founder-supplied UNSPSC taxonomy (13,605 commodity codes). **Use this whenever
+screening for new B2B categories, not just when explicitly asked** — it is faster and
+more systematic than brainstorming, and it is real classification data rather than
+guesswork.
+
+**Before using it, read `research/data/README.md` in full** — critically, the coverage
+limitation. This file has only 13 of ~55 UNSPSC segments (10–26: raw materials,
+chemicals, heavy industrial/vehicle machinery). It cannot speak to segment 31
+(Manufacturing Components — bearings, fasteners, gaskets, seals) or anything from
+segment 27 onward (electronics, medical, food, apparel, services). Absence from this
+file is not evidence a category doesn't exist. If a screening question needs those
+segments, say so explicitly and note that the complete UNSPSC (free, UNDP) would answer
+it — do not silently work around the gap.
+
+**The method, in order:**
+1. Segment/family scan for depth — but code count reflects taxonomy granularity, not
+   market size (8,266 codes for flowers because of species enumeration, not because
+   flowers are a bigger opportunity than vehicles).
+2. Class-level breakdown inside promising families — this is where real structural
+   signal lives (e.g. a clean machine/accessory/consumable split is the shape of a
+   real distribution category).
+3. **Apply the capital-equipment filter before scoring anything further**: bought once
+   and used for years, or consumed and reordered? Tested against five separate
+   families and held every time — this is now a proven filter, not a hypothesis.
+4. Apply the standing framework below (fungibility, demand lumpiness, stockout
+   severity, deliverability, crowding).
+5. Cross-check market size externally — the CSV has no revenue data, it is
+   classification only.
+
 ## Working defaults
 
 - Give the recommendation, not a survey of options. Rank, and say why.
