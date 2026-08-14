@@ -1,0 +1,398 @@
+<title>Stock Nothing</title>
+<style>
+  :root {
+    --ground:#F7F8F7; --surface:#FFFFFF; --surface-2:#EFF2F1;
+    --ink:#10201F; --ink-mid:#3C4E4B; --ink-muted:#61726F;
+    --rule:#D6DEDB; --rule-strong:#B4C1BD;
+    --accent:#0E6B62; --accent-soft:#E0EEEB;
+    --signal:#96631A; --signal-soft:#F5EBD9;
+    --negative:#9B3922; --negative-soft:#F6E5E0;
+    --shadow:0 1px 2px rgba(16,32,31,.06), 0 8px 24px -12px rgba(16,32,31,.16);
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+      --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+      --rule:#24332F; --rule-strong:#354844;
+      --accent:#4FBFA8; --accent-soft:#16302C;
+      --signal:#D9A441; --signal-soft:#2E2617;
+      --negative:#E0836A; --negative-soft:#33201A;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+    --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+    --rule:#24332F; --rule-strong:#354844;
+    --accent:#4FBFA8; --accent-soft:#16302C;
+    --signal:#D9A441; --signal-soft:#2E2617;
+    --negative:#E0836A; --negative-soft:#33201A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  * { box-sizing:border-box; }
+  body { background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:17px;
+         line-height:1.62; margin:0; padding:0 24px 120px; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:820px; margin:0 auto; }
+  .masthead { padding:72px 0 32px; border-bottom:2px solid var(--ink);
+              display:flex; flex-direction:column; gap:20px; }
+  .kicker { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--accent); display:flex; flex-wrap:wrap; gap:10px 18px; }
+  .kicker span { color:var(--ink-muted); }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.3rem,6vw,3.4rem); line-height:1.08;
+       letter-spacing:-.018em; text-wrap:balance; margin:0; }
+  .standfirst { font-family:var(--serif); font-size:1.2rem; line-height:1.5; color:var(--ink-mid);
+                margin:0; max-width:62ch; }
+  h2 { font-family:var(--serif); font-weight:400; font-size:1.75rem; line-height:1.2; letter-spacing:-.012em;
+       text-wrap:balance; margin:0; padding-top:8px; border-top:1px solid var(--rule-strong); }
+  h3 { font-family:var(--sans); font-weight:650; font-size:1.02rem; letter-spacing:-.005em;
+       text-wrap:balance; margin:0; }
+  p { margin:0; max-width:68ch; }
+  section { display:flex; flex-direction:column; gap:18px; padding-top:52px; }
+  .block { display:flex; flex-direction:column; gap:12px; }
+  strong { font-weight:650; }
+  em { font-style:italic; color:var(--ink-mid); }
+  a { color:var(--accent); text-decoration-thickness:1px; text-underline-offset:2px; }
+  a:focus-visible, summary:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:2px; }
+  code, .num { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.93em; }
+  .chip { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+          padding:2px 6px; border-radius:3px; white-space:nowrap; vertical-align:2px; font-weight:500; }
+  .chip-fact { background:var(--accent-soft); color:var(--accent); }
+  .chip-derived { background:var(--signal-soft); color:var(--signal); }
+  .chip-est { background:var(--negative-soft); color:var(--negative); }
+  .legend { display:flex; flex-wrap:wrap; gap:8px 20px; padding:16px 18px; background:var(--surface-2);
+            border-radius:4px; font-size:13.5px; color:var(--ink-mid); align-items:center; }
+  .legend > div { display:flex; gap:8px; align-items:baseline; }
+  .verdict { background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+             border-radius:3px; padding:28px 30px; display:flex; flex-direction:column; gap:14px;
+             box-shadow:var(--shadow); margin-top:40px; }
+  .verdict .label { font-family:var(--mono); font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+                    color:var(--accent); }
+  .verdict p { font-size:1.05rem; }
+  .scroller { overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:14.5px; min-width:620px; }
+  caption { text-align:left; padding:14px 16px 12px; font-size:13px; color:var(--ink-muted);
+            border-bottom:1px solid var(--rule); }
+  th, td { padding:11px 14px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase;
+             color:var(--ink-muted); font-weight:500; background:var(--surface-2);
+             border-bottom:1px solid var(--rule-strong); }
+  tbody tr:last-child td { border-bottom:none; }
+  .n { font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+  th.n { text-align:right; }
+  .pos { color:var(--accent); font-weight:600; }
+  .neg { color:var(--negative); font-weight:600; }
+  .row-hero td { background:var(--accent-soft); }
+  .co { font-weight:650; }
+  .sub { display:block; font-size:12.5px; color:var(--ink-muted); font-weight:400; margin-top:2px; }
+  .note { border-left:2px solid var(--rule-strong); padding:4px 0 4px 20px; color:var(--ink-mid);
+          font-size:15.5px; display:flex; flex-direction:column; gap:10px; }
+  .warn { background:var(--signal-soft); border:1px solid var(--signal); border-radius:3px;
+          padding:20px 22px; display:flex; flex-direction:column; gap:10px; font-size:15.5px; }
+  .warn .label { font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+                 color:var(--signal); font-weight:600; }
+  .big { background:var(--accent-soft); border:1px solid var(--accent); border-radius:3px;
+         padding:22px 24px; display:flex; flex-direction:column; gap:10px; font-size:15.5px; }
+  .big .label { font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+                color:var(--accent); font-weight:600; }
+  .derivation { background:var(--surface-2); border-radius:3px; padding:20px 22px; font-family:var(--mono);
+                font-size:13px; font-variant-numeric:tabular-nums; line-height:1.9; overflow-x:auto;
+                color:var(--ink-mid); }
+  .derivation b { color:var(--ink); font-weight:600; }
+  .derivation .op { color:var(--ink-muted); }
+  .tiers { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .tier { background:var(--surface); border:1px solid var(--rule); border-radius:3px; padding:22px 24px;
+          display:flex; flex-direction:column; gap:10px; }
+  .tier-label { font-family:var(--mono); font-size:10.5px; letter-spacing:.12em; text-transform:uppercase;
+                color:var(--accent); font-weight:600; }
+  .tier h3 { font-size:1.15rem; }
+  .tier ul { margin:0; padding-left:18px; display:flex; flex-direction:column; gap:6px; font-size:14.5px; }
+  .phases { display:flex; flex-direction:column; gap:2px; }
+  .phase { display:grid; grid-template-columns:96px 1fr; gap:20px; padding:20px 0;
+           border-top:1px solid var(--rule); }
+  .phase:last-child { border-bottom:1px solid var(--rule); }
+  .phase-n { font-family:var(--mono); font-size:11px; letter-spacing:.06em; color:var(--accent);
+             text-transform:uppercase; padding-top:3px; }
+  .phase-n b { display:block; font-size:19px; letter-spacing:-.02em; color:var(--ink); font-weight:600; }
+  .phase-body { display:flex; flex-direction:column; gap:8px; }
+  ol.ask, ul.plain { margin:0; padding-left:22px; display:flex; flex-direction:column; gap:11px; max-width:68ch; }
+  ol.ask li::marker { font-family:var(--mono); font-size:.85em; color:var(--accent); }
+  ul.plain li::marker { color:var(--accent); }
+  footer { margin-top:64px; padding-top:20px; border-top:1px solid var(--rule); font-size:13.5px;
+           color:var(--ink-muted); }
+  @media (max-width:640px) { .tiers { grid-template-columns:1fr; } }
+  @media (max-width:560px) {
+    body { font-size:16px; padding:0 18px 80px; }
+    .verdict { padding:22px 20px; } .phase { grid-template-columns:1fr; gap:8px; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Business model <span>·</span> <span>Electrical B2B, Hyderabad</span> <span>·</span> <span>August 2026</span></div>
+    <h1>Stock nothing</h1>
+    <p class="standfirst">Grainger's service model, run at ZKH's margins, delivered at Blinkit's speed, locked in with Fastenal's hardware — and made profitable by the one thing none of them started with.</p>
+  </header>
+
+  <div class="verdict">
+    <div class="label">The model, in one paragraph</div>
+    <p><strong>An electrical goods supply company for Hyderabad's electricians, contractors and small retailers, whose product is not goods but the removal of their inventory.</strong> Dark stores hold the range no customer can afford to hold; a forty-five minute delivery promise makes holding stock unnecessary; managed cabinets on the biggest customers' premises make leaving impossible; and an own-brand line on the highest-repeat items turns a 14% gross margin into 20%.</p>
+    <p>The customer proposition is one sentence: <strong>"Stop carrying stock. Tell us what you need and it is with you in forty-five minutes."</strong></p>
+  </div>
+
+  <div class="legend" style="margin-top:28px">
+    <div><span class="chip chip-fact">Fact</span> sourced in earlier notes</div>
+    <div><span class="chip chip-derived">Derived</span> calculated here</div>
+    <div><span class="chip chip-est">Assumption</span> mine — every number below is one until you measure it</div>
+  </div>
+
+  <section>
+    <h2>What each part is borrowed from, and why</h2>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Borrowed from</th><th>The mechanism</th><th>Why it belongs here</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="co">Grainger</td>
+            <td>High-touch service beats endless assortment</td>
+            <td>Grainger guides High-Touch to <span class="num">16.9–17.4%</span> operating margin against Endless Assortment at <span class="num">10.0–10.5%</span> <span class="chip chip-fact">Fact</span>. Every Indian B2B startup built the cheap half</td>
+          </tr>
+          <tr>
+            <td class="co">ZKH</td>
+            <td>Emerging-market margin reality</td>
+            <td><span class="num">16.7%</span> gross, not 39% <span class="chip chip-fact">Fact</span>. **The whole plan is built at ZKH's margins.** Anything modelled on Grainger's is modelling the wrong country</td>
+          </tr>
+          <tr>
+            <td class="co">Fastenal</td>
+            <td>Onsite devices — acquire once</td>
+            <td>111,800 devices, $2.07 Bn, branches down 36% while revenue rose 85% <span class="chip chip-fact">Fact</span>. The strongest lock-in in global B2B, unclaimed in India</td>
+          </tr>
+          <tr>
+            <td class="co">Blinkit</td>
+            <td>Speed that relocates inventory</td>
+            <td>Blinkit moved stock from the household to the dark store. Here it moves from the electrician's van to yours — and in B2B that is working capital, not convenience</td>
+          </tr>
+          <tr class="row-hero">
+            <td class="co">Infra.Market</td>
+            <td><strong>Private label</strong></td>
+            <td>₹18,472 Cr on branded commodities with no R&amp;D <span class="chip chip-fact">Fact</span>. **This is the part that makes the arithmetic work, and none of the four above had it at the start**</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>The two tiers</h2>
+    <div class="tiers">
+      <div class="tier">
+        <div class="tier-label">Tier 1 · Speed</div>
+        <h3>Dark store, 45 minutes</h3>
+        <ul>
+          <li><strong>Customer:</strong> electricians, small contractors, electrical retailers</li>
+          <li><strong>Range:</strong> 300–500 urgent SKUs, two-wheeler deliverable</li>
+          <li><strong>Order:</strong> WhatsApp first, app later</li>
+          <li><strong>Frequency:</strong> 2–3× per week</li>
+          <li><strong>Job:</strong> acquisition and frequency</li>
+        </ul>
+        <p style="font-size:14.5px">Switches, sockets, MCBs, holders, connectors, lugs, tape, cable ties, tools, short wire runs. <strong>No cable drums, no panels</strong> — those go on a next-day route.</p>
+      </div>
+      <div class="tier">
+        <div class="tier-label">Tier 2 · Depth</div>
+        <h3>Managed cabinets on site</h3>
+        <ul>
+          <li><strong>Customer:</strong> large contractors, MEP firms, factories, facilities</li>
+          <li><strong>Range:</strong> their consumption profile, modelled</li>
+          <li><strong>Order:</strong> none — you replenish on consumption</li>
+          <li><strong>Frequency:</strong> weekly restock visit</li>
+          <li><strong>Job:</strong> retention and margin</li>
+        </ul>
+        <p style="font-size:14.5px">A stocked cabinet at their site, owned by you, billed on what they use. <strong>They stop ordering. You stop selling. Revenue becomes consumption.</strong></p>
+      </div>
+    </div>
+
+    <div class="big">
+      <div class="label">And underneath both — the own brand</div>
+      <p>On the highest-repeat, lowest-brand-pull items: <strong>switch plates, boxes, PVC conduit, junction boxes, lugs, tape, cable ties, hand tools, basic fittings.</strong> Nobody asks for a brand of junction box.</p>
+      <p>Contract-manufactured domestically to start — which keeps BIS compliance with the manufacturer and avoids the QCO regime entirely — with China sourcing as the cost lever once volume justifies it.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Unit economics</h2>
+    <p><span class="chip chip-est">Assumption</span> Every figure below is mine. AOV and gross margin are the two that decide everything, and both are measurable in your first month.</p>
+
+    <div class="derivation">
+      <b>TIER 1 — per order, at maturity</b> <span class="op">(35% own-brand mix)</span><br>
+      Average order value              <span class="op">₹</span> <b>3,000</b><br>
+      Blended gross margin @19.6%      <span class="op">₹</span> <b>588</b><br>
+      <span class="op">  − delivery            </span> 110<br>
+      <span class="op">  − pick, pack          </span>  25<br>
+      <span class="op">  − collection, recon   </span>  15<br>
+      <span class="op">  = contribution        </span> <span class="op">₹</span> <b>438</b>  <span class="op">(14.6% of order)</span><br>
+      <br>
+      <b>Per dark store, per year</b> <span class="op">— 150 orders/day at maturity</span><br>
+      Revenue    150 × 365 × 3,000     <span class="op">₹</span> <b>16.4 Cr</b><br>
+      Contribution 54,750 × 438        <span class="op">₹</span> <b>2.40 Cr</b><br>
+      <span class="op">  − store fixed cost    </span> 0.56 Cr <span class="op">(rent, staff, riders, utilities)</span><br>
+      <span class="op">  = store EBITDA        </span> <span class="op">₹</span> <b>1.84 Cr</b>  <span class="op">(11.2% of revenue)</span><br>
+      <br>
+      <b>Break-even</b> <span class="op">at year-one 14% GM:</span> <b>~52 orders/day</b><br>
+      <span class="op">vs Blinkit's ~1,140 — the higher order value is the whole reason this works</span>
+    </div>
+
+    <div class="derivation">
+      <b>TIER 2 — per cabinet, per year</b><br>
+      Consumption through cabinet       <span class="op">₹</span> <b>4.0 L</b>  <span class="op">(Fastenal averages ~₹20L/device; assume India at a fifth)</span><br>
+      Gross margin @22%                 <span class="op">₹</span> <b>88,000</b>  <span class="op">(service-bundled, higher than Tier 1)</span><br>
+      <span class="op">  − weekly restock visits </span> 25,000<br>
+      <span class="op">  = contribution          </span> <span class="op">₹</span> <b>63,000</b><br>
+      <br>
+      <b>200 cabinets</b> <span class="op">→</span> <b>₹1.26 Cr</b> <span class="op">contribution/yr on ₹8 Cr of consumption</span><br>
+      <span class="op">and near-zero churn — removing you is a project, not a decision</span>
+    </div>
+
+    <div class="warn">
+      <div class="label">The honest company-level number</div>
+      <p>Store EBITDA of 11.2% is <em>before</em> corporate overhead — tech, category management, private-label development, marketing, finance. Assume <strong>5–6% of revenue</strong> at scale. <span class="chip chip-est">Assumption</span></p>
+      <p><strong>Company-level EBITDA lands around 5–6%.</strong> That is not Grainger's 13.9%. But set it against what Indian B2B actually delivers: OfBusiness <span class="num">2.7%</span> net, Infra.Market <span class="num">1.2%</span>, Udaan <span class="num">−23.1%</span>. <span class="chip chip-fact">Fact</span> <strong>Roughly double the best of them, and the difference is entirely private label.</strong></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The margin ladder</h2>
+    <p>Private label is not a phase-three nicety. It is the only path from a 5% business to a 20% one, and the ladder is the plan:</p>
+    <div class="scroller">
+      <table>
+        <caption>Blended gross margin as own-brand mix rises <span class="chip chip-est">Assumption</span></caption>
+        <thead><tr><th>Stage</th><th class="n">Own-brand mix</th><th class="n">Third-party GM</th><th class="n">Own-brand GM</th><th class="n">Blended GM</th></tr></thead>
+        <tbody>
+          <tr><td class="co">Year 1</td><td class="n">0%</td><td class="n">14%</td><td class="n">—</td><td class="n">14.0%</td></tr>
+          <tr><td class="co">Year 2</td><td class="n">20%</td><td class="n">14%</td><td class="n">30%</td><td class="n">17.2%</td></tr>
+          <tr class="row-hero"><td class="co">Year 3+</td><td class="n">35%</td><td class="n">14%</td><td class="n">30%</td><td class="n pos">19.6%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><span class="chip chip-derived">Derived</span> A 5.6-point gross margin gain on ₹3,285 Cr of revenue is <strong>₹184 Cr</strong> of gross profit that does not exist without the own brand. That is the whole difference between this being a business and a job.</p>
+  </section>
+
+  <section>
+    <h2>The path to scale</h2>
+    <div class="derivation">
+      <b>Revenue bridge</b> <span class="op">— at 150 orders/day/store, ₹3,000 AOV</span><br>
+      1 mature dark store              <span class="op">₹</span> <b>16.4 Cr</b>/yr<br>
+      Hyderabad, 12 stores             <span class="op">₹</span> <b>197 Cr</b>/yr<br>
+      10 cities, ~80 stores            <span class="op">₹</span> <b>1,310 Cr</b>/yr<br>
+      <b>20–25 cities, ~200 stores</b>  <span class="op">₹</span> <b>3,285 Cr</b>/yr<br>
+      <span class="op">  + Tier 2 cabinets, ~2,000</span> <span class="op">₹</span> 80 Cr <span class="op">consumption</span><br>
+      <br>
+      <span class="op">For scale reference: Blinkit runs</span> <b>2,243</b> <span class="op">dark stores. This needs 200.</span>
+    </div>
+
+    <div class="note">
+      <p><strong>Is ₹3,285 Cr enough for the listing you want?</strong> Zetwerk filed its DRHP at ₹12,798 Cr with a loss; Infra.Market at ₹18,472 Cr at 1.2% net. <span class="chip chip-fact">Fact</span> You would be listing smaller but far more profitably — and profitable growth lists better than unprofitable scale. <strong>Adding the credit layer in year four, against transaction history you already own, is what closes the gap.</strong></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Capital — the part that decides whether this is possible</h2>
+    <div class="derivation">
+      <b>Per mature store</b><br>
+      Inventory                        <span class="op">₹</span> 35 L<br>
+      Fit-out, racking, systems        <span class="op">₹</span> 10 L<br>
+      Receivables <span class="op">(20-day terms on ₹16.4 Cr)</span> <span class="op">₹</span> 90 L<br>
+      <span class="op">  = capital per store   </span> <span class="op">₹</span> <b>1.35 Cr</b><br>
+      <br>
+      <b>200 stores</b> <span class="op">→</span> <b>₹270 Cr</b> <span class="op">of working capital, plus opex to get there</span>
+    </div>
+    <div class="warn">
+      <div class="label">Read this before anything else in the document</div>
+      <p><strong>Receivables are two-thirds of the capital requirement.</strong> Credit is not a feature of this business, it is the balance sheet. The electrical trade runs on 15–30 day terms and you cannot opt out.</p>
+      <p>Which means: <strong>this is a venture-funded path, not a bootstrapped one</strong> — and the fundraise is not optional, it is structural. Phase 1 costs lakhs. Phase 4 costs a few hundred crore.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Phasing</h2>
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-n"><b>0</b>Mo 0–3</div>
+        <div class="phase-body">
+          <h3>Validate and hire</h3>
+          <p>Thirty conversations in the Hyderabad electrical trade. Engage an experienced electrical distribution manager for a month to run them with you — field data, an insider read on why the category is unclaimed, and a live audition of your category head, for ₹2–3 lakh.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-n"><b>1</b>Mo 3–9</div>
+        <div class="phase-body">
+          <h3>One store, one zone, no app</h3>
+          <p>1,500 sq ft. 300–500 SKUs. WhatsApp orders. Two bikes. <strong>Go condition: 50+ orders/day sustained four weeks at AOV above ₹2,000.</strong> Measure orders/day, AOV, delivery cost, 30-day repeat. Nothing else.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-n"><b>2</b>Mo 9–18</div>
+        <div class="phase-body">
+          <h3>Clone, brand, and place the first cabinets</h3>
+          <p>4–6 Hyderabad zones. Launch own brand on the top 20 SKUs by repeat. Put managed cabinets with your ten best contractor accounts. Build the ordering app now — not before. Raise a seed or pre-A on measured cohort data.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-n"><b>3</b>Mo 18–36</div>
+        <div class="phase-body">
+          <h3>Own Hyderabad, then prove city two</h3>
+          <p>12 stores across Hyderabad. Own-brand mix to 20%. Second city — the real test, because it is where you learn what actually transfers. Series A against two-city cohort data.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-n"><b>4</b>Yr 3–7</div>
+        <div class="phase-body">
+          <h3>Scale, and add credit</h3>
+          <p>20–25 cities, ~200 stores, own-brand mix to 35%. Layer trade credit against your own transaction history — the Oxyzo move, which produces an estimated 57% of OfBusiness's profit from under 5% of its revenue. <span class="chip chip-fact">Fact</span> Then file.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why it is defensible</h2>
+    <ul class="plain">
+      <li><strong>Own brand</strong> — they cannot buy it anywhere else, which is what breaks the disintermediation cycle that has ended every previous version of your business</li>
+      <li><strong>Cabinets on their floor</strong> — removing you is a project, not a decision</li>
+      <li><strong>Substitution intelligence</strong> — knowing what replaces the out-of-stock item, improving with every transaction</li>
+      <li><strong>Fill rate as a measured service level</strong> — the trade runs on instinct; you would run on statistics, and that gap is your Six Sigma training doing the actual work</li>
+      <li><strong>Credit</strong> — switching costs money once they owe you</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>What kills it</h2>
+    <ul class="plain">
+      <li><strong>Blinkit or Zepto entering B2B.</strong> They have 2,000+ stores, riders and software. They lack electrical assortment, trade credit and supplier relationships. <strong>Assume two to three years of clear air, not ten.</strong></li>
+      <li><strong>AOV below ₹2,000.</strong> Contribution collapses and break-even triples. This is the single number to establish first.</li>
+      <li><strong>The credit book going bad.</strong> Two-thirds of your capital is receivables. A bad vintage costs years, not quarters.</li>
+      <li><strong>Drifting into cable.</strong> Wire is a copper position. Every rupee of cable inventory is a commodity bet you are not being paid to take. Fittings and switchgear only, at least at first.</li>
+      <li><strong>Assortment creep.</strong> Every "can you also get me…" that you say yes to degrades the model toward being an ordinary distributor with an expensive promise attached. Udaan died of this.</li>
+      <li><strong>A seventh pivot.</strong> The clock is 7–9 years and you are 57. This one has to be it.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>The next thing to do</h2>
+    <p>Not raise. Not build. Not hire a team.</p>
+    <div class="big">
+      <div class="label">One action</div>
+      <p><strong>Thirty conversations in Hyderabad's electrical trade, with an experienced electrical distribution person alongside you, in the next four weeks.</strong></p>
+      <p>Five questions: what did you need and not get today · what does an hour of waiting cost you · how do you know a cable is genuine · what credit do you get and from whom · who supplies you now and what is wrong with them.</p>
+      <p>Everything in this document is an assumption until those thirty conversations happen. They cost ₹2–3 lakh and four weeks. <strong>The model is worth exactly nothing until they are done.</strong></p>
+    </div>
+  </section>
+
+  <footer>
+    Business model note, August 2026 · seventh in this series. Company financials for Grainger, ZKH, Fastenal, Blinkit, Infra.Market, OfBusiness and Udaan are sourced in the earlier notes. Every operating number here — AOV, order rate, gross margin, cabinet consumption, store cost — is my assumption and should be replaced with measurement before any capital is committed.
+  </footer>
+
+</div>
