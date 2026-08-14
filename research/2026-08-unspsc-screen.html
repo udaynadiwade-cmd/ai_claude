@@ -1,0 +1,250 @@
+<title>Reading the Taxonomy</title>
+<style>
+  :root {
+    --ground:#F7F8F7; --surface:#FFFFFF; --surface-2:#EFF2F1;
+    --ink:#10201F; --ink-mid:#3C4E4B; --ink-muted:#61726F;
+    --rule:#D6DEDB; --rule-strong:#B4C1BD;
+    --accent:#0E6B62; --accent-soft:#E0EEEB;
+    --signal:#96631A; --signal-soft:#F5EBD9;
+    --negative:#9B3922; --negative-soft:#F6E5E0;
+    --shadow:0 1px 2px rgba(16,32,31,.06), 0 8px 24px -12px rgba(16,32,31,.16);
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+      --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+      --rule:#24332F; --rule-strong:#354844;
+      --accent:#4FBFA8; --accent-soft:#16302C;
+      --signal:#D9A441; --signal-soft:#2E2617;
+      --negative:#E0836A; --negative-soft:#33201A;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+    --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+    --rule:#24332F; --rule-strong:#354844;
+    --accent:#4FBFA8; --accent-soft:#16302C;
+    --signal:#D9A441; --signal-soft:#2E2617;
+    --negative:#E0836A; --negative-soft:#33201A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  * { box-sizing:border-box; }
+  body { background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:16.5px;
+         line-height:1.6; margin:0; padding:0 24px 120px; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:900px; margin:0 auto; }
+  .masthead { padding:64px 0 32px; border-bottom:2px solid var(--ink);
+              display:flex; flex-direction:column; gap:18px; }
+  .kicker { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--accent); display:flex; flex-wrap:wrap; gap:10px 18px; }
+  .kicker span { color:var(--ink-muted); }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.1rem,5.5vw,3.2rem); line-height:1.08;
+       letter-spacing:-.018em; text-wrap:balance; margin:0; }
+  .standfirst { font-family:var(--serif); font-size:1.15rem; line-height:1.5; color:var(--ink-mid);
+                margin:0; max-width:68ch; }
+  h2 { font-family:var(--serif); font-weight:400; font-size:1.65rem; line-height:1.2; letter-spacing:-.01em;
+       text-wrap:balance; margin:0; padding-top:6px; border-top:1px solid var(--rule-strong); }
+  h3 { font-family:var(--sans); font-weight:650; font-size:1rem; }
+  p { margin:0; max-width:70ch; }
+  section { display:flex; flex-direction:column; gap:16px; padding-top:46px; }
+  .block { display:flex; flex-direction:column; gap:11px; }
+  strong { font-weight:650; } em { font-style:italic; color:var(--ink-mid); }
+  a { color:var(--accent); }
+  code, .num { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.92em; }
+  .chip { font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+          padding:2px 6px; border-radius:3px; white-space:nowrap; font-weight:600; }
+  .chip-fact { background:var(--accent-soft); color:var(--accent); }
+  .chip-derived { background:var(--signal-soft); color:var(--signal); }
+  .chip-est { background:var(--negative-soft); color:var(--negative); }
+  .legend { display:flex; flex-wrap:wrap; gap:8px 18px; padding:14px 18px; background:var(--surface-2);
+            border-radius:4px; font-size:13px; color:var(--ink-mid); align-items:center; margin-top:24px; }
+  .legend>div{display:flex;gap:7px;align-items:baseline;}
+  .verdict { background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+             border-radius:3px; padding:24px 26px; display:flex; flex-direction:column; gap:12px;
+             box-shadow:var(--shadow); margin-top:36px; }
+  .verdict .label { font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .danger { background:var(--negative-soft); border:1px solid var(--negative); border-radius:3px;
+            padding:20px 22px; display:flex; flex-direction:column; gap:9px; font-size:15px; }
+  .danger .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--negative); font-weight:600; }
+  .warn { background:var(--signal-soft); border:1px solid var(--signal); border-radius:3px;
+          padding:20px 22px; display:flex; flex-direction:column; gap:9px; font-size:15px; }
+  .warn .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--signal); font-weight:600; }
+  .note { border-left:2px solid var(--rule-strong); padding:3px 0 3px 18px; color:var(--ink-mid); font-size:15px; display:flex; flex-direction:column; gap:8px; }
+  .scroller { overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:14px; min-width:640px; }
+  caption { text-align:left; padding:12px 15px 10px; font-size:12.5px; color:var(--ink-muted); border-bottom:1px solid var(--rule); }
+  th, td { padding:9px 13px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted); font-weight:600; background:var(--surface-2); border-bottom:1px solid var(--rule-strong); }
+  tbody tr:last-child td { border-bottom:none; }
+  .n { font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+  th.n { text-align:right; }
+  .pos{color:var(--accent);font-weight:600;} .neg{color:var(--negative);font-weight:600;}
+  .row-hero td { background:var(--accent-soft); } .row-worst td { background:var(--negative-soft); }
+  .co { font-weight:650; } .sub { display:block; font-size:12px; color:var(--ink-muted); font-weight:400; margin-top:1px; }
+  ol.ask, ul.plain { margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px; max-width:70ch; }
+  ol.ask li::marker { font-family:var(--mono); font-size:.82em; color:var(--accent); }
+  ul.plain li::marker { color:var(--accent); }
+  details { border-top:1px solid var(--rule-strong); padding-top:16px; }
+  summary { cursor:pointer; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+  .srcs { margin-top:14px; display:flex; flex-direction:column; gap:8px; font-size:13.5px; color:var(--ink-mid); }
+  footer { margin-top:56px; padding-top:18px; border-top:1px solid var(--rule); font-size:13px; color:var(--ink-muted); }
+  @media (max-width:560px) { body{font-size:15.5px;padding:0 16px 80px;} .verdict{padding:20px 18px;} }
+  @media (prefers-reduced-motion: reduce) { *{animation:none!important;transition:none!important;} }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Research note <span>·</span> <span>UNSPSC taxonomy analysis</span> <span>·</span> <span>August 2026</span></div>
+    <h1>Reading the taxonomy</h1>
+    <p class="standfirst">The uploaded file is a partial extract of the UN's global product classification standard — 13,605 commodity codes, but only a slice of the full system. Here's what it confirms, what it can't tell us, and one genuinely new candidate it surfaces.</p>
+  </header>
+
+  <div class="danger">
+    <div class="label">Read this before the findings</div>
+    <p><strong>The uploaded file covers 13 of the roughly 55 top-level segments in the full UNSPSC standard — segments 10 through 26 only.</strong> That range is raw materials, chemicals, and heavy industrial/vehicle machinery. It is <strong>missing segment 31 (Manufacturing Components and Supplies)</strong> — which in the real UNSPSC is where bearings, fasteners, gaskets, seals and springs actually live — and it is missing everything from segment 27 onward: electronics, medical and lab equipment, IT, office supplies, food, apparel, furniture, and all services categories.</p>
+    <p><strong>So this file cannot directly validate or refute the bearings recommendation</strong> — the category it would confirm isn't in the data. What it <em>can</em> do is stress-test the categories that do fall inside segments 10–26, and it surfaces one real candidate I hadn't scored yet. If you want to screen systematically against the complete standard, the fix is simple: the full UNSPSC file (all ~55 segments, roughly 150,000+ rows across all levels) is publicly downloadable from UNDP — worth getting if you want to keep using this method.</p>
+  </div>
+
+  <div class="legend">
+    <div><span class="chip chip-fact">Fact</span> counted directly from the file, or sourced</div>
+    <div><span class="chip chip-derived">Derived</span> my read of the structure</div>
+    <div><span class="chip chip-est">Assumption</span> judgement — challenge it</div>
+  </div>
+
+  <section>
+    <h2>What's actually in the file</h2>
+    <div class="scroller">
+      <table>
+        <caption>All 13 segments present, by commodity-code count <span class="chip chip-fact">Fact</span></caption>
+        <thead><tr><th>Segment</th><th class="n">Commodity codes</th><th>Relevant to your search?</th></tr></thead>
+        <tbody>
+          <tr><td class="co">Live Plant and Animal Material</td><td class="n">8,266</td><td>No — almost entirely flower and plant species variants, not a business category</td></tr>
+          <tr class="row-hero"><td class="co">Vehicles and Accessories and Components</td><td class="n">1,098</td><td><strong>Yes — deep confirmation of auto aftermarket granularity</strong></td></tr>
+          <tr class="row-hero"><td class="co">Industrial Manufacturing and Processing Machinery</td><td class="n">908</td><td><strong>Yes — this is where welding lives</strong></td></tr>
+          <tr><td class="co">Mining and Well Drilling Machinery</td><td class="n">834</td><td>No — oil/gas and mining specific, not Hyderabad-relevant</td></tr>
+          <tr><td class="co">Chemicals incl. Bio Chemicals and Gas Materials</td><td class="n">561</td><td>Partial — mostly feedstock chemicals, not distributable SKUs</td></tr>
+          <tr><td class="co">Mineral and Textile and Inedible Plant Materials</td><td class="n">465</td><td>Weak — raw material grades, not finished distributable goods</td></tr>
+          <tr><td class="co">Material Handling and Storage Machinery</td><td class="n">451</td><td>Weak — see the capital-equipment note below</td></tr>
+          <tr class="row-hero"><td class="co">Power Generation and Distribution Machinery</td><td class="n">266</td><td><strong>Yes — surfaces lubricants, see below</strong></td></tr>
+          <tr><td class="co">Resin, Rosin, Rubber, Foam, Film, Elastomeric</td><td class="n">197</td><td>Weak — raw material grades</td></tr>
+          <tr><td class="co">Paper Materials and Products</td><td class="n">159</td><td>No — mostly paper stock grades</td></tr>
+          <tr><td class="co">Farming, Fishing, Forestry Machinery</td><td class="n">141</td><td>No — different customer entirely</td></tr>
+          <tr><td class="co">Building and Construction Machinery</td><td class="n">131</td><td>Weak — capital equipment</td></tr>
+          <tr><td class="co">Fuels, Additives, Lubricants, Anti-corrosives</td><td class="n">128</td><td>Partial — lubricants family is real</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><span class="chip chip-derived">Derived</span> A commodity code is a taxonomy entry, not a market. The 8,266 codes under "Live Plant and Animal Material" are almost entirely because UNSPSC gives every flower and plant species its own code — it is not telling you flowers are a bigger opportunity than vehicles. Read code counts as a proxy for <em>how granular the standard gets in that area</em>, not for market size.</p>
+  </section>
+
+  <section>
+    <h2>What it confirms strongly</h2>
+
+    <div class="block">
+      <h3>Welding — the taxonomy backs the pooling thesis in detail</h3>
+      <p>The family <strong>"Welding and soldering and brazing machinery and accessories and supplies"</strong> breaks into three parallel classes: <strong>27 welding machinery codes, 23 accessory codes, 22 supply codes</strong>, plus soldering and brazing machinery separately. <span class="chip chip-fact">Fact</span></p>
+      <p>That three-way split — machines, accessories, consumables — is exactly the shape of a real distribution category: equipment you might rent or finance, accessories you replace occasionally, and consumables (electrode, wire, flux, tips) you buy constantly. <strong>The taxonomy's own structure matches the pooling argument from the last note</strong> without me having designed it that way.</p>
+    </div>
+
+    <div class="block">
+      <h3>Auto components — the depth is genuinely striking</h3>
+      <p>One single family, <strong>"Transportation components and systems,"</strong> contains <strong>389 separate commodity codes</strong> — the second-largest non-flower family in the whole file. It breaks down as: braking systems (35), vehicle safety/security (32), navigation (30), drivetrain (23), exhaust/emissions (22), interior systems (22), steering (19), tyres and tubes (14), suspension (14), fuel systems (10), wipers (9), and more. <span class="chip chip-fact">Fact</span></p>
+      <p>This is the fitment-complexity problem made visible as raw data. Every one of those 389 codes multiplies further by make, model and year in the real world. <strong>It is direct evidence for why auto aftermarket scored lower on execution difficulty than bearings</strong> — the category is not just large, it is combinatorially large.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What it rules out — capital equipment looks tempting and isn't</h2>
+    <p>Three families have real depth and would look promising on a naive SKU-count read. All three fail the pooling model for the same reason, and it is worth stating precisely:</p>
+
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Family</th><th class="n">Codes</th><th>Why it fails pooling despite the depth</th></tr></thead>
+        <tbody>
+          <tr>
+            <td class="co">Material handling machinery<span class="sub">Lifting equipment (75), conveyors (50), industrial trucks (19)</span></td>
+            <td class="n">212</td>
+            <td>These are <strong>capital equipment</strong> — a forklift is financed or rented, not restocked. Long replacement cycles, high unit cost, negotiated one at a time. No repeat-consumption pattern to pool.</td>
+          </tr>
+          <tr>
+            <td class="co">Industrial process machinery<span class="sub">Positioning systems (40), assembly machines (22), packaging machinery (21)</span></td>
+            <td class="n">240</td>
+            <td>Same problem. A packaging line is a project purchase with a multi-year life, not something a factory reorders.</td>
+          </tr>
+          <tr>
+            <td class="co">Power sources — engines and motors<span class="sub">Engine components (88), engines (20), AC/DC motors (30)</span></td>
+            <td class="n">171</td>
+            <td>Motors themselves are capital equipment. <strong>Engine components</strong> at 88 codes is more interesting — that is closer to a consumables/wear-parts profile — but it sits inside a family dominated by the capital-goods pattern.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warn">
+      <div class="label">The rule this confirms</div>
+      <p>Pooling works on <strong>consumables and wear parts</strong> — items replaced on an unpredictable cycle because they fail or run out. It does not work on <strong>capital equipment</strong> — items bought once and used for years. A high SKU count inside a family tells you the taxonomy is detailed there; it does not tell you the category is a distribution opportunity. <strong>This is the single most useful discipline this file adds to the screening method</strong> — a fast test for whether depth is real or decorative.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>The one new candidate — and it comes with a real caveat</h2>
+
+    <div class="block">
+      <h3>Industrial lubricants and greases</h3>
+      <p>A standalone family — <strong>lubricating preparations (35 codes), greases (6), anti-corrosives (8)</strong> — sitting inside "Fuels and Fuel Additives and Lubricants." <span class="chip chip-fact">Fact</span> On the pooling checklist it looks strong at first pass: standardised by grade (viscosity, ISO VG, API classification), consumed continuously by every factory and vehicle fleet, genuine downtime cost when a machine runs dry, buy-to-operate by definition.</p>
+      <p><strong>India lubricants market: 5.77 billion litres in 2026, growing to 6.73 billion litres by 2031 at 3.12% CAGR.</strong> <span class="chip chip-fact">Fact</span> Large, and the fragmentation is real — no single operator dominates transportation, warehousing or the end-user mix. <span class="chip chip-fact">Fact</span></p>
+
+      <div class="danger" style="margin-top:4px">
+        <div class="label">Why this scores lower than welding or bearings despite the size</div>
+        <p><strong>Brand pull is real here, and that breaks the fungibility assumption the whole model depends on.</strong> "Major brands like Indian Oil, Castrol and Gulf Oil have cemented their distribution networks in urban and rural retail outlets, ensuring easy availability." <span class="chip chip-fact">Fact</span> Unlike a bearing — where the ISO number is the whole specification and any compliant part works — machinery buyers often standardise on a specific brand for OEM warranty compliance, and that preference is not something a pooled generic inventory can substitute around.</p>
+        <p>This is precondition 5 from the quick-commerce screen, restated: <strong>the category must not already be well served, and brand-driven categories usually are.</strong> Lubricants is the closest thing this file surfaced to a new idea, and it still fails the test that made bearings the winner.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Re-scored against the established framework</h2>
+    <div class="scroller">
+      <table>
+        <caption>Everything this file bears on, scored 1–10 on the same basis as the fifty-vertical screen</caption>
+        <thead><tr><th>Category</th><th>UNSPSC evidence</th><th class="n">Score</th></tr></thead>
+        <tbody>
+          <tr><td class="co">Welding consumables</td><td>Confirmed — clean three-way machine/accessory/consumable split matching the pooling shape exactly</td><td class="n pos">8</td></tr>
+          <tr><td class="co">Auto parts aftermarket</td><td>Confirmed — 389-code depth in one family alone proves the fitment-complexity problem is real, not overstated</td><td class="n">7</td></tr>
+          <tr><td class="co">Industrial lubricants</td><td>New candidate — large and genuinely fragmented, but brand pull likely defeats fungibility</td><td class="n">5</td></tr>
+          <tr class="row-worst"><td class="co">Material handling machinery</td><td>Deep in the taxonomy, but capital equipment — no repeat-consumption pattern</td><td class="n neg">2</td></tr>
+          <tr class="row-worst"><td class="co">Industrial process machinery</td><td>Same problem — project purchases, not restocked items</td><td class="n neg">2</td></tr>
+          <tr><td class="co">Bearings, fasteners, gaskets, seals</td><td><strong>Not in this file</strong> — segment 31 is missing. Neither confirmed nor challenged by this data</td><td class="n">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>What I would do with this</h2>
+    <ol class="ask">
+      <li><strong>Get the full UNSPSC file</strong> if you want to keep using this method properly. It is a free public download from UNDP, and having segments 27 through 95 would let this same analysis reach electronics, medical, food, and — critically — segment 31, which is where the bearings and fasteners category actually sits and could be checked the same way.</li>
+      <li><strong>The rankings do not change.</strong> Bearings stays first on the evidence gathered so far; welding is confirmed as the strongest second candidate, now with taxonomy-level detail behind it as well as the market sizing from the last note.</li>
+      <li><strong>Do not add lubricants to the field test</strong> on this evidence alone. If you want to test it anyway, the one question that would settle it fast: <em>"If we stocked a generic ISO-VG-68 hydraulic oil at half the price of your usual brand, would you use it?"</em> A hard no from most factories confirms the brand-pull problem and closes the category.</li>
+      <li><strong>Use the capital-equipment filter going forward.</strong> Any category surfaced from here on should pass one question before it is scored at all: <em>is this bought once and used for years, or consumed and reordered?</em> Only the second kind belongs in this model.</li>
+    </ol>
+  </section>
+
+  <details>
+    <summary>Sources</summary>
+    <div class="srcs">
+      <div>UNSPSC UNv260801, uploaded file — 13,605 commodity-level rows across 13 segments, 103 families, 974 classes. Counts in this note are computed directly from the file.</div>
+      <div><a href="https://www.mordorintelligence.com/industry-reports/india-lubricants-market-industry">India lubricants market — 5.77 Bn litres 2026 to 6.73 Bn litres 2031, 3.12% CAGR</a> · <a href="https://www.mordorintelligence.com/industry-reports/india-lubricants-logistics-market">Lubricants logistics fragmentation</a></div>
+      <div>Welding consumables and auto aftermarket market sizing carried forward from earlier notes in this series.</div>
+    </div>
+  </details>
+
+  <footer>
+    Research note, August 2026 · ninth in this series. Structural counts are computed directly from the uploaded file. The lubricants market figure and brand-network claim are sourced; the fungibility conclusion is my judgement and is the cheapest thing in this note to test directly.
+  </footer>
+
+</div>
