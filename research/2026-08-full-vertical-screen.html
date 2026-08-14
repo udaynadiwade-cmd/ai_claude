@@ -1,0 +1,222 @@
+<title>Fifty Verticals, Screened</title>
+<style>
+  :root {
+    --ground:#F7F8F7; --surface:#FFFFFF; --surface-2:#EFF2F1;
+    --ink:#10201F; --ink-mid:#3C4E4B; --ink-muted:#61726F;
+    --rule:#D6DEDB; --rule-strong:#B4C1BD;
+    --accent:#0E6B62; --accent-soft:#E0EEEB;
+    --signal:#96631A; --signal-soft:#F5EBD9;
+    --negative:#9B3922; --negative-soft:#F6E5E0;
+    --shadow:0 1px 2px rgba(16,32,31,.06), 0 8px 24px -12px rgba(16,32,31,.16);
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+      --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+      --rule:#24332F; --rule-strong:#354844;
+      --accent:#4FBFA8; --accent-soft:#16302C;
+      --signal:#D9A441; --signal-soft:#2E2617;
+      --negative:#E0836A; --negative-soft:#33201A;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+    --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+    --rule:#24332F; --rule-strong:#354844;
+    --accent:#4FBFA8; --accent-soft:#16302C;
+    --signal:#D9A441; --signal-soft:#2E2617;
+    --negative:#E0836A; --negative-soft:#33201A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  * { box-sizing:border-box; }
+  body { background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:16.5px;
+         line-height:1.6; margin:0; padding:0 24px 120px; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:1040px; margin:0 auto; }
+  .masthead { padding:64px 0 32px; border-bottom:2px solid var(--ink);
+              display:flex; flex-direction:column; gap:18px; }
+  .kicker { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--accent); display:flex; flex-wrap:wrap; gap:10px 18px; }
+  .kicker span { color:var(--ink-muted); }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.1rem,5.5vw,3.1rem); line-height:1.08;
+       letter-spacing:-.018em; text-wrap:balance; margin:0; max-width:800px; }
+  .standfirst { font-family:var(--serif); font-size:1.15rem; line-height:1.5; color:var(--ink-mid);
+                margin:0; max-width:70ch; }
+  h2 { font-family:var(--serif); font-weight:400; font-size:1.6rem; line-height:1.2; letter-spacing:-.01em;
+       text-wrap:balance; margin:0; padding-top:6px; border-top:1px solid var(--rule-strong); }
+  h3 { font-family:var(--sans); font-weight:650; font-size:.98rem; }
+  p { margin:0; max-width:72ch; }
+  section { display:flex; flex-direction:column; gap:16px; padding-top:44px; }
+  strong { font-weight:650; }
+  em { font-style:italic; color:var(--ink-mid); }
+  a { color:var(--accent); }
+  code, .num { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.92em; }
+  .chip { font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+          padding:2px 6px; border-radius:3px; white-space:nowrap; font-weight:600; display:inline-block; }
+  .chip-hero  { background:var(--accent-soft); color:var(--accent); }
+  .chip-warm  { background:var(--signal-soft); color:var(--signal); }
+  .chip-cold  { background:var(--negative-soft); color:var(--negative); }
+  .chip-neu   { background:var(--surface-2); color:var(--ink-muted); }
+
+  .legend { display:flex; flex-wrap:wrap; gap:10px 18px; padding:14px 18px; background:var(--surface-2);
+            border-radius:4px; font-size:13px; color:var(--ink-mid); align-items:center; margin-top:24px; }
+  .legend > div { display:flex; gap:7px; align-items:center; }
+
+  .verdict { background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+             border-radius:3px; padding:24px 26px; display:flex; flex-direction:column; gap:12px;
+             box-shadow:var(--shadow); margin-top:36px; }
+  .verdict .label { font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
+                    color:var(--accent); }
+
+  .scroller { overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; min-width:920px; }
+  caption { text-align:left; padding:12px 15px 10px; font-size:12.5px; color:var(--ink-muted);
+            border-bottom:1px solid var(--rule); background:var(--surface-2); }
+  th, td { padding:9px 12px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:9.5px; letter-spacing:.06em; text-transform:uppercase;
+             color:var(--ink-muted); font-weight:600; background:var(--surface-2);
+             border-bottom:1px solid var(--rule-strong); position:sticky; top:0; }
+  tbody tr:last-child td { border-bottom:none; }
+  .n { font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+  th.n { text-align:right; }
+  .co { font-weight:650; white-space:nowrap; }
+  .sub { display:block; font-size:11.5px; color:var(--ink-muted); font-weight:400; margin-top:1px; }
+  .score { font-family:var(--mono); font-weight:700; font-size:14px; text-align:center; }
+  .score-hi { color:var(--accent); } .score-mid { color:var(--signal); } .score-lo { color:var(--negative); }
+  .group-row td { background:var(--surface-2); font-family:var(--mono); font-size:10.5px;
+                  letter-spacing:.1em; text-transform:uppercase; color:var(--ink-muted); font-weight:600;
+                  padding:8px 12px; }
+
+  .note { border-left:2px solid var(--rule-strong); padding:2px 0 2px 18px; color:var(--ink-mid);
+          font-size:14.5px; display:flex; flex-direction:column; gap:8px; }
+  .warn { background:var(--signal-soft); border:1px solid var(--signal); border-radius:3px;
+          padding:18px 20px; display:flex; flex-direction:column; gap:8px; font-size:14.5px; }
+  .warn .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+                 color:var(--signal); font-weight:600; }
+  ol.ask, ul.plain { margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px; max-width:70ch; }
+  ol.ask li::marker { font-family:var(--mono); font-size:.82em; color:var(--accent); }
+  footer { margin-top:56px; padding-top:18px; border-top:1px solid var(--rule); font-size:13px;
+           color:var(--ink-muted); }
+  @media (max-width:560px) { body { font-size:15.5px; padding:0 16px 80px; } .verdict { padding:20px 18px; } }
+  @media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Research note <span>·</span> <span>Full vertical screen</span> <span>·</span> <span>August 2026</span></div>
+    <h1>Fifty verticals, screened</h1>
+    <p class="standfirst">Every category from the taxonomy, scored against the framework this whole series has been built on: is the buyer relieving a real pain, does pooling or postponement create a structural edge, and is the space already taken.</p>
+  </header>
+
+  <div class="verdict">
+    <div class="label">Bottom line</div>
+    <p><strong>Nothing new beats bearings. Two new candidates are worth a second look: welding consumables and diagnostic reagents. Everything else confirms the existing shortlist rather than replacing it.</strong></p>
+    <p><strong>Welding consumables</strong> shares bearings' mechanics almost exactly — fungible, industrial, high-frequency, ₹1.8 Bn USD growing 8.4% <span class="chip chip-hero">FACT</span> — and is worth a parallel field test. <strong>Diagnostic reagents</strong> is the biggest new market found (~$11–19 Bn) but expiry risk and cold-chain make it a harder operational business than bearings, not an easier one.</p>
+  </div>
+
+  <div class="legend">
+    <div><span class="chip chip-hero">9–10</span> exceptional</div>
+    <div><span class="chip chip-warm">6–8</span> worth testing</div>
+    <div><span class="chip chip-neu">4–5</span> mediocre</div>
+    <div><span class="chip chip-cold">1–3</span> avoid</div>
+  </div>
+
+  <section>
+    <h2>The full screen</h2>
+    <p>Scored 1–10 on the combined framework from this series: pain intensity (buy-to-operate vs resell, urgency), pooling or postponement structure, market size, compliance load, and competitive crowding. Sources marked <span class="chip chip-hero" style="vertical-align:2px">FACT</span> are cited below; unmarked figures are carried from earlier notes in this series or are judgment calls.</p>
+
+    <div class="scroller">
+      <table>
+        <caption>Score is my synthesis across the whole framework, not one axis. Most-promising first within each group.</caption>
+        <thead>
+          <tr><th>Vertical</th><th>Buyer</th><th class="n">India market</th><th>Note</th><th class="n">Score</th></tr>
+        </thead>
+        <tbody>
+
+          <tr class="group-row"><td colspan="5">Already deep-screened in this series</td></tr>
+          <tr><td class="co">Bearings &amp; power transmission<span class="sub">Factories</span></td><td>Operate</td><td class="n">$5.2–12.0 Bn</td><td>Best pooling mechanics found — global standard part numbers, brutal downtime cost</td><td class="score score-hi">9</td></tr>
+          <tr><td class="co">Electricals / FMEG<span class="sub">Electricians, contractors</span></td><td>Operate</td><td class="n">₹8.7 lakh Cr</td><td>Documented pain, no funded player, but only ~5% net without private label</td><td class="score score-hi">8</td></tr>
+          <tr><td class="co">Auto parts aftermarket<span class="sub">Garages</span></td><td>Operate</td><td class="n">₹99,948 Cr</td><td>Highest urgency of anything screened; fitment matrix is the graveyard</td><td class="score score-warm">7</td></tr>
+          <tr><td class="co">Industrial valves, pipes, fittings<span class="sub">Plants</span></td><td>Operate</td><td>—</td><td>#2 pooling pick; bulkier than bearings, harder to deliver fast</td><td class="score score-warm">7</td></tr>
+          <tr><td class="co">Artificial jewellery<span class="sub">Jewellery shops</span></td><td>Resell</td><td>$4.98–9.73 Bn</td><td>Fully open, zero compliance, best fit to sourcing skill — but resell, not operate</td><td class="score score-warm">6</td></tr>
+          <tr><td class="co">Steel — sheet, plate, structural<span class="sub">Fabricators</span></td><td>Operate</td><td>—</td><td>Proof-of-concept for pooling (Reliance Steel 29.7% GM) but OfBusiness/Zetwerk already there</td><td class="score score-warm">6</td></tr>
+          <tr><td class="co">Salon &amp; beauty professional<span class="sub">Salons</span></td><td>Operate</td><td>₹2,554 Cr</td><td>Best pain-to-crowding ratio found; simply too small for the stated goal</td><td class="score score-warm">6</td></tr>
+          <tr><td class="co">Pet supplies (non-food)<span class="sub">Pet shops, groomers, vets</span></td><td>Mixed</td><td>—</td><td>Cleanest compliance surface of any category screened; channel losing share to D2C</td><td class="score score-neu">5</td></tr>
+          <tr><td class="co">Optical lenses<span class="sub">Opticians</span></td><td>Operate</td><td>—</td><td>Best pooling mechanics of any retail category; customers already accept a wait, kills pricing power</td><td class="score score-neu">5</td></tr>
+          <tr><td class="co">Managed procurement for manufacturers<span class="sub">Factory procurement</span></td><td>Operate</td><td>—</td><td>Best fit to founder CV; contested by Moglix/ProcMart, slow enterprise cycles</td><td class="score score-neu">5</td></tr>
+          <tr><td class="co">Bakery ingredients<span class="sub">Bakeries</span></td><td>Operate</td><td>$15.05 Bn</td><td>1M+ unorganised bakeries, best fragmentation in food; cold chain, thin commodity margins</td><td class="score score-neu">5</td></tr>
+          <tr><td class="co">Data centre supply<span class="sub">EPCs / MEP contractors</span></td><td>Operate</td><td>$180 Bn commitments</td><td>Not a platform business — ~40 accounts — but a real demand tailwind for electricals</td><td class="score score-neu">4</td></tr>
+          <tr><td class="co">Dry fruits &amp; nuts<span class="sub">Sweet shops, gifting</span></td><td>Resell</td><td>$9.3–12.7 Bn</td><td>India's largest dry-fruit import position, but zero dealer leverage confirmed</td><td class="score score-neu">4</td></tr>
+          <tr><td class="co">Tyres<span class="sub">Tyre dealers</span></td><td>Resell</td><td>—</td><td>ATD ran this exact pooling model at national scale — twice bankrupt</td><td class="score score-cold">2</td></tr>
+          <tr><td class="co">Pharmacy retail<span class="sub">Chemists</span></td><td>Resell</td><td>—</td><td>800k+ pharmacies, best fragmentation in India, gated by chemist association NOCs</td><td class="score score-cold">2</td></tr>
+          <tr><td class="co">Restaurant / HoReCa<span class="sub">Restaurants</span></td><td>Operate</td><td>—</td><td>HyperPure ₹6,196 Cr, +95% YoY, captive Zomato customer base — closed</td><td class="score score-cold">2</td></tr>
+          <tr><td class="co">Kirana / grocery<span class="sub">Kirana stores</span></td><td>Resell</td><td>—</td><td>Jumbotail 500k+ kiranas post-Solv; Udaan −₹1,055 Cr proving the shape fails</td><td class="score score-cold">1</td></tr>
+          <tr><td class="co">Apparel<span class="sub">Retailers</span></td><td>Resell</td><td>—</td><td>Trend risk, SKU explosion, entrenched credit hubs — Udaan exited this category</td><td class="score score-cold">1</td></tr>
+
+          <tr class="group-row"><td colspan="5">Newly researched this pass</td></tr>
+          <tr><td class="co">Welding consumables<span class="sub">Fabricators, construction, auto</span></td><td>Operate</td><td class="n">$1.8–3.72 Bn <span class="chip chip-hero">FACT</span></td><td>Near-identical mechanics to bearings: fungible electrodes/wire, high-frequency, industrial buyer, genuine downtime cost. <strong>Worth a parallel field test</strong></td><td class="score score-warm">8</td></tr>
+          <tr><td class="co">Diagnostic reagents &amp; lab consumables<span class="sub">Pathology labs</span></td><td>Operate</td><td class="n">$11.0–19.5 Bn <span class="chip chip-hero">FACT</span></td><td>Largest new market found, growing ~11%; but expiry-dated, cold-chain-heavy, and large operators are already vertically integrating reagent supply</td><td class="score score-warm">6</td></tr>
+          <tr><td class="co">Dairy processing equipment &amp; supplies<span class="sub">Dairies, cooperatives</span></td><td>Operate</td><td class="n">₹12,730 Bn (whole industry) <span class="chip chip-hero">FACT</span></td><td>55–60% of equipment procurement sits with large cooperatives like Amul who buy direct from global OEMs — the fragmented tail is small by comparison</td><td class="score score-cold">3</td></tr>
+          <tr><td class="co">Printing consumables — ink, paper<span class="sub">Print shops</span></td><td>Operate</td><td class="n">Ink ~$400M <span class="chip chip-hero">FACT</span></td><td>Genuinely fragmented — 200+ small ink makers, 55–65% of paper through unorganised channels — but low value per unit kills the pooling economics</td><td class="score score-neu">4</td></tr>
+          <tr><td class="co">Laundry &amp; dry-cleaning supplies<span class="sub">Laundromats, dry cleaners</span></td><td>Operate</td><td class="n">Services ~$11 Bn by 2030 <span class="chip chip-hero">FACT</span></td><td>Real buy-to-operate signal, but this is a consumer-services market being professionalised, not yet a distinguishable B2B supply category with its own data</td><td class="score score-neu">4</td></tr>
+
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>The two worth acting on</h2>
+
+    <div class="warn">
+      <div class="label">Welding consumables — run this field test alongside bearings, not instead of it</div>
+      <p><strong>$1.8 Bn in 2026 → $3.72 Bn by 2035 at 8.40% CAGR.</strong> Stick electrodes hold 34.5% share specifically because SMEs prefer them for low equipment cost and field portability — <strong>meaning the buyer base is exactly the fragmented small-fabricator population bearings targets.</strong> Construction is the largest end-use at 32.5%, and Maharashtra alone is 18% of the national market, which tells you it clusters around industrial hubs the way bearings demand does.</p>
+      <p><strong>Why it's a genuine second candidate, not a distraction:</strong> electrodes and wire are consumed continuously rather than held as insurance stock the way a bearing is — so the pooling logic is slightly weaker, but the <em>frequency</em> is higher, which may compensate. And BIS certification requirements are tightening procurement standards, which — exactly as with electrical cable — makes verified, traceable supply a real differentiator against grey-market product.</p>
+      <p><strong>Practical case for running it in parallel:</strong> the same warehouse, the same delivery fleet, and very likely the same customer — a fabricator buying bearings for his machines is a plausible buyer of welding consumables for his shop floor. Add three welding-consumable questions to the ten factory visits already planned; it costs nothing extra.</p>
+    </div>
+
+    <div class="note">
+      <p><strong>Diagnostic reagents is bigger but harder, and the reason is structural, not just regulatory.</strong> At $11–19.5 Bn growing ~11%, it dwarfs bearings on size. But two things work against the pooling thesis specifically: reagents are expiry-dated, so pooled stock is a depreciating asset rather than a stable one — the opposite of the bearings advantage — and the search results note that <strong>larger diagnostic operators are already investing in domestic reagent production and diversified supply chains</strong>, meaning the biggest, most attractive customers are vertically integrating away from needing you. The opportunity, if any, is smaller labs who cannot do that — a real but narrower slice than the headline number suggests.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>What this pass confirms, not just adds</h2>
+    <ul class="plain">
+      <li><strong>Dairy is a false lead.</strong> ₹12,730 Bn sounds enormous, but 55–60% of equipment spend sits with large cooperatives buying direct from global OEMs (Della Toffola, INOXPA, Siemens). The addressable fragmented tail is a fraction of the headline number — the same trap as quoting India's total e-commerce market when your actual addressable segment is a sliver of it.</li>
+      <li><strong>Printing confirms the value-density rule from the pooling framework.</strong> It is genuinely fragmented — 200+ small ink makers, most paper through unorganised channels — but ink and paper are low value per unit, so pooling gain is weak even where fragmentation is extreme. Value density matters as much as fragmentation.</li>
+      <li><strong>Laundry is a services market wearing a supply-chain costume.</strong> The $11 Bn figure describes laundry <em>services</em>, not a B2B supply category — there isn't yet a distinct, measured market for "things sold to laundries" the way there is for bearings or welding consumables. That absence of data is itself a signal: either genuinely white space, or not yet a real category. Field-testable, not desk-researchable.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Recommendation</h2>
+    <ol class="ask">
+      <li><strong>Do not add a sixth candidate to the shortlist.</strong> Bearings still wins outright. Welding consumables is the one addition worth carrying into the field test — same visits, same warehouse, marginal extra cost.</li>
+      <li><strong>Extend the ten factory visits</strong> to ask about welding consumable spend and pain alongside the five bearings questions already planned.</li>
+      <li><strong>Park diagnostic reagents</strong> as a phase-two category once the operating model is proven on bearings — the expiry and cold-chain complexity is a harder problem to solve first, not an easier one.</li>
+      <li><strong>Drop dairy, printing and laundry from active consideration</strong> — not because the desk research says no outright, but because each has a specific structural weakness (integrated buyers, low value density, absent data) that a field visit is unlikely to overturn.</li>
+    </ol>
+  </section>
+
+  <details style="border-top:1px solid var(--rule-strong); padding-top:16px;">
+    <summary style="cursor:pointer; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent);">Sources — newly researched this pass</summary>
+    <div style="margin-top:14px; display:flex; flex-direction:column; gap:8px; font-size:13.5px; color:var(--ink-mid);">
+      <div><a href="https://www.imarcgroup.com/india-welding-consumables-market">India welding consumables market — $1.8 Bn 2026 to $3.72 Bn 2035</a> · <a href="https://markwideresearch.com/india-welding-consumables-market">MarkWide Research on segment share and BIS certification tightening</a></div>
+      <div><a href="https://www.imarcgroup.com/india-diagnostic-labs-market">India diagnostic labs market — $10.95–18.41 Bn</a> · <a href="https://www.expertmarketresearch.com/reports/india-diagnostic-labs-market">Expert Market Research on reagent supply chain integration</a></div>
+      <div><a href="https://www.precedenceresearch.com/dairy-processing-equipment-market">Dairy processing equipment market, global and India context</a> · <a href="https://uja.in/blog/market-reports/dairy-industry-in-india/">India dairy industry ₹12,730 Bn, cooperative procurement share</a></div>
+      <div><a href="https://www.pamex.in/pdf/Printing%20in%20India.pdf">Printing in India overview</a> · <a href="https://whattheythink.com/articles/119835-will-india-hold-scepter-print-packaging-growth-next-five-years-overview/">Ink market structure and fragmentation</a></div>
+      <div><a href="https://washmart.in/laundry-business-in-india-market-size-growth-opportunities/">India laundry and dry-cleaning services market, ~$11 Bn by 2030</a></div>
+      <div>All other figures are carried forward from earlier notes in this series, sourced there.</div>
+    </div>
+  </details>
+
+  <footer>
+    Research note, August 2026 · eighth in this series. Newly cited figures are sourced; scores are synthesis judgment applying the framework built across this series and should be treated as directional, not precise.
+  </footer>
+
+</div>
