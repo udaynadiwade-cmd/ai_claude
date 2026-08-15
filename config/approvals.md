@@ -5,7 +5,7 @@ is assumed — each line is recorded only after Uday confirms it.
 
 | Date | Item | Status |
 |---|---|---|
-| 2026-08-07 | Daily autonomous run, 9:00 AM IST, Mon–Sat | ✅ Approved ("go now") |
+| 2026-08-15 | Daily autonomous run, 9:00 PM IST, Mon–Sat (was hourly 9am-9pm, changed to once/day) | ✅ Approved |
 | 2026-08-07 | Autonomous sending: acknowledgements, document requests, follow-ups | ✅ Approved (default) |
 | 2026-08-07 | Scoring weights — the two 100-point rubrics as written | ✅ Approved (default) |
 | 2026-08-07 | PII split — identity in Drive, anonymised IDs in repo | ✅ Approved (default) |
