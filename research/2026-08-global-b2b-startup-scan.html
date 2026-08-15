@@ -425,6 +425,55 @@
   </section>
 
   <section>
+    <h2>Deep dive: Faire — why it was skipped, and what it actually shows</h2>
+    <p><span class="chip chip-derived">Correction</span> Faire was left out of the mechanism catalog above on purpose, not by oversight — the brief given to the research agents was to mention already-famous names only in passing and spend the detail budget on less-obvious models, and in synthesising, the passing mentions of Amazon Business / Faire / Grainger / McMaster-Carr / Flexport were cut entirely rather than kept as one-liners. That was a reasonable call for a whitespace scan, but it left Faire under-evidenced for anyone actually trying to evaluate it — worth doing properly on request.</p>
+
+    <div class="block">
+      <h3>How it actually works</h3>
+      <p>Faire connects independent brands/makers (sellers) to independent retail stores (buyers) and inserts itself as the credit counterparty between them, not just the directory. <span class="chip chip-fact">Fact</span> Retailers get <strong>net-60 payment terms</strong> (order now, pay in 60 days) and <strong>free returns on each brand's opening order</strong> — this is the wedge, because it removes the two things that keep a small boutique from trying an unfamiliar brand: upfront cash and unsold-inventory risk. Brands get paid out by Faire within days, regardless of the retailer's 60-day term — <strong>Faire fronts the cash and absorbs the collections/credit risk itself.</strong> No listing or monthly fees. (<a href="https://www.brahmin-solutions.com/blog/what-is-faire-wholesale">Brahmin Solutions</a>, <a href="https://multisellr.com/blog/faire-payment-terms-explained">Multisellr</a>)</p>
+      <p>Monetization is a commission on GMV, and the published rate has moved around: <strong>15% on marketplace orders, with a $10 one-time new-customer fee</strong> in North America per Faire's own pricing update, but brand-side accounts describe the practical first-order cost as closer to <strong>25%</strong> once new-customer and (for non-North-America brands) referral fees stack, dropping to 15% on reorders. <span class="chip chip-est">Sources disagree on the exact current structure</span> — treat the specific percentages as approximate, the shape (much higher first-order take, lower repeat-order take, plus add-on fees) as the reliable part. (<a href="https://www.faire.com/en-gb/blog/for-brands/north-america-pricing-update">Faire pricing update</a>, <a href="https://eightx.co/blog/faire-wholesale-take-rate-margin-impact">Eightx</a>)</p>
+    </div>
+
+    <div class="block">
+      <h3>The numbers</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Metric</th><th>Value</th><th class="n">When</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Funding raised, total</td><td>$1.7Bn across 9 rounds</td><td class="n">2018–2025</td></tr>
+            <tr><td class="co">Peak valuation</td><td>$12.4–12.6Bn (Series G)</td><td class="n">May 2022</td></tr>
+            <tr class="row-worst"><td class="co">Current valuation</td><td><strong>$5.2Bn</strong> — a ~59% markdown from peak</td><td class="n">Nov 2025 tender offer</td></tr>
+            <tr><td class="co">Revenue</td><td>~$355M (2022) → $616M (2023, +73% YoY) → &gt;$500M annualized, +40%+ YoY (Q3 2025)</td><td class="n">2022–2025</td></tr>
+            <tr><td class="co">Effective take rate</td><td>~16.5% (2022) → ~19% (2023) after fee restructuring</td><td class="n">2022–2023</td></tr>
+            <tr><td class="co">GMV</td><td>~$1Bn+ (2021) → growth slowed to ~2x in 2022, decelerated further in 2023 → reaccelerated 8 straight quarters → ~$3Bn projected</td><td class="n">2021–2025</td></tr>
+            <tr><td class="co">Net dollar retention</td><td>&gt;110%</td><td class="n">2025</td></tr>
+            <tr class="row-worst"><td class="co">Layoffs</td><td>~7% (Oct 2022), then 20% / 250 people (Nov 2023) — two rounds inside 13 months</td><td class="n">2022–2023</td></tr>
+            <tr><td class="co">Scale</td><td>700,000–900,000+ retailers; hundreds of thousands of brands</td><td class="n">2025</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">One flagged discrepancy: a single aggregator (Latka) reports 2024 revenue at $117.1M, which contradicts both the $616M 2023 figure and the &gt;$500M-annualized 2025 figure from Faire's own tender disclosure. <span class="chip chip-est">Treat the $117.1M figure as wrong or measuring something else</span> — the $616M → &gt;$500M-annualized trajectory is corroborated by more sources and by Faire's own Q3 2025 growth claim, and is what this note relies on. (<a href="https://sacra.com/c/faire/">Sacra</a> via search snippet, faire.com/news tender disclosure)</p>
+    </div>
+
+    <div class="block">
+      <h3>Why it works structurally</h3>
+      <p>Faire is mechanism <strong>1</strong> (managed marketplace) fused with mechanism <strong>6</strong> (embedded B2B credit) from the catalog above — not a new pattern, but a clean, well-evidenced instance of combining them. Three things make the combination work: <strong>(a)</strong> both sides are genuinely fragmented and don't trust each other by default — thousands of single-founder brands, hundreds of thousands of independent boutiques, no pre-existing credit relationship; <strong>(b)</strong> net-60 plus free returns directly kills the two real objections a small retailer has to trying a new brand (cash and unsold-inventory risk), which is a sharper wedge than price or selection; <strong>(c)</strong> the credit-risk absorption is the actual product being sold, monetized through the take rate — the same "financing wrapped around a commerce relationship captures disproportionate margin because it's underwriting a transaction it can already see" logic this series flagged in the Oxyzo/OfBusiness comparison. NDR above 110% confirms the repeat-purchase, acquire-once-monetize-forever dynamic this research series screens for.</p>
+    </div>
+
+    <div class="danger">
+      <div class="label">The disconfirming evidence</div>
+      <p><strong>The take rate is extractive enough that it's visibly damaging the supply side.</strong> Brand accounts describe net margins compressed to roughly 15% after a 25%-equivalent first-order fee stacks on top of wholesale pricing already discounted to ~50% of MSRP — down from ~40% gross margin at direct keystone wholesale. Faire also restricts brands from pricing differently to absorb the fee. This isn't marginal friction; it's a structurally thin deal for sellers that holds only because the alternative (trade shows, cold outreach) is worse, not because both sides love the economics. (<a href="https://eightx.co/blog/faire-wholesale-take-rate-margin-impact">Eightx</a>, <a href="https://www.luckybreakconsulting.com/the-inevitable-downside-of-faire/">Lucky Break Consulting</a>)</p>
+      <p><strong>Growth was partly a price increase, not just volume.</strong> The 73% revenue jump in 2023 came in part from raising the effective take rate 16.5%→19%, against a period when GMV growth was actually decelerating (from ~3x YoY in 2021 to ~2x in 2022, slower still in 2023) and the company cut headcount twice. The "hypergrowth throughout" story doesn't hold — there was a real multi-year trough before the 2024–2025 reacceleration, and part of the recovery is pricing power over a captive seller base, not pure network effects.</p>
+      <p><strong>The zero-commission alternative failed, which cuts both ways.</strong> Tundra, a 0%-commission Faire challenger, shut down in July 2023. That's evidence the take rate isn't optional greed — it likely funds the credit-risk absorption and returns guarantee that make the model work at all. But it also means anyone adapting this mechanism has to solve "who eats the cost of the credit risk" from day one; it can't be priced away by undercutting on commission. Ankorstore, the European equivalent, shows the same pattern from the other direction — it also launched near 0% and has drifted toward ~25%. (<a href="https://savvyshopkeeper.com/the-difference-between-faire-vs-tundra-wholesale/">Savvy Shopkeeper</a>, <a href="https://wonnda.com/magazine/comparison-faire-ankorstore/">Wonnda</a>)</p>
+    </div>
+
+    <div class="block">
+      <h3>Relevance here</h3>
+      <p>Faire's own numbers are real and the mechanism is sound — but read against this research series, it's evidence <em>for</em> a conclusion already reached, not a reason to revisit it. This series' <strong>pearls finished-goods-marketplace note</strong> (<code>research/2026-08-pearls-finished-goods-marketplace.md</code>) rejected a national B2B finished-jewellery marketplace for this founder on three grounds: it fights entrenched brands for trust, it very likely reintroduces the credit business explicitly ruled out two turns earlier in that conversation, and national reach breaks "easy to execute" for a first move. Faire is the fullest proof that the first version of this model works at scale — and it works <em>because</em> the platform becomes a lender first and a marketplace second, which is precisely the constraint this founder asked to avoid. It doesn't change the recommendation; it sharpens why the recommendation holds. Structurally closest India analogue for the goods (fashion/home/gift wholesale to boutiques) still runs offline through trade fairs and distributor networks — genuinely open, but not open in a way this founder's stated constraints make it a good first move.</p>
+    </div>
+  </section>
+
+  <section>
     <h2>Cautionary tales — the failure data is the more interesting dataset</h2>
     <p>Across three continents, inventory-led B2B distribution to fragmented/informal retail has produced more distress than durability in the last two years. This is not an argument against the category — Infra.Market, Zetwerk and Bijnis are counter-examples — but it is a real pattern, not noise.</p>
     <div class="scroller">
