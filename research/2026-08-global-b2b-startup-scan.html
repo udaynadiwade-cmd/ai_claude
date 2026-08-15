@@ -435,6 +435,26 @@
     </div>
 
     <div class="block">
+      <h3>Does Faire hold inventory? No — asset-light. Here is what it actually operates</h3>
+      <p>Faire never buys or warehouses the goods. Each brand fulfills its own orders — from its own warehouse or its own 3PL — and ships directly to the retailer. <span class="chip chip-fact">Fact</span> Faire is not Meicai or TradeDepot (mechanism 1 in the catalog above, inventory-led); it is a pure asset-light marketplace that happens to also run the credit, risk and payments layer itself. What Faire's own operations actually consist of:</p>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Function</th><th>What Faire does</th><th>What it does <em>not</em> do</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Marketplace &amp; discovery</td><td>Catalog, search, curated collections, brand-side order-management portal</td><td>Does not own or produce any product</td></tr>
+            <tr class="row-hero"><td class="co">Credit underwriting</td><td>Proprietary credit-scoring on retailers from transaction data, so it can front brands their payout in days while carrying the retailer's 60-day default risk itself — hired Square's former security/risk lead to build this after early defaults "nearly killed the company"</td><td>Does not just process payments passively — it prices and holds the default risk</td></tr>
+            <tr><td class="co">Fraud &amp; collections</td><td>Dedicated ML-driven fraud detection and collections operation, continuously invested in to defend the take rate</td><td>—</td></tr>
+            <tr><td class="co">Shipping</td><td>Negotiates bulk carrier rates (UPS/FedEx/DHL) and resells labels at a small markup via "Ship with Faire," fronting the cost so the brand doesn't pay upfront</td><td>Does not warehouse or physically move goods itself — the brand or its 3PL still does the actual shipping</td></tr>
+            <tr class="row-hero"><td class="co">Returns processing</td><td>Retailer ships opening-order returns <em>to Faire</em> (not the brand) on a Faire-prepaid label; Faire inspects and processes them, and the brand keeps its original payout regardless</td><td>Faire, not the brand, eats the logistics and loss on a returned item — a real physical-goods-handling operation, despite not holding forward inventory</td></tr>
+            <tr><td class="co">Cross-border / customs</td><td>Estimates duties at checkout from brand-supplied tariff codes, and covers duties on some orders for European "Insider" members</td><td>The retailer remains the legal importer of record and bears the actual duty liability — Faire estimates and facilitates, it does not assume the compliance obligation</td></tr>
+            <tr><td class="co">Marketing — two-sided</td><td>Spends to acquire retailers onto the platform, <em>and</em> sells brands paid placement/sponsored visibility — an advertising product that had grown to &gt;5% of revenue by 2023</td><td>Not "just marketing" — the ad business is a monetization layer bolted onto the marketplace, the same playbook as Amazon's ads business</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Net picture: Faire is closer to a fintech wearing a marketplace's clothes than a marketplace that happens to offer financing. The two functions with real operational weight and headcount — underwriting/collections and returns processing — are exactly the two that would have to be rebuilt from scratch by anyone adapting this model; the marketplace/catalog/discovery layer is the comparatively easy part. (<a href="https://www.faire.com/support/articles/360015893332">Faire Help Center — returns</a>, <a href="https://www.faire.com/blog/selling/ship-with-faire-an-easier-way-to-handle-wholesale-logistics/">Faire — Ship with Faire</a>, <a href="https://www.faire.com/support/articles/4403349101723">Faire Help Center — import duties</a>)</p>
+    </div>
+
+    <div class="block">
       <h3>The numbers</h3>
       <div class="scroller">
         <table>
