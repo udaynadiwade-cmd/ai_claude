@@ -494,6 +494,39 @@
   </section>
 
   <section>
+    <h2>If Befach ran a version of this anyway — how to de-risk it</h2>
+    <p>The section above concludes Faire isn't a reason to revisit the finished-goods-marketplace rejection. Asked directly how to adapt it anyway, with the risk to Befach specifically minimised — that's a different, answerable question, and worth doing properly rather than repeating the earlier "don't." The honest framing: every lever below reduces risk by giving away part of what makes Faire's economics work in the first place. That trade is named at the end, not hidden.</p>
+
+    <div class="verdict">
+      <div class="label">The single biggest lever</div>
+      <p><strong>Don't let Befach hold the credit risk at all — split the marketplace from the balance sheet.</strong> Faire's entire risk profile exists because Faire itself underwrites and holds retailer default risk. Route the net-terms financing through a licensed NBFC or fintech partner instead (the same shape as Vayana, Recur Club, or the Linklogis "decoupled supply-chain-finance-as-SaaS" pattern flagged as India whitespace above): Befach runs the marketplace, ordering, logistics and catalog; the partner prices and holds the receivable; Befach earns a referral or platform fee on financed GMV, not a credit spread. This single change removes the mechanism responsible for two of Faire's own layoff rounds and its "underwriting nearly killed the company" origin story.</p>
+    </div>
+
+    <div class="block">
+      <h3>Six more levers, each bounding a specific piece of Faire's risk</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Lever</th><th>What it does</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Underwrite off India-specific data rails</td><td>GSTR-1/3B filing regularity via the GST API, ITR data via the Account Aggregator framework, bureau data on the business/promoter — a materially better underwriting signal than the raw transaction history Faire had to bootstrap from in 2018. Whoever holds the risk (Befach or its financing partner) should underwrite on this, not rebuild Faire's own expensive early mistake.</td></tr>
+            <tr><td class="co">A credit ladder, not a flat net-60</td><td>New retailers start on a short tenor and small ticket cap (net-15/net-30, low ceiling); tenor and limit expand only after 2–3 clean repayment cycles. Bounds first-loss exposure per counterparty instead of underwriting a stranger for the full amount on day one.</td></tr>
+            <tr><td class="co">Stay in one city</td><td>Hyderabad-only retailers to start, matching the founder's own one-category-one-city rule. Keeps disputes and collections face-to-face reachable rather than remote and national — directly answers the "national reach breaks easy execution" risk the pearls note raised.</td></tr>
+            <tr><td class="co">Remove the multi-brand trust problem entirely</td><td>Faire's hardest operational cost is trusting thousands of unknown small brands enough to guarantee them. Befach doesn't need that problem: start with Befach's own private-label or exclusively-imported SKUs as the only catalog. One seller vouching for its own sourcing and QC is a solved problem, not a marketplace-trust problem — and it sidesteps the counterfeit/authenticity issue this series keeps flagging in finished-goods categories.</td></tr>
+            <tr><td class="co">A capped guarantee, not open-ended free returns</td><td>Full centralized returns processing (Faire's own returns-logistics operation) is expensive infrastructure to stand up for a pilot. A bounded "sell-through guarantee" — Befach takes back up to a fixed % of order value if unsold after 60 days, scoped only to low-return-risk SKUs — caps the maximum loss per order instead of insuring the whole basket.</td></tr>
+            <tr><td class="co">Sequence the financing after the supply relationship, not before</td><td>Direct callback to this series' own events/weddings note: <em>"a lending layer wrapped around a commerce relationship captures disproportionate margin because it is underwriting a transaction you can already see... it would need to come after a real supply relationship exists, not as a first product."</em> Launch the ordering/logistics layer first, prove repeat-purchase behaviour with real transaction history, and only then bring in a financing partner who can underwrite against Befach's own platform data rather than a cold start.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="danger">
+      <div class="label">The trade being made, named plainly</div>
+      <p><strong>De-risking this model for Befach means giving away the part of Faire's economics that makes it work.</strong> Faire's take rate is, in substance, a credit spread plus a marketplace fee — the underwriting capability is the moat. Hand the credit risk fully to a partner NBFC and Befach is no longer running "a Faire for India," it's running a marketplace with a financing partner bolted on: a reasonable business, but a lower-margin, less defensible one, and the differentiated economics shift to whoever holds the paper.</p>
+      <p><strong>Even the lightest version above is not zero-credit-exposure.</strong> Partner integration, underwriting data plumbing, and coordinated collections still have to be built and managed even if the balance-sheet risk sits elsewhere — some credit-adjacent complexity survives every mitigation on this list. That residual is worth weighing explicitly against the founder's stated preference to avoid the credit business as a first move and against the one-pivot-left constraint, rather than assuming the de-risking above makes it a clean fit. This note lays out how to do it with the risk minimised; it does not resolve whether it should be done first.</p>
+    </div>
+  </section>
+
+  <section>
     <h2>Cautionary tales — the failure data is the more interesting dataset</h2>
     <p>Across three continents, inventory-led B2B distribution to fragmented/informal retail has produced more distress than durability in the last two years. This is not an argument against the category — Infra.Market, Zetwerk and Bijnis are counter-examples — but it is a real pattern, not noise.</p>
     <div class="scroller">
