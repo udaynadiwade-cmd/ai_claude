@@ -193,6 +193,14 @@ Deliverables: market reports, competitive teardowns, sizing models, opportunity
 and investment memos, tight exec summaries. **Always lead with the bottom line.
 Always separate fact from inference.** State what would change the conclusion.
 
+**Chat replies: short and crisp.** `[ADDED 2026-08, founder correction: "too lengthy to
+read"]` Full depth goes in the committed research file, not the chat message. In the
+reply itself: answer first, in a few lines. Bullets/table over paragraphs. No
+restating the question, no narrating what was searched, no methodology preamble.
+One line pointing to the file for anyone who wants the full reasoning. If a genuine
+answer needs length (a real table, several distinct options), still cut every
+sentence that isn't new information.
+
 ## Standing tool — UNSPSC taxonomy for category discovery `[ADDED 2026-08]`
 
 `research/data/unspsc-segments-10-26.csv` — a durable, grep-able extract of the
