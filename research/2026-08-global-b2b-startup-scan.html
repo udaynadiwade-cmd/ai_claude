@@ -1,0 +1,466 @@
+<title>Everyone Else's Playbook</title>
+<style>
+  :root {
+    --ground:#F7F8F7; --surface:#FFFFFF; --surface-2:#EFF2F1;
+    --ink:#10201F; --ink-mid:#3C4E4B; --ink-muted:#61726F;
+    --rule:#D6DEDB; --rule-strong:#B4C1BD;
+    --accent:#0E6B62; --accent-soft:#E0EEEB;
+    --signal:#96631A; --signal-soft:#F5EBD9;
+    --negative:#9B3922; --negative-soft:#F6E5E0;
+    --shadow:0 1px 2px rgba(16,32,31,.06), 0 8px 24px -12px rgba(16,32,31,.16);
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+      --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+      --rule:#24332F; --rule-strong:#354844;
+      --accent:#4FBFA8; --accent-soft:#16302C;
+      --signal:#D9A441; --signal-soft:#2E2617;
+      --negative:#E0836A; --negative-soft:#33201A;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+    --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+    --rule:#24332F; --rule-strong:#354844;
+    --accent:#4FBFA8; --accent-soft:#16302C;
+    --signal:#D9A441; --signal-soft:#2E2617;
+    --negative:#E0836A; --negative-soft:#33201A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  * { box-sizing:border-box; }
+  body { background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:16.5px;
+         line-height:1.6; margin:0; padding:0 24px 120px; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:980px; margin:0 auto; }
+  .masthead { padding:64px 0 32px; border-bottom:2px solid var(--ink);
+              display:flex; flex-direction:column; gap:18px; }
+  .kicker { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--accent); display:flex; flex-wrap:wrap; gap:10px 18px; }
+  .kicker span { color:var(--ink-muted); }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.1rem,5.5vw,3.2rem); line-height:1.08;
+       letter-spacing:-.018em; text-wrap:balance; margin:0; }
+  .standfirst { font-family:var(--serif); font-size:1.15rem; line-height:1.5; color:var(--ink-mid);
+                margin:0; max-width:72ch; }
+  h2 { font-family:var(--serif); font-weight:400; font-size:1.65rem; line-height:1.2; letter-spacing:-.01em;
+       text-wrap:balance; margin:0; padding-top:6px; border-top:1px solid var(--rule-strong); }
+  h3 { font-family:var(--sans); font-weight:650; font-size:1.02rem; }
+  p { margin:0; max-width:74ch; }
+  section { display:flex; flex-direction:column; gap:16px; padding-top:46px; }
+  .block { display:flex; flex-direction:column; gap:10px; }
+  strong { font-weight:650; } em { font-style:italic; color:var(--ink-mid); }
+  a { color:var(--accent); }
+  code, .num { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.92em; }
+  .chip { font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+          padding:2px 6px; border-radius:3px; white-space:nowrap; font-weight:600; }
+  .chip-fact { background:var(--accent-soft); color:var(--accent); }
+  .chip-derived { background:var(--signal-soft); color:var(--signal); }
+  .chip-est { background:var(--negative-soft); color:var(--negative); }
+  .region { font-family:var(--mono); font-size:9px; letter-spacing:.06em; text-transform:uppercase;
+            padding:1.5px 5px; border-radius:3px; white-space:nowrap; font-weight:700; background:var(--surface-2);
+            color:var(--ink-mid); border:1px solid var(--rule-strong); }
+  .legend { display:flex; flex-wrap:wrap; gap:8px 18px; padding:14px 18px; background:var(--surface-2);
+            border-radius:4px; font-size:13px; color:var(--ink-mid); align-items:center; margin-top:24px; }
+  .legend>div{display:flex;gap:7px;align-items:baseline;}
+  .verdict { background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+             border-radius:3px; padding:24px 26px; display:flex; flex-direction:column; gap:12px;
+             box-shadow:var(--shadow); margin-top:36px; }
+  .verdict .label { font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .danger { background:var(--negative-soft); border:1px solid var(--negative); border-radius:3px;
+            padding:20px 22px; display:flex; flex-direction:column; gap:9px; font-size:15px; }
+  .danger .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--negative); font-weight:600; }
+  .warn { background:var(--signal-soft); border:1px solid var(--signal); border-radius:3px;
+          padding:20px 22px; display:flex; flex-direction:column; gap:9px; font-size:15px; }
+  .warn .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--signal); font-weight:600; }
+  .note { border-left:2px solid var(--rule-strong); padding:3px 0 3px 18px; color:var(--ink-mid); font-size:15px; display:flex; flex-direction:column; gap:8px; }
+  .scroller { overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:13.5px; min-width:760px; }
+  caption { text-align:left; padding:12px 15px 10px; font-size:12.5px; color:var(--ink-muted); border-bottom:1px solid var(--rule); }
+  th, td { padding:9px 13px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted); font-weight:600; background:var(--surface-2); border-bottom:1px solid var(--rule-strong); }
+  tbody tr:last-child td { border-bottom:none; }
+  .n { font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+  th.n { text-align:right; }
+  .co { font-weight:650; } .sub { display:block; font-size:12px; color:var(--ink-muted); font-weight:400; margin-top:1px; }
+  .row-hero td { background:var(--accent-soft); } .row-worst td { background:var(--negative-soft); }
+  ol.ask, ul.plain { margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px; max-width:74ch; }
+  ol.ask li::marker { font-family:var(--mono); font-size:.82em; color:var(--accent); }
+  ul.plain li::marker { color:var(--accent); }
+  details { border-top:1px solid var(--rule-strong); padding-top:16px; }
+  summary { cursor:pointer; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+  .srcs { margin-top:14px; display:flex; flex-direction:column; gap:6px; font-size:13px; color:var(--ink-mid); }
+  footer { margin-top:56px; padding-top:18px; border-top:1px solid var(--rule); font-size:13px; color:var(--ink-muted); }
+  @media (max-width:560px) { body{font-size:15.5px;padding:0 16px 80px;} .verdict{padding:20px 18px;} }
+  @media (prefers-reduced-motion: reduce) { *{animation:none!important;transition:none!important;} }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Research note <span>·</span> <span>global B2B startup landscape scan</span> <span>·</span> <span>August 2026</span></div>
+    <h1>Everyone else's playbook</h1>
+    <p class="standfirst">A survey of what's actually being built and funded in B2B commerce right now — India first, then the US, Europe, China, Southeast Asia, Latin America and Africa. Organised by mechanism, not geography, because the same handful of mechanisms (managed marketplace, embedded credit, sourcing aggregation, vertical SaaS-becomes-commerce) keep reappearing under different names in every region. Companies are evidence for a pattern, not the point of the exercise.</p>
+  </header>
+
+  <div class="legend">
+    <div><span class="chip chip-fact">Fact</span> sourced, cited inline</div>
+    <div><span class="chip chip-derived">Derived</span> pattern read across sources</div>
+    <div><span class="chip chip-est">Uncertain</span> one source, unverified, or conflicting</div>
+  </div>
+
+  <div class="verdict">
+    <div class="label">Bottom line</div>
+    <p>Two things stand out across ~55 companies scanned. <strong>First, the mechanism list is short and repeats everywhere</strong> — roughly 18 distinct patterns cover nearly everything below, and most of them already exist in India in some form. <strong>Second, the more useful signal in this scan is the failure data, not the funding data</strong> — inventory-led B2B distribution to informal retail (TradeDepot/Wasoko/Twiga/Sabi/Capiter/Copia/Frubana/Chiper) has produced more distress mergers, layoffs, pivots and liquidations than durable winners, across three continents, in the last two years. The India whitespace list near the bottom is short and specific — that is deliberate; most of what looked like a gap on first pass already has an Indian player once you check for it.</p>
+  </div>
+
+  <section>
+    <h2>India whitespace — mechanisms proven elsewhere, not yet built here</h2>
+    <p>Pulled from explicit gaps flagged independently across the regional scans below, cross-checked against what the India scan itself found already exists. These are the candidates worth a closer look, not a ranked recommendation.</p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Whitespace</th><th>Proven where</th><th>Why it's open in India</th></tr></thead>
+        <tbody>
+          <tr class="row-hero">
+            <td class="co">Electronics-component long-tail marketplace</td>
+            <td><span class="region">China</span> ICKey — 2,500+ suppliers, 41M+ SKUs, IPO'd Shenzhen ChiNext Sep 2025</td>
+            <td>India's component distribution is still WhatsApp/broker-driven; India scan independently flagged this as a notable gap with no funded native platform found</td>
+          </tr>
+          <tr class="row-hero">
+            <td class="co">Decoupled supply-chain-finance-as-SaaS (sold to anchors, not embedded in one's own marketplace)</td>
+            <td><span class="region">China</span> Linklogis — RMB1.03B FY24 revenue, #1 share 4 years running, listed on HKEX</td>
+            <td>Indian equivalents (Vayana, Oxyzo) are mostly embedded in a parent marketplace or lending book; a standalone SaaS-to-anchors model is underexplored</td>
+          </tr>
+          <tr>
+            <td class="co">Agent/group-leader-led group buying for tier-3/4 towns</td>
+            <td><span class="region">Indonesia</span> Super — $106M raised, hyperlocal agents aggregating neighbourhood orders in sub-$5,000-per-capita areas</td>
+            <td>Unreplicated at VC scale in India; Otipy's 2025 shutdown was a different mechanism (B2B2C fresh produce), not this one — worth distinguishing before writing this off</td>
+          </tr>
+          <tr>
+            <td class="co">Apparel/textile OEM-network digitization for global B2B buyers</td>
+            <td><span class="region">China</span> Kakaclo — in-stock wholesale + OEM/customization on Guangzhou's factory cluster, SHEIN-adjacent</td>
+            <td>India has funded MOQ-aggregation platforms (ZYOD, Showroom B2B) but none exposing Surat/Tirupur/Ludhiana clusters to global B2B buyers the way Kakaclo exposes Guangzhou</td>
+          </tr>
+          <tr>
+            <td class="co">Construction materials + financing/logistics layered, done well</td>
+            <td>Genuinely open everywhere — no dominant model in China or SEA either; Brazil's ObraBank/Tul and India's Infra.Market are early, not settled</td>
+            <td>First-mover advantage is real, not just an India gap — worth weighing against Infra.Market's head start rather than treating as pure whitespace</td>
+          </tr>
+          <tr>
+            <td class="co">Auto aftermarket, garage-facing (not consumer catalog)</td>
+            <td><span class="region">US</span> PartsTech — 15,000 shops, 30,000 supplier locations, $35M Series C</td>
+            <td>India's Boodmo/SparesHub are both small (&lt;$15M raised combined) relative to pharma/chemicals/textile B2B — comparatively underfunded, real whitespace by the funding data itself</td>
+          </tr>
+          <tr>
+            <td class="co">Medical/pharma supply marketplace at real venture scale</td>
+            <td>Thin everywhere — even the US/Europe scan found only ~$185M total VC in the category, concentrated and non-dominant</td>
+            <td>Possibly incumbent-entrenched (Cardinal Health/McKesson-equivalent distributors) rather than a true gap — flag as needing deeper diligence, not a confirmed opportunity</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>The mechanism catalog</h2>
+    <p>Every company below is evidence for a mechanism, grouped by what actually generates the margin — not by product category. <span class="chip chip-derived">Derived</span> groupings; company facts are <span class="chip chip-fact">Fact</span> where a source is cited in the company's own scan.</p>
+
+    <div class="block">
+      <h3>1 — Managed marketplace / inventory-led (owns fulfillment)</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Vertical</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Meicai</td><td><span class="region">China</span></td><td>Restaurant fresh produce</td><td>Peaked ~$7Bn valuation, RMB130M daily sales (2018); current status uncertain</td></tr>
+            <tr><td class="co">Freshket</td><td><span class="region">Thailand</span></td><td>HORECA ingredients</td><td>$34.5M total, 26,000 restaurant customers, strategic backers (PTT, Thai President Foods)</td></tr>
+            <tr><td class="co">Kamereo</td><td><span class="region">Vietnam</span></td><td>HORECA + mini-marts</td><td>&gt;$15M raised across A/B</td></tr>
+            <tr><td class="co">Frubana</td><td><span class="region">LatAm</span></td><td>Restaurant produce</td><td>$289M total, $117M 2024 revenue — but exited Colombia/Mexico 2025 to concentrate on Brazil</td></tr>
+            <tr><td class="co">TradeDepot</td><td><span class="region">Africa</span></td><td>FMCG to informal retail</td><td>$123M total; funding pace has slowed since 2021</td></tr>
+            <tr><td class="co">Wasoko + MaxAB</td><td><span class="region">Africa</span></td><td>FMCG to informal retail</td><td>Merged 2024 as a distress move; Wasoko marked down to $260M, 100+ layoffs</td></tr>
+            <tr><td class="co">Twiga Foods</td><td><span class="region">Kenya</span></td><td>Agri → FMCG pivot</td><td>$180M+ total; cut 40% staff 2023, suspended Nairobi ops mid-2025</td></tr>
+            <tr><td class="co">Saveo / Retailio</td><td><span class="region">India</span></td><td>Pharma distribution</td><td>Saveo: ~$20M raised, 12,000 pharmacy outlets, 11x YoY claimed (2022)</td></tr>
+            <tr><td class="co">Bijak</td><td><span class="region">India</span></td><td>Agri trading (grain/mandi)</td><td>$43M+ raised, ~$200M valuation post-Series B</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">The single most-repeated pattern in this whole scan, and — outside China/India — also the one with the worst survival record. See the cautionary-tales section below before treating this as a template.</p>
+    </div>
+
+    <div class="block">
+      <h3>2 — Demand-aggregation / reverse-flow sourcing (pre-order upstream of harvest or production)</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Songxiaocai</td><td><span class="region">China</span></td><td>Pools restaurant/market vegetable orders <em>before</em> harvest, buys direct from growers</td><td>$91.6M raised across rounds; inverts the usual push supply chain, cutting spoilage and wholesale-market middlemen</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Structurally distinct from ordinary inventory-led agri marketplaces — worth a closer look precisely because no Indian mandi-linked platform runs this "aggregate demand, then buy" sequence.</p>
+    </div>
+
+    <div class="block">
+      <h3>3 — Community / agent-led group buying</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Duoduo Maicai / Meituan Youxuan</td><td><span class="region">China</span></td><td>Next-day pickup, no inventory risk at the local-agent level</td><td>Survives only under platform-scale subsidy; Xingsheng Youxuan fell from 18 provinces to 3 once it lost that backing</td></tr>
+            <tr><td class="co">Super</td><td><span class="region">Indonesia</span></td><td>Local agents aggregate neighbourhood orders, tuned for rural dispersion</td><td>$106M raised (SoftBank Ventures Asia, NEA), YC-backed</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Lesson from China: this model needs either platform-scale subsidy or genuine rural density (Super's bet) to survive — standalone group-buying agri startups without either have not held up (see TaniHub/Chilibeli below).</p>
+    </div>
+
+    <div class="block">
+      <h3>4 — Corporate-backed captive distribution (parent-funded, not VC)</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">VinShop (One Mount / Vingroup)</td><td><span class="region">Vietnam</span></td><td>Conglomerate-funded B2B2C FMCG app for mom-and-pop grocers</td><td>~80,000 stores, 2,000+ SKUs, 15 provinces — zero external VC funding</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Proves a conglomerate-capitalised path to kirana-equivalent digitization that neither ITC nor HUL has run themselves in India — the field is open to VC-backed players by default, not by design.</p>
+    </div>
+
+    <div class="block">
+      <h3>5 — Sourcing aggregation / cluster-to-platform (domestic and cross-border)</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Vertical</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Elchemy</td><td><span class="region">India</span></td><td>Chemicals export</td><td>$7.6M total (seed + Series A) — India mfg → 13+ countries; mirror image of an import-sourcing model</td></tr>
+            <tr><td class="co">ZYOD / Showroom B2B / Geniemode</td><td><span class="region">India</span></td><td>Apparel MOQ aggregation</td><td>ZYOD: $22.8M, MOQs as low as 50 units, 21-day delivery, 18 countries</td></tr>
+            <tr><td class="co">Bijnis</td><td><span class="region">India</span></td><td>Footwear/lifestyle mfg clusters → retail</td><td>$43.5M raised, 100,000+ retailers, 5,000+ factories — the domestic mirror of cross-border sourcing</td></tr>
+            <tr><td class="co">Kakaclo</td><td><span class="region">China</span></td><td>Apparel OEM + wholesale</td><td>Exposes Guangzhou's factory network to third-party B2B buyers, not just one captive brand</td></tr>
+            <tr><td class="co">Ralali.com</td><td><span class="region">Indonesia</span></td><td>Horizontal industrial marketplace</td><td>1.5M+ users claimed, but funding stalled after a 2021 raise attempt — a caution against breadth-first strategy without vertical depth</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>6 — Embedded B2B credit / BNPL / trade finance</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Konfío</td><td><span class="region">Mexico</span></td><td>SME lending on cash-flow/alt data</td><td>$378M total; secured ~$370M in new credit facilities late 2024; pursuing a banking license</td></tr>
+            <tr><td class="co">Mondu</td><td><span class="region">Europe</span></td><td>Embedded B2B BNPL/invoicing, EMI-licensed</td><td>$220M equity+debt; €100M J.P. Morgan debt facility Dec 2025</td></tr>
+            <tr><td class="co">Two / Hokodo</td><td><span class="region">Europe</span></td><td>Checkout-credit infra for B2B marketplaces</td><td>Hokodo raised €10M in April 2025, reportedly ceased operations by Nov 2025 — underwriting-risk mortality is real in this category</td></tr>
+            <tr><td class="co">Vayana</td><td><span class="region">India</span></td><td>Trade credit / invoice discounting</td><td>$91.9M raised, $8Bn+ credit disbursed to 22,000 SMEs, 600 cities, 20 countries</td></tr>
+            <tr><td class="co">Recur Club / CredFlow</td><td><span class="region">India</span></td><td>Working-capital marketplace / invoice financing</td><td>Recur: $8M equity + $42M debt, 2,000+ companies × 100+ lenders</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>7 — B2B payments / spend infrastructure (cards, rails, VAS)</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Moniepoint</td><td><span class="region">Nigeria</span></td><td>Payments rail expanding into embedded SME lending</td><td>$2.5Bn+ valuation, ~$294Bn processed 2025, full digital banking license 2024</td></tr>
+            <tr><td class="co">Flash + Shop2Shop</td><td><span class="region">South Africa</span></td><td>VAS (airtime/electricity/bills) distribution through informal retail counters</td><td>Combined equity value ~$1.17Bn — commission on micro-products, not goods flow</td></tr>
+            <tr><td class="co">EnKash / Karbon Card</td><td><span class="region">India</span></td><td>Corporate cards + spend-control SaaS</td><td>EnKash: $23M raised, 5,000+ businesses; Karbon: $36.1M, 2,000+ SME clients</td></tr>
+            <tr><td class="co">Clara</td><td><span class="region">Mexico</span></td><td>Corporate card + spend management</td><td>Among the most-funded Mexican startups as of 2025 [uncertain on exact figure]</td></tr>
+            <tr><td class="co">Balance / Mercoa</td><td><span class="region">US</span></td><td>Embedded net-terms/AP-AR API</td><td>Balance reports 38% buyer-acquisition lift for merchants adding net terms; Mercoa reportedly discontinued — thin margins even on a right thesis</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>8 — Supply-chain-finance-as-SaaS (decoupled from any one marketplace)</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr class="row-hero"><td class="co">Linklogis</td><td><span class="region">China</span></td><td>AI/blockchain receivables financing sold to anchor enterprises, not embedded in own marketplace</td><td>Listed on HKEX; RMB1.03Bn FY24 revenue (+19% YoY), #1 share (20.9%) 4 years running, 2,533 anchor enterprises</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Flagged as India whitespace above — this is the one company in the whole scan proving the model works as a standalone, non-embedded SaaS business at real scale.</p>
+    </div>
+
+    <div class="block">
+      <h3>9 — Procurement software / intake-to-pay (no inventory, sells tooling not GMV)</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Zip</td><td><span class="region">US</span></td><td>Intake-to-pay orchestration in front of ERP/P2P systems, adding agentic execution</td><td>$190M Series D at $2.2Bn valuation; ARR grew $18.2M (2023) → ~$193M (2025) on $355Bn spend processed</td></tr>
+            <tr><td class="co">Procol</td><td><span class="region">India</span></td><td>Sourcing/RFQ/supplier-management SaaS</td><td>$11.2M total, 25,000+ supplier network, ₹7,500 Cr+ managed, clients incl. Zetwerk, Tata BigBasket</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Avoids inventory/logistics capital intensity entirely — a genuinely different risk profile from every marketplace model above it.</p>
+    </div>
+
+    <div class="block">
+      <h3>10 — AI-native sourcing / procurement</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Levelpath</td><td><span class="region">US</span></td><td>AI-agent-run sourcing events, supplier onboarding, risk checks</td><td>$100M total, $55M Series B (Battery Ventures, June 2025)</td></tr>
+            <tr><td class="co">Fairmarkit</td><td><span class="region">US</span></td><td>Agentic sourcing spanning tail spend to $500M strategic contracts, one platform</td><td>$78M total; heavy product/Gartner momentum, no confirmed 2025 round</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">The bet in both: AI collapses RFP/negotiation cycle time, which is the actual bottleneck in enterprise sourcing, not discovery.</p>
+    </div>
+
+    <div class="block">
+      <h3>11 — Vertical SaaS that becomes the ordering layer</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Vertical</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Choco</td><td><span class="region">Europe/US</span></td><td>Restaurant reorder (replacing fax/voicemail)</td><td>$144.5M raised at a $1.2Bn 2022 peak; 2024 revenue ~$50M ARR — a hard valuation reset since</td></tr>
+            <tr><td class="co">Dandy</td><td><span class="region">US</span></td><td>Dental lab ordering/design software</td><td>$95M Series C, &gt;$100M revenue within two years</td></tr>
+            <tr><td class="co">BuildOps</td><td><span class="region">US</span></td><td>HVAC/plumbing/electrical field-service SaaS expanding into parts ordering</td><td>$127M Series C at $1Bn valuation; revenue $51.9M (2024) → $97.4M (mid-2025)</td></tr>
+            <tr><td class="co">Silo</td><td><span class="region">US</span></td><td>Food-supply-chain SaaS + embedded finance (Instant Pay, Cash Advance)</td><td>$315M total — monetizes the float on top of the software fee</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">The repeated shape: win the workflow software first, then the commerce that flows through it follows — the inverse sequencing of a marketplace that adds software later.</p>
+    </div>
+
+    <div class="block">
+      <h3>12 — Long-tail component / parts marketplaces</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Vertical</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr class="row-hero"><td class="co">ICKey (云汉芯城)</td><td><span class="region">China</span></td><td>Electronics components</td><td>2,500+ suppliers, ~700K users, 41M+ SKUs, $27.8M raised, IPO'd Shenzhen ChiNext Sep 2025</td></tr>
+            <tr><td class="co">PartsTech</td><td><span class="region">US</span></td><td>Auto parts (garage-facing)</td><td>$35M Series C, 15,000 shops × 30,000 supplier locations</td></tr>
+            <tr><td class="co">Boodmo / SparesHub</td><td><span class="region">India</span></td><td>Auto parts</td><td>Both &lt;$15M raised — small relative to other Indian B2B verticals</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>13 — Urgency as the wedge (quick-commerce logic applied to B2B)</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Fixxly</td><td><span class="region">India</span></td><td>Fast delivery of building materials to active job sites</td><td>$5.5M seed — unplanned/urgent site procurement makes speed the differentiator, not price, unlike Infra.Market's bulk-inventory model</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>14 — Last-mile delivery infrastructure for distributors (not a marketplace)</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Curri</td><td><span class="region">US</span></td><td>"DoorDash for industrial materials" — the delivery layer distributors lack</td><td>$50.6M total, moved $1Bn+ in supplies in a year, customers include Sherwin-Williams, United Rentals</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>15 — Freight / logistics visibility &amp; matching</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Freight Tiger</td><td><span class="region">India</span></td><td>Control-tower SaaS + digital freight matching, asset-light</td><td>$8M raised; Tata Motors invested ₹120 Cr (Sept 2025) — strategic validation, not just VC</td></tr>
+            <tr><td class="co">sennder</td><td><span class="region">Europe</span></td><td>Digital road-freight forwarder</td><td>~$2Bn valuation range (2022); no confirmed round since found</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>16 — Commodity trading + finance stack, layered</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Zhaogang.com</td><td><span class="region">China</span></td><td>Steel trading + supply-chain finance + warehousing/logistics/SaaS, all layered</td><td>$379M raised, profitable since 2016, RMB30Bn+ revenue at scale, pursued ~$500M HK IPO</td></tr>
+            <tr><td class="co">Bryzos</td><td><span class="region">US</span></td><td>Peer-to-peer steel/metals with embedded instant settlement</td><td>Funding data thin/conflicting across sources — edge is the payments layer, not inventory</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Zhaogang is arguably the fullest expression of "trade + finance + logistics" stacking in this entire scan — OfBusiness-territory players in India have partly copied the shape but rarely the financing depth.</p>
+    </div>
+
+    <div class="block">
+      <h3>17 — Compliance-driven B2B (regulation as the demand generator)</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Watershed</td><td><span class="region">US/Europe</span></td><td>Carbon accounting plugging directly into procurement/supplier engagement</td><td>$100M Series C at $1.8Bn; customers include Walmart, Stripe, BlackRock — EU CSRD rules make this a procurement gate, not a report</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="block">
+      <h3>18 — Chemicals-specific distribution &amp; data platforms</h3>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Company</th><th>Region</th><th>Mechanism</th><th>Proof point</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Knowde</td><td><span class="region">US</span></td><td>Marketplace + supplier master-data platform, monetizes discovery/data not just transaction</td><td>$175M total, $60M Series C (Aug 2024), 8,000+ suppliers</td></tr>
+            <tr><td class="co">Elchemy</td><td><span class="region">India</span></td><td>Export marketplace with owned QC/logistics/trade documentation</td><td>See row 5 above</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Cautionary tales — the failure data is the more interesting dataset</h2>
+    <p>Across three continents, inventory-led B2B distribution to fragmented/informal retail has produced more distress than durability in the last two years. This is not an argument against the category — Infra.Market, Zetwerk and Bijnis are counter-examples — but it is a real pattern, not noise.</p>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Company</th><th>Region</th><th>What happened</th></tr></thead>
+        <tbody>
+          <tr class="row-worst"><td class="co">Capiter</td><td><span class="region">Egypt</span></td><td>B2B FMCG marketplace collapsed 2022 after $33M raised, following founder fraud allegations and firing</td></tr>
+          <tr class="row-worst"><td class="co">Copia Global</td><td><span class="region">Kenya</span></td><td>Informal-retail e-commerce/agent network liquidated 2024 after $123M raised over 12 years, never profitable</td></tr>
+          <tr class="row-worst"><td class="co">Wasoko + MaxAB</td><td><span class="region">Africa</span></td><td>Merged 2024 as a survival move amid a funding crunch; Wasoko marked down to $260M, 100+ layoffs, lawsuit, scaled from ~7 to 5 markets</td></tr>
+          <tr class="row-worst"><td class="co">Twiga Foods</td><td><span class="region">Kenya</span></td><td>Cut 40% of staff 2023, laid off 300+ more May 2025, temporarily suspended all Nairobi operations mid-2025 amid vendor/salary payment delays</td></tr>
+          <tr class="row-worst"><td class="co">Sabi</td><td><span class="region">Nigeria</span></td><td>Laid off 20% of staff 2025, pivoted away from informal-retail marketplace entirely toward commodity-export traceability</td></tr>
+          <tr class="row-worst"><td class="co">Frubana</td><td><span class="region">LatAm</span></td><td>Exited Colombia and Mexico in 2025 to concentrate on Brazil, citing unfavorable macro conditions for funding; one report says operations ceased entirely</td></tr>
+          <tr class="row-worst"><td class="co">Chiper</td><td><span class="region">LatAm</span></td><td>Pivoted from inventory-led marketplace to an asset-light "ChiperOS" software layer — no funding news found post-2021</td></tr>
+          <tr class="row-worst"><td class="co">Hokodo</td><td><span class="region">Europe</span></td><td>Raised €10M April 2025, reportedly ceased operations by November 2025 — B2B BNPL underwriting risk is real, not theoretical</td></tr>
+          <tr class="row-worst"><td class="co">TaniHub / Chilibeli</td><td><span class="region">Indonesia</span></td><td>Both effectively collapsed/suspended by 2024; TaniHub's lending arm had its license revoked by regulators May 2024 — agri B2B + embedded lending combined is a proven failure mode when working-capital risk isn't ring-fenced</td></tr>
+          <tr class="row-worst"><td class="co">eFishery</td><td><span class="region">Indonesia</span></td><td>Aquaculture IoT + feed-financing "unicorn" — revenue inflated from a reported $157M to $752M, founders detained, $300M+ in investor losses — IoT-financing hybrids in agri are also a fraud vector, not just an opportunity</td></tr>
+          <tr class="row-worst"><td class="co">Otipy (Crofarm)</td><td><span class="region">India</span></td><td>B2B2C fresh-produce arm, $69M raised, shut down May 2025</td></tr>
+          <tr><td class="co">Power2SME</td><td><span class="region">India</span></td><td>Earlier-generation pure group-buying aggregator (no inventory, no finance) — largely superseded by managed-marketplace and private-label models like Zetwerk and Infra.Market; a "what didn't scale" data point rather than a collapse</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="warn">
+      <div class="label">The pattern underneath the pattern</div>
+      <p>Nearly every failure above shares one of two root causes: <strong>capital intensity without a matching path to unit economics</strong> (inventory + logistics + subsidised pricing to informal retail, run for years without profitability discipline), or <strong>embedded lending risk that wasn't ring-fenced from the commerce business</strong> (TaniHub, eFishery). The survivors and the actually-profitable names in this scan — Zhaogang, VinShop, Linklogis, Cartona, Procol, Zip — either avoid owning inventory, avoid owning the credit risk, or were capitalised by a strategic parent rather than pure growth-stage VC.</p>
+    </div>
+  </section>
+
+  <details>
+    <summary>Method &amp; sources</summary>
+    <div class="srcs">
+      <div>Built from four parallel regional research passes (India; US/Europe; China/Southeast Asia; Latin America/Africa), each independently sourced from primary funding announcements, trade press (Entrackr, Inc42, The Ken, TechCrunch, Sifted, KrASIA, TechInAsia, Rest of World, TechCabal) and trackers (Tracxn, Crunchbase, PitchBook, CB Insights). Every company fact traces to a named source in the originating pass; figures marked [uncertain] in-line reflect a single source, a conflict across sources, or no confirmed recent round.</div>
+      <div>Deliberately organised by mechanism rather than geography or vertical, per this research series' standing rule against forcing every category through one lens — the point here is the opposite: showing that a short list of mechanisms recurs across unrelated verticals and continents, which is itself the useful signal for choosing what to build next.</div>
+      <div>This is a landscape scan, not a recommendation. Sizing, unit-economics modelling and founder-fit screening for any specific idea here would be the next, separate piece of work.</div>
+    </div>
+  </details>
+
+  <footer>Research note, August 2026 · global companion to this series' India-first B2B research. Four-pass parallel scan; company facts sourced per-pass, mechanism groupings and cross-referencing are this note's own synthesis.</footer>
+
+</div>
