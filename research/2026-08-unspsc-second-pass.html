@@ -1,0 +1,259 @@
+<title>The Cash Trades</title>
+<style>
+  :root {
+    --ground:#F7F8F7; --surface:#FFFFFF; --surface-2:#EFF2F1;
+    --ink:#10201F; --ink-mid:#3C4E4B; --ink-muted:#61726F;
+    --rule:#D6DEDB; --rule-strong:#B4C1BD;
+    --accent:#0E6B62; --accent-soft:#E0EEEB;
+    --signal:#96631A; --signal-soft:#F5EBD9;
+    --negative:#9B3922; --negative-soft:#F6E5E0;
+    --shadow:0 1px 2px rgba(16,32,31,.06), 0 8px 24px -12px rgba(16,32,31,.16);
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+      --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+      --rule:#24332F; --rule-strong:#354844;
+      --accent:#4FBFA8; --accent-soft:#16302C;
+      --signal:#D9A441; --signal-soft:#2E2617;
+      --negative:#E0836A; --negative-soft:#33201A;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+    --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+    --rule:#24332F; --rule-strong:#354844;
+    --accent:#4FBFA8; --accent-soft:#16302C;
+    --signal:#D9A441; --signal-soft:#2E2617;
+    --negative:#E0836A; --negative-soft:#33201A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  * { box-sizing:border-box; }
+  body { background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:17px;
+         line-height:1.62; margin:0; padding:0 24px 120px; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:840px; margin:0 auto; }
+  .masthead { padding:64px 0 32px; border-bottom:2px solid var(--ink);
+              display:flex; flex-direction:column; gap:18px; }
+  .kicker { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--accent); display:flex; flex-wrap:wrap; gap:10px 18px; }
+  .kicker span { color:var(--ink-muted); }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08;
+       letter-spacing:-.018em; text-wrap:balance; margin:0; }
+  .standfirst { font-family:var(--serif); font-size:1.15rem; line-height:1.5; color:var(--ink-mid);
+                margin:0; max-width:66ch; }
+  h2 { font-family:var(--serif); font-weight:400; font-size:1.7rem; line-height:1.2; letter-spacing:-.01em;
+       text-wrap:balance; margin:0; padding-top:6px; border-top:1px solid var(--rule-strong); }
+  h3 { font-family:var(--sans); font-weight:650; font-size:1rem; }
+  p { margin:0; max-width:68ch; }
+  section { display:flex; flex-direction:column; gap:16px; padding-top:48px; }
+  .block { display:flex; flex-direction:column; gap:11px; }
+  strong { font-weight:650; } em { font-style:italic; color:var(--ink-mid); }
+  a { color:var(--accent); }
+  code, .num { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.92em; }
+  .chip { font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+          padding:2px 6px; border-radius:3px; white-space:nowrap; font-weight:600; }
+  .chip-fact { background:var(--accent-soft); color:var(--accent); }
+  .chip-derived { background:var(--signal-soft); color:var(--signal); }
+  .chip-est { background:var(--negative-soft); color:var(--negative); }
+  .legend { display:flex; flex-wrap:wrap; gap:8px 18px; padding:14px 18px; background:var(--surface-2);
+            border-radius:4px; font-size:13px; color:var(--ink-mid); align-items:center; margin-top:24px; }
+  .legend>div{display:flex;gap:7px;align-items:baseline;}
+  .verdict { background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+             border-radius:3px; padding:26px 28px; display:flex; flex-direction:column; gap:12px;
+             box-shadow:var(--shadow); margin-top:36px; }
+  .verdict .label { font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .danger { background:var(--negative-soft); border:1px solid var(--negative); border-radius:3px;
+            padding:20px 22px; display:flex; flex-direction:column; gap:9px; font-size:15px; }
+  .danger .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--negative); font-weight:600; }
+  .warn { background:var(--signal-soft); border:1px solid var(--signal); border-radius:3px;
+          padding:20px 22px; display:flex; flex-direction:column; gap:9px; font-size:15px; }
+  .warn .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--signal); font-weight:600; }
+  .big { background:var(--accent-soft); border:1px solid var(--accent); border-radius:3px;
+         padding:20px 22px; display:flex; flex-direction:column; gap:9px; font-size:15px; }
+  .big .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); font-weight:600; }
+  .note { border-left:2px solid var(--rule-strong); padding:3px 0 3px 18px; color:var(--ink-mid); font-size:15px; display:flex; flex-direction:column; gap:8px; }
+  .scroller { overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:14px; min-width:640px; }
+  caption { text-align:left; padding:12px 15px 10px; font-size:12.5px; color:var(--ink-muted); border-bottom:1px solid var(--rule); }
+  th, td { padding:9px 13px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted); font-weight:600; background:var(--surface-2); border-bottom:1px solid var(--rule-strong); }
+  tbody tr:last-child td { border-bottom:none; }
+  .n { font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+  th.n { text-align:right; }
+  .pos{color:var(--accent);font-weight:600;} .neg{color:var(--negative);font-weight:600;}
+  .row-hero td { background:var(--accent-soft); } .row-worst td { background:var(--negative-soft); }
+  .co { font-weight:650; } .sub { display:block; font-size:12px; color:var(--ink-muted); font-weight:400; margin-top:1px; }
+  .check { font-family:var(--mono); font-weight:700; text-align:center; }
+  .yes { color:var(--accent); } .no { color:var(--negative); } .part { color:var(--signal); }
+  ol.ask, ul.plain { margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px; max-width:68ch; }
+  ol.ask li::marker { font-family:var(--mono); font-size:.82em; color:var(--accent); }
+  ul.plain li::marker { color:var(--accent); }
+  details { border-top:1px solid var(--rule-strong); padding-top:16px; }
+  summary { cursor:pointer; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+  .srcs { margin-top:14px; display:flex; flex-direction:column; gap:8px; font-size:13.5px; color:var(--ink-mid); }
+  footer { margin-top:56px; padding-top:18px; border-top:1px solid var(--rule); font-size:13px; color:var(--ink-muted); }
+  @media (max-width:560px) { body{font-size:16px;padding:0 18px 80px;} .verdict{padding:22px 20px;} }
+  @media (prefers-reduced-motion: reduce) { *{animation:none!important;transition:none!important;} }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Research note <span>·</span> <span>UNSPSC re-screen against a sharper brief</span> <span>·</span> <span>August 2026</span></div>
+    <h1>The cash trades</h1>
+    <p class="standfirst">Your criteria this time are stricter and more specific than anything used before — no credit, fat margins, no price war, easy execution. That combination rules out most of what this series has recommended so far, and rewards a different kind of category.</p>
+  </header>
+
+  <div class="verdict">
+    <div class="label">What your criteria actually select for</div>
+    <p>Read together, these seven conditions describe one specific shape: <strong>a fragmented, high-value trade where the buyer is cash-flush by the norms of their own industry, currently served by many small unorganised suppliers, with no dominant B2B platform having consolidated it.</strong></p>
+    <p>That is a narrower and different target than electricals or bearings. Both of those score well on size and fragmentation but score <strong>badly on "no credit"</strong> — the electrical trade runs on 15–30 day terms as an entry ticket, and industrial buyers expect it as standard. <strong>Your new constraint rules out most of what has been recommended so far in this series</strong>, and that is worth saying plainly before the new candidates.</p>
+  </div>
+
+  <div class="legend">
+    <div><span class="chip chip-fact">Fact</span> sourced</div>
+    <div><span class="chip chip-derived">Derived</span> calculated here</div>
+    <div><span class="chip chip-est">Assumption</span> judgement — challenge it</div>
+  </div>
+
+  <section>
+    <h2>Where this pass looked</h2>
+    <p>The last UNSPSC review covered segments at the family level but left <strong>Industrial Manufacturing (segment 23, 908 codes — the second-largest real segment in the file)</strong> only partially examined — welding was pulled out, but roughly half the segment was never opened. Going through the rest of it with this sharper brief surfaced one genuinely new candidate.</p>
+
+    <div class="scroller">
+      <table>
+        <caption>Full family breakdown of Industrial Manufacturing (23000000) — the remainder, not previously shown <span class="chip chip-fact">Fact</span></caption>
+        <thead><tr><th>Family</th><th class="n">Codes</th><th>Read against your criteria</th></tr></thead>
+        <tbody>
+          <tr><td class="co">Industrial process machinery</td><td class="n">240</td><td>Capital equipment — already ruled out</td></tr>
+          <tr><td class="co">Metal cutting machinery</td><td class="n">166</td><td>Capital equipment</td></tr>
+          <tr><td class="co">Welding, soldering, brazing</td><td class="n">84</td><td>Already the #2 candidate — but requires trade credit, same as electricals</td></tr>
+          <tr><td class="co">Industrial food and beverage equipment</td><td class="n">48</td><td>Capital equipment; food-adjacent, already covered</td></tr>
+          <tr><td class="co">Metal forming machinery</td><td class="n">47</td><td>Capital equipment</td></tr>
+          <tr><td class="co">Textile and fabric machinery</td><td class="n">45</td><td>Ties to power loom clusters — see the credit warning below</td></tr>
+          <tr><td class="co">Raw materials processing machinery</td><td class="n">38</td><td>Capital equipment</td></tr>
+          <tr><td class="co">Sawmilling and lumber processing machinery</td><td class="n">37</td><td>Capital equipment, niche</td></tr>
+          <tr class="row-hero"><td class="co"><strong>Lapidary machinery and equipment</strong></td><td class="n">27</td><td><strong>New — see below</strong></td></tr>
+          <tr><td class="co">Metal treatment machinery</td><td class="n">26</td><td>Plating/heat-treatment job shops — often credit-stretched SMEs</td></tr>
+          <tr><td class="co">Foundry machines and supplies</td><td class="n">22</td><td>Foundries are capital-heavy and typically credit-seeking</td></tr>
+          <tr><td class="co">Mass transfer equipment</td><td class="n">22</td><td>Process industry capital equipment</td></tr>
+          <tr><td class="co">Industrial machine tools</td><td class="n">21</td><td>Capital equipment</td></tr>
+          <tr><td class="co">Leatherworking machinery</td><td class="n">15</td><td>Ties to export clusters — see note below</td></tr>
+          <tr><td class="co">Rapid prototyping machinery</td><td class="n">14</td><td>Modern, tech-adoption category, thin trade depth</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>Lapidary — the class-level detail matters</h2>
+    <p>The 27-code family splits: <strong>16 codes of "Grinding and sanding and polishing equipment and supplies"</strong>, 5 faceting, 5 cabbing. <span class="chip chip-fact">Fact</span> That 16-code cluster is consumables, not capital equipment — polishing compounds, laps, discs, diamond powder — the wear-and-restock inputs to gem cutting, not the machines themselves.</p>
+
+    <p>This is the taxonomy pointing at India's diamond and gemstone processing industry — and the scale is extraordinary:</p>
+
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Metric</th><th class="n">Value</th></tr></thead>
+        <tbody>
+          <tr><td class="co">Share of India's diamond processing in Gujarat</td><td class="n">80%</td></tr>
+          <tr><td class="co">Share of India's diamond cutting companies in Surat</td><td class="n">90%</td></tr>
+          <tr><td class="co">Diamond processing units in Surat</td><td class="n">5,000–8,000</td></tr>
+          <tr><td class="co">Workers in Surat's diamond hub (Varachha)</td><td class="n">~700,000</td></tr>
+          <tr><td class="co">Pre-COVID annual diamond exports</td><td class="n">~$25 Bn</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><span class="chip chip-fact">Fact</span> for all of the above.</p>
+  </section>
+
+  <section>
+    <h2>Scored against every one of your seven conditions</h2>
+
+    <div class="scroller">
+      <table>
+        <caption>Gem-processing consumables (Surat / Jaipur) — checked explicitly, not just narrated</caption>
+        <thead><tr><th>Your condition</th><th class="check">Fit</th><th>Evidence</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Maximum vendor-management problem</td><td class="check yes">✓</td>
+            <td>Consumables currently sourced from many small, individually-named suppliers (Karma Steels, Sachi, Soham and similar) with no consolidation <span class="chip chip-fact">Fact</span></td>
+          </tr>
+          <tr>
+            <td>Unorganised sector</td><td class="check yes">✓</td>
+            <td><em>"The diamond cutting industry in India is still considered an unorganized sector, despite attempts by large companies to corporatize."</em> <span class="chip chip-fact">Fact</span></td>
+          </tr>
+          <tr>
+            <td>No big player</td><td class="check yes">✓</td>
+            <td>Consumable suppliers found are small, regional, single-city operations — no national organised distributor identified</td>
+          </tr>
+          <tr>
+            <td>Fat margin, no price war</td><td class="check part">~</td>
+            <td>Plausible given fragmentation and lack of an organised competitor, but <strong>unverified</strong> — no margin data found. The field test settles this</td>
+          </tr>
+          <tr>
+            <td>Don't have to provide credit</td><td class="check yes">✓</td>
+            <td>This trade's own norm is cash and informal settlement — <em>"exchange hands based on verbal agreements... carried by anonymous and informal couriers."</em> <span class="chip chip-fact">Fact</span> The opposite problem from electricals</td>
+          </tr>
+          <tr>
+            <td>Easy to execute</td><td class="check part">~</td>
+            <td><strong>The one real caution — see below</strong></td>
+          </tr>
+          <tr>
+            <td>Large market size</td><td class="check yes">✓</td>
+            <td>$25 Bn export industry, 5,000–8,000 processing units, ~700,000 workers</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="warn">
+      <div class="label">The execution caveat, stated precisely rather than avoided</div>
+      <p>Surat's diamond trade runs on <strong>closed, familial community networks</strong> — historically dominated by specific Gujarati Jain and Patel family lineages, with trust built over generations and outsiders genuinely finding it hard to enter the trading side of the business.</p>
+      <p><strong>But that closure applies to trading diamonds, not to selling grinding wheels and polishing compounds to the people who cut them.</strong> The suppliers found in this search — Karma Steels (Mumbai, established 1988), Sachi (Jaipur), Soham (Surat) — are ordinary industrial-goods companies, not community insiders, and they appear to sell into this trade successfully. <strong>You would be a tooling and consumables vendor, not a diamond trader.</strong> That is a materially easier door to walk through, though still one that rewards a credible industrial-supplier presentation over a cold digital pitch — this is a trade that transacts on trust, and a first sale likely needs a real person and a real sample, not a website.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Two others surfaced, and why they score lower on your specific brief</h2>
+
+    <div class="block">
+      <h3>Textile machinery accessories / power loom spares</h3>
+      <p>Real and large — fragmented across Bhiwandi, Surat, Malegaon, Ichalkaranji, Panipat, Coimbatore, Salem <span class="chip chip-fact">Fact</span>. But power loom units are a well-documented financially stressed segment of Indian textiles — precisely the kind of buyer who <strong>needs</strong> credit, not the kind who pays cash. This fails your explicit no-credit condition even though it passes every other one, and that single failure is disqualifying against this brief specifically.</p>
+    </div>
+
+    <div class="block">
+      <h3>Leatherworking machinery and consumables</h3>
+      <p>Ties to Kanpur, Agra and Chennai's leather export clusters. Export houses paid via letter of credit are genuinely cash-rich on the international side — but the <em>domestic</em> tooling and consumables purchase, made by the same units, does not automatically inherit that cash position; working capital gets absorbed by raw hide and finishing costs first. Worth a look, but unverified — the field test would need to ask this directly rather than assume it.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Recommendation</h2>
+    <ol class="ask">
+      <li><strong>Add gem-processing consumables to the field test</strong> — Surat if reachable, or Jaipur's coloured-gemstone cutting trade as a more accessible entry point with a similar profile and a shorter distance from Hyderabad.</li>
+      <li><strong>Ask the margin question directly</strong> — "what do you currently pay for polishing compound / laps / diamond powder, and from how many different suppliers" is the single question that would confirm or kill this in one conversation.</li>
+      <li><strong>Present as an industrial consumables supplier, not as anyone trying to enter the diamond trade itself.</strong> That framing is both more honest and the one that actually gets a meeting.</li>
+      <li><strong>Drop power loom spares from further consideration</strong> on the credit condition alone, despite the genuine scale and fragmentation.</li>
+      <li><strong>This does not replace bearings.</strong> It sits alongside it as a genuinely different kind of candidate — smaller, higher-margin, credit-free, execution-cautious — worth testing in parallel rather than instead.</li>
+    </ol>
+  </section>
+
+  <details>
+    <summary>Sources</summary>
+    <div class="srcs">
+      <div><a href="https://www.krhnews.com/surat-diamond-industry-2026-overview-facts-growth/">Surat diamond industry 2026 overview</a> · <a href="https://futuresofwork.co.uk/2025/01/14/not-bright-like-a-diamond-exploring-surats-diamond-polishing-hub-during-a-protracted-recession/">Surat diamond hub structure and workforce</a> · <a href="https://www.rubel-menasche.com/en/indian-diamond-cutting-and-polishing-sector/">Indian diamond cutting and polishing sector overview</a></div>
+      <div><a href="https://karmasteels.com/products/diamondPolishingScaife.html">Karma Steels — diamond polishing scaife manufacturer</a> · <a href="https://dir.indiamart.com/impcat/diamond-scaife.html">IndiaMART diamond scaife supplier directory</a> · <a href="https://www.diamondpowder.in/diamond-malai-or-compound-pastes.html">Diamond powder and compound paste suppliers, Surat</a></div>
+      <div><a href="https://www.texmin.gov.in/static/uploads/2025/07/90c6971667e4781c85b67578bbd6a65b.pdf">Government of India — powerloom sector structure and dispersal</a></div>
+      <div>UNSPSC family and class counts computed directly from the file already in this repo (<code>research/data/unspsc-segments-10-26.csv</code>).</div>
+    </div>
+  </details>
+
+  <footer>
+    Research note, August 2026 · eleventh in this series. Market and industry-structure figures are sourced; the margin claim for gem-processing consumables is unverified and flagged as such — it is the first thing the field test should confirm.
+  </footer>
+
+</div>
