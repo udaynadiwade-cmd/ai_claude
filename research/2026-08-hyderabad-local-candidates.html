@@ -1,0 +1,262 @@
+<title>The City of Pearls</title>
+<style>
+  :root {
+    --ground:#F7F8F7; --surface:#FFFFFF; --surface-2:#EFF2F1;
+    --ink:#10201F; --ink-mid:#3C4E4B; --ink-muted:#61726F;
+    --rule:#D6DEDB; --rule-strong:#B4C1BD;
+    --accent:#0E6B62; --accent-soft:#E0EEEB;
+    --signal:#96631A; --signal-soft:#F5EBD9;
+    --negative:#9B3922; --negative-soft:#F6E5E0;
+    --shadow:0 1px 2px rgba(16,32,31,.06), 0 8px 24px -12px rgba(16,32,31,.16);
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+      --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+      --rule:#24332F; --rule-strong:#354844;
+      --accent:#4FBFA8; --accent-soft:#16302C;
+      --signal:#D9A441; --signal-soft:#2E2617;
+      --negative:#E0836A; --negative-soft:#33201A;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+    --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+    --rule:#24332F; --rule-strong:#354844;
+    --accent:#4FBFA8; --accent-soft:#16302C;
+    --signal:#D9A441; --signal-soft:#2E2617;
+    --negative:#E0836A; --negative-soft:#33201A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  * { box-sizing:border-box; }
+  body { background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:17px;
+         line-height:1.62; margin:0; padding:0 24px 120px; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:840px; margin:0 auto; }
+  .masthead { padding:64px 0 32px; border-bottom:2px solid var(--ink);
+              display:flex; flex-direction:column; gap:18px; }
+  .kicker { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--accent); display:flex; flex-wrap:wrap; gap:10px 18px; }
+  .kicker span { color:var(--ink-muted); }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.2rem,5.5vw,3.2rem); line-height:1.08;
+       letter-spacing:-.018em; text-wrap:balance; margin:0; }
+  .standfirst { font-family:var(--serif); font-size:1.15rem; line-height:1.5; color:var(--ink-mid);
+                margin:0; max-width:66ch; }
+  h2 { font-family:var(--serif); font-weight:400; font-size:1.7rem; line-height:1.2; letter-spacing:-.01em;
+       text-wrap:balance; margin:0; padding-top:6px; border-top:1px solid var(--rule-strong); }
+  h3 { font-family:var(--sans); font-weight:650; font-size:1rem; }
+  p { margin:0; max-width:68ch; }
+  section { display:flex; flex-direction:column; gap:16px; padding-top:48px; }
+  .block { display:flex; flex-direction:column; gap:11px; }
+  strong { font-weight:650; } em { font-style:italic; color:var(--ink-mid); }
+  a { color:var(--accent); }
+  code, .num { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.92em; }
+  .chip { font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+          padding:2px 6px; border-radius:3px; white-space:nowrap; font-weight:600; }
+  .chip-fact { background:var(--accent-soft); color:var(--accent); }
+  .chip-derived { background:var(--signal-soft); color:var(--signal); }
+  .chip-est { background:var(--negative-soft); color:var(--negative); }
+  .legend { display:flex; flex-wrap:wrap; gap:8px 18px; padding:14px 18px; background:var(--surface-2);
+            border-radius:4px; font-size:13px; color:var(--ink-mid); align-items:center; margin-top:24px; }
+  .legend>div{display:flex;gap:7px;align-items:baseline;}
+  .verdict { background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+             border-radius:3px; padding:26px 28px; display:flex; flex-direction:column; gap:12px;
+             box-shadow:var(--shadow); margin-top:36px; }
+  .verdict .label { font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .danger { background:var(--negative-soft); border:1px solid var(--negative); border-radius:3px;
+            padding:20px 22px; display:flex; flex-direction:column; gap:9px; font-size:15px; }
+  .danger .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--negative); font-weight:600; }
+  .warn { background:var(--signal-soft); border:1px solid var(--signal); border-radius:3px;
+          padding:20px 22px; display:flex; flex-direction:column; gap:9px; font-size:15px; }
+  .warn .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--signal); font-weight:600; }
+  .big { background:var(--accent-soft); border:1px solid var(--accent); border-radius:3px;
+         padding:20px 22px; display:flex; flex-direction:column; gap:9px; font-size:15px; }
+  .big .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); font-weight:600; }
+  .note { border-left:2px solid var(--rule-strong); padding:3px 0 3px 18px; color:var(--ink-mid); font-size:15px; display:flex; flex-direction:column; gap:8px; }
+  .scroller { overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:14px; min-width:600px; }
+  caption { text-align:left; padding:12px 15px 10px; font-size:12.5px; color:var(--ink-muted); border-bottom:1px solid var(--rule); }
+  th, td { padding:9px 13px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted); font-weight:600; background:var(--surface-2); border-bottom:1px solid var(--rule-strong); }
+  tbody tr:last-child td { border-bottom:none; }
+  .n { font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+  th.n { text-align:right; }
+  .pos{color:var(--accent);font-weight:600;} .neg{color:var(--negative);font-weight:600;}
+  .row-hero td { background:var(--accent-soft); } .row-worst td { background:var(--negative-soft); }
+  .co { font-weight:650; } .sub { display:block; font-size:12px; color:var(--ink-muted); font-weight:400; margin-top:1px; }
+  .check { font-family:var(--mono); font-weight:700; text-align:center; }
+  .yes { color:var(--accent); } .no { color:var(--negative); } .part { color:var(--signal); }
+  ol.ask, ul.plain { margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px; max-width:68ch; }
+  ol.ask li::marker { font-family:var(--mono); font-size:.82em; color:var(--accent); }
+  ul.plain li::marker { color:var(--accent); }
+  .phases { display:flex; flex-direction:column; gap:2px; }
+  .phase { display:grid; grid-template-columns:74px 1fr; gap:20px; padding:18px 0; border-top:1px solid var(--rule); }
+  .phase:last-child { border-bottom:1px solid var(--rule); }
+  .phase-n { font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; color:var(--accent); text-transform:uppercase; padding-top:3px; }
+  .phase-n b { display:block; font-size:19px; letter-spacing:-.02em; color:var(--ink); font-weight:600; }
+  .phase-body { display:flex; flex-direction:column; gap:7px; }
+  details { border-top:1px solid var(--rule-strong); padding-top:16px; }
+  summary { cursor:pointer; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+  .srcs { margin-top:14px; display:flex; flex-direction:column; gap:8px; font-size:13.5px; color:var(--ink-mid); }
+  footer { margin-top:56px; padding-top:18px; border-top:1px solid var(--rule); font-size:13px; color:var(--ink-muted); }
+  @media (max-width:560px) { body{font-size:16px;padding:0 18px 80px;} .verdict{padding:22px 20px;} .phase{grid-template-columns:1fr;gap:8px;} }
+  @media (prefers-reduced-motion: reduce) { *{animation:none!important;transition:none!important;} }
+</style>
+
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="kicker">Research note <span>·</span> <span>Hyderabad-native candidates</span> <span>·</span> <span>August 2026</span></div>
+    <h1>The city of pearls</h1>
+    <p class="standfirst">Surat's diamond trade fit every criterion except one — it is 1,200 km away. Hyderabad has been running the same trade, in the same shape, for 400 years, in your own city.</p>
+  </header>
+
+  <div class="verdict">
+    <div class="label">Bottom line</div>
+    <p><strong>Hyderabad's pearl trade is the direct local equivalent of what worked in the diamond note — same mechanism, same unorganised structure, zero travel required.</strong> And it has one advantage Surat did not: <strong>the raw material is already imported, largely from China</strong> — which means the opportunity is not only tooling and consumables, it could extend to the sourcing itself, which is the founder's deepest capability.</p>
+    <p><strong>Telangana's granite belt (Warangal–Khammam–Karimnagar) is a genuine second local candidate</strong> — larger, more industrial, a 2–4 hour drive rather than a city commute, and worth testing in parallel rather than instead.</p>
+  </div>
+
+  <div class="legend">
+    <div><span class="chip chip-fact">Fact</span> sourced</div>
+    <div><span class="chip chip-derived">Derived</span> calculated here</div>
+    <div><span class="chip chip-est">Assumption</span> judgement — challenge it</div>
+  </div>
+
+  <section>
+    <h2>Hyderabad's pearl trade — checked against every condition, in your own city</h2>
+
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Your condition</th><th class="check">Fit</th><th>Evidence</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Located in Hyderabad</td><td class="check yes">✓</td>
+            <td><strong>Hyderabad is the largest pearl trading centre in India, and has been for over 400 years — hence "City of Pearls."</strong> <span class="chip chip-fact">Fact</span> The drilling itself is centred on <strong>Chandanpet, a village just outside Hyderabad, where almost the entire population practises pearl drilling as a generational trade.</strong> <span class="chip chip-fact">Fact</span></td>
+          </tr>
+          <tr>
+            <td>Unorganised sector</td><td class="check yes">✓</td>
+            <td>Described in trade sources as <em>"the most famous and surprisingly most unorganised and deceptive industry in Hyderabad."</em> <span class="chip chip-fact">Fact</span> That is not a euphemism — it is close to a direct match for your stated criteria, in those words.</td>
+          </tr>
+          <tr>
+            <td>Vendor-management chaos</td><td class="check yes">✓</td>
+            <td><strong>Over 1,500 shops sell pearls in Hyderabad</strong> <span class="chip chip-fact">Fact</span>, radiating out from Pathargatti and Moazzam Jahi Market — a genuinely fragmented retail and processing base, not two or three dominant players</td>
+          </tr>
+          <tr>
+            <td>No big player</td><td class="check yes">✓</td>
+            <td>No organised national or even city-scale consolidator identified in this trade for tools, consumables or raw material supply</td>
+          </tr>
+          <tr>
+            <td>Don't have to provide credit</td><td class="check yes">✓</td>
+            <td>Gem and pearl trades across India run on cash and trust-based settlement as a sector norm — same structural logic as the diamond finding, now local</td>
+          </tr>
+          <tr>
+            <td>Fat margin / trust problem to solve</td><td class="check yes">✓</td>
+            <td><strong>Counterfeit pearls from Nepal and Tibet are costing buyers an estimated ₹25–30 crore a year</strong> <span class="chip chip-fact">Fact</span> — a documented authenticity gap, the same shape as the counterfeit-cable finding in electricals, and a real value proposition for verified, traceable supply</td>
+          </tr>
+          <tr>
+            <td>Easy to execute</td><td class="check part">~</td>
+            <td>Genuinely easier than Surat — no need to travel, and Chandanpet is a short drive. Trust-based trade still means a first sale needs a real person and a real sample, not a cold digital pitch</td>
+          </tr>
+          <tr>
+            <td>Large market size</td><td class="check part">~</td>
+            <td><strong>Conflicting figures, reported plainly rather than resolved:</strong> one estimate puts Hyderabad's pearl trade turnover at ₹500–700 crore, dated to the early 2010s; a more recent source states "₹100+ crore," which may be measuring a narrower segment of the same trade. <span class="chip chip-fact">Fact</span> Neither figure is current or precisely scoped — this needs a fresh number, not an assumption</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="big">
+      <div class="label">The structural advantage Surat did not have</div>
+      <p>One trade source states plainly: <strong>"pearls from China dominate the Hyderabad pearl market."</strong> <span class="chip chip-fact">Fact</span> The raw material feeding this entire 400-year-old trade is already substantially import-sourced — and largely from exactly the country Befach already sources from.</p>
+      <p>That means the opportunity here is not limited to selling drilling bits and stringing thread to a fragmented trade, the way the diamond consumables idea was scoped. <strong>It plausibly extends to being a more reliable, better-priced raw pearl import channel for the trade itself</strong> — using the same sourcing relationships and import competency already in daily use at Befach, applied to a product category instead of the current one. That is a materially larger and more natural opportunity than a tooling business alone, and it is worth testing as its own question, separate from consumables.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Telangana granite — bigger, more industrial, still local</h2>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Metric</th><th class="n">Value</th></tr></thead>
+        <tbody>
+          <tr><td class="co">Warangal</td><td class="n">100+ quarries, 60 slab processing units</td></tr>
+          <tr><td class="co">Khammam</td><td class="n">Highest concentration of tile and slab units in the belt</td></tr>
+          <tr><td class="co">Karimnagar</td><td class="n">150 quarries, 220 polishing units — exports tan brown, coffee brown, maple red granite <strong>to China</strong></td></tr>
+          <tr><td class="co">People dependent on the sector</td><td class="n">~500,000</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><span class="chip chip-fact">Fact</span> for all figures above. Telangana is globally known specifically for Black Galaxy granite, and the belt sits 2–4 hours from Hyderabad by road — genuinely testable without the Surat problem, though it is a drive, not a city commute the way Chandanpet is.</p>
+
+    <div class="warn">
+      <div class="label">Why this scores slightly behind pearls on your specific brief</div>
+      <p>Granite processing needs real consumables — diamond wire saws, cutting blades, polishing resins and abrasives — which is the correct shape for this model. But quarrying and slab processing is more capital-intensive than pearl drilling, and <strong>Indian granite units carry a mixed reputation on payment discipline</strong> — some export-oriented units (like Karimnagar's China-facing exporters) are likely well-capitalised, but the domestic-facing tail of 220+ polishing units almost certainly includes credit-seeking, cash-tight operators. This needs a field check, not an assumption either way — the field test question is simply "cash or credit, and how many suppliers do you use today."</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Side by side</h2>
+    <div class="scroller">
+      <table>
+        <thead><tr><th></th><th>Pearls</th><th>Granite</th></tr></thead>
+        <tbody>
+          <tr><td class="co">Distance from base</td><td class="pos">Within the city</td><td>2–4 hr drive</td></tr>
+          <tr><td class="co">Documented as unorganised</td><td class="pos">Explicitly, in those words</td><td>Implied by structure, not stated outright</td></tr>
+          <tr><td class="co">Cash-trade norm</td><td class="pos">Strong — sector-wide</td><td>Mixed — export vs domestic units differ</td></tr>
+          <tr><td class="co">Market size confidence</td><td>Weak — conflicting, dated figures</td><td>Weak — no consumables-specific figure found</td></tr>
+          <tr><td class="co">Sourcing-capability fit</td><td class="pos">Strong — already China-import-dependent</td><td>Reversed — Karimnagar exports to China</td></tr>
+          <tr><td class="co">Trust/authenticity angle</td><td class="pos">Documented — ₹25–30 Cr counterfeit problem</td><td>Not identified</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>What I would do — the four-week version</h2>
+    <div class="phases">
+      <div class="phase">
+        <div class="phase-n"><b>1</b>Wk 1</div>
+        <div class="phase-body">
+          <h3>Chandanpet and Pathargatti, in person</h3>
+          <p>This needs no travel budget and no advance planning — a short drive from Hyderabad. Talk to drillers in Chandanpet and shop owners around Pathargatti and Moazzam Jahi Market. Ask what they pay for drilling bits, thread, clasps and sorting tools today, from how many suppliers, and whether they'd buy verified-source raw pearls from an import channel rather than their current one.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-n"><b>2</b>Wk 2</div>
+        <div class="phase-body">
+          <h3>One trip to the granite belt</h3>
+          <p>Warangal or Karimnagar, whichever is more accessible. Same questions, adapted: what consumables, from how many suppliers, cash or credit, and whether an export-facing unit's economics differ visibly from a domestic-only one.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="phase-n"><b>3</b>Wk 3–4</div>
+        <div class="phase-body">
+          <h3>Size both properly</h3>
+          <p>Neither category has a current, well-scoped market-size figure in the public record. A few dozen structured conversations across both, cross-checked against whatever trade-body or association data exists locally, would produce a real number faster than any further desk research could.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="note">
+      <p>This does not replace the bearings or electricals field test from earlier notes — it runs alongside it, and at far lower cost, since both of these are drivable rather than requiring a trip to Gujarat. If either pearls or granite confirms well, you would have <strong>two live local tracks and a national-scale track (bearings/electricals) running in parallel</strong>, which is a reasonable way to de-risk the "one pivot left" constraint rather than betting everything on a single field test.</p>
+    </div>
+  </section>
+
+  <details>
+    <summary>Sources</summary>
+    <div class="srcs">
+      <div><a href="https://en.wikipedia.org/wiki/Hyderabadi_pearls">Hyderabadi pearls — Wikipedia</a> · <a href="https://en.wikipedia.org/wiki/Pathargatti">Pathargatti market history</a> · <a href="https://moazzamjahimarket.com/">Moazzam Jahi Market</a></div>
+      <div><a href="https://krishnapearls.com/blogs/article/pearl-market-hyderabad">Pearl market Hyderabad — Krishna Pearls</a> · <a href="https://www.jpearls.com/blog/best-places-to-buy-authentic-pearls-in-hyderabad">Jagdamba Pearls on Hyderabad's pearl retail landscape, 1,500+ shops</a></div>
+      <div><a href="https://www.pearl-guide.com/threads/pearls-from-china-dominate-hyderabad-pearl-market.6541/">China-sourced pearls dominating the Hyderabad market</a> · <a href="https://gulfnews.com/uae/fake-pearls-being-sold-in-hyderabad-1.375770">Counterfeit pearl problem, Gulf News</a></div>
+      <div><a href="https://telangana.pscnotes.com/telangana-economy/mining-and-mineral-resources-in-telangana/">Telangana mining and mineral resources — granite belt structure</a> · <a href="https://www.thehansindia.com/posts/index/Telangana/2017-05-27/Granite-units-to-feel-GST-sting/302662">Granite units, Telangana</a></div>
+    </div>
+  </details>
+
+  <footer>
+    Research note, August 2026 · twelfth in this series. Trade structure and counterfeit-loss figures are sourced. Market-size figures for both categories are dated or narrowly scoped and are flagged as needing a fresh number rather than being treated as reliable.
+  </footer>
+
+</div>
