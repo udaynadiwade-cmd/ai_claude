@@ -524,6 +524,49 @@
       <p><strong>De-risking this model for Befach means giving away the part of Faire's economics that makes it work.</strong> Faire's take rate is, in substance, a credit spread plus a marketplace fee — the underwriting capability is the moat. Hand the credit risk fully to a partner NBFC and Befach is no longer running "a Faire for India," it's running a marketplace with a financing partner bolted on: a reasonable business, but a lower-margin, less defensible one, and the differentiated economics shift to whoever holds the paper.</p>
       <p><strong>Even the lightest version above is not zero-credit-exposure.</strong> Partner integration, underwriting data plumbing, and coordinated collections still have to be built and managed even if the balance-sheet risk sits elsewhere — some credit-adjacent complexity survives every mitigation on this list. That residual is worth weighing explicitly against the founder's stated preference to avoid the credit business as a first move and against the one-pivot-left constraint, rather than assuming the de-risking above makes it a clean fit. This note lays out how to do it with the risk minimised; it does not resolve whether it should be done first.</p>
     </div>
+
+    <div class="block">
+      <h3>Candidate financing partners in India, for the "split the marketplace from the balance sheet" lever</h3>
+      <p><span class="chip chip-fact">Fact</span> Befach legally cannot hold retailer credit risk itself as an unlicensed marketplace — RBI's Digital Lending Guidelines (2022) prohibit unlicensed entities from extending credit directly, so any net-terms product has to run through a bank or an RBI-regulated NBFC by design, not by choice. (<a href="https://www.openbankingtracker.com/embedded-finance/rupifi">OpenBankingTracker</a>) One useful regulatory instrument for structuring this: the RBI's <strong>First Loss Default Guarantee (FLDG) framework</strong> (approved June 2023) lets a platform like Befach put up a capped guarantee — up to <strong>5% of the loan portfolio</strong> — to a partner NBFC, which is what makes an NBFC comfortable underwriting a new, unproven retailer base without Befach taking on open-ended risk. That 5% ceiling is a concrete, regulator-set number for the "bounded exposure" lever above, not an arbitrary design choice. (<a href="https://www.hubbis.com/news/rbi-has-given-approval-to-the-fldg-framework-enabling-fintechs-to-form-partnerships-with-banks-and-nbfcs">Hubbis</a>, <a href="https://www.cashfree.com/blog/rbis-progressive-approach-fldg-guidelines-and-the-future-of-fintech/">Cashfree</a>)</p>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Partner</th><th>What they do</th><th>Why they fit</th></tr></thead>
+          <tbody>
+            <tr class="row-hero">
+              <td class="co">Rupifi</td>
+              <td>Bengaluru-based embedded B2B credit platform — API-integrated credit lines inside B2B marketplaces</td>
+              <td>The closest direct precedent: <strong>already embedded inside Udaan and Jumbotail</strong> today, so the integration pattern for a marketplace like Befach's is proven, not theoretical. First call to make.</td>
+            </tr>
+            <tr>
+              <td class="co">Progcap</td>
+              <td>Supply-chain finance fintech for India's general-trade distributor-retailer segment; revolving credit lines of $10,000–$12,500 per retailer</td>
+              <td>$100M+ raised (Google among the backers), serves 700,000+ small retailers already — proof the retailer-credit-line model works at real scale in exactly the distributor-to-small-retailer trade Befach would be selling into</td>
+            </tr>
+            <tr>
+              <td class="co">Vayana</td>
+              <td>Marketplace-agnostic trade-credit / invoice-discounting rails</td>
+              <td>Largest and most proven of this cohort — $91.9M raised, $8Bn+ disbursed to 22,000+ SMEs across 600 cities (see the mechanism catalog above). A safer, more established counterparty for a first partnership than an earlier-stage fintech.</td>
+            </tr>
+            <tr>
+              <td class="co">Recur Club</td>
+              <td>Aggregator connecting businesses to 100+ lenders rather than lending itself</td>
+              <td>Useful if Befach wants optionality across multiple financiers rather than a single exclusive partner, at the cost of a less deeply integrated product than Rupifi's marketplace-native APIs</td>
+            </tr>
+            <tr>
+              <td class="co">Veefin</td>
+              <td>Supply-chain-finance <em>technology</em> provider — builds the SCF infrastructure banks/NBFCs run on, rather than lending directly</td>
+              <td>Relevant if Befach ever wants to go further upstream and help a bank/NBFC partner stand up a bespoke SCF product, rather than plug into an existing one</td>
+            </tr>
+            <tr class="row-worst">
+              <td class="co">RXIL / M1xchange / Invoicemart (TReDS)</td>
+              <td>RBI-backed exchanges where MSME suppliers get large-corporate invoices discounted early by competing financiers</td>
+              <td><strong>Wrong direction for this use case</strong> — TReDS lets Befach get paid early <em>as a supplier to large corporates</em>, not finance Befach's own small-retailer <em>buyers</em>. Worth knowing about (₹1.38 lakh crore discounted in FY24, a genuinely large and RBI-mandated rail) but it solves a different problem than the one this section is about.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Given Befach's stage — Hyderabad-first, one category, no existing lending relationship — <strong>Rupifi is the natural first conversation</strong>: it is the only name here with a live, working integration into an Indian B2B marketplace today, which de-risks the integration question itself, not just the credit-risk question. Vayana is the fallback if Rupifi's underwriting appetite doesn't extend to a new, unproven retailer base yet. This is a starting shortlist from this pass, not an exhaustive market map — a proper vendor selection would also weigh U GRO Capital, Aye Finance, Lendingkart, FlexiLoans and other general SME-lending NBFCs that do co-lending partnerships, which this pass did not verify in the same depth. <span class="chip chip-est">Flagging that gap rather than padding the list with unverified names.</span></p>
+    </div>
   </section>
 
   <section>
