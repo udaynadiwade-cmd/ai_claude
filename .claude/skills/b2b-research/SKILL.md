@@ -59,8 +59,6 @@ A recommendation that only makes sense because of their CV is a biased recommend
 Flag it as such and re-derive it from the market.
 
 **Strengths, in their own words:**
-
-**Strengths, in their own words:**
 - **Sourcing** — China factory-direct plus domestic; the deepest capability
 - **Logistics** — import, customs, distribution
 - **E-commerce / tech platform** — can build and run the ordering layer
@@ -153,6 +151,41 @@ benchmarking. Trend-spotting plus the "so what" — data becomes a decision.
   producing a confident estimate with no basis.
 - Basic primary-research design (expert interviews, surveys) even when most work
   is secondary.
+
+### No framework is the default lens `[ADDED 2026-08, founder correction, given twice]`
+
+Risk pooling explained bearings well. It does not follow that every later category
+should be tested against pooling first — or against any other single mechanism that
+worked once. **A framework that produced one good answer becomes a bias the moment it
+is reached for automatically on the next question.**
+
+The founder's own words, verbatim, given twice in immediate succession because the
+first correction was not fully absorbed: *"don't get locked to any business models like
+pooling of inventory... think independently about what the problem and opportunity can
+be."*
+
+**What going wrong looked like, as a concrete anchor:** asked to evaluate events and
+weddings B2B, the first pass correctly found pooling doesn't fit (wedding demand is
+correlated onto ~52 muhurat dates a year, not independent the way bearing failure is) —
+then wrongly concluded the category should fold into the already-scored jewellery
+answer, because that was the closest existing conclusion. **That is optimising for a
+clean narrative, not for the right answer.** The fix, on correction, was to restart from
+the category's own pains — fragmented multi-hub sourcing, vendor working-capital
+squeeze, mismatched vendor-level capacity — which surfaced two mechanisms (supply
+aggregation, embedded vendor financing) that have nothing to do with pooling and were
+invisible while pooling was the lens.
+
+**The corrected order, for every new category:**
+1. Start from the category's own terms — its buyers, cash cycles, supply structure,
+   failure modes — before checking any previously-successful mechanism against it.
+2. If a known mechanism (pooling, VMI, quick commerce, private label, postponement,
+   sourcing aggregation, embedded finance) turns out to fit, good — say so and why.
+3. **If it does not fit, that is a cue to find what mechanism does, not to fold the
+   category into whichever existing answer is nearest.** A "does not fit the pattern I
+   already have" conclusion is not a finished analysis.
+
+This applies beyond pooling specifically — to any framework in this file that starts to
+feel like the answer before the category has been looked at on its own terms.
 
 ## 6. Output craft
 
