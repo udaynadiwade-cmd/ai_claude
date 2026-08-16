@@ -271,6 +271,47 @@ after it, and not as a label decorating the same analysis.
   explicit founder strength (see founder profile above), and this lens exists to engage
   that strength directly, not just to critique other people's businesses.
 
+## Added framework — Blue Ocean Strategy `[ADDED 2026-08]`
+
+One more tool in the kit, **not a new default lens** — the same caution as "No
+framework is the default lens" above applies here too. Don't open every category
+screen with this; reach for it when the category's own terms point at crowding or
+commoditisation as the actual blocker.
+
+**Core idea:** red oceans are existing market space, where competitors are compared
+head-to-head and demand is fought over; blue oceans are uncontested market space,
+where demand is created rather than won from someone else. The mechanism is **value
+innovation** — pursuing differentiation and low cost simultaneously, treated as not
+a tradeoff, rather than picking a generic "cost leadership vs differentiation" side.
+
+**Tools to reach for, on request or when a category looks crowded:**
+- **Four Actions Framework (ERRC grid)** — for a category or a specific competitor's
+  offering, ask what to **E**liminate (industry-standard factors nobody actually
+  values), **R**educe (over-delivered relative to what buyers need), **R**aise
+  (under-delivered relative to what buyers need), and **C**reate (never offered, but
+  would matter). The sharpest tool here for repositioning a business Befach is
+  building or evaluating, not just for describing someone else's.
+- **Strategy canvas** — plot competing offerings against the factors the industry
+  actually competes on, to see where everyone clusters and where a different value
+  curve could sit. Pairs with a competitive teardown; doesn't replace one.
+- **Six Paths Framework** — look across alternative industries, strategic groups,
+  the buyer chain (purchaser vs user vs influencer), complementary offerings,
+  functional-vs-emotional appeal, and time/trends, to find where uncontested space
+  might exist.
+- **Three tiers of non-customers** — soon-to-be non-customers (about to leave),
+  refusing non-customers (consciously choosing other options), and unexplored
+  non-customers (never considered the category at all). Ask explicitly who isn't
+  buying from *anyone* in a category and why — not just who existing competitors'
+  customers are.
+
+**How this connects to what's already here:** crowding is already one of the five
+screening dimensions (fungibility, demand lumpiness, stockout severity,
+deliverability, crowding). Blue Ocean tools are the right escalation *when a category
+scores badly on crowding specifically* — the question shifts from "is this space
+open" to "how would repositioning make the existing competition irrelevant." That
+keeps this framework subordinate to the category's own terms, consistent with the
+standing rule, rather than becoming the next thing reached for automatically.
+
 ## Working defaults
 
 - Give the recommendation, not a survey of options. Rank, and say why.
