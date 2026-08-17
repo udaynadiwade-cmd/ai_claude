@@ -8,16 +8,22 @@ this role. It does not override the standard.
 
 ## Gate 0 — Hard filters (fail = Reject before scoring)
 
+**Updated 2026-08-17 per Uday — role is junior/entry-level and hired locally;
+tightened accordingly.**
+
 | Filter | Rule |
 |---|---|
-| Location | Cannot work on-site at our Banjara Hills, Hyderabad office and unwilling to relocate |
-| Languages | Not fluent in at least Hindi, English, and Telugu — this is a core requirement, not a plus, for a consumer-facing D'Cal role |
+| Location | Not currently based in Hyderabad (tightened from "unwilling to relocate" — for this junior, local role we hire people already in the city, not relocation cases) |
+| Sales experience | Less than 1 year of sales experience — formal (a job that was titled or functioned as sales) or informal (a self-run venture with real, describable closing activity) |
+| Languages | Cannot hold a basic working conversation in Hindi, English, and Telugu — this is a core requirement, not a plus, for a consumer-facing D'Cal role. Bar is basic functional fluency, not polish — see Communication below. |
 | Compensation | Expected fixed CTC more than 25% above the top of our band (₹25,000/month) |
 | Completeness | No CV, or the target-vs-achieved question blank / pure filler |
 
-> **Note:** "no sales experience" is deliberately **not** a hard filter. Per the
-> Befach standard, experience is not a pillar. Someone who has sold nothing
-> formally but has run their own venture and closed customers can score well.
+> **Superseded 2026-08-17:** the previous "no sales experience is not a hard
+> filter" note no longer applies. Given the role is already junior on every
+> other axis (no degree required, no institutional-tier scoring, wide comp
+> band), Uday wants a minimum 1 year of real sales experience as the one
+> non-negotiable floor.
 
 ---
 
@@ -83,14 +89,20 @@ Weight it lightly. Flag as an interview question, never a deduction.
 
 ## COMMUNICATION — 30 pts
 
-Score per the standard. **For this role, communication is effectively the
-product** — treat the score as provisional until the phone screen. Score
-fluency across Hindi, English, and Telugu specifically; a candidate strong in
-only one language is capped, regardless of how well they speak it.
+**Updated 2026-08-17 per Uday — basic bar, not polish.** This is a junior role;
+we need "can hold a functional conversation with a customer in Hindi, English,
+and Telugu, and write clearly enough to log a call" — not eloquence.
 
-- Cap at 22 without a voice sample, and say so explicitly.
-- A submitted voice note that is clear, warm and well-paced can reach the top band.
-- Written application quality is a weak but real proxy for spoken clarity.
+- All three languages present (self-reported at CV stage is enough to clear
+  Gate 0; confirm by phone before any offer) → do not score below the
+  midpoint (15/30) for meeting the basic language bar alone.
+- Written CV/email clarity is a weak signal only — penalise for genuine
+  incomprehensibility, not for lack of polish.
+- Still cap at 22 without a voice sample or phone confirmation — we still need
+  to hear them before going higher, but the bar to clear is functional
+  fluency, not warmth or pacing.
+- A confirmed, clear phone conversation in all three languages can reach the
+  top band.
 
 ---
 
