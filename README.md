@@ -3,6 +3,9 @@
 Everything for these two hires lives here. One place, versioned, so nothing gets
 lost in a chat scroll.
 
+Run by **Laxmi**, your Virtual Assistant for recruitment — see her full
+operating charter and skill set in [`AGENT.md`](AGENT.md).
+
 **Roles open:** Sales Executive · Digital Marketing Executive
 **Level:** 1–3 years, on-site India
 **Intake:** Google Form → Sheet + Drive
