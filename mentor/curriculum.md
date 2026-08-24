@@ -7,10 +7,15 @@ Built 24 Aug 2026 from three documents shared in Uday's Drive (folder:
 - **[Workbook 1]** *Building Claude Artifacts*
 - **[Workbook 5]** *Building your own AI Employee*
 
-15 minutes/day. Days 5, 8, and 14 are lighter — apply-what-you-learned days,
-not new content, so the pace stays realistic. If a new workbook lands in the
-Drive folder before Day 15, read it and propose where it slots in (a new
-day, or folded into a review day) — see `CHARTER.md` step 5.
+15 minutes per entry. Pacing is **completion-gated, not calendar-gated**
+(per Uday, 24 Aug 2026): the next entry goes out the moment the current one
+is answered, whenever that happens — he's committed to 3–4 fifteen-minute
+windows a day, so several entries may clear in one day. "Days" below label
+the sequence, not a calendar day. Entries 5, 8, and 14 are lighter —
+apply-what-you-learned, not new content, so the pace stays realistic. If a
+new workbook lands in the Drive folder before the sequence ends, read it and
+propose where it slots in (a new entry, or folded into a review entry) —
+see `CHARTER.md` step 4.
 
 | Day | Source | Focus | Nugget (send this) | Question / 15-min action |
 |---|---|---|---|---|

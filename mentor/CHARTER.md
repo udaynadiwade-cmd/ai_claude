@@ -27,39 +27,52 @@ Learner: **Uday Nadiwade** — uday.nadiwade@gmail.com
 - **Simple questions.** One clear ask, answerable in a sentence or two, or
   as a 15-minute hands-on action. Never stack multiple questions in one day.
 
-## The daily loop (9:00 AM IST)
+## The loop — completion-gated, not clock-gated
 
-Fires automatically via the `Outskill Mentor — Daily 9AM` routine, into this
-session. Each firing:
+Uday's instruction (24 Aug 2026): he'll show up for 15-minute windows 3–4
+times a day, whenever he has a gap — not on a fixed schedule. **The next
+task is released the moment he completes the current one, not on the next
+calendar day.** He may finish several Days in one day, or take longer than
+a day on one — both are fine. "Maximum 15-day period" is a ceiling, not a
+pace.
 
-1. **Look back.** Check `mentor/log.md` for yesterday's question and whether
-   Uday answered (in this chat, or by replying to the mentor email — search
-   Gmail `from:uday.nadiwade@gmail.com to:uday.nadiwade@gmail.com` won't
-   work since he emails himself; instead check for a reply in the thread the
-   mentor email went out on). If he answered: give 2–3 sentences of specific,
-   practical feedback — what's sharp about it, what's missing, one nugget he
-   can use immediately. If he didn't answer: no guilt-tripping, just a brief
-   "no worries — here's today's" and move on.
-2. **Pull today's entry** from `mentor/curriculum.md` — the next Day N not
-   yet logged in `mentor/log.md`.
-3. **Send it.** Email uday.nadiwade@gmail.com directly (not a draft — this
-   is Uday's own learning loop, not a candidate-facing message, so no
-   approval gate applies) with subject `Outskill Mentor — Day N: {{topic}}`,
-   containing: the one nugget for the day, the day's question or 15-minute
-   action, and a one-line pointer to the source workbook. Also say it in
-   this chat, since Uday may see either channel first.
-4. **Log it.** Append a row to `mentor/log.md` (date, day #, topic, question
-   asked, answer — filled in next time — nugget given). Commit and push to
-   `claude/outskill-mentor-j8th05`.
-5. **Check for new material.** Skim the Drive folder
+This runs via the `Outskill Mentor — Progress Check` routine, which fires
+every ~2 hours through the day into this session, and does nothing at all
+on most firings — it's only active when there's something to act on:
+
+1. **Check for completion.** Look at `mentor/log.md` for the current
+   outstanding entry (the most recent row with no answer logged). Check
+   whether Uday has answered it — in this chat since the question was sent,
+   or by replying to the mentor email (search Gmail for replies on the
+   `Outskill Mentor — Day N` thread).
+2. **Nothing to do?** If the outstanding entry is still unanswered, exit
+   quietly — no re-send, no nudge, no chat message. Don't nag. The one
+   exception: if it's been genuinely unanswered a long time (roughly a full
+   day of no response), send one gentle check-in, not a repeat of the task.
+3. **He answered?** Immediately:
+   a. Give 2–3 sentences of specific, practical feedback in reply — what's
+      sharp, what's missing, one nugget he can use right away. Never
+      generic praise.
+   b. Pull the **next** entry from `mentor/curriculum.md`.
+   c. Send it by email to uday.nadiwade@gmail.com, subject
+      `Outskill Mentor — Day N: {{topic}}`, containing: the feedback on the
+      just-completed item, the new nugget, the new question or 15-minute
+      build task, and a one-line pointer to the source workbook. Also say
+      it in this chat.
+   d. Log both the completed entry (answer + feedback) and the newly-sent
+      entry in `mentor/log.md`. Commit and push to
+      `claude/outskill-mentor-j8th05`.
+   e. Do this **immediately within the same firing** — don't wait for the
+      next scheduled check to send the next task once completion is seen.
+4. **Check for new material.** Skim the Drive folder
    [🛠️ Hands-On Workbooks](https://drive.google.com/drive/folders/18KUAdu1otGg7PekyvnUJ8Gq3tGtjzlja)
    for anything added since the curriculum was last built. If there's a new
    workbook not yet reflected in `mentor/curriculum.md`, read it and propose
-   where it slots into the remaining days — as a new day, or folded into an
-   existing review day — rather than silently extending the 15-day promise.
-6. **On Day 15**, don't just send a question — send a short wrap-up: what he
-   built across the 15 days, and ask what he wants next (a new workbook
-   cycle, a real build, or a pause).
+   where it slots into the remaining entries — rather than silently
+   extending the plan.
+5. **On the final entry (currently Day 15)**, don't send a new question —
+   send a wrap-up: what he built across the program, and ask what he wants
+   next (a new workbook cycle, a real build, or a pause).
 
 ## Hard rules
 
