@@ -17,6 +17,18 @@ new workbook lands in the Drive folder before the sequence ends, read it and
 propose where it slots in (a new entry, or folded into a review entry) —
 see `CHARTER.md` step 4.
 
+**Format note (Uday, 24 Aug 2026):** the "Question / 15-min action" column
+below is the *content* each day is built from — the underlying concept and
+prompt. When each entry is actually sent, it must be reformatted into an
+engaging multiple-choice or yes/no pick per `CHARTER.md`'s "Engaging,
+low-typing format" rule, not pasted verbatim as an open essay prompt. Build
+tasks (Days 5, 8, 14, 15) stay as short hands-on actions — those aren't
+concept checks.
+
+Also per Uday: the priority source is now the Outskill AI Learning Portal
+(currently blocked — see `CHARTER.md`). This table is Drive-workbook-based
+and is the fallback until the portal is reachable.
+
 | Day | Source | Focus | Nugget (send this) | Question / 15-min action |
 |---|---|---|---|---|
 | 1 | Pre-Read, "AI Is Not Google" | Mindset shift: AI is a context engine, not a search engine — it doesn't find answers, it generates them from what you give it | The output is only as good as the situation you describe. Vague prompt → generic guess. Specific context → targeted answer. This is the single lever that matters most. | Think of one AI prompt you wrote this week that got a mediocre answer. What context did you *not* give it that you now realize mattered? |

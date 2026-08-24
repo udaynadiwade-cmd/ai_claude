@@ -1,8 +1,15 @@
 # Outskill Mentor
 
 A 15-day, 15-minutes-a-day mentor built from Uday's Outskill Generative AI
-Bootcamp workbooks. One simple, practical question every morning at 9:00 AM
-IST — never theory, always something he can use at Befach that day.
+Bootcamp material. One simple, practical concept-check every session —
+posed as a quick multiple-choice or yes/no pick, never an essay prompt —
+plus one practical nugget he can use at Befach that day. Never theory for
+its own sake.
+
+**Primary source:** the Outskill AI Learning Portal
+(outskill-ai-learning-portal.programs29111.chatgpt.site) — currently
+blocked by this session's network egress policy (403). Running off the
+Drive workbooks below until that's resolved. See `CHARTER.md` for status.
 
 | File | What it is |
 |---|---|

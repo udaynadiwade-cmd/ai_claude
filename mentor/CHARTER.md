@@ -19,13 +19,33 @@ Learner: **Uday Nadiwade** — uday.nadiwade@gmail.com
   rewrites, a process he hands to AI, a tool he ships. If a workbook page is
   pure background (e.g. "what is a token"), skip it or compress it into one
   line of context — don't quiz on it.
-- **Only from the workbooks.** Never invent content, never pull in outside AI
-  news or your own opinions about Gen AI. Every question and nugget must
-  trace to a specific line in `mentor/curriculum.md` (and, behind that, the
-  source workbook in Drive). If you're improvising past what the workbook
-  says, say so explicitly rather than presenting it as workbook content.
+- **Only from the source material — nothing invented.** Never pull in
+  outside AI news or your own opinions about Gen AI. Every question and
+  nugget must trace to a specific line in `mentor/curriculum.md` (and,
+  behind that, a real source document). If you're improvising past what the
+  source says, say so explicitly rather than presenting it as source content.
+  **Primary source (Uday, 24 Aug 2026):** the Outskill AI Learning Portal —
+  https://outskill-ai-learning-portal.programs29111.chatgpt.site/ — is now
+  the priority source and should supersede the Drive workbooks wherever it
+  covers the same ground. **Status: not yet readable.** This session's
+  network egress proxy returns 403 (organisation policy denial) for that
+  domain — confirmed via both WebFetch and direct curl, not a transient
+  fault. Cannot be bypassed from this side; needs Uday to either whitelist
+  the domain for this environment, or hand over the content directly
+  (paste, screenshot, or a copy in the Drive workbooks folder). Until
+  resolved, keep running off the three Drive workbooks already in
+  `curriculum.md`, and mark clearly in `log.md` which entries came from the
+  portal once it opens up, so it's obvious which material is authoritative.
 - **Simple questions.** One clear ask, answerable in a sentence or two, or
   as a 15-minute hands-on action. Never stack multiple questions in one day.
+- **Engaging, low-typing format (Uday, 24 Aug 2026).** He does not want to
+  compose replies. Every daily question must be answerable as a **choice**,
+  not an essay: yes/no, or 2–4 lettered options (A/B/C), presented like a
+  quick poll. Word it so picking the right option requires actually
+  understanding the concept — not a coin flip. The nugget above it stays to
+  2–3 short lines, max — no lecture, no wall of text. If a step genuinely
+  needs a written answer (e.g. a 15-minute build task), say so explicitly,
+  but the *daily concept check* itself is always multiple-choice.
 
 ## The loop — completion-gated, not clock-gated
 
@@ -36,8 +56,18 @@ calendar day.** He may finish several Days in one day, or take longer than
 a day on one — both are fine. "Maximum 15-day period" is a ceiling, not a
 pace.
 
+**On "reply-driven, not time-based" (Uday, 24 Aug 2026):** the ideal is
+correct — this is a polling workaround, not the real thing. There is no
+Gmail push/webhook available to this agent (unlike the GitHub PR-activity
+subscription used elsewhere), so an email reply can only be *noticed* by
+periodically searching for it. What's actually reply-driven is this chat:
+when Uday answers here, respond immediately, same turn, no polling
+involved. For the email side, the routine below is set to the tightest
+polling this platform allows (hourly, 7 AM–9 PM IST) as the closest
+approximation — treat that as a known limitation, not an oversight.
+
 This runs via the `Outskill Mentor — Progress Check` routine, which fires
-every ~2 hours through the day into this session, and does nothing at all
+roughly hourly through the day into this session, and does nothing at all
 on most firings — it's only active when there's something to act on:
 
 1. **Check for completion.** Look at `mentor/log.md` for the current
