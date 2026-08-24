@@ -4,7 +4,8 @@ A 15-day, 15-minutes-a-day mentor built from Uday's Outskill Generative AI
 Bootcamp material. One simple, practical concept-check every session —
 posed as a quick multiple-choice or yes/no pick, never an essay prompt —
 plus one practical nugget he can use at Befach that day. Never theory for
-its own sake.
+its own sake. **All in this chat — no email.** Uday answers here; the next
+question comes back in the same turn. No scheduled polling, no inbox.
 
 **Primary source:** the Outskill AI Learning Portal
 (outskill-ai-learning-portal.programs29111.chatgpt.site) — currently

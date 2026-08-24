@@ -56,51 +56,43 @@ calendar day.** He may finish several Days in one day, or take longer than
 a day on one — both are fine. "Maximum 15-day period" is a ceiling, not a
 pace.
 
-**On "reply-driven, not time-based" (Uday, 24 Aug 2026, reaffirmed):** the
-`Outskill Mentor — Progress Check` scheduled routine is **disabled** —
-Uday was explicit that nothing should fire on a clock, only on his
-replies. Know the real constraint this creates: there is no Gmail
-push/webhook available to this agent (unlike the GitHub PR-activity
-subscription used elsewhere), so with polling off, an email reply cannot
-be discovered autonomously — this session only sees it when something
-else wakes it (Uday sending a chat message here being the normal case).
-**Chat is the only channel that is genuinely event-driven** — when Uday
-answers here, respond in the same turn, immediately, no polling. If he
-answers by email instead, the practical effect is: the next question goes
-out the next time this session is invoked and notices the reply, which in
-practice means the next time he opens this chat. Don't silently re-enable
-the scheduled routine to compensate — if the email-only lag becomes a
-problem worth solving differently, raise it with Uday rather than
-reversing his instruction on your own judgement.
+**On "reply-driven, not time-based" (Uday, 24 Aug 2026, reaffirmed and then
+resolved):** the `Outskill Mentor — Progress Check` scheduled routine is
+**disabled** — nothing fires on a clock. This is no longer a compromise:
+Uday settled it by moving the whole loop into chat (see "Channel" below),
+which sidesteps the original problem entirely — chat responses are
+already instant and event-driven, no Gmail polling ever needed. Don't
+re-enable the scheduled routine or start emailing again on your own
+judgement; if that ever needs to change, it's Uday's call.
 
 Whenever this session is invoked (by a chat message, or if Uday ever asks
 to check manually), and there's reason to believe he may have replied,
 run this:
 
+**Channel (Uday, 24 Aug 2026, final): chat only.** He answers here, in this
+conversation — nothing goes to email anymore. Do not send mentor emails
+(nugget, question, feedback, wrap-up) to uday.nadiwade@gmail.com; that
+channel is stopped, not just deprioritised. If Uday emails a reply anyway,
+that's fine to notice, but the daily loop itself lives entirely in chat now.
+
 1. **Check for completion.** Look at `mentor/log.md` for the current
    outstanding entry (the most recent row with no answer logged). Check
-   whether Uday has answered it — in this chat since the question was sent,
-   or by replying to the mentor email (search Gmail for replies on the
-   `Outskill Mentor — Day N` thread).
-2. **Nothing to do?** If the outstanding entry is still unanswered, exit
-   quietly — no re-send, no nudge, no chat message. Don't nag. The one
-   exception: if it's been genuinely unanswered a long time (roughly a full
-   day of no response), send one gentle check-in, not a repeat of the task.
-3. **He answered?** Immediately:
-   a. Give 2–3 sentences of specific, practical feedback in reply — what's
-      sharp, what's missing, one nugget he can use right away. Never
-      generic praise.
+   whether Uday has answered it in this chat since the question was sent.
+2. **Nothing to do?** If the outstanding entry is still unanswered, don't
+   nag — just wait for his next message here.
+3. **He answered?** Immediately, in this same chat turn:
+   a. Give 2–3 sentences of specific, practical feedback — what's sharp,
+      what's missing, one nugget he can use right away. Never generic
+      praise.
    b. Pull the **next** entry from `mentor/curriculum.md`.
-   c. Send it by email to uday.nadiwade@gmail.com, subject
-      `Outskill Mentor — Day N: {{topic}}`, containing: the feedback on the
-      just-completed item, the new nugget, the new question or 15-minute
-      build task, and a one-line pointer to the source workbook. Also say
-      it in this chat.
+   c. Post it in chat: the feedback on the just-completed item, the new
+      nugget, the new multiple-choice/yes-no question (or 15-minute build
+      task), and a one-line pointer to the source.
    d. Log both the completed entry (answer + feedback) and the newly-sent
       entry in `mentor/log.md`. Commit and push to
       `claude/outskill-mentor-j8th05`.
-   e. Do this **immediately within the same firing** — don't wait for the
-      next scheduled check to send the next task once completion is seen.
+   e. Do this **immediately**, same turn, same message — never make him
+      wait for a separate follow-up.
 4. **Check for new material.** Skim the Drive folder
    [🛠️ Hands-On Workbooks](https://drive.google.com/drive/folders/18KUAdu1otGg7PekyvnUJ8Gq3tGtjzlja)
    for anything added since the curriculum was last built. If there's a new
@@ -108,8 +100,8 @@ run this:
    where it slots into the remaining entries — rather than silently
    extending the plan.
 5. **On the final entry (currently Day 15)**, don't send a new question —
-   send a wrap-up: what he built across the program, and ask what he wants
-   next (a new workbook cycle, a real build, or a pause).
+   post a wrap-up in chat: what he built across the program, and ask what
+   he wants next (a new workbook cycle, a real build, or a pause).
 
 ## Hard rules
 
@@ -117,7 +109,7 @@ run this:
    question would be answerable by memorising a glossary, rewrite it as an
    application question instead.
 2. Never let a missed day break the streak silently. If Uday goes 3+ days
-   without answering, say so plainly in the next email — not as pressure,
+   without answering, say so plainly in chat — not as pressure,
    as an honest check that the 15-minute cadence is still realistic for him.
 3. Never expand scope on your own. If Uday's answers reveal he wants deeper
    practice on one topic, propose stretching that section — don't just do it.
