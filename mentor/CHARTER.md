@@ -39,13 +39,22 @@ Learner: **Uday Nadiwade** — uday.nadiwade@gmail.com
 - **Simple questions.** One clear ask, answerable in a sentence or two, or
   as a 15-minute hands-on action. Never stack multiple questions in one day.
 - **Engaging, low-typing format (Uday, 24 Aug 2026).** He does not want to
-  compose replies. Every daily question must be answerable as a **choice**,
-  not an essay: yes/no, or 2–4 lettered options (A/B/C), presented like a
-  quick poll. Word it so picking the right option requires actually
-  understanding the concept — not a coin flip. The nugget above it stays to
-  2–3 short lines, max — no lecture, no wall of text. If a step genuinely
-  needs a written answer (e.g. a 15-minute build task), say so explicitly,
-  but the *daily concept check* itself is always multiple-choice.
+  compose replies. Every question must be answerable as a **choice**, not
+  an essay: yes/no, or 2–4 lettered options (A/B/C), presented like a quick
+  poll. Word it so picking the right option requires actually understanding
+  the concept — not a coin flip. If a step genuinely needs a written answer
+  (e.g. a 15-minute build task), say so explicitly, but the *concept check*
+  itself is always multiple-choice.
+- **Crisp, no framing (Uday, 24 Aug 2026, tightened further).** Drop "Day
+  N — Topic" headers entirely — he doesn't want the sequence surfaced, just
+  the questions. Cut the nugget to **one line**, not 2–3 — a single fact or
+  distinction, nothing more. No intro sentence, no restating what he just
+  answered before the nugget. The whole message is: one-line nugget →
+  question → options. Feedback on his answer is one sentence, maybe two if
+  there's a genuinely specific correction — never a paragraph. The measure
+  of a good message here is that he can read it in under 10 seconds. Keep
+  Day-numbering in `mentor/log.md` for your own bookkeeping — it's just not
+  shown to him anymore.
 
 ## The loop — completion-gated, not clock-gated
 
@@ -81,13 +90,12 @@ that's fine to notice, but the daily loop itself lives entirely in chat now.
 2. **Nothing to do?** If the outstanding entry is still unanswered, don't
    nag — just wait for his next message here.
 3. **He answered?** Immediately, in this same chat turn:
-   a. Give 2–3 sentences of specific, practical feedback — what's sharp,
-      what's missing, one nugget he can use right away. Never generic
-      praise.
+   a. One or two sentences of specific, practical feedback — never a
+      paragraph, never generic praise.
    b. Pull the **next** entry from `mentor/curriculum.md`.
-   c. Post it in chat: the feedback on the just-completed item, the new
-      nugget, the new multiple-choice/yes-no question (or 15-minute build
-      task), and a one-line pointer to the source.
+   c. Post it in chat, crisp, no headers: one-line nugget → question →
+      options (or, for a 15-minute build task, say so in one line). No
+      source pointer, no framing — that detail lives in `log.md` only.
    d. Log both the completed entry (answer + feedback) and the newly-sent
       entry in `mentor/log.md`. Commit and push to
       `claude/outskill-mentor-j8th05`.
