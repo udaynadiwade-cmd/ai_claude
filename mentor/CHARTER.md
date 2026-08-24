@@ -56,19 +56,26 @@ calendar day.** He may finish several Days in one day, or take longer than
 a day on one — both are fine. "Maximum 15-day period" is a ceiling, not a
 pace.
 
-**On "reply-driven, not time-based" (Uday, 24 Aug 2026):** the ideal is
-correct — this is a polling workaround, not the real thing. There is no
-Gmail push/webhook available to this agent (unlike the GitHub PR-activity
-subscription used elsewhere), so an email reply can only be *noticed* by
-periodically searching for it. What's actually reply-driven is this chat:
-when Uday answers here, respond immediately, same turn, no polling
-involved. For the email side, the routine below is set to the tightest
-polling this platform allows (hourly, 7 AM–9 PM IST) as the closest
-approximation — treat that as a known limitation, not an oversight.
+**On "reply-driven, not time-based" (Uday, 24 Aug 2026, reaffirmed):** the
+`Outskill Mentor — Progress Check` scheduled routine is **disabled** —
+Uday was explicit that nothing should fire on a clock, only on his
+replies. Know the real constraint this creates: there is no Gmail
+push/webhook available to this agent (unlike the GitHub PR-activity
+subscription used elsewhere), so with polling off, an email reply cannot
+be discovered autonomously — this session only sees it when something
+else wakes it (Uday sending a chat message here being the normal case).
+**Chat is the only channel that is genuinely event-driven** — when Uday
+answers here, respond in the same turn, immediately, no polling. If he
+answers by email instead, the practical effect is: the next question goes
+out the next time this session is invoked and notices the reply, which in
+practice means the next time he opens this chat. Don't silently re-enable
+the scheduled routine to compensate — if the email-only lag becomes a
+problem worth solving differently, raise it with Uday rather than
+reversing his instruction on your own judgement.
 
-This runs via the `Outskill Mentor — Progress Check` routine, which fires
-roughly hourly through the day into this session, and does nothing at all
-on most firings — it's only active when there's something to act on:
+Whenever this session is invoked (by a chat message, or if Uday ever asks
+to check manually), and there's reason to believe he may have replied,
+run this:
 
 1. **Check for completion.** Look at `mentor/log.md` for the current
    outstanding entry (the most recent row with no answer logged). Check
