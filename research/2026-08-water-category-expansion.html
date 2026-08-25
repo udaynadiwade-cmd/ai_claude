@@ -1,0 +1,219 @@
+<title>One Tap, Every Fitting</title>
+<style>
+  :root {
+    --ground:#F7F8F7; --surface:#FFFFFF; --surface-2:#EFF2F1;
+    --ink:#10201F; --ink-mid:#3C4E4B; --ink-muted:#61726F;
+    --rule:#D6DEDB; --rule-strong:#B4C1BD;
+    --accent:#0E6B62; --accent-soft:#E0EEEB;
+    --signal:#96631A; --signal-soft:#F5EBD9;
+    --negative:#9B3922; --negative-soft:#F6E5E0;
+    --shadow:0 1px 2px rgba(16,32,31,.06), 0 8px 24px -12px rgba(16,32,31,.16);
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+      --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+      --rule:#24332F; --rule-strong:#354844;
+      --accent:#4FBFA8; --accent-soft:#16302C;
+      --signal:#D9A441; --signal-soft:#2E2617;
+      --negative:#E0836A; --negative-soft:#33201A;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+    --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+    --rule:#24332F; --rule-strong:#354844;
+    --accent:#4FBFA8; --accent-soft:#16302C;
+    --signal:#D9A441; --signal-soft:#2E2617;
+    --negative:#E0836A; --negative-soft:#33201A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  * { box-sizing:border-box; }
+  body { background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:16.5px;
+         line-height:1.6; margin:0; padding:0 24px 120px; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:960px; margin:0 auto; }
+  .masthead { padding:64px 0 32px; border-bottom:2px solid var(--ink);
+              display:flex; flex-direction:column; gap:18px; }
+  .kicker { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--accent); display:flex; flex-wrap:wrap; gap:10px 18px; }
+  .kicker span { color:var(--ink-muted); }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.1rem,5.5vw,3.2rem); line-height:1.08;
+       letter-spacing:-.018em; text-wrap:balance; margin:0; }
+  .standfirst { font-family:var(--serif); font-size:1.15rem; line-height:1.5; color:var(--ink-mid);
+                margin:0; max-width:70ch; }
+  h2 { font-family:var(--serif); font-weight:400; font-size:1.65rem; line-height:1.2; letter-spacing:-.01em;
+       text-wrap:balance; margin:0; padding-top:6px; border-top:1px solid var(--rule-strong); }
+  h3 { font-family:var(--sans); font-weight:650; font-size:1rem; }
+  p { margin:0; max-width:70ch; }
+  section { display:flex; flex-direction:column; gap:16px; padding-top:46px; }
+  .block { display:flex; flex-direction:column; gap:11px; }
+  strong { font-weight:650; } em { font-style:italic; color:var(--ink-mid); }
+  a { color:var(--accent); }
+  .chip { font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+          padding:2px 6px; border-radius:3px; white-space:nowrap; font-weight:600; }
+  .chip-fact { background:var(--accent-soft); color:var(--accent); }
+  .chip-est { background:var(--negative-soft); color:var(--negative); }
+  .legend { display:flex; flex-wrap:wrap; gap:8px 18px; padding:14px 18px; background:var(--surface-2);
+            border-radius:4px; font-size:13px; color:var(--ink-mid); align-items:center; margin-top:24px; }
+  .legend>div{display:flex;gap:7px;align-items:baseline;}
+  .verdict { background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+             border-radius:3px; padding:24px 26px; display:flex; flex-direction:column; gap:12px;
+             box-shadow:var(--shadow); margin-top:36px; }
+  .verdict .label { font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .danger { background:var(--negative-soft); border:1px solid var(--negative); border-radius:3px;
+            padding:20px 22px; display:flex; flex-direction:column; gap:9px; font-size:15px; }
+  .danger .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--negative); font-weight:600; }
+  .scroller { overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:14px; min-width:640px; }
+  th, td { padding:9px 13px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted); font-weight:600; background:var(--surface-2); border-bottom:1px solid var(--rule-strong); }
+  tbody tr:last-child td { border-bottom:none; }
+  .co { font-weight:650; } .sub{display:block;font-size:12px;color:var(--ink-muted);font-weight:400;margin-top:1px;}
+  .row-hero td { background:var(--accent-soft); } .row-worst td { background:var(--negative-soft); }
+  details { border-top:1px solid var(--rule-strong); padding-top:16px; }
+  summary { cursor:pointer; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+  .srcs { margin-top:14px; display:flex; flex-direction:column; gap:8px; font-size:13.5px; color:var(--ink-mid); }
+  footer { margin-top:56px; padding-top:18px; border-top:1px solid var(--rule); font-size:13px; color:var(--ink-muted); }
+  @media (max-width:560px) { body{font-size:15.5px;padding:0 16px 80px;} .verdict{padding:20px 18px;} }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="kicker">Research note <span>·</span> <span>expanding D'Cal into a full water-category B2B line</span> <span>·</span> <span>August 2026</span></div>
+    <h1>One tap, every fitting</h1>
+    <p class="standfirst">Befach already sells 4–5 D'Cal water-softening products. The question: what's the full product list to turn "we sell softeners" into "we're the one supplier a Hyderabad water-treatment dealer needs" — and where are the manufacturers who don't reach Hyderabad today.</p>
+  </header>
+
+  <div class="legend">
+    <div><span class="chip chip-fact">Fact</span> named companies/clusters found this pass</div>
+    <div><span class="chip chip-est">Unverified</span> plausible but not confirmed — needs direct check</div>
+  </div>
+
+  <section>
+    <h2>The singular customer, defined precisely</h2>
+    <p><strong>A water-treatment dealer/installer in Hyderabad</strong> — a business whose trade is selling, installing and servicing softeners, purifiers and filtration systems for homes, apartments and small commercial premises. <strong>Not</strong> a general plumber, <strong>not</strong> a general hardware store, <strong>not</strong> an industrial ETP/STP contractor — that's a different buyer, different scale, different sales cycle, and mixing them breaks the "keep the customer singular" discipline. This is also very likely D'Cal's own existing channel already, which is the whole point — the catalogue widens, the buyer doesn't change.</p>
+  </section>
+
+  <section>
+    <h2>The full product list</h2>
+
+    <div class="block">
+      <h3>A — Softening (where D'Cal already sits)</h3>
+      <div class="scroller"><table>
+        <tbody>
+          <tr class="row-hero"><td class="co">Salt-free / electronic descalers</td><td>D'Cal's own product type — no plumbing, no electricity, no maintenance</td></tr>
+          <tr><td class="co">Salt-based resin softeners</td><td>Whole-house tank systems — the traditional alternative</td></tr>
+          <tr><td class="co">Softening salt</td><td>Tablet, pellet, block form — a recurring consumable for resin systems</td></tr>
+          <tr><td class="co">Cation exchange resin</td><td>Replacement media for resin tanks</td></tr>
+          <tr><td class="co">Softener spares</td><td>Control valves/heads, brine tanks, bypass valves</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="block">
+      <h3>B — Purification (RO / UV / UF)</h3>
+      <div class="scroller"><table>
+        <tbody>
+          <tr><td class="co">RO systems</td><td>Domestic under-sink and whole-house/commercial units</td></tr>
+          <tr class="row-hero"><td class="co">RO membranes</td><td>Replacement — 75/100/150/200 GPD domestic sizes, 4040/8040 industrial — a genuine recurring consumable</td></tr>
+          <tr><td class="co">UV sterilizer units + replacement lamps</td><td>Consumable lamp replacement is the recurring part</td></tr>
+          <tr><td class="co">UF membranes/cartridges</td><td>—</td></tr>
+          <tr><td class="co">Purifier housings, booster pumps, SMPS/adapters</td><td>Install and repair parts</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="block">
+      <h3>C — Filtration (non-RO)</h3>
+      <div class="scroller"><table>
+        <tbody>
+          <tr class="row-hero"><td class="co">Sediment filter cartridges</td><td>5/10 micron spun or pleated — high-frequency replacement item</td></tr>
+          <tr class="row-hero"><td class="co">Activated carbon (GAC/CTO) cartridges</td><td>Same — high-frequency replacement</td></tr>
+          <tr class="row-hero"><td class="co">Iron removal filters/media</td><td>Telangana borewell water commonly carries iron — a locally sharper pain than the national average</td></tr>
+          <tr><td class="co">Whole-house filtration systems</td><td>—</td></tr>
+          <tr><td class="co">Overhead-tank inlet filters</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="block">
+      <h3>D — Testing &amp; monitoring</h3>
+      <div class="scroller"><table>
+        <tbody>
+          <tr><td class="co">TDS meters</td><td>—</td></tr>
+          <tr><td class="co">Water hardness test kits</td><td>Directly ties to the softener sale itself</td></tr>
+          <tr><td class="co">pH meters / test strips</td><td>—</td></tr>
+          <tr><td class="co">Multi-parameter water quality test kits</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="block">
+      <h3>E — Pumps &amp; pressure</h3>
+      <div class="scroller"><table>
+        <tbody>
+          <tr><td class="co">Booster pumps</td><td>—</td></tr>
+          <tr><td class="co">Submersible pumps</td><td>Borewell supply — relevant given Hyderabad's groundwater-dependent areas</td></tr>
+          <tr><td class="co">Pressure switches, non-return valves</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+
+    <div class="block">
+      <h3>F — Chemicals &amp; consumables</h3>
+      <div class="scroller"><table>
+        <tbody>
+          <tr><td class="co">Anti-scalant dosing chemicals</td><td>—</td></tr>
+          <tr><td class="co">Chlorine tablets</td><td>Overhead tank disinfection</td></tr>
+          <tr><td class="co">Membrane/cartridge cleaning chemicals</td><td>—</td></tr>
+          <tr><td class="co">Descaling solutions</td><td>—</td></tr>
+        </tbody>
+      </table></div>
+      <p style="font-size:13px;color:var(--ink-muted)">Deliberately excluded: general plumbing pipes/fittings, overhead tanks as a category, rainwater harvesting, and industrial STP/ETP — each belongs to a different buyer (general plumber, builder, or industrial contractor), and including them is exactly the drift the "singular customer" instruction warns against.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Manufacturers likely thin on Hyderabad distribution — by regional cluster</h2>
+    <div class="danger">
+      <div class="label">Read before using this list</div>
+      <p>Search can show where a category's manufacturing is <em>geographically concentrated</em>; it cannot confirm which specific companies have, or lack, a Hyderabad dealer today — that requires checking each one's dealer-locator page or calling their sales line. Everything below is a <span class="chip chip-est">starting shortlist to verify</span>, not a confirmed gap.</p>
+    </div>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Category</th><th>Cluster</th><th>Named companies found this pass</th></tr></thead>
+        <tbody>
+          <tr><td class="co">Softening salt</td><td>Kutch, Gujarat — the dominant national cluster</td><td>Gurave Salt, SKC Salt, Ahir Salt Industries, S.R. Industry, Ratsan Minechem — mostly export-oriented, South India dealer presence unconfirmed</td></tr>
+          <tr><td class="co">Softening salt (alt.)</td><td>Jodhpur, Rajasthan</td><td>RFC Group of Companies</td></tr>
+          <tr><td class="co">RO membranes / cartridges</td><td>Delhi-NCR, Mumbai, Gujarat (Surat/Rajkot), Tamil Nadu</td><td>HJC India, Ontoz, Ocean Star Technologies (Delhi), Pratham Filter Industries (Mumbai)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:13px;color:var(--ink-muted)">RO membranes and filter cartridges are the two highest-value targets to chase first — they're the recurring-replacement items (mechanism: consumable, not durable), and Tamil Nadu's presence in the cluster means a South India manufacturer exists that may still be Hyderabad-thin specifically, worth checking first since freight would be shortest.</p>
+  </section>
+
+  <section>
+    <h2>How to actually confirm the Hyderabad gap</h2>
+    <ol style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;max-width:70ch;">
+      <li>Check each named manufacturer's own "dealer locator" or "find a distributor" page for a Hyderabad/Telangana listing</li>
+      <li>Search "[brand name] Hyderabad dealer" or "[brand name] Telangana distributor" directly</li>
+      <li>Call their sales line and ask who their Hyderabad-area distributor is — the fastest, most reliable signal</li>
+      <li>Cross-check against Justdial/IndiaMART Hyderabad listings for that brand specifically</li>
+    </ol>
+  </section>
+
+  <details>
+    <summary>Sources</summary>
+    <div class="srcs">
+      <div>D'Cal / Befach 4x: <a href="https://www.dcal.co.in/">dcal.co.in</a> (blocked to direct fetch this session — via search index), <a href="https://yourstory.com/socialstory/2019/10/india-hard-water-befach-4x-dcal-softener">YourStory profile</a></div>
+      <div>Softener salt manufacturers: <a href="https://guravesalt.com/water-softener-salt-manufacturer-exporter/">Gurave Salt</a>, <a href="https://skcsalt.com/water-softener-salt-in-gujarat-quality-uses-trusted-suppliers/">SKC Salt</a>, <a href="https://www.ahirsalt.in/water-softener-salt-tablet.htm">Ahir Salt</a></div>
+      <div>RO membrane/cartridge manufacturers: <a href="https://hjc-india.com/">HJC India</a>, <a href="https://www.ontoz.co.in/">Ontoz</a>, <a href="https://romegamart.com/blog-details/ro-membrane-manufacturers-in-india/">Romegamart cluster overview</a></div>
+    </div>
+  </details>
+
+  <footer>Research note, August 2026 · product taxonomy and manufacturer clusters sourced this pass; specific Hyderabad-distribution gaps flagged as needing direct verification, not asserted as fact.</footer>
+</div>
