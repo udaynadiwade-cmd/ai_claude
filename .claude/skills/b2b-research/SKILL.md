@@ -81,12 +81,14 @@ technical expertise they would have to acquire personally rather than hire.
 **Constraints:** founder is 57, goal is big revenue and an IPO, 7–9 year sector clock,
 Hyderabad-first, one category one city to start, one pivot left.
 
-**Credit-adjacent models stay off the table for the first move.** `[ADDED 2026-08,
-founder decision]` Confirmed directly, after a pros/cons review of a Faire-style
-net-terms model for India: no credit-adjacent business — even a de-risked one routed
-through a partner NBFC — until Befach has a proven non-credit business first. Don't
-re-propose net-terms/embedded-lending/BNPL-shaped models as a first move; they become
-worth revisiting only once a non-credit business is already working.
+**Credit-adjacent models: relaxed, not off the table.** `[ADDED 2026-08, founder
+decision, supersedes the entry above]` The "stay off the table" call above held for
+one exchange, then the founder relaxed it directly: credit can be part of the model
+now, addressed "as we go" rather than solved before starting. Don't re-impose the
+earlier hard exclusion. New governing parameters given alongside the relaxation —
+weigh every category/model against these, not just repeat rate: **high revenue
+potential, fast velocity of money, regularly-consumed (not durable/occasional)
+product, easy to execute.**
 
 ## Standing context
 
