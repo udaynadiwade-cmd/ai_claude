@@ -201,6 +201,22 @@ One line pointing to the file for anyone who wants the full reasoning. If a genu
 answer needs length (a real table, several distinct options), still cut every
 sentence that isn't new information.
 
+### The bar is tighter than that `[ADDED 2026-08, founder correction: "keep it very
+short... don't add fillers, don't add unnecessary things"]`
+
+The rule above wasn't tight enough. Given twice now, so it holds without exception:
+
+- **Major bullets only.** No sub-explanation, no "why this matters" framing, no
+  restating what a bullet already implies. If it doesn't carry new information, cut it.
+- **No fillers.** No connective tissue, no softening language, no transitions between
+  points that exist just to sound smooth.
+- **Clarifying questions are rare, and yes/no when they happen.** Ask only when the
+  answer is genuinely load-bearing — would change what gets built, committed, or
+  recommended. Default to making the call and stating it plainly. Don't ask to scope
+  something routine.
+- Full depth, sourcing and reasoning still belong in the committed research file —
+  this tightens the chat reply specifically, not what gets written to disk.
+
 ## Standing tool — UNSPSC taxonomy for category discovery `[ADDED 2026-08]`
 
 `research/data/unspsc-segments-10-26.csv` — a durable, grep-able extract of the
