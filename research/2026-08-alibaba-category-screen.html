@@ -1,0 +1,145 @@
+<title>Thirty-Six Doors</title>
+<style>
+  :root {
+    --ground:#F7F8F7; --surface:#FFFFFF; --surface-2:#EFF2F1;
+    --ink:#10201F; --ink-mid:#3C4E4B; --ink-muted:#61726F;
+    --rule:#D6DEDB; --rule-strong:#B4C1BD;
+    --accent:#0E6B62; --accent-soft:#E0EEEB;
+    --signal:#96631A; --signal-soft:#F5EBD9;
+    --negative:#9B3922; --negative-soft:#F6E5E0;
+    --shadow:0 1px 2px rgba(16,32,31,.06), 0 8px 24px -12px rgba(16,32,31,.16);
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+      --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+      --rule:#24332F; --rule-strong:#354844;
+      --accent:#4FBFA8; --accent-soft:#16302C;
+      --signal:#D9A441; --signal-soft:#2E2617;
+      --negative:#E0836A; --negative-soft:#33201A;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0B1312; --surface:#121D1B; --surface-2:#182523;
+    --ink:#E9EEEC; --ink-mid:#B6C6C2; --ink-muted:#8B9C99;
+    --rule:#24332F; --rule-strong:#354844;
+    --accent:#4FBFA8; --accent-soft:#16302C;
+    --signal:#D9A441; --signal-soft:#2E2617;
+    --negative:#E0836A; --negative-soft:#33201A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  * { box-sizing:border-box; }
+  body { background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:16.5px;
+         line-height:1.6; margin:0; padding:0 24px 120px; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:960px; margin:0 auto; }
+  .masthead { padding:64px 0 32px; border-bottom:2px solid var(--ink);
+              display:flex; flex-direction:column; gap:18px; }
+  .kicker { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--accent); display:flex; flex-wrap:wrap; gap:10px 18px; }
+  .kicker span { color:var(--ink-muted); }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2.1rem,5.5vw,3.2rem); line-height:1.08;
+       letter-spacing:-.018em; text-wrap:balance; margin:0; }
+  .standfirst { font-family:var(--serif); font-size:1.15rem; line-height:1.5; color:var(--ink-mid);
+                margin:0; max-width:70ch; }
+  h2 { font-family:var(--serif); font-weight:400; font-size:1.65rem; line-height:1.2; letter-spacing:-.01em;
+       text-wrap:balance; margin:0; padding-top:6px; border-top:1px solid var(--rule-strong); }
+  h3 { font-family:var(--sans); font-weight:650; font-size:1rem; }
+  p { margin:0; max-width:70ch; }
+  section { display:flex; flex-direction:column; gap:16px; padding-top:46px; }
+  .block { display:flex; flex-direction:column; gap:11px; }
+  strong { font-weight:650; } em { font-style:italic; color:var(--ink-mid); }
+  a { color:var(--accent); }
+  code, .num { font-family:var(--mono); font-variant-numeric:tabular-nums; font-size:.92em; }
+  .chip { font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+          padding:2px 6px; border-radius:3px; white-space:nowrap; font-weight:600; }
+  .chip-fact { background:var(--accent-soft); color:var(--accent); }
+  .chip-derived { background:var(--signal-soft); color:var(--signal); }
+  .chip-est { background:var(--negative-soft); color:var(--negative); }
+  .legend { display:flex; flex-wrap:wrap; gap:8px 18px; padding:14px 18px; background:var(--surface-2);
+            border-radius:4px; font-size:13px; color:var(--ink-mid); align-items:center; margin-top:24px; }
+  .legend>div{display:flex;gap:7px;align-items:baseline;}
+  .verdict { background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+             border-radius:3px; padding:24px 26px; display:flex; flex-direction:column; gap:12px;
+             box-shadow:var(--shadow); margin-top:36px; }
+  .verdict .label { font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--accent); }
+  .danger { background:var(--negative-soft); border:1px solid var(--negative); border-radius:3px;
+            padding:20px 22px; display:flex; flex-direction:column; gap:9px; font-size:15px; }
+  .danger .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase; color:var(--negative); font-weight:600; }
+  .scroller { overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:14px; min-width:640px; }
+  caption { text-align:left; padding:12px 15px 10px; font-size:12.5px; color:var(--ink-muted); border-bottom:1px solid var(--rule); }
+  th, td { padding:9px 13px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-muted); font-weight:600; background:var(--surface-2); border-bottom:1px solid var(--rule-strong); }
+  tbody tr:last-child td { border-bottom:none; }
+  .n { font-family:var(--mono); font-variant-numeric:tabular-nums; text-align:right; white-space:nowrap; }
+  th.n { text-align:right; }
+  .pos{color:var(--accent);font-weight:600;} .neg{color:var(--negative);font-weight:600;} .mid{color:var(--signal);font-weight:600;}
+  .row-hero td { background:var(--accent-soft); } .row-worst td { background:var(--negative-soft); }
+  .co { font-weight:650; }
+  ol.ask, ul.plain { margin:0; padding-left:20px; display:flex; flex-direction:column; gap:9px; max-width:70ch; }
+  ol.ask li::marker { font-family:var(--mono); font-size:.82em; color:var(--accent); }
+  ul.plain li::marker { color:var(--accent); }
+  details { border-top:1px solid var(--rule-strong); padding-top:16px; }
+  summary { cursor:pointer; font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--accent); }
+  .srcs { margin-top:14px; display:flex; flex-direction:column; gap:8px; font-size:13.5px; color:var(--ink-mid); }
+  footer { margin-top:56px; padding-top:18px; border-top:1px solid var(--rule); font-size:13px; color:var(--ink-muted); }
+  @media (max-width:560px) { body{font-size:15.5px;padding:0 16px 80px;} .verdict{padding:20px 18px;} }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="kicker">Research note <span>·</span> <span>Alibaba taxonomy screened fresh, Hyderabad-first</span> <span>·</span> <span>August 2026</span></div>
+    <h1>Thirty-six doors</h1>
+    <p class="standfirst">Every one of Alibaba's 36 top-level categories, screened from scratch against five criteria the founder set directly: high revenue, good margins, velocity of goods movement, easy business model, easy receipt of payments — plus whether Hyderabad gives a real edge. No prior framework applied first; this restarts from the category list and these five criteria, per the standing rule against defaulting to a lens before looking.</p>
+  </header>
+
+  <section>
+    <h2>Eliminated on sight — 22 of 36</h2>
+
+    <div class="block">
+      <h3>Fails velocity — capital equipment, bought once and used for years (8)</h3>
+      <p>The proven filter from earlier in this series, applied fresh: Commercial Equipment &amp; Machinery, Construction &amp; Building Machinery, Industrial Machinery <em>(the machines themselves — parts/consumables inside this bucket are treated separately below)</em>, Home Appliances, Furniture, Testing Instrument &amp; Equipment, Material Handling, Vehicles &amp; Transportation <em>(vehicles themselves — parts are separate)</em>. Financed or project-purchased, not reordered — fails velocity by definition regardless of revenue or margin.</p>
+    </div>
+
+    <div class="block">
+      <h3>No Hyderabad edge, and already crowded nationally (14)</h3>
+      <p>Home &amp; Garden, Sports &amp; Entertainment, Sportswear &amp; Outdoor Apparel, Apparel &amp; Accessories, Shoes &amp; Accessories, Luggage/Bags &amp; Cases, Parents/Kids &amp; Toys, Gifts &amp; Crafts, Pet Supplies, School &amp; Office Supplies, Lights &amp; Lighting, Packaging &amp; Printing <em>(Bizongo-owned already)</em>, Personal Care &amp; Home Care and Beauty <em>(brand-dominated FMCG, brutal margins for a new entrant)</em>, Consumer Electronics <em>(BIS/QCO compliance minefield, already found in an earlier note in this series)</em>, Renewable Energy <em>(early, complex, no Hyderabad specificity)</em>, Safety &amp; Security, Vehicle Parts &amp; Accessories and Automotive Supplies &amp; Tools <em>(fitment-complexity risk already flagged, no unique Hyderabad cluster)</em>, Electronic Components <em>(Bangalore/Chennai own this nationally)</em>, Agriculture/Food &amp; Beverage <em>(Telangana agri is real but not globally distinctive)</em>, Construction &amp; Real Estate <em>(a services/project category, not a goods trade)</em>.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Worth a look — 3 real candidates, scored against the five criteria</h2>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Criterion</th><th>Health &amp; Medical (pharma raw materials/APIs)</th><th>Jewelry, Eyewear &amp; Watches (pearls)</th><th>Power Transmission / Tools &amp; Hardware (bearings, welding consumables)</th></tr></thead>
+        <tbody>
+          <tr><td class="co">Hyderabad edge</td><td class="pos">Strongest possible — Genome Valley; Dr. Reddy's, Aurobindo, Divi's, Hetero, Laurus, MSN all headquartered or major-plant here. India's largest bulk-drug cluster. <span class="chip chip-fact">Fact</span></td><td class="mid">Real — Pathargatti/Chandanpet trade, already researched in this series</td><td class="neg">None as a production cluster — but Hyderabad is a large industrial city with genuine local factory demand as a distributor play</td></tr>
+          <tr><td class="co">High revenue potential</td><td class="pos">High — one of India's largest pharma clusters by output <span class="chip chip-est">exact figure not verified this pass</span></td><td class="neg">Unresolved — the earlier pearls note found no usable market-size figure and said so explicitly</td><td class="pos">Validated — $5.2–12.0Bn national bearings market from earlier research in this series</td></tr>
+          <tr><td class="co">Margins</td><td class="mid">Mixed — commodity APIs thin, specialty intermediates better, but compliance cost erodes margin</td><td class="mid">Mixed — real margin, but counterfeit/authenticity problem compresses trust and price</td><td class="pos">Decent — ISO-spec fungible parts, not brand-driven the way lubricants are</td></tr>
+          <tr><td class="co">Velocity</td><td class="pos">High — continuous manufacturing input for formulation companies</td><td class="neg">Low-medium — slower reorder cycle, closer to semi-durable</td><td class="pos">High — reorder driven by wear/failure, proven pattern</td></tr>
+          <tr class="row-worst"><td class="co">Easy business model</td><td class="neg">Low — one of India's most regulated sectors: drug licenses, GMP, DCGI approval, cold chain on some lines</td><td class="mid">Medium — counterfeit/authenticity problem already flagged repeatedly in this series</td><td class="pos">High — capital-equipment filter passed, ISO number is the whole spec, no brand fight</td></tr>
+          <tr class="row-worst"><td class="co">Easy receipt of payments</td><td class="neg">Low — pharma B2B trade runs on industry-standard extended credit terms, distributor-heavy</td><td class="pos">High — Pathargatti/Chandanpet trade is genuinely cash-based</td><td class="pos">High — cash-based at the local factory/distributor level</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="danger">
+      <div class="label">The halo to watch for</div>
+      <p>Hyderabad's pharma dominance is real and famous enough that it's tempting to call it the obvious answer. <strong>It fails the two criteria the founder weighted explicitly — easy business model and easy receipt of payments</strong> — by more than either other candidate. A big, famous local cluster is not the same thing as an easy first move; naming that plainly rather than letting cluster prestige stand in for a criteria match.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Recommendation</h2>
+    <div class="verdict">
+      <div class="label">Top pick</div>
+      <p><strong>Power Transmission / Tools &amp; Hardware — bearings, fasteners, welding consumables — sold to Hyderabad-based factories and workshops.</strong> Wins on the combination of all five stated criteria, not just one: validated revenue, real (non-brand-driven) margin, proven reorder velocity, the only candidate that clears "easy business model" cleanly, and cash-based payment at the point of sale. Hyderabad is the <em>demand</em> side here, not a production cluster — a large industrial city with genuine local factory buyers — which still satisfies "start in Hyderabad," just via a different mechanism than a local manufacturing cluster.</p>
+      <p><strong>Second:</strong> Jewelry/pearls — real local cluster, but loses on velocity and on an unresolved revenue number. <strong>Third:</strong> Pharma raw materials — the biggest, most famous Hyderabad cluster of the three, and the worst fit on the founder's own "easy" criteria.</p>
+    </div>
+  </section>
+
+  <footer>Research note, August 2026 · category screen restarted from Alibaba's own taxonomy and the founder's five stated criteria, not from a prior framework applied first.</footer>
+</div>
