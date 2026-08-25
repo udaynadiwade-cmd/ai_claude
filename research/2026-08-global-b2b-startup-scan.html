@@ -590,6 +590,28 @@
       </div>
       <p class="note">Given Befach's stage — Hyderabad-first, one category, no existing lending relationship — <strong>Rupifi is the natural first conversation</strong>: it is the only name here with a live, working integration into an Indian B2B marketplace today, which de-risks the integration question itself, not just the credit-risk question. Vayana is the fallback if Rupifi's underwriting appetite doesn't extend to a new, unproven retailer base yet. This is a starting shortlist from this pass, not an exhaustive market map — a proper vendor selection would also weigh U GRO Capital, Aye Finance, Lendingkart, FlexiLoans and other general SME-lending NBFCs that do co-lending partnerships, which this pass did not verify in the same depth. <span class="chip chip-est">Flagging that gap rather than padding the list with unverified names.</span></p>
     </div>
+
+    <div class="block">
+      <h3>US conditions vs India conditions — what actually changes if this is built here</h3>
+      <p>Not every gap between the US and India cuts against replicating this model — several cut the other way. Laid out plainly, dimension by dimension:</p>
+      <div class="scroller">
+        <table>
+          <thead><tr><th>Dimension</th><th>US (where Faire operates)</th><th>India, if replicated</th><th>Net effect</th></tr></thead>
+          <tbody>
+            <tr><td class="co">Retailer credit culture</td><td>Net-30/60 is a mature, well-understood commercial norm</td><td>Cash/advance-driven at the SMB level; net-terms is a bigger behavioural sell, not a feature toggle</td><td class="n neg">Harder</td></tr>
+            <tr class="row-hero"><td class="co">Underwriting data</td><td>Had to bootstrap from raw transaction history alone in 2018 — nearly broke the company</td><td>GSTN filing history + Account Aggregator consent data available today</td><td class="n pos">Easier — a real edge Faire itself didn't have</td></tr>
+            <tr class="row-hero"><td class="co">Business identity / KYB</td><td>Fragmented, state-by-state business registration, no single verifiable ID</td><td>GSTIN — one mandatory, real-time-checkable identity for any registered business</td><td class="n pos">Easier — cheaper fraud-proofing than Faire had to build from scratch</td></tr>
+            <tr><td class="co">Reverse logistics (returns)</td><td>Mature, cheap, fast small-parcel network (UPS/FedEx)</td><td>Improving fast post-quick-commerce, but costlier and patchier outside metros</td><td class="n neg">Harder — "free returns" is a more expensive promise to make credibly</td></tr>
+            <tr><td class="co">Regulatory path for lending</td><td>A fintech can build lending capability relatively freely (state money-transmitter licenses)</td><td>RBI Digital Lending Guidelines force a licensed NBFC/bank partner by law</td><td class="n neg">Harder — already the reason for the partner-NBFC design above</td></tr>
+            <tr><td class="co">Indie/maker brand supply</td><td>Large, mature population of independent design-led brands to recruit from day one</td><td>Smaller, more nascent — growing via Instagram-first D2C, thin at wholesale scale</td><td class="n neg">Harder — points toward seeding supply with Befach's own private label, not aggregating many external brands</td></tr>
+            <tr><td class="co">Independent boutique retail</td><td>Deep population of design-forward independent lifestyle/gift shops</td><td>Smaller, more metro-concentrated; much of this trade still runs through trade fairs and distributors</td><td class="n neg">Harder nationally — fits a single-city start rather than fighting it</td></tr>
+            <tr class="row-hero"><td class="co">Collections mechanism</td><td>ACH/wire-based</td><td>UPI autopay / e-mandates for scheduled recurring collection</td><td class="n pos">Easier — plausibly cheaper, faster automated net-terms collection than Faire's own rails</td></tr>
+            <tr class="row-hero"><td class="co">Last-mile shipping cost</td><td>Higher, labour-cost driven</td><td>Generally lower per shipment</td><td class="n pos">Easier — a subsidised-shipping promise costs less to make here</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Net picture: four dimensions cut in India's favour (underwriting data, KYB, collections rails, shipping cost) — all things Faire itself had to solve the hard way in 2018 that India's infrastructure now offers close to free. The dimensions that cut against replication (credit culture, returns logistics, thin indie-brand supply, smaller boutique-retail base) are exactly what the de-risking section above and the single-city, single-seller design already answer — build with Befach's own catalogue, in one city, financed through a partner NBFC using GST/AA data, and most of the "harder" column stops being a blocker rather than a reason not to start.</p>
+    </div>
   </section>
 
   <section>
