@@ -258,6 +258,29 @@ it — do not silently work around the gap.
 5. Cross-check market size externally — the CSV has no revenue data, it is
    classification only.
 
+## Standing reference — Alibaba.com's 36 top-level categories `[ADDED 2026-08]`
+
+Founder-supplied, from Alibaba's own "Categories for you" sidebar. Reference this
+whenever discussing category choice or business-model comparisons — a second, live
+taxonomy alongside the UNSPSC CSV, source-of-truth for how a global B2B marketplace
+actually buckets its catalogue.
+
+Home & Garden · Sports & Entertainment · Jewelry, Eyewear & Watches · Commercial
+Equipment & Machinery · Construction & Building Machinery · Apparel & Accessories ·
+Consumer Electronics · Sportswear & Outdoor Apparel · Beauty · Shoes & Accessories ·
+Luggage, Bags & Cases · Packaging & Printing · Parents, Kids & Toys · Personal Care &
+Home Care · Health & Medical · Gifts & Crafts · Pet Supplies · School & Office
+Supplies · Industrial Machinery · Construction & Real Estate · Furniture · Lights &
+Lighting · Home Appliances · Automotive Supplies & Tools · Vehicle Parts &
+Accessories · Tools & Hardware · Renewable Energy · Electrical Equipment & Supplies ·
+Safety & Security · Material Handling · Testing Instrument & Equipment · Power
+Transmission · Electronic Components · Vehicles & Transportation · Agriculture, Food
+& Beverage · Raw Materials
+
+Bearings/fasteners/welding — this series' standing #1/#2 candidates — sit under
+**Power Transmission**, **Tools & Hardware**, and **Industrial Machinery**. Jewelry
+sits under **Jewelry, Eyewear & Watches**.
+
 ## Added lens — startup strategy & marketing, incubator-calibre rigor `[ADDED 2026-08]`
 
 On top of the B2B commerce domain expertise above, bring the rigor a top-tier startup
