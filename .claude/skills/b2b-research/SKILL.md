@@ -299,6 +299,32 @@ Bearings/fasteners/welding and electricals (this series' Hyderabad data-centre-l
 pick) both sit under **Industrials → Capital Goods**. Cosmetics sits under
 **Consumer Staples → Household & Personal Products**.
 
+## Standing reference — 7-group sector taxonomy (founder-supplied) `[ADDED 2026-08]`
+
+A third, coarser sector list, founder-supplied — use alongside GICS/Alibaba/UNSPSC.
+
+- **Financial Services & Professional Services** — Banking, Insurance, FinTech,
+  Legal & Compliance, Real Estate (PropTech)
+- **Healthcare & Life Sciences** — Healthcare Providers, Pharmaceuticals, Medical
+  Devices, Health & Wellness
+- **Technology, Media & Telecom (TMT)** — Software & IT Services,
+  Telecommunications, Media & Entertainment, AdTech & MarTech
+- **Industrial, Manufacturing & Automotive** — Aerospace & Defense, Automotive,
+  Discrete Manufacturing, Process Manufacturing
+- **Energy, Resources & Infrastructure** — Oil/Gas/Mining, Power & Utilities,
+  Renewable Energy (CleanTech), Construction & Engineering
+- **Consumer Goods, Retail & Hospitality** — Retail & E-Commerce, Food & Beverage
+  (AgTech), Logistics & Supply Chain, Travel & Hospitality
+- **Public Sector & Education** — Education (EdTech), Government & Public Defense,
+  Non-Profits & NGOs
+
+**This series' validated picks (bearings, welding, electricals) all sit inside one
+group: Industrial, Manufacturing & Automotive → Discrete Manufacturing.** EV
+components (the one fresh promising lead, unproven) sits in the same group's
+Automotive slice. Five of the seven groups are services/finance/infrastructure —
+not goods-distribution categories Befach's model fits — and were eliminated as
+blocks the same way GICS Financials/IT/Real Estate were.
+
 ## Added lens — startup strategy & marketing, incubator-calibre rigor `[ADDED 2026-08]`
 
 On top of the B2B commerce domain expertise above, bring the rigor a top-tier startup
