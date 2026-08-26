@@ -281,6 +281,35 @@ Bearings/fasteners/welding — this series' standing #1/#2 candidates — sit un
 **Power Transmission**, **Tools & Hardware**, and **Industrial Machinery**. Jewelry
 sits under **Jewelry, Eyewear & Watches**.
 
+## Standing reference — global industry verticals (GICS) `[ADDED 2026-08]`
+
+GICS (Global Industry Classification Standard, MSCI/S&P) — the standard reference for
+"industry verticals" at global/financial-market granularity, distinct from the
+product-level Alibaba and UNSPSC taxonomies above. 11 sectors, each with its
+industry groups:
+
+- **Energy** — Energy
+- **Materials** — Materials
+- **Industrials** — Capital Goods · Commercial & Professional Services · Transportation
+- **Consumer Discretionary** — Automobiles & Components · Consumer Durables & Apparel
+  · Consumer Services · Consumer Discretionary Distribution & Retail
+- **Consumer Staples** — Consumer Staples Distribution & Retail · Food Beverage &
+  Tobacco · Household & Personal Products
+- **Health Care** — Health Care Equipment & Services · Pharmaceuticals Biotechnology
+  & Life Sciences
+- **Financials** — Banks · Financial Services · Insurance
+- **Information Technology** — Software & Services · Technology Hardware & Equipment
+  · Semiconductors & Semiconductor Equipment
+- **Communication Services** — Telecommunication Services · Media & Entertainment
+- **Utilities** — Utilities
+- **Real Estate** — Equity REITs · Real Estate Management & Development
+
+Bearings/fasteners/welding sit under **Industrials → Capital Goods**. Electricals
+(this series' Hyderabad data-centre-linked pick) also sit under **Industrials →
+Capital Goods**. Cosmetics sits under **Consumer Staples → Household & Personal
+Products**. Use this taxonomy when a question is framed at the macro/sector level
+rather than the product-catalogue level the other two references cover.
+
 ## Added lens — startup strategy & marketing, incubator-calibre rigor `[ADDED 2026-08]`
 
 On top of the B2B commerce domain expertise above, bring the rigor a top-tier startup
