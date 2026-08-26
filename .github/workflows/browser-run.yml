@@ -1,0 +1,46 @@
+name: Browser run
+
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: 'Path to Playwright script (e.g., scripts/browser/recruit-agencies.js)'
+        required: true
+        type: string
+
+jobs:
+  run-browser-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install playwright
+
+      - name: Create output directory
+        run: mkdir -p out
+
+      - name: Run Playwright script
+        env:
+          WORKINDIA_EMAIL: ${{ secrets.WORKINDIA_EMAIL }}
+          WORKINDIA_PASSWORD: ${{ secrets.WORKINDIA_PASSWORD }}
+        run: node ${{ inputs.script }}
+
+      - name: Upload artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: browser-output
+          path: out/
+          retention-days: 30
+
+      - name: List output files
+        if: always()
+        run: ls -lah out/ 2>/dev/null || echo "No output files"
