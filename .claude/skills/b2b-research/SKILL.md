@@ -283,32 +283,21 @@ sits under **Jewelry, Eyewear & Watches**.
 
 ## Standing reference — global industry verticals (GICS) `[ADDED 2026-08]`
 
-GICS (Global Industry Classification Standard, MSCI/S&P) — the standard reference for
-"industry verticals" at global/financial-market granularity, distinct from the
-product-level Alibaba and UNSPSC taxonomies above. 11 sectors, each with its
-industry groups:
+Full 4-level taxonomy (11 sectors → 25 industry groups → 74 industries → 163
+sub-industries) lives in `research/data/gics-taxonomy.md` — too long to keep inline
+here. Sector/industry-group level (36 entries) is high-confidence; sub-industry level
+was compiled from standard knowledge with reference sites blocked this session, so
+it's flagged `[ESTIMATE]` in that file — spot-check the official S&P GICS Mapbook
+before relying on a specific sub-industry classification.
 
-- **Energy** — Energy
-- **Materials** — Materials
-- **Industrials** — Capital Goods · Commercial & Professional Services · Transportation
-- **Consumer Discretionary** — Automobiles & Components · Consumer Durables & Apparel
-  · Consumer Services · Consumer Discretionary Distribution & Retail
-- **Consumer Staples** — Consumer Staples Distribution & Retail · Food Beverage &
-  Tobacco · Household & Personal Products
-- **Health Care** — Health Care Equipment & Services · Pharmaceuticals Biotechnology
-  & Life Sciences
-- **Financials** — Banks · Financial Services · Insurance
-- **Information Technology** — Software & Services · Technology Hardware & Equipment
-  · Semiconductors & Semiconductor Equipment
-- **Communication Services** — Telecommunication Services · Media & Entertainment
-- **Utilities** — Utilities
-- **Real Estate** — Equity REITs · Real Estate Management & Development
+The standard reference for "industry verticals" at global/financial-market
+granularity, distinct from the product-level Alibaba and UNSPSC taxonomies above.
+Use it when a question is framed at the macro/sector level rather than the
+product-catalogue level the other two references cover.
 
-Bearings/fasteners/welding sit under **Industrials → Capital Goods**. Electricals
-(this series' Hyderabad data-centre-linked pick) also sit under **Industrials →
-Capital Goods**. Cosmetics sits under **Consumer Staples → Household & Personal
-Products**. Use this taxonomy when a question is framed at the macro/sector level
-rather than the product-catalogue level the other two references cover.
+Bearings/fasteners/welding and electricals (this series' Hyderabad data-centre-linked
+pick) both sit under **Industrials → Capital Goods**. Cosmetics sits under
+**Consumer Staples → Household & Personal Products**.
 
 ## Added lens — startup strategy & marketing, incubator-calibre rigor `[ADDED 2026-08]`
 
