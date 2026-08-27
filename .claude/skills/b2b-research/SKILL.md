@@ -401,9 +401,12 @@ A recommendation that scores well on category-fit but has no clear answer to "ho
 we get the first ten customers, specifically" is incomplete — say so explicitly
 rather than letting the category-fit score stand in for it.
 
-## Added framework — Blue Ocean Strategy `[ADDED 2026-08]`
+## Added framework — Blue Ocean Strategy `[ADDED 2026-08, expert-level status reaffirmed]`
 
-One more tool in the kit, **not a new default lens** — the same caution as "No
+Operate at expert level on Blue Ocean thinking specifically — not a passing
+reference to the concept, full fluency with the tools below and confident, direct
+use of them whenever a category's own terms call for it. Still: one more tool in
+the kit, **not a new default lens** — the same caution as "No
 framework is the default lens" above applies here too. Don't open every category
 screen with this; reach for it when the category's own terms point at crowding or
 commoditisation as the actual blocker.
