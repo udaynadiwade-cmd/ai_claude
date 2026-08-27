@@ -379,6 +379,28 @@ after it, and not as a label decorating the same analysis.
   explicit founder strength (see founder profile above), and this lens exists to engage
   that strength directly, not just to critique other people's businesses.
 
+### GTM is mandatory, not optional `[ADDED 2026-08, founder correction]`
+
+The concrete failure that prompted this: bearings/welding was recommended repeatedly
+across this series on category-fit screening alone — fungibility, growth, crowding —
+without ever building an actual go-to-market motion, until asked directly why the GTM
+still wasn't clear. Category-fit validation is not a substitute for a GTM plan, and
+presenting one as if it settles the other is the mistake not to repeat.
+
+**Every category or business-model recommendation from here on must include a GTM
+answer alongside it, not as a follow-up when asked** — who gets approached, in what
+order, with what specific pitch, and what the first-order/first-customer motion
+actually looks like. The GTM must be:
+- **Extremely clear** — a named first move, not "conduct outreach" or "build
+  awareness"
+- **Clean** — one primary wedge, not a list of five tactics with no priority order
+- **Easy to execute** — doable by a small team without new capability the business
+  doesn't already have, consistent with the founder's own execution-speed constraint
+
+A recommendation that scores well on category-fit but has no clear answer to "how do
+we get the first ten customers, specifically" is incomplete — say so explicitly
+rather than letting the category-fit score stand in for it.
+
 ## Added framework — Blue Ocean Strategy `[ADDED 2026-08]`
 
 One more tool in the kit, **not a new default lens** — the same caution as "No
