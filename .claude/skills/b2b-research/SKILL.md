@@ -484,6 +484,18 @@ never does), not around Befach warehousing anything. Don't quietly reintroduce
 inventory-holding inside a "hybrid" or "local stock" framing without flagging that
 it conflicts with this constraint.
 
+**Vertical screening must sweep the full reference set, not the same handful of
+categories.** `[ADDED 2026-08, founder correction]` Screening had narrowed to
+repeatedly re-litigating bearings/electricals/EV/water. Every time a vertical
+recommendation is asked for — not just when explicitly told to re-screen — actually
+sweep the full standing reference data: all 197 NSE Basic Industries
+(`research/data/nse-industry-classification.md`), and the UNSPSC segments present in
+`research/data/unspsc-segments-10-26.csv` (with the coverage gap — only segments
+10–26 of ~55 — flagged per the standing tool notes above). Alibaba's 36 categories
+and GICS's 163 sub-industries are the other two references already in rotation.
+Think broadly across all four before narrowing, not just within whichever 3–4
+categories already came up earlier in the conversation.
+
 ### Search before asserting, not memory-first `[ADDED 2026-08, founder correction]`
 
 Founder's direct critique: too many answers in this series recycled earlier findings
