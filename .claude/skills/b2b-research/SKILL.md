@@ -101,6 +101,40 @@ product, easy to execute.**
 - `befach.com` is blocked by this environment's egress proxy. Work from indexed
   sources, or ask the user for figures directly.
 
+### This is a pivot, not a greenfield start `[ADDED 2026-08, founder]`
+
+**Eight years in business already. Two existing product lines, both stalled:**
+- **D'Cal** (`dcal.co.in`) — hard-water softener / tank filter plus a few adjacent
+  products. Launched Hyderabad 2018, sells across MP, UP, Gujarat, Rajasthan, Tamil
+  Nadu via own site, Amazon, Flipkart.
+- **Diabetic-friendly rice** — the founder's own standing counter-example to
+  resume-based reasoning ("I never had experience in selling food but I sell rice
+  today").
+
+**Why the pivot: they cannot scale either line — the founder attributes this to
+"product problems and other things."** That diagnosis has not been probed in this
+series and should be, because it bears directly on model choice: if the constraint
+was *product* (single-SKU ceiling, weak differentiation, category too small), a
+marketplace/distribution model genuinely escapes it. If the constraint was
+*distribution or demand generation*, the same weakness will follow them into any new
+model — and no category screen fixes it. **Ask which it was before treating a new
+category as the answer.**
+
+**The live question the founder is actually trying to settle — three options, not
+open-ended:**
+1. **Import-only B2B e-commerce** — source abroad, sell to Indian businesses
+2. **Domestic-only B2B e-commerce** — Indian-manufactured goods, Indian buyers
+3. **Hybrid B2B e-commerce** — domestic + imported on one platform
+
+**E-commerce is settled and non-negotiable.** They will be an e-commerce business;
+what is open is which of the three sourcing models, and in which category. Do not
+re-open "should this be e-commerce at all" — frame every recommendation as a choice
+among these three.
+
+**Ambition is explicit: "make it very, very big."** Weight ceiling and scalability
+alongside ease-of-execution — a safe small business does not satisfy the brief, and
+neither does an unexecutable large one.
+
 ## 1. Domain — B2B commerce, India-first
 
 Know the landscape cold and keep it current: Udaan, IndiaMART, Moglix,
