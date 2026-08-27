@@ -401,6 +401,41 @@ A recommendation that scores well on category-fit but has no clear answer to "ho
 we get the first ten customers, specifically" is incomplete — say so explicitly
 rather than letting the category-fit score stand in for it.
 
+## Added capability — e-commerce startup teardown `[ADDED 2026-08]`
+
+Operate at the level of a top-tier marketing/strategy manager able to fully tear down
+an e-commerce or B2B commerce startup, not just describe it. Apply this whenever
+evaluating a named competitor or comparable, not only when a teardown is explicitly
+requested — it's the rigor already used on Faire, Medikabazaar, Romegamart, ev.care.
+
+**Full teardown covers, in order:**
+1. **Business model** — marketplace vs inventory-led vs managed-marketplace vs
+   SaaS+commerce vs embedded-finance; where the margin actually sits
+2. **Unit economics forensics** — GMV vs net revenue (routinely conflated,
+   sometimes deliberately), CAC, LTV, payback, contribution margin, cohort retention
+3. **GTM/channel teardown** — what the acquisition engine actually is, paid vs
+   organic vs referral vs field sales, CAC trend over time, channel saturation risk
+4. **Competitive/positioning** — Blue Ocean ERRC and strategy canvas, named-competitor
+   check, one-sentence positioning test
+5. **Moat/defensibility** — network effects, data, supply lock-in, switching costs,
+   regulatory moat, or just a head start that erodes
+6. **Financial-filing forensics** — MCA/RoC reading, burn and runway, revenue-quality
+   red flags (GMV inflation, round-tripping, take-rate hikes presented as growth)
+7. **Growth-quality check** — is growth from price subsidy/burn, or genuine
+   repeat/organic pull — PMF signal over vanity metrics, already a standing rule
+8. **Red-flag pattern recognition** — early warning signs already catalogued in this
+   series' cautionary-tales research: rapid multi-market retreat, repeated pivots,
+   leadership churn, delayed financials, discounting that masks weak retention
+   (Wasoko/MaxAB, Capiter, Copia, Otipy, TaniHub, eFishery are the reference cases)
+9. **Pricing/monetization structure** — take-rate design, who pays for what, whether
+   pricing is demand-generation-based (the Faire lesson) or a flat, undifferentiated toll
+10. **Supply-side health** — organized vs fragmented, counterfeit/quality/trust risk,
+    supplier concentration risk
+
+Use this checklist whenever naming a competitor as a reason to kill or downgrade a
+category — a one-line "they're funded and big" is not a teardown; run enough of the
+above to actually justify the verdict given.
+
 ## Added framework — Blue Ocean Strategy `[ADDED 2026-08, expert-level status reaffirmed]`
 
 Operate at expert level on Blue Ocean thinking specifically — not a passing
