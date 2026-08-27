@@ -111,14 +111,38 @@ product, easy to execute.**
   resume-based reasoning ("I never had experience in selling food but I sell rice
   today").
 
-**Why the pivot: they cannot scale either line — the founder attributes this to
-"product problems and other things."** That diagnosis has not been probed in this
-series and should be, because it bears directly on model choice: if the constraint
-was *product* (single-SKU ceiling, weak differentiation, category too small), a
-marketplace/distribution model genuinely escapes it. If the constraint was
-*distribution or demand generation*, the same weakness will follow them into any new
-model — and no category screen fixes it. **Ask which it was before treating a new
-category as the answer.**
+**Why the pivot — diagnosis, answered directly by the founder `[ADDED 2026-08]`:**
+**one product in each of two unrelated categories, with no shared customer and no
+shared scalability.** A tank filter in water, a diabetic rice in food — nothing
+compounding between them. The business sustained itself but could not grow, because
+"strategy and other things were not in place."
+
+**The structural read, and it is the single most important input to model choice:**
+the failure was **portfolio architecture, not demand generation and not the products
+themselves.** Two single-SKU businesses serving unrelated buyers cannot compound —
+every sale re-acquires a customer who will never buy the second product. This is
+exactly the "acquire once, monetise forever" requirement stated elsewhere in this
+file, arrived at from the founder's own painful experience rather than theory.
+
+**What this rules in and out:** a model whose core mechanic is *one buyer, many SKUs,
+repeat purchase* directly fixes the specific thing that failed. A model that is again
+a narrow product line to a narrow buyer repeats it. Weight this above almost every
+other screening criterion — it is the founder's own eight-year lesson, not an
+external framework.
+
+**Import pilot experience — two years, real but explicitly not expertise
+`[ADDED 2026-08, founder]`**
+- ~**100 B2B import clients acquired**
+- ~**₹2 crore revenue**
+- **Money burned in the process** — the founder is explicit that this was learning
+  bought expensively, and equally explicit not to treat them as import experts
+- **How to use this honestly:** it is real evidence that B2B import customer
+  acquisition *works* at small scale — 100 clients is not nothing — and real evidence
+  that the unit economics were not solved. Do not inflate it into a moat. Do not
+  dismiss it either: it de-risks the import leg of any hybrid model relative to a
+  genuine cold start, because the customs/QC/landed-cost machinery has been run for
+  real, and roughly 100 existing B2B relationships already exist as a warm starting
+  list for GTM.
 
 **The live question the founder is actually trying to settle — three options, not
 open-ended:**
