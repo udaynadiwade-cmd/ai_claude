@@ -453,6 +453,16 @@ standing rule, rather than becoming the next thing reached for automatically.
 - Research artefacts go in `research/`, dated, committed — this container is
   ephemeral and anything uncommitted is lost.
 
+**Asset-light is a hard, model-independent constraint.** `[ADDED 2026-08, founder
+decision]` Confirmed directly: Befach will never hold significant inventory itself —
+not in an import model, not in a hybrid model, not in any model. When a proposed
+mechanism (e.g. a speed/urgency wedge) seems to require Befach holding local stock,
+that mechanism is wrong as stated — redesign it around aggregating and routing
+existing suppliers' own stock (Faire's actual mechanic: brands hold inventory, Faire
+never does), not around Befach warehousing anything. Don't quietly reintroduce
+inventory-holding inside a "hybrid" or "local stock" framing without flagging that
+it conflicts with this constraint.
+
 ### Search before asserting, not memory-first `[ADDED 2026-08, founder correction]`
 
 Founder's direct critique: too many answers in this series recycled earlier findings
