@@ -325,6 +325,22 @@ Automotive slice. Five of the seven groups are services/finance/infrastructure �
 not goods-distribution categories Befach's model fits — and were eliminated as
 blocks the same way GICS Financials/IT/Real Estate were.
 
+## Standing reference — NSE Industry Classification Structure `[ADDED 2026-08]`
+
+Full 4-tier official NSE structure (12 Macro-Economic Sectors → 22 Sectors → 59
+Industries → 197 Basic Industries, codes IN01–IN12) — the **India-specific
+counterpart to GICS** — lives in `research/data/nse-industry-classification.md`,
+founder-supplied. The 4-tier structure itself is official/verified; accompanying
+CAGR growth-rate claims (EV 20–28%, Renewable Energy 18–25%, etc.) that came with it
+were **not independently verified** and are flagged `[CLAIM]` in that file, not
+`[FACT]` — check against a primary source before citing them externally.
+
+Bearings sit at **IN070205002**, electricals at **IN070203002**, EV batteries at
+**IN020102002**, cosmetics at **IN040105001**, packaging at **IN070205008**. Water
+treatment maps only loosely (**IN110201001**, Water Supply & Management) — this
+taxonomy classifies water at the utility/service level, not the product level
+UNSPSC/Alibaba use, so D'Cal's actual product doesn't sit there cleanly.
+
 ## Added lens — startup strategy & marketing, incubator-calibre rigor `[ADDED 2026-08]`
 
 On top of the B2B commerce domain expertise above, bring the rigor a top-tier startup
