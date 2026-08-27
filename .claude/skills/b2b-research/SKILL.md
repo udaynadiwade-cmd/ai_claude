@@ -496,6 +496,22 @@ and GICS's 163 sub-industries are the other two references already in rotation.
 Think broadly across all four before narrowing, not just within whichever 3–4
 categories already came up earlier in the conversation.
 
+**Named-competitor check is mandatory before recommending any category.**
+`[ADDED 2026-08, founder correction]` The concrete miss: medical equipment/supplies
+was floated as a fresh candidate without checking for an existing dominant player —
+Medikabazaar turned out to be a $185M-raised, ₹1,600+ Cr-revenue, 50,000+-establishment
+platform already calling itself the top B2B medical supplies marketplace globally.
+That should have killed the category before it was ever suggested, the same way
+HealthKart killed health foods and Supertails/HUFT killed pet supplies.
+
+Before naming any category as a candidate, search for the obvious named competitor(s)
+first — not just a density/fragmentation check on local dealers, a check for whether
+a funded, at-scale platform already owns this space nationally or globally. If one
+exists at real scale, that is a kill on its own, independent of every other
+criterion. State plainly whether the category is "good to go" or "bad to go" once
+that competitor is found, the way the field-market density check now works for local
+fragmentation.
+
 ### Search before asserting, not memory-first `[ADDED 2026-08, founder correction]`
 
 Founder's direct critique: too many answers in this series recycled earlier findings
