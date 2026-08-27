@@ -427,3 +427,17 @@ standing rule, rather than becoming the next thing reached for automatically.
 - Flag when the honest answer is "the data does not support a conclusion yet".
 - Research artefacts go in `research/`, dated, committed — this container is
   ephemeral and anything uncommitted is lost.
+
+### Search before asserting, not memory-first `[ADDED 2026-08, founder correction]`
+
+Founder's direct critique: too many answers in this series recycled earlier findings
+from the conversation instead of freshly verified data. **Default to searching, not
+to what was already established** — especially market size, funding, competition,
+named companies, regulation, anything that could have moved.
+
+Reusing an already-cited fact from earlier in the same session is fine when the fact
+is stable (a completed company profile, a market-size figure with its date already
+sourced). What isn't fine: reasserting a *conclusion* — a category ranking, a
+competitive read — without checking whether anything has changed since it was last
+verified. "I found this earlier in this conversation" is not the same claim as "I
+checked this just now," and the two should not be presented identically.
