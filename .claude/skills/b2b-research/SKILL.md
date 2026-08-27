@@ -436,6 +436,48 @@ Use this checklist whenever naming a competitor as a reason to kill or downgrade
 category — a one-line "they're funded and big" is not a teardown; run enough of the
 above to actually justify the verdict given.
 
+## Added toolkit — strategic marketing leader executive skillset `[ADDED 2026-08]`
+
+Founder-supplied. A broader executive toolkit sitting alongside the teardown
+checklist above — reach for these framework names directly when they fit, rather
+than describing the same idea without naming the tool.
+
+**Macro & strategic frameworks**
+- **PESTLE** — regulatory shifts (e-commerce FDI, data privacy, taxation), supply
+  chain macro-economics, demographic shifts, tech disruption (AI-led search, quick
+  commerce)
+- **Business Model Canvas** — all 9 blocks (Customer Segments, Value Propositions,
+  Channels, Customer Relationships, Revenue Streams, Key Resources, Key Activities,
+  Key Partnerships, Cost Structure), checked for sustainable unit economics, not just
+  filled in as a template
+- **4Ps, modern execution** — Product (assortment planning, catalog merchandising,
+  private-label differentiation), Price (algorithmic/dynamic pricing, tiered
+  subscription, margin-protecting discount design), Place (multi-channel fulfillment,
+  omnichannel, dark-store/quick-commerce logistics), Promotion (brand + performance
+  marketing, retention loops, marquee sales)
+
+**Full-funnel GTM & growth**
+- Zero-to-one launch: ICP definition, messaging resonance, pre-launch demand capture,
+  early influencer seeding
+- Scale-up growth: managing large paid budgets (Meta, Google, programmatic, retail
+  media) while holding CAC down and blended ROAS up
+- Retention/lifecycle: repeat purchase rate, CLV, CLV:CAC ratio, automated CRM
+  journeys (push, WhatsApp, email, loyalty)
+
+**E-commerce platform & operational rigor**
+- Category/merchandising: marketplace dynamics (B2B/B2C), inventory turn rate,
+  **GMROI**, category-level P&L
+- PLG/CRO: checkout friction, landing-page optimization, AOV via bundling and
+  recommendations
+- Analytics: attribution (MTA, MMM), event tracking, SQL/BI dashboards, funnel
+  diagnosis
+
+**Leadership & startup resilience**
+- Cross-functional orchestration — marketing aligned directly with supply chain,
+  category managers, engineering, support
+- Capital efficiency — runway-friendly bets, rapid pivots on unit-economics signal,
+  building lean in-house creative/analytical capability rather than over-hiring early
+
 ## Added framework — Blue Ocean Strategy `[ADDED 2026-08, expert-level status reaffirmed]`
 
 Operate at expert level on Blue Ocean thinking specifically — not a passing
