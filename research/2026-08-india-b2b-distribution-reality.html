@@ -1,0 +1,180 @@
+<title>What the Distributor Was Really Doing</title>
+<style>
+  :root {
+    --ground:#F7F6F4; --surface:#FFFFFF; --surface-2:#EFEDE9;
+    --ink:#1C1A17; --ink-mid:#4A4640; --ink-muted:#77726A;
+    --rule:#DEDAD4; --rule-strong:#BEB8AF;
+    --accent:#7A4419; --accent-soft:#F2E7DC;
+    --signal:#6B5A12; --signal-soft:#F1EDD6;
+    --negative:#8C2B22; --negative-soft:#F6E2DF;
+    --shadow:0 1px 2px rgba(28,26,23,.06), 0 8px 24px -12px rgba(28,26,23,.2);
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#131211; --surface:#1C1A18; --surface-2:#252220;
+      --ink:#EEEAE4; --ink-mid:#C0B9B0; --ink-muted:#948C83;
+      --rule:#2F2B28; --rule-strong:#443E39;
+      --accent:#D9945A; --accent-soft:#2E2018;
+      --signal:#CBB761; --signal-soft:#2A2716;
+      --negative:#DD7A6C; --negative-soft:#331C1A;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#131211; --surface:#1C1A18; --surface-2:#252220;
+    --ink:#EEEAE4; --ink-mid:#C0B9B0; --ink-muted:#948C83;
+    --rule:#2F2B28; --rule-strong:#443E39;
+    --accent:#D9945A; --accent-soft:#2E2018;
+    --signal:#CBB761; --signal-soft:#2A2716;
+    --negative:#DD7A6C; --negative-soft:#331C1A;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  * { box-sizing:border-box; }
+  body { background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:16.5px;
+         line-height:1.62; margin:0; padding:0 24px 110px; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:940px; margin:0 auto; }
+  .masthead { padding:60px 0 30px; border-bottom:2px solid var(--ink);
+              display:flex; flex-direction:column; gap:16px; }
+  .kicker { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--accent); display:flex; flex-wrap:wrap; gap:10px 18px; }
+  .kicker span { color:var(--ink-muted); }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2rem,5.2vw,3.1rem); line-height:1.08;
+       letter-spacing:-.018em; text-wrap:balance; margin:0; }
+  .standfirst { font-family:var(--serif); font-size:1.14rem; line-height:1.5; color:var(--ink-mid);
+                margin:0; max-width:70ch; }
+  h2 { font-family:var(--serif); font-weight:400; font-size:1.6rem; line-height:1.2; letter-spacing:-.01em;
+       margin:0; padding-top:6px; border-top:1px solid var(--rule-strong); text-wrap:balance; }
+  h3 { font-family:var(--sans); font-weight:650; font-size:1rem; margin:0; }
+  p { margin:0; max-width:72ch; }
+  section { display:flex; flex-direction:column; gap:16px; padding-top:44px; }
+  strong { font-weight:650; } em { font-style:italic; color:var(--ink-mid); }
+  a { color:var(--accent); }
+  .chip { font-family:var(--mono); font-size:9.5px; letter-spacing:.08em; text-transform:uppercase;
+          padding:2px 6px; border-radius:3px; white-space:nowrap; font-weight:700; }
+  .chip-fact { background:var(--accent-soft); color:var(--accent); }
+  blockquote { margin:0; padding:20px 24px; background:var(--surface); border-left:3px solid var(--accent);
+               border-radius:0 3px 3px 0; box-shadow:var(--shadow); font-family:var(--serif);
+               font-size:1.08rem; line-height:1.55; color:var(--ink); }
+  blockquote cite { display:block; margin-top:10px; font-family:var(--mono); font-size:11px;
+                    font-style:normal; letter-spacing:.06em; color:var(--ink-muted); text-transform:uppercase; }
+  .danger { background:var(--negative-soft); border:1px solid var(--negative); border-radius:3px;
+            padding:20px 22px; display:flex; flex-direction:column; gap:10px; font-size:15px; }
+  .danger .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+                   color:var(--negative); font-weight:700; }
+  .verdict { background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+             border-radius:3px; padding:22px 24px; display:flex; flex-direction:column; gap:11px;
+             box-shadow:var(--shadow); }
+  .verdict .label { font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
+                    color:var(--accent); font-weight:700; }
+  .scroller { overflow-x:auto; border:1px solid var(--rule); border-radius:3px; background:var(--surface); }
+  table { border-collapse:collapse; width:100%; font-size:14px; min-width:620px; }
+  th, td { padding:10px 13px; text-align:left; border-bottom:1px solid var(--rule); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:10px; letter-spacing:.06em; text-transform:uppercase;
+             color:var(--ink-muted); font-weight:700; background:var(--surface-2);
+             border-bottom:1px solid var(--rule-strong); }
+  tbody tr:last-child td { border-bottom:none; }
+  .co { font-weight:650; }
+  .row-dead td { background:var(--negative-soft); }
+  .row-live td { background:var(--accent-soft); }
+  .chain { display:flex; flex-wrap:wrap; align-items:center; gap:8px; padding:18px 20px;
+           background:var(--surface-2); border-radius:4px; font-family:var(--mono); font-size:12.5px; }
+  .chain span.node { background:var(--surface); border:1px solid var(--rule-strong); border-radius:3px;
+                     padding:6px 10px; white-space:nowrap; }
+  .chain span.arrow { color:var(--ink-muted); }
+  footer { margin-top:52px; padding-top:18px; border-top:1px solid var(--rule); font-size:13px; color:var(--ink-muted); }
+  @media (max-width:560px) { body{font-size:15.5px;padding:0 16px 80px;} }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="kicker">Research note <span>·</span> <span>is Indian B2B distribution a real pain?</span> <span>·</span> <span>August 2026</span></div>
+    <h1>What the distributor was really doing</h1>
+    <p class="standfirst">The pain is real and well documented. So is the graveyard of companies that tried to fix it. This note separates the two — because the reason the graveyard exists is not the reason most people assume, and it changes what a viable model looks like.</p>
+  </header>
+
+  <section>
+    <h2>Yes — the structural pain is real and measurable</h2>
+    <div class="chain">
+      <span class="node">Manufacturer</span><span class="arrow">→</span>
+      <span class="node">C&amp;F agent</span><span class="arrow">→</span>
+      <span class="node">Super stockist</span><span class="arrow">→</span>
+      <span class="node">Distributor</span><span class="arrow">→</span>
+      <span class="node">Sub-distributor</span><span class="arrow">→</span>
+      <span class="node">Wholesaler</span><span class="arrow">→</span>
+      <span class="node">Retailer</span>
+    </div>
+    <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;max-width:72ch;">
+      <li><strong>12 million+ retail outlets</strong>, roughly <strong>90% unorganised</strong> <span class="chip chip-fact">Fact</span></li>
+      <li>Every layer in the chain above <strong>adds cost, introduces delay, and creates visibility gaps</strong> <span class="chip chip-fact">Fact</span></li>
+      <li>Tier 2 and Tier 3 access is genuinely constrained: <strong>limited pin-code serviceability, shipping costs 20–40% higher per order than metro</strong>, poor warehousing, weak address standardisation <span class="chip chip-fact">Fact</span></li>
+      <li>Brands themselves acknowledge they underserve smaller towns on coverage, replenishment and retailer support</li>
+    </ul>
+    <p>So the answer to the direct question — <em>do Indian retailers have easy, fast access to everything manufactured in India?</em> — is <strong>no.</strong> Access is layered, slow, geographically uneven, and opaque. That part of the premise holds up completely.</p>
+  </section>
+
+  <section>
+    <h2>And yet this is the most expensive graveyard in Indian B2B</h2>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Company</th><th>What happened</th></tr></thead>
+        <tbody>
+          <tr class="row-dead"><td class="co">Tolexo <span style="font-weight:400;color:var(--ink-muted)">(IndiaMART's B2B retail arm)</span></td><td>Shut down, 2017</td></tr>
+          <tr class="row-dead"><td class="co">Just Buy Live</td><td>Suspended operations, 2018</td></tr>
+          <tr class="row-dead"><td class="co">Shotang</td><td>Scaled down, 2018</td></tr>
+          <tr class="row-dead"><td class="co">Amazon India B2B unit</td><td>Shut down, 2022 — with Amazon's balance sheet behind it</td></tr>
+          <tr class="row-dead"><td class="co">Udaan</td><td>Revenue ₹9,900 Cr (FY22) → ₹5,609 Cr (FY23) → ~₹5,707 Cr (FY24, flat). FY24 net loss ₹657.8 Cr. Valuation down ~59%, from $3.2 Bn peak to ~$1.3 Bn <span class="chip chip-fact">Fact</span></td></tr>
+          <tr class="row-dead"><td class="co">ElasticRun</td><td>FY24 revenue ₹2,434.8 Cr, <strong>down 48.6% year on year</strong>; loss ₹359.6 Cr (improved from ₹619 Cr) <span class="chip chip-fact">Fact</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p>Six serious attempts, including one by Amazon. This is not a case of nobody having tried — it is a case of a well-funded field trying repeatedly and mostly failing.</p>
+  </section>
+
+  <section>
+    <h2>Why they failed — and this is the finding that matters</h2>
+    <blockquote>
+      The distributor was not merely adding cost — in many cases, he was absorbing uncertainty: delayed payments, local disputes, returns, damaged goods, wrong demand estimates, and unpredictable retailer behaviour. Once platforms tried to replace this network, they inherited these risks directly. And risk is expensive.
+      <cite>Vanik, on why Udaan struggled</cite>
+    </blockquote>
+    <div class="verdict">
+      <div class="label">Restating that plainly</div>
+      <p><strong>The layers in India's distribution chain look like inefficiency. They are mostly risk absorption, priced into margin.</strong> The distributor extends informal credit, eats bad debt, settles disputes face to face, takes back damaged goods, and guesses demand on behalf of the manufacturer. A platform that removes him does not capture his margin — it inherits his risk, usually without his local knowledge or his ability to lean on a retailer he has known for twenty years.</p>
+      <p>The second failure is trust: retailer–distributor relationships are decades old and are the distributor's livelihood. Switching is not a pricing decision for either side.</p>
+    </div>
+    <div class="danger">
+      <div class="label">The direct connection to the Faire analysis in this series</div>
+      <p>Faire charges 15–25% <em>because</em> it absorbs credit risk and returns risk — the underwriting engine is the business, and the take rate is the price of the risk it carries. <strong>Udaan and its peers removed the distributor without pricing in the risk they inherited.</strong> Same structural position, opposite outcome. That is the cleanest available illustration of why "disintermediate the middleman" is not a strategy on its own — the question is always whether you can absorb what he was absorbing, and charge for it.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Who is still standing, and what separates them</h2>
+    <div class="scroller">
+      <table>
+        <thead><tr><th>Company</th><th>What they sell</th><th>Structural difference</th></tr></thead>
+        <tbody>
+          <tr class="row-live"><td class="co">Moglix</td><td>Industrial / MRO supplies</td><td>Spec-driven goods, business buyers consuming inputs — not retailers reselling brands</td></tr>
+          <tr class="row-live"><td class="co">OfBusiness</td><td>Raw materials + financing</td><td>Prices the risk explicitly through a lending arm rather than absorbing it silently</td></tr>
+          <tr class="row-live"><td class="co">Zetwerk</td><td>Manufacturing / custom fabrication</td><td>Sells capability, not catalogue — no distributor to displace</td></tr>
+          <tr class="row-live"><td class="co">Infra.Market</td><td>Construction materials</td><td>Own-brand products, so it is a manufacturer-distributor, not a pure intermediary</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p><strong>The pattern is consistent:</strong> the survivors sell to <em>businesses consuming inputs</em>, in categories where the specification matters more than the brand. The casualties sold to <em>retailers reselling branded goods</em>, where the distributor relationship and brand loyalty are the whole game and margins are thin.</p>
+  </section>
+
+  <section>
+    <h2>What this means for Befach specifically</h2>
+    <ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:9px;max-width:72ch;">
+      <li><strong>The domestic-distribution leg of the three-model question is the riskiest of the three</strong>, if it means selling branded Indian-manufactured goods to retailers. That is precisely the graveyard above.</li>
+      <li><strong>It is materially less risky in industrial and input categories</strong> — where the buyer is a factory, workshop or contractor consuming goods rather than a shop reselling them. Every survivor sits there.</li>
+      <li><strong>Any model here must answer one question explicitly:</strong> what risk are we absorbing that the distributor absorbs today, and are we pricing it? If the answer is "none, we are just cheaper and faster," that is the Udaan thesis, already tested expensively six times.</li>
+      <li><strong>The import leg looks structurally safer by comparison</strong> — there is no entrenched twenty-year distributor relationship to displace on a product being brought into the country for the first time.</li>
+    </ul>
+  </section>
+
+  <footer>Research note, August 2026 · All company financials and shutdown dates sourced this pass from Inc42, Business Standard, TechCrunch and Vanik. The survivor/casualty pattern is this note's own synthesis and should be treated as a read of the evidence, not a sourced claim.</footer>
+</div>
