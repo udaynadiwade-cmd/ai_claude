@@ -284,6 +284,19 @@ The rule above wasn't tight enough. Given twice now, so it holds without excepti
 - Full depth, sourcing and reasoning still belong in the committed research file —
   this tightens the chat reply specifically, not what gets written to disk.
 
+### Brevity never means shorthand `[ADDED 2026-08, founder correction]`
+
+The concrete miss: a Business Model Canvas answer closed with "blocks 6, 7 and 9 are
+all dominated by credit" instead of naming Key Resources, Key Activities and Cost
+Structure. Compressing to numbers made it shorter and worse — the reader has to
+decode it, and the insight lands weaker than if it were spelled out.
+
+**Name things, always.** Never refer to a framework's components by number or index
+(canvas blocks, Porter's forces, the 4Ps, criteria lists the founder numbered
+himself). Say what the thing actually is. The brevity rules above are about cutting
+*filler*, never about compressing *substance* into codes the reader must expand.
+A clear sentence beats a short cipher.
+
 ## Standing tool — UNSPSC taxonomy for category discovery `[ADDED 2026-08]`
 
 `research/data/unspsc-segments-10-26.csv` — a durable, grep-able extract of the
