@@ -1,0 +1,192 @@
+<title>Catalog, Order, Brand</title>
+<style>
+  :root {
+    --ground:#F5F7F6; --surface:#FFFFFF; --surface-2:#E9EEEC;
+    --ink:#15201C; --ink-mid:#405048; --ink-muted:#6E7C74;
+    --rule:#D7DEDA; --rule-strong:#B4BFB9;
+    --accent:#186A4B; --accent-soft:#DFEFE7;
+    --signal:#8A6114; --signal-soft:#F5EDD9;
+    --negative:#8F3220; --negative-soft:#F6E3DE;
+    --shadow:0 1px 2px rgba(21,32,28,.06), 0 8px 24px -12px rgba(21,32,28,.2);
+    --serif:'Iowan Old Style','Palatino Linotype',Palatino,'Book Antiqua',Georgia,serif;
+    --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+    --mono:ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ground:#0B1210; --surface:#141D19; --surface-2:#1C2621;
+      --ink:#E9EFEB; --ink-mid:#B4C2BA; --ink-muted:#8A968E;
+      --rule:#26332C; --rule-strong:#3A4941;
+      --accent:#4FBE8E; --accent-soft:#153026;
+      --signal:#D3AA53; --signal-soft:#2B2617;
+      --negative:#DD8069; --negative-soft:#331E19;
+      --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+    }
+  }
+  :root[data-theme="dark"] {
+    --ground:#0B1210; --surface:#141D19; --surface-2:#1C2621;
+    --ink:#E9EFEB; --ink-mid:#B4C2BA; --ink-muted:#8A968E;
+    --rule:#26332C; --rule-strong:#3A4941;
+    --accent:#4FBE8E; --accent-soft:#153026;
+    --signal:#D3AA53; --signal-soft:#2B2617;
+    --negative:#DD8069; --negative-soft:#331E19;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 8px 24px -12px rgba(0,0,0,.6);
+  }
+  * { box-sizing:border-box; }
+  body { background:var(--ground); color:var(--ink); font-family:var(--sans); font-size:16.5px;
+         line-height:1.62; margin:0; padding:0 24px 110px; -webkit-font-smoothing:antialiased; }
+  .wrap { max-width:920px; margin:0 auto; }
+  .masthead { padding:58px 0 28px; border-bottom:2px solid var(--ink);
+              display:flex; flex-direction:column; gap:15px; }
+  .kicker { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase;
+            color:var(--accent); display:flex; flex-wrap:wrap; gap:10px 18px; }
+  .kicker span { color:var(--ink-muted); }
+  h1 { font-family:var(--serif); font-weight:400; font-size:clamp(2rem,5.2vw,3rem); line-height:1.08;
+       letter-spacing:-.018em; margin:0; }
+  .standfirst { font-family:var(--serif); font-size:1.12rem; line-height:1.5; color:var(--ink-mid);
+                margin:0; max-width:68ch; }
+  h2 { font-family:var(--serif); font-weight:400; font-size:1.55rem; line-height:1.2; margin:0;
+       padding-top:6px; border-top:1px solid var(--rule-strong); }
+  h3 { font-family:var(--sans); font-weight:650; font-size:1rem; margin:0; }
+  p { margin:0; max-width:70ch; }
+  section { display:flex; flex-direction:column; gap:15px; padding-top:42px; }
+  strong { font-weight:650; }
+  a { color:var(--accent); }
+  ul { margin:0; padding-left:19px; display:flex; flex-direction:column; gap:7px; max-width:70ch; }
+  .flow { display:flex; flex-wrap:wrap; gap:12px; }
+  .step { flex:1 1 240px; background:var(--surface); border:1px solid var(--rule); border-radius:4px;
+          padding:16px 18px; display:flex; flex-direction:column; gap:8px; box-shadow:var(--shadow); }
+  .step .tag { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+               color:var(--accent); font-weight:700; }
+  .step .what { font-weight:650; font-size:15px; }
+  .step .why { font-size:14px; color:var(--ink-mid); }
+  .scoreboard { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--rule);
+                border:1px solid var(--rule); border-radius:4px; overflow:hidden; }
+  .score { background:var(--surface); padding:20px; display:flex; flex-direction:column; gap:6px; }
+  .score .label { font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase;
+                  color:var(--ink-muted); font-weight:700; }
+  .score .val { font-family:var(--mono); font-size:2.4rem; font-weight:700; line-height:1; }
+  .score .note { font-size:13.5px; color:var(--ink-mid); }
+  .s-good .val { color:var(--accent); }
+  .s-mid .val { color:var(--signal); }
+  @media (max-width:640px) { .scoreboard{grid-template-columns:1fr;} }
+  .danger { background:var(--negative-soft); border:1px solid var(--negative); border-radius:3px;
+            padding:18px 20px; display:flex; flex-direction:column; gap:9px; font-size:15px; }
+  .danger .label { font-family:var(--mono); font-size:10px; letter-spacing:.1em; text-transform:uppercase;
+                   color:var(--negative); font-weight:700; }
+  .verdict { background:var(--surface); border:1px solid var(--rule); border-left:3px solid var(--accent);
+             border-radius:3px; padding:20px 22px; display:flex; flex-direction:column; gap:10px;
+             box-shadow:var(--shadow); }
+  .verdict .label { font-family:var(--mono); font-size:10.5px; letter-spacing:.14em; text-transform:uppercase;
+                    color:var(--accent); font-weight:700; }
+  footer { margin-top:50px; padding-top:18px; border-top:1px solid var(--rule); font-size:13px; color:var(--ink-muted); }
+  @media (max-width:560px) { body{font-size:15.5px;padding:0 16px 80px;} }
+</style>
+
+<div class="wrap">
+  <header class="masthead">
+    <div class="kicker">Model evaluation <span>·</span> <span>catalog → order → own brand</span> <span>·</span> <span>August 2026</span></div>
+    <h1>Catalog, order, brand</h1>
+    <p class="standfirst">A free landed-price catalog brings people in. Some of them import through us. What they import tells us what to make under our own brand. Here is the score, and the two things that decide whether it works.</p>
+  </header>
+
+  <section>
+    <h2>The model in three steps</h2>
+    <div class="flow">
+      <div class="step">
+        <span class="tag">Step 1 — Category C</span>
+        <span class="what">Free catalog</span>
+        <span class="why">Millions of products from 1688, each with a landed price in rupees. Earns nothing. Its only job is to bring buyers in.</span>
+      </div>
+      <div class="step">
+        <span class="tag">Step 2 — Category B</span>
+        <span class="what">They import through us</span>
+        <span class="why">We handle sourcing, shipping, customs, delivery. We earn a margin on the shipment. This is the business we already run.</span>
+      </div>
+      <div class="step">
+        <span class="tag">Step 3 — Category A</span>
+        <span class="what">Our own brand</span>
+        <span class="why">We now know what sells and how often. We make those products under the Befach name. Margin roughly triples.</span>
+      </div>
+    </div>
+    <p><strong>Why the order matters:</strong> most companies guess what to private-label. This model makes the customers tell us first. That is the strongest idea here.</p>
+  </section>
+
+  <section>
+    <h2>The scores</h2>
+    <div class="scoreboard">
+      <div class="score s-good">
+        <span class="label">Ability to execute</span>
+        <span class="val">7/10</span>
+        <span class="note">We already do most of this. The catalog is the new part.</span>
+      </div>
+      <div class="score s-mid">
+        <span class="label">Profitability</span>
+        <span class="val">6/10</span>
+        <span class="note">Thin for two years. Good only if we reach the own-brand step.</span>
+      </div>
+      <div class="score s-good">
+        <span class="label">Scalability</span>
+        <span class="val">8/10</span>
+        <span class="note">The catalog costs the same whether ten people use it or ten lakh.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why each score</h2>
+
+    <h3>Ability to execute — 7 out of 10</h3>
+    <ul>
+      <li><strong>In our favour:</strong> we already import. 100–150 shipments done. Customs, freight, payments all handled before.</li>
+      <li><strong>In our favour:</strong> we have the 1688 API now. Last time we didn't. That was the blocker.</li>
+      <li><strong>In our favour:</strong> about 100 existing clients. The catalog does not start empty of buyers.</li>
+      <li><strong>Against us:</strong> a landed price needs the right HS code for every product. Millions of products means millions of code decisions. Get it wrong and the customer pays more than we quoted.</li>
+      <li><strong>Against us:</strong> many Chinese products cannot legally enter India — BIS and QCO rules. Showing a price for a product nobody can import is worse than showing nothing.</li>
+    </ul>
+
+    <h3>Profitability — 6 out of 10</h3>
+    <ul>
+      <li>The catalog earns <strong>zero</strong>. It is a cost for as long as it runs.</li>
+      <li>Import service earns a real margin, and import margin is wider than local distribution margin.</li>
+      <li>Own brand is where the money is — roughly <strong>₹16–18 per ₹100</strong> against <strong>₹6–7</strong> for moving someone else's goods.</li>
+      <li><strong>But own brand is two to three years away</strong>, and needs cash upfront. Chinese factories want <strong>500 to several thousand units</strong> for custom branding.</li>
+      <li>So: thin money for a long time, good money only if we get all the way to step three.</li>
+    </ul>
+
+    <h3>Scalability — 8 out of 10</h3>
+    <ul>
+      <li>Once built, the catalog serves any number of people at almost no extra cost. This is the best part of the model.</li>
+      <li>People searching "landed price of X from China" find us on Google. Free customers, forever.</li>
+      <li><strong>Limit:</strong> own-brand products do not scale the same way. Each one is a separate stock bet with its own money tied up.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>The two things that decide whether this works</h2>
+
+    <div class="danger">
+      <div class="label">Risk one — the catalog can teach customers to skip us</div>
+      <p>If the catalog shows the supplier's name and price, a customer can contact that supplier directly. We would be paying to train our own competition. The bigger the customer, the more likely they do this — and the big customers are the ones worth keeping.</p>
+      <p><strong>The fix is a design decision, and it must be made before building:</strong> show the product and the landed price, never the supplier identity. Our value is that we know who makes it. Give that away and nothing is left.</p>
+    </div>
+
+    <div class="danger">
+      <div class="label">Risk two — we may never get enough data to pick a brand product</div>
+      <p>Own brand needs 500 to several thousand units of one product. That only makes sense if many customers buy the <em>same</em> item repeatedly. If 100 customers each import 100 different things, we learn nothing useful — we get variety, not concentration.</p>
+      <p><strong>What to watch from day one:</strong> not how many orders we get, but how often the same product is ordered by different customers. That single number tells us whether step three is even possible.</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Verdict</h2>
+    <div class="verdict">
+      <div class="label">Worth doing — with one change</div>
+      <p><strong>This is the best model discussed so far,</strong> for one reason: it is the only one that ends with us owning a product instead of only moving other people's goods. That is the escape from the ₹6–7 trap that killed Udaan and the others.</p>
+      <p><strong>The change:</strong> do not treat step three as a distant hope. Set a date and a number now — for example, "by month 12, we must see 20 customers buying the same product, or we stop and rethink." Without that test, the catalog quietly becomes the whole business, and the catalog earns nothing.</p>
+      <p><strong>Also note honestly:</strong> step three needs inventory. That breaks the asset-light rule set earlier. It is worth breaking for the margin — but it should be a decision made openly, not something we drift into.</p>
+    </div>
+  </section>
+
+  <footer>Model evaluation, August 2026 · MOQ figures for private label sourced this pass. Margin figures carried from the distribution research note in this series. Scores are judgement, not measurement — they should move as real conversion data arrives.</footer>
+</div>
