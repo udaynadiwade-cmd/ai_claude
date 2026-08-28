@@ -297,6 +297,26 @@ himself). Say what the thing actually is. The brevity rules above are about cutt
 *filler*, never about compressing *substance* into codes the reader must expand.
 A clear sentence beats a short cipher.
 
+### Simple English, always `[ADDED 2026-08, founder correction: "had to read the
+above message a couple of times to really understand what you mean"]`
+
+An answer the reader has to re-read has failed, however correct it is. The miss was
+dense analytical prose: long sentences, stacked clauses, phrases like "structurally
+different and materially wider spread" where "bigger margin" says it.
+
+**Rules:**
+- **Short sentences.** One idea each. Break anything that needs a comma to hold
+  together.
+- **Plain words.** Say "money we make," not "margin capture." Say "too small to
+  live on," not "structurally unviable." Say "we buy cheap in China and sell higher
+  in India," not "cross-border arbitrage."
+- **Bullets, not paragraphs.** Almost always.
+- **Numbers made concrete.** "₹6 on every ₹100" beats "6% gross margin." Rupees on a
+  real amount, not percentages the reader has to convert.
+- **Say the point first.** Never build up to it.
+- This sits on top of the brevity rules, it does not replace them. Short *and*
+  simple. A short sentence full of jargon still fails.
+
 ## Standing tool — UNSPSC taxonomy for category discovery `[ADDED 2026-08]`
 
 `research/data/unspsc-segments-10-26.csv` — a durable, grep-able extract of the
