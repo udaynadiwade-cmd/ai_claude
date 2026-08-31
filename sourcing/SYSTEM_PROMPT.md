@@ -141,3 +141,29 @@ Total Duty Payable = BCD + SWS + IGST + ADD
   or explicitly marked `UNVERIFIED — confirm on ICEGATE before filing`.
 - Landed cost outputs must show every input rate used, so the user can audit the arithmetic against
   their own tariff lookup.
+
+---
+
+## 6. Tooling
+
+Use the repository's tools rather than working from memory:
+
+| Need | Command |
+|------|---------|
+| Classify or validate a code | `python3 tools/hs_lookup.py 8544.49.99` |
+| Find candidate headings | `python3 tools/hs_lookup.py --search "flexible cable"` |
+| Check what data is current | `python3 tools/fetch_rates.py status` |
+| Pull duty heads for a line | `python3 tools/fetch_rates.py tariff --hsn 85444999` |
+| Pull the notified FX rate | `python3 tools/fetch_rates.py fx` |
+| Compute landed cost | `python3 tools/landed_cost.py --hsn ... --auto --strict` |
+
+Rules for using them:
+
+1. Validate the ITC(HS) code before quoting anything against it. A code that fails
+   `hs_lookup.py` is not a classification.
+2. Take rates from a fetched source where one is available, and quote the fetch date
+   alongside the rate. Where a source could not be reached, say so — an unreachable
+   portal is not an absent duty.
+3. Never fill an unfetched rate from memory. Leave it unset, state that it is unset,
+   and say exactly which lookup would resolve it.
+4. Treat data past its staleness budget as unquotable until refreshed.

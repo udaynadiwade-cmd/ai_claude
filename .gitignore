@@ -12,3 +12,7 @@ cvs/
 # Local scratch
 .DS_Store
 *.tmp
+
+# Python
+__pycache__/
+*.py[cod]

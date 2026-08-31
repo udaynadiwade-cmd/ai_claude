@@ -1,0 +1,8 @@
+# Live-data layer. The calculator and hs_lookup run on the standard library alone;
+# these are needed only by the fetchers.
+requests>=2.31
+beautifulsoup4>=4.12
+lxml>=5.0
+# Only for the portals that render their tables client-side (ICEGATE CDC, DGFT).
+# After installing: playwright install chromium
+playwright>=1.44

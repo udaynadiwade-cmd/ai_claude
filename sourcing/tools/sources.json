@@ -1,0 +1,81 @@
+{
+  "_comment": [
+    "Registry of the primary sources this kit fetches from. Every URL here is an",
+    "official or primary publisher. Nothing in data/ may be written without a",
+    "matching entry, and every dataset carries a MANIFEST.json recording which",
+    "entry it came from and when.",
+    "max_age_days is the staleness budget: how long a fetched value may be quoted",
+    "before it must be refreshed."
+  ],
+  "sources": {
+    "hs_nomenclature": {
+      "title": "WCO Harmonized System nomenclature (HS 2022)",
+      "publisher": "World Customs Organization, via the Open Knowledge 'harmonized-system' data package (UN Comtrade extraction)",
+      "url": "https://raw.githubusercontent.com/datasets/harmonized-system/main/data/harmonized-system.csv",
+      "sections_url": "https://raw.githubusercontent.com/datasets/harmonized-system/main/data/sections.csv",
+      "homepage": "https://github.com/datasets/harmonized-system",
+      "licence": "ODC-PDDL-1.0 (public domain dedication)",
+      "fetcher": "fetch_hs.py",
+      "max_age_days": 365,
+      "gives": "HS 2/4/6-digit codes, descriptions, section and chapter tree",
+      "does_not_give": "India's 8-digit ITC(HS) extensions, and no duty rates of any kind"
+    },
+    "icegate_duty_calculator": {
+      "title": "ICEGATE Custom Duty Calculator",
+      "publisher": "Indian Customs EDI Gateway, CBIC",
+      "url": "https://www.icegate.gov.in/cdc",
+      "legacy_url": "https://www.old.icegate.gov.in/Webappl/Trade-Guide-on-Imports",
+      "fetcher": "fetch_tariff.py",
+      "requires_browser": true,
+      "max_age_days": 30,
+      "gives": "BCD, IGST, SWS, AIDC, cess and applicable notifications for an 8-digit ITC(HS)",
+      "notes": "Client-rendered; needs Playwright. This is the authoritative rate source for a Bill of Entry."
+    },
+    "cbic_exchange_rate": {
+      "title": "CBIC notified customs exchange rates (ERAM)",
+      "publisher": "CBIC",
+      "url": "https://www.cbic.gov.in/entities/cbic-content-mst/MTcwMDU=",
+      "icegate_url": "https://www.icegate.gov.in/guidelines/others/exchange-automation-module",
+      "fetcher": "fetch_fx.py",
+      "max_age_days": 14,
+      "gives": "Notified INR conversion rates for imported and exported goods, by currency",
+      "notes": "Revised on the 1st and/or 3rd Thursday each month under ERAM, effective the following Friday. Use the rate in force on the Bill of Entry date, never the spot rate."
+    },
+    "dgft_itchs": {
+      "title": "DGFT ITC(HS) import policy schedule",
+      "publisher": "Directorate General of Foreign Trade",
+      "url": "https://www.dgft.gov.in/CP/?opt=itchs",
+      "fetcher": "fetch_policy.py",
+      "requires_browser": true,
+      "max_age_days": 30,
+      "gives": "Import policy per 8-digit line: Free / Restricted / Prohibited / STE, and policy conditions"
+    },
+    "cbic_gst_rates": {
+      "title": "CBIC GST goods and services rates",
+      "publisher": "CBIC-GST",
+      "url": "https://cbic-gst.gov.in/gst-goods-services-rates.html",
+      "fetcher": "fetch_tariff.py",
+      "max_age_days": 90,
+      "gives": "GST/IGST rate schedule by chapter and HSN, and compensation cess schedule"
+    },
+    "drewry_wci": {
+      "title": "Drewry World Container Index (weekly)",
+      "publisher": "Drewry Supply Chain Advisors",
+      "url": "https://www.drewry.co.uk/supply-chain-advisors/world-container-index-weekly-update/container-shipping1",
+      "fetcher": "fetch_freight.py",
+      "max_age_days": 10,
+      "gives": "Composite index plus 8 route indices, USD per 40ft container",
+      "notes": "Benchmark only. No Drewry route covers Far East to India directly, so use it to read market direction, not to price your lane."
+    },
+    "freightos_fbx": {
+      "title": "Freightos Baltic Index (FBX)",
+      "publisher": "Baltic Exchange / Freightos",
+      "url": "https://data.freightos.com/",
+      "baltic_url": "https://www.balticexchange.com/en/data-services/market-information0/container-services.html",
+      "fetcher": "fetch_freight.py",
+      "max_age_days": 5,
+      "gives": "Daily 40ft spot rates across 12 tradelanes",
+      "notes": "IOSCO-compliant. Terminal access may require a subscription."
+    }
+  }
+}

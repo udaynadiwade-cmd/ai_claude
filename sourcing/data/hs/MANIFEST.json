@@ -1,0 +1,29 @@
+{
+  "dataset": "hs_nomenclature",
+  "source_name": "World Customs Organization, via the Open Knowledge 'harmonized-system' data package (UN Comtrade extraction)",
+  "source_url": "https://raw.githubusercontent.com/datasets/harmonized-system/main/data/harmonized-system.csv",
+  "licence": "ODC-PDDL-1.0 (public domain dedication)",
+  "fetched_at": "2026-08-31T09:30:43+00:00",
+  "max_age_days": 365,
+  "files": [
+    {
+      "file": "hs_nomenclature.csv",
+      "bytes": 1457244,
+      "sha256": "637d645adde841ed76a97cc75355007650687320d66d2074440b5fc3e58a4047"
+    },
+    {
+      "file": "hs_sections.json",
+      "bytes": 2246,
+      "sha256": "43ecdccb6dc75bd4af4f867b6266684c135be95ced62dcd90cf32cc0013691c5"
+    }
+  ],
+  "notes": "Codes and descriptions only. Contains NO duty rates: BCD/IGST/SWS/AIDC/cess must be read from ICEGATE or the CBIC tariff for the Bill of Entry date.",
+  "hs_version": "HS 2022",
+  "rows": 6939,
+  "rows_by_level": {
+    "2": 97,
+    "4": 1229,
+    "6": 5613
+  },
+  "sections": 21
+}

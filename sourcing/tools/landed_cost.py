@@ -27,8 +27,16 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import sys
 from decimal import Decimal, ROUND_HALF_UP
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+TARIFF_DIR = os.path.normpath(os.path.join(HERE, "..", "data", "rates", "tariff"))
+
+RATE_KEYS = ("bcd", "aidc", "igst", "comp_cess", "add_pct", "safeguard_pct")
 
 TWO = Decimal("0.01")
 
@@ -58,6 +66,50 @@ def money(value: Decimal) -> Decimal:
 
 def pct(base: Decimal, rate: Decimal) -> Decimal:
     return d(base) * d(rate) / Decimal("100")
+
+
+def validate_hsn(hsn: str) -> tuple[bool, str]:
+    """Check the code against the fetched WCO nomenclature. Never fatal on its own."""
+    if not hsn:
+        return False, "no ITC(HS) code supplied"
+    try:
+        import hs_lookup
+    except ImportError:  # pragma: no cover
+        return True, ""
+    try:
+        table = hs_lookup.load()
+    except hs_lookup.NomenclatureMissing:
+        return True, "HS nomenclature not fetched; code not validated (run fetch_hs.py)"
+    result = hs_lookup.validate(hsn, table)
+    if not result["valid"]:
+        return False, "; ".join(result["problems"])
+    node = result["chain"][-1]
+    note = f"HS-{node['level']} {node['hs_code']}: {node['description']}"
+    if result["length"] < 8:
+        note += "  [not an 8-digit line]"
+    return True, note
+
+
+def load_fetched_rates(hsn: str) -> tuple[dict, str]:
+    """Read duty heads previously fetched from ICEGATE for this exact line."""
+    import provenance
+
+    digits = "".join(ch for ch in (hsn or "") if ch.isdigit())
+    path = os.path.join(TARIFF_DIR, f"{digits}.json")
+    if not digits or not os.path.exists(path):
+        return {}, ""
+    with open(path, encoding="utf-8") as fh:
+        payload = json.load(fh)
+    rates = {
+        key: head["rate"]
+        for key, head in payload.get("duty_heads", {}).items()
+        if head.get("rate") is not None
+    }
+    manifest = provenance.read_manifest(TARIFF_DIR)
+    stamp = f"ICEGATE, fetched {payload.get('retrieved_at', 'unknown')}"
+    if manifest and provenance.is_stale(manifest):
+        stamp += " [STALE]"
+    return rates, stamp
 
 
 class Shipment:
@@ -99,6 +151,10 @@ class Shipment:
         self.igst_creditable = bool(cfg.get("igst_creditable", True))
         self.quantity = d(cfg.get("quantity", 0))
 
+        # Where each duty rate came from, so the output can be audited.
+        self.rate_sources = dict(cfg.get("_rate_sources") or {})
+        self.hsn_note = cfg.get("_hsn_note", "")
+
         if self.sws_base not in SWS_BASE_CHOICES:
             raise ValueError(f"sws_base must be one of {SWS_BASE_CHOICES}")
         if self.rate <= 0:
@@ -110,6 +166,13 @@ class Shipment:
 
     def compute(self) -> dict:
         notes = []
+
+        for key, rate in (("BCD", self.bcd_rate), ("IGST", self.igst_rate)):
+            if rate == 0 and self.rate_sources.get(key.lower(), "unset") == "unset":
+                notes.append(
+                    f"{key} was not supplied and has been treated as 0%. That is almost never "
+                    f"correct -- look the rate up on ICEGATE for this ITC(HS) line."
+                )
 
         fob_inr = self.fob_fc * self.rate
 
@@ -188,6 +251,10 @@ class Shipment:
                 else "Effective landed cost": money(effective),
             },
             "notes": notes,
+            "provenance": {
+                "hsn_check": self.hsn_note,
+                "rates": {k: self.rate_sources.get(k, "unset") for k in RATE_KEYS},
+            },
         }
 
         if self.quantity > 0:
@@ -217,6 +284,15 @@ def render(result: dict) -> str:
             if amount == 0 and section == "duties":
                 continue
             out.append(f"  {label:<52} {amount:>16,}")
+        out.append("")
+
+    prov = result.get("provenance", {})
+    if prov:
+        out.append("RATE PROVENANCE")
+        if prov.get("hsn_check"):
+            out.append(f"  classification: {prov['hsn_check']}")
+        for key, origin in prov.get("rates", {}).items():
+            out.append(f"  {key:<14} {origin}")
         out.append("")
 
     if result["notes"]:
@@ -253,16 +329,36 @@ def parse_args(argv):
     p.add_argument("--incoterm", default="FOB")
     p.add_argument("--port", default="")
     p.add_argument("--json", action="store_true", help="Emit JSON instead of a table")
+    p.add_argument(
+        "--auto",
+        action="store_true",
+        help="Fill unspecified duty rates from data/rates/tariff/<hsn>.json "
+             "(populate it with: python3 fetch_rates.py tariff --hsn <code>)",
+    )
+    p.add_argument(
+        "--strict",
+        action="store_true",
+        help="Exit non-zero unless BCD and IGST both came from a fetched source",
+    )
     return p.parse_args(argv)
 
 
 def config_from_args(args) -> dict:
     if args.config:
         with open(args.config, encoding="utf-8") as fh:
-            return json.load(fh)
+            cfg = json.load(fh)
+        cfg["_rate_sources"] = {
+            k: ("config file" if cfg.get(k) is not None else "unset") for k in RATE_KEYS
+        }
+        return cfg
     if args.fob is None or args.rate is None:
         raise SystemExit("--fob and --rate are required when --config is not used")
+    supplied = {
+        k: ("command line" if f"--{k.replace('_', '-')}" in sys.argv else "unset")
+        for k in RATE_KEYS
+    }
     return {
+        "_rate_sources": supplied,
         "fob": args.fob,
         "currency": args.currency,
         "exchange_rate": args.rate,
@@ -283,13 +379,53 @@ def config_from_args(args) -> dict:
     }
 
 
+def apply_data_layer(cfg: dict, args) -> dict:
+    """Validate the HSN and, with --auto, fill unset rates from fetched data."""
+    hsn = cfg.get("hsn", "")
+    ok, note = validate_hsn(hsn)
+    cfg["_hsn_note"] = note if ok else f"INVALID -- {note}"
+
+    if not args.auto:
+        return cfg
+
+    fetched, stamp = load_fetched_rates(hsn)
+    if not fetched:
+        cfg["_hsn_note"] += (
+            f"\n  no fetched rates for this line: run "
+            f"`python3 fetch_rates.py tariff --hsn {hsn}` first"
+        ) if hsn else ""
+        return cfg
+
+    sources = cfg.setdefault("_rate_sources", {})
+    for key in RATE_KEYS:
+        source_key = {"add_pct": "add", "safeguard_pct": "safeguard"}.get(key, key)
+        if sources.get(key, "unset") == "unset" and source_key in fetched:
+            cfg[key] = fetched[source_key]
+            sources[key] = stamp
+    return cfg
+
+
 def main(argv=None) -> int:
     args = parse_args(argv if argv is not None else sys.argv[1:])
-    result = Shipment(config_from_args(args)).compute()
+    cfg = apply_data_layer(config_from_args(args), args)
+    shipment = Shipment(cfg)
+    result = shipment.compute()
     if args.json:
         print(json.dumps(result, indent=2, default=str))
     else:
         print(render(result))
+
+    if args.strict:
+        unsourced = [
+            k for k in ("bcd", "igst")
+            if shipment.rate_sources.get(k, "unset") in ("unset", "command line", "config file")
+        ]
+        if unsourced:
+            print(
+                f"\nSTRICT: {', '.join(u.upper() for u in unsourced)} did not come from a "
+                "fetched source. Run fetch_rates.py tariff --hsn <code> before quoting this."
+            )
+            return 1
     return 0
 
 
