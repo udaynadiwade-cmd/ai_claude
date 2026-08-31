@@ -693,3 +693,25 @@ sourced). What isn't fine: reasserting a *conclusion* — a category ranking, a
 competitive read — without checking whether anything has changed since it was last
 verified. "I found this earlier in this conversation" is not the same claim as "I
 checked this just now," and the two should not be presented identically.
+
+## Standing daily job — Water Scout [ADDED 2026-08-31]
+
+A recurring routine (`trig_011vQhAiS9FnULhiKmKcBRzV`, fires 08:57 IST daily) searches
+for water-category products Befach can import and sell in India, and emails a brief to
+the founder. Spec lives in `research/daily-water-scout-spec.md`.
+
+**Standing rules that apply to any water-category product I evaluate, in that job or
+anywhere else:**
+
+- **RO point-of-use water purifiers are out.** BIS certification under IS 16240:2015 is
+  mandatory before import, distribution or sale, and Scheme-I takes 4–6 months with a
+  factory inspection. Never recommend one as a starting product.
+- **Any mains-powered water appliance must be checked against the 90+ electrical
+  appliance QCO enforced from 1 October 2026** before it is recommended. A battery or
+  low-voltage version of the same device usually avoids the problem — say so.
+- **Magnetic and electronic descalers may be sold as scale control, never as a softener
+  replacement.** The performance claims are disputed in the industry and overselling
+  them creates returns.
+- alibaba.com, amazon.in, amazon.com and dcal.co.in are blocked by this environment's
+  network policy. Use web search, never try to route around the proxy, and always label
+  search-derived prices as indicative pending supplier confirmation.
