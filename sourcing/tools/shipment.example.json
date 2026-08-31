@@ -1,0 +1,22 @@
+{
+  "description": "PVC insulated copper flexible cable, 2.5 sq mm",
+  "hsn": "8544.49.99",
+  "origin": "China",
+  "incoterm": "FOB",
+  "port": "Nhava Sheva (INNSA1)",
+  "currency": "USD",
+  "exchange_rate": 84.5,
+  "fob": 25000,
+  "freight": 1800,
+  "insurance": 95,
+  "bcd": 10,
+  "aidc": 0,
+  "sws": 10,
+  "sws_base": "bcd",
+  "igst": 18,
+  "add": 0,
+  "comp_cess": 0,
+  "local_charges": 45000,
+  "igst_creditable": true,
+  "quantity": 5000
+}
