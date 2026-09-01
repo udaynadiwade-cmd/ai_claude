@@ -118,15 +118,16 @@ a new category should have to answer "which founder has depth here?" first.
 | Function | People | Shared or dedicated |
 |---|---|---|
 | Co-founders | 2 | — |
-| Digital marketing | 2 — 1 manager (paid ads, AI automation) + 1 engineer intern (automation) | **Shared** |
+| Digital marketing | 4 — 1 manager (paid ads, AI automation) + 1 engineer intern (automation) + 2 creative | **Shared** |
 | Website / technology | 2 interns (strong on AI and web development) | **Shared** |
 | Accounts | 3 | **Shared** |
 | Warehouse & dispatch | 3 | **Shared** |
 | Sourcing & research | 1 | **Shared** |
 | Rice sales | 2 | Dedicated to line |
+| Rice business development | 1 | Dedicated to line |
 | D'Cal sales | 2 | Dedicated to line |
 | Import sales | 1 | Dedicated to line |
-| **Total** | **18** (16 excluding founders) | |
+| **Total** | **21** (19 excluding founders) | |
 
 Only the sales teams are dedicated to a line of business. Accounts, warehouse,
 tech and marketing are **shared resources across all three lines** — so any change
@@ -135,19 +136,19 @@ remembering before promising capacity.
 
 **No active hiring function currently.** — CONFIRMED
 
-### Contradictions to resolve — NEEDED
+### Contradictions — RESOLVED 2026-09-01
 
-Uday's brief contained two internally inconsistent figures. The detailed
-person-by-person breakdown is recorded above as current; these need confirming:
+Uday's original brief contained three internally inconsistent figures. All are
+now settled, and the table above reflects the resolved numbers:
 
-| Item | Figure A | Figure B (recorded above) |
-|---|---|---|
-| Sales headcount | "20–30 people total, 2 teams for Rice, 2 for D'Cal" | 5 total (2 rice, 2 D'Cal, 1 import) |
-| Digital marketing | "3 — 2 creative + 1 performance ads" | 2 — 1 manager + 1 automation intern |
-| Business development | "1 person" | Possibly the same as the 1 import sales person |
+| Item | Figure A | Figure B | Resolved |
+|---|---|---|---|
+| Sales headcount | "20–30 people total" | 5 (2 rice, 2 D'Cal, 1 import) | **5** — CONFIRMED 2026-09-01 |
+| Digital marketing | "3 — 2 creative + 1 performance ads" | 2 — 1 manager + 1 automation intern | **4** — manager + automation intern + 2 creative — CONFIRMED 2026-09-01 |
+| Business development | "1 person" | Possibly the same as import sales | **Separate person, on Rice** — CONFIRMED 2026-09-01 |
 
-Figure A may describe a past peak (the ~30-person team from the validation phase) or
-a target. **Do not use either figure in a JD or an external document until confirmed.**
+All three resolved. Commercial headcount: **6** — 2 rice sales + 1 rice BD +
+2 D'Cal sales + 1 import sales.
 
 ---
 
@@ -167,8 +168,20 @@ backend and fulfilment.
 ₹1,000 cr in 3–4 years is the number that should drive every prioritisation call, but
 it cannot be planned against without two facts that are not on record:
 
-- **Current annual revenue, by line** — `[NEEDED]`
-- **Whether ₹1,000 cr is GMV or net revenue** — `[NEEDED]`
+- **Current annual revenue** — **₹13.5 cr total** (Uday, 2026-09-01):
+
+| Line | Revenue p.a. | Share |
+|---|---|---|
+| Befach Rice | ₹7.5 cr | 56% |
+| D'Cal | ₹5.5 cr | 41% |
+| Imports | ~₹0.5 cr | 4% |
+| **Total** | **₹13.5 cr** | |
+
+The strategic bet is the smallest line. Imports is ~4% of revenue while carrying
+the mission, the vision and the ₹1,000 cr ambition; Rice and D'Cal fund it.
+Reaching ₹1,000 cr from ₹13.5 cr is roughly **74x in 3–4 years** — so the plan has
+to come from the imports line scaling, not from the two lines that pay the bills.
+- **Whether ₹1,000 cr is GMV or net revenue** — **not yet decided** (Uday, 2026-09-01). Until it is, the target cannot be converted into an order-volume or headcount plan. Settling this is a prerequisite for any roadmap that cites it.
 
 These matter more than they look: on a marketplace model, GMV and net revenue differ
 by an order of magnitude, and they imply completely different headcount, capital and

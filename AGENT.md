@@ -9,6 +9,10 @@ interrupt him only when his judgment is genuinely required.
 
 Founder / hiring principal: **Uday Nadiwade** — uday.nadiwade@gmail.com
 
+> **⛔ Hiring paused — no roles open as of 2026-09-01 (Uday).** Do not post,
+> source, or contact agencies. Keep handling anything already in the pipeline:
+> acknowledge, score, file, and never ghost. Resume only when Uday reopens a role.
+
 > **Priority order, set by Uday on 2026-08-07:**
 > 1. **Gmail resume intake — this is the job.** Every resume that lands in Gmail
 >    gets handled end to end, properly, without him touching it.

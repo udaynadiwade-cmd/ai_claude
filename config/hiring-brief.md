@@ -6,6 +6,12 @@ Company background — founders, philosophy, business lines, team structure,
 mission and ambition — lives in `config/business-context.md`. This file holds
 role parameters only.
 
+> **⛔ NO ROLES OPEN as of 2026-09-01 (Uday).** Both roles below are **parked**,
+> not cancelled — their parameters are kept so they can be reopened without
+> rebuilding them. Do not post, source, or chase agencies. Applications already
+> in the pipeline still get acknowledged and filed; nothing new is initiated.
+> The `NEEDED` values below are no longer blocking anything.
+
 `CONFIRMED` = you told me · `ASSUMED` = my inference, correct it · `NEEDED` = blocks posting
 
 ---
@@ -46,14 +52,14 @@ Communication 30. Years of experience is not scored.
 
 | Level | Fixed / month | Notes |
 |---|---|---|
-| Sales Executive — D'Cal (0–2 yrs) | ₹20,000, negotiable up to ₹25,000 for an exceptional candidate | + incentives, **currently open** |
+| Sales Executive — D'Cal (0–2 yrs) | ₹20,000, negotiable up to ₹25,000 for an exceptional candidate | + incentives, **parked 2026-09-01** |
 
 **Incentive structure: `[NEEDED]`.** At a ₹20–25k fixed, the incentive is not
 a sweetener — it is a large part of the offer. Candidates will ask.
 
 ---
 
-## Role 1 — Sales Executive, D'Cal Hard Water Softener (open)
+## Role 1 — Sales Executive, D'Cal Hard Water Softener — PARKED 2026-09-01
 
 | Field | Value | Status |
 |---|---|---|
@@ -69,7 +75,7 @@ a sweetener — it is a large part of the offer. Candidates will ask.
 | Two-wheeler required | No | CONFIRMED |
 | WorkIndia account | Was run by Rajesh Saraf; migration to uday.nadiwade@gmail.com in progress — not yet confirmed done | PARTIAL |
 
-## Role 2 — Digital Marketing Executive
+## Role 2 — Digital Marketing Executive — PARKED 2026-09-01
 
 | Field | Value | Status |
 |---|---|---|
@@ -78,4 +84,4 @@ a sweetener — it is a large part of the offer. Candidates will ask.
 | Ad budget owned | `[NEEDED]` | NEEDED |
 | Location | Hyderabad, on-site | CONFIRMED |
 
-> Is this role still open, or is the Sales Executive the only live one right now?
+Closed 2026-09-01: Uday confirmed no roles are open. Parameters retained for reopening.
