@@ -992,3 +992,77 @@ there is no hiring function.
 A plan is complete only when it names the seat. "Sales will do outreach" is not a plan
 when sales for imports is one person. "We'll build it" is not a plan when building
 means the two web interns who are also maintaining two legacy product sites.
+
+### Revenue today `[ADDED 2026-08-31, founder]`
+
+| Line of business | Revenue p.a. | Share | Sales headcount | Revenue per salesperson |
+|---|---|---|---|---|
+| **Befach Rice** | **₹7.5 Cr** | **56%** | 2 | ₹3.75 Cr |
+| **D'Cal** | **₹5.5 Cr** | **41%** | 2 | ₹2.75 Cr |
+| **Imports** | **~₹0.5 Cr** | **~4%** | 1 | ₹0.5 Cr |
+| **Total** | **₹13.5 Cr** | | 5 | |
+
+Revenue per employee across all ~18 people: **~₹75 lakh.** `ESTIMATE` — my arithmetic.
+
+---
+
+#### Four things this changes
+
+**1. The business being pivoted INTO is 4% of revenue. The two lines being pivoted
+AWAY from are 96%, and they pay for everything.**
+
+This is the central tension in the whole file and it must be respected in every plan.
+Rice and D'Cal are not legacy baggage — **they are the funding source, the cash flow,
+and four of the five salespeople.** Any recommendation that quietly assumes attention
+moves to imports is proposing to starve the thing paying the bills.
+
+**State the trade explicitly in any plan: what happens to rice and D'Cal while imports
+is being built.** Do not leave it unsaid.
+
+**2. The ₹1,000 crore target needs stating honestly, every time it comes up.**
+
+From ₹13.5 Cr to ₹1,000 Cr is **74x**.
+- Over **4 years**: **~193% CAGR** — roughly **tripling every year, four years running**
+- Over **3 years**: **~320% CAGR**
+
+`ESTIMATE` — my arithmetic on the founder's own figures.
+
+A 3x-every-year path looks like: **₹13.5 Cr → ₹40 Cr → ₹120 Cr → ₹365 Cr → ₹1,000 Cr.**
+
+**Do not soften this and do not repeat the target back as if it is a plan.** Very few
+Indian companies have done it without heavy external capital. It is achievable in
+**GMV** terms for a marketplace; it is a different proposition entirely in **net
+revenue** terms. Which one is meant changes every model in this file — see the open
+question below.
+
+**3. Imports at ₹0.5 Cr a year cannot be scaled to ₹1,000 Cr as a margin business.**
+
+That would be 2,000x. As **marketplace GMV**, ₹1,000 Cr is a reachable number for a
+catalogue business — Indian B2B marketplaces cross it routinely. As **net revenue at a
+6–7% distribution margin**, ₹1,000 Cr implies roughly ₹15,000 Cr of GMV, which is not
+happening in four years from this base.
+
+**So the target itself argues for a model where Befach captures more than a
+distribution margin** — owning the product, owning the credit, or charging a real
+platform take rate. That is the same conclusion this research series reached
+independently from margin arithmetic, and the revenue target now confirms it from a
+second direction.
+
+**4. Reconcile against the earlier import figure.**
+
+Earlier in this file: the import pilot produced **~₹2 crore** revenue over two years.
+Now: imports run at **~₹0.5 crore a year.** Those are consistent if the ₹2 Cr was
+cumulative across the pilot and the run rate has since settled lower — but it may also
+mean **imports shrank after the pilot.** Worth confirming with the founder, because
+"stalled at ₹50 lakh" and "declined from ₹1 Cr" are different diagnoses.
+
+---
+
+#### Open question to settle — it is load-bearing
+
+> **Is ₹1,000 crore GMV or net revenue?**
+
+Every business-model recommendation in this file bends differently depending on the
+answer. **GMV** points at a marketplace with a modest take rate and huge throughput.
+**Net revenue** rules out pure distribution entirely and forces private label, credit,
+or a high take rate. Ask before building any sizing model on the target.
