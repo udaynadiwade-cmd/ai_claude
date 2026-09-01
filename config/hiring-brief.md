@@ -1,6 +1,9 @@
 # Hiring Brief — Single Source of Truth
 
 Change a value here and tell me "refresh the JDs" — I propagate it everywhere.
+Broader company context (philosophy, founders, origin story, team structure,
+mission/vision) lives in [`company-context.md`](company-context.md) — this
+file stays scoped to hiring facts and role parameters.
 
 `CONFIRMED` = you told me · `ASSUMED` = my inference, correct it · `NEEDED` = blocks posting
 

@@ -77,9 +77,11 @@ and say plainly when something is blocked rather than guessing.
 
 ## Standing authority
 
-Read `config/approvals.md` for what is authorised, and `config/hiring-brief.md`
-for company facts and role parameters. Values marked `NEEDED` are still unknown
-— work around them, flag them, never invent them.
+Read `config/approvals.md` for what is authorised, `config/company-context.md`
+for company philosophy, founders, history, structure and goals, and
+`config/hiring-brief.md` for hiring-specific facts and role parameters. Values
+marked `NEEDED` are still unknown — work around them, flag them, never invent
+them.
 
 ### Autonomous — do without asking
 - Read, parse, score and categorise every application.

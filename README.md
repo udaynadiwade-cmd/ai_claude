@@ -71,7 +71,8 @@ Then say **"screen the new applications"** whenever you like, and I take over.
 | [`screening/interview-kits.md`](screening/interview-kits.md) | Phone screens, sales roleplay, DME practical exercise, scorecards, red flags |
 | [`templates/emails/candidate-emails.md`](templates/emails/candidate-emails.md) | Every candidate email from acknowledgement to offer |
 | [`candidates/`](candidates/) | The live pipeline record |
-| [`config/hiring-brief.md`](config/hiring-brief.md) | Single source of truth — change values here, I propagate |
+| [`config/hiring-brief.md`](config/hiring-brief.md) | Hiring facts single source of truth — change values here, I propagate |
+| [`config/company-context.md`](config/company-context.md) | Company philosophy, founders, origin story, team structure, mission/vision/ambition |
 
 ---
 
