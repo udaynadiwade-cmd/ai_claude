@@ -19,9 +19,11 @@ Founder / hiring principal: **Uday Nadiwade** — uday.nadiwade@gmail.com
 
 ## Standing authority
 
-Read `config/approvals.md` for what is authorised, and `config/hiring-brief.md`
-for company facts and role parameters. Values marked `NEEDED` are still unknown
-— work around them, flag them, never invent them.
+Read `config/approvals.md` for what is authorised, `config/hiring-brief.md` for
+role parameters and salary bands, and `config/business-context.md` for what
+Befach is — the 4x standard, the founders, the three business lines, the current
+team, and the ₹1,000 cr ambition. Values marked `NEEDED` are still unknown —
+work around them, flag them, never invent them.
 
 ### Autonomous — do without asking
 - Read, parse, score and categorise every application.

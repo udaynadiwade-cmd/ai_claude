@@ -2,6 +2,10 @@
 
 Change a value here and tell me "refresh the JDs" — I propagate it everywhere.
 
+Company background — founders, philosophy, business lines, team structure,
+mission and ambition — lives in `config/business-context.md`. This file holds
+role parameters only.
+
 `CONFIRMED` = you told me · `ASSUMED` = my inference, correct it · `NEEDED` = blocks posting
 
 ---
@@ -14,7 +18,9 @@ Change a value here and tell me "refresh the JDs" — I propagate it everywhere.
 | Business | **B2B e-commerce** (parent) — global sourcing, imports, international logistics. **D'Cal is a separate B2C product line: a physical hard-water softener sold direct to consumers.** | CONFIRMED |
 | Stage | Startup | CONFIRMED |
 | Base | **Hyderabad** — office at **Banjara Hills** | CONFIRMED 2026-08-11 |
-| Website | `dcal.co.in` (D'Cal product) | CONFIRMED |
+| Website | `befach.com` (imports catalog, live) · `dcal.co.in` (D'Cal product) | CONFIRMED 2026-09-01 |
+| Founders | **Uday Nadiwade** and **Rajesh Saraf** — see `config/business-context.md` | CONFIRMED 2026-09-01 |
+| Hiring function | **None active** as of 2026-09-01 | CONFIRMED 2026-09-01 |
 | Careers email | `uday.nadiwade@gmail.com` | CONFIRMED |
 | Office street address | `[NEEDED]` — plot/door no., road, PIN for Banjara Hills, to complete WorkIndia listing | NEEDED |
 
