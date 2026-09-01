@@ -853,3 +853,61 @@ matters directly for the Water Scout job: **building the water line further mean
 building on a product the founder considers weak, with recurring customer issues.**
 Any water-category recommendation should say whether it fixes that problem or inherits
 it. Product quality is not a detail to skip past here.
+
+### Team reality — the real execution constraint `[ADDED 2026-08-31, founder correction]`
+
+Supersedes the headcount lines in the section above. The founder corrected the picture
+immediately after giving it, and the corrected version is much tighter.
+
+**Imports — the business we are actually building:**
+
+| Function | People |
+|---|---|
+| **Sales (imports)** | **1** |
+| Automation | 1 |
+| Website development | 2 |
+| Accounts | 2–3 |
+| Warehouse | 3 |
+
+**Everyone is a shared resource except the sales people.** Automation, web, accounts
+and warehouse are split across D'Cal, Befach Rice and imports — they are not dedicated
+capacity for the import business.
+
+**Average age across the team is about 25.**
+**The only experienced people in the company are the two founders.**
+
+---
+
+#### What this changes — apply it to every recommendation
+
+**1. The import business has one salesperson. Plan around that number, not around
+"the team".**
+Any GTM that needs a field force, multi-city coverage, or parallel cluster outreach is
+not executable today. A plan requiring five people to run it is a hiring plan wearing a
+GTM plan's clothes — say that plainly instead of presenting it as a go-to-market.
+**The realistic selling capacity is: two founders plus one salesperson.**
+
+**2. Shared resources means every plan competes with D'Cal and Rice for the same
+hands.** When a recommendation needs web development, automation or warehouse work,
+name what it displaces. "We'll build X" is not free — it takes the same two developers
+who are also running the legacy product sites.
+
+**3. Average age 25, experience concentrated in two people.** This is the sharpest
+constraint in the whole file and it cuts two ways:
+
+- **Against complexity.** Any model needing seasoned judgement at the edges — credit
+  underwriting, customs dispute handling, supplier negotiation on large orders, quality
+  arbitration — has exactly two people who can do it. That does not scale by adding
+  young hires. **Favour models where the hard judgement is encoded in a process or a
+  system once, then executed by a 25-year-old reliably.** This is precisely what a
+  Master Black Belt is trained to build, and it is the highest-leverage use of that
+  strength in this company.
+- **For AI leverage.** A young, AI-savvy team is the reason the catalogue problem got
+  solved in the last 6–8 months after stalling for two years. **A 4x productivity claim
+  is credible here in a way it would not be with a older, process-bound team.** Weight
+  AI-heavy execution paths up, not down.
+
+**4. Do not recommend anything whose first step is "hire a team".** There is no active
+hiring function. The first ninety days of any plan must be executable by the people
+listed above. If the plan only works at headcount the company does not have, say so as
+the first line of the recommendation, not as a footnote.
