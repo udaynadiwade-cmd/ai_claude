@@ -97,6 +97,19 @@ Accounts, warehouse, tech, and the marketing person are shared resources
 across the business; the sales teams are dedicated to their own line of
 business (Rice, D'Cal, import).
 
+## Revenue (current)
+
+| Line of business | Annual revenue | Share |
+|---|---|---|
+| D'Cal | ₹5.5 Cr | ~41% |
+| Rice | ₹7.5 Cr | ~56% |
+| Imports | ~₹50 lakh | ~4% |
+| **Total** | **₹13.5 Cr** | 100% |
+
+Against the ₹1,000 Cr / 3–4 year ambition below, current revenue is Rice- and
+D'Cal-led; imports — the strategic focus per the origin story — is still the
+smallest line by revenue today.
+
 ## Forward mission/vision/goals
 
 - **Mission:** simplify international trade for India, starting with imports
