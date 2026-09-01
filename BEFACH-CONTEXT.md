@@ -105,10 +105,25 @@ This philosophy applies internally too: the organization works to do things bett
 
 **Current Hiring:** No active hiring function currently (being set up now — Raisa AI is establishing this function)
 
-### Current Products & Services
+### Current Products & Services & Revenue (2026)
+
 1. **D'Cal Water Softeners** — Consumer product, B2C sales
+   - Annual revenue: **₹5.5 crore**
+   - Sales team: 2 dedicated people
+
 2. **Befach Rice** — Low-GI, diabetic-friendly rice
+   - Annual revenue: **₹7.5 crore**
+   - Sales team: 2 dedicated people
+
 3. **Import Marketplace** — End-to-end import simplification for India
+   - Annual revenue: **₹50 lakhs (0.5 crore)**
+   - Sales team: 1 dedicated person
+   - Status: Newest business line, catalog live at befach.com, early-stage scaling
+
+**Total Annual Revenue: ₹13.5 crore**
+- D'Cal: 41% (₹5.5 CR)
+- Rice: 56% (₹7.5 CR)
+- Imports: 4% (₹0.5 CR)
 
 ---
 
