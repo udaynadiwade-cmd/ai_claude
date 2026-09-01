@@ -715,3 +715,141 @@ anywhere else:**
 - alibaba.com, amazon.in, amazon.com and dcal.co.in are blocked by this environment's
   network policy. Use web search, never try to route around the proxy, and always label
   search-derived prices as indicative pending supplier confirmation.
+
+## Full business context — founder-supplied `[ADDED 2026-08-31]`
+
+Given by the founder as a complete file. **This is the authoritative business context.**
+Where it conflicts with earlier entries above, this wins — the conflicts are listed
+explicitly at the end of this section rather than silently overwritten.
+
+### Company philosophy and name
+
+**Befach = Better, Faster, Cheaper. The 4X = every product or offering should be
+roughly four times better, faster and cheaper than what the market already has.**
+
+"Four" is deliberate. The gap must be big enough that **customers come to Befach rather
+than Befach chasing customers.**
+
+It applies internally too: work better, faster and cheaper in the office, and always
+reach for tools and methods that lift productivity or customer satisfaction 4x.
+
+> **Use this as a screening test, not a slogan.** For any product, category or model
+> recommended from here on, ask plainly: *is this 4x better, faster or cheaper than
+> what the buyer does today?* If the honest answer is "about the same, slightly
+> cheaper," say so — that is a fail against the founder's own bar, not a marginal pass.
+> A 6–7% distribution margin on a me-too catalogue is exactly the thing this test is
+> designed to reject.
+
+### Founders
+
+- **Uday Nadiwade** and **Rajesh Saraf** — **family friends, second generation.** The
+  personal relationship predates the business partnership.
+- **Rajesh's core expertise: sales and distribution.**
+- **Uday: Six Sigma Master Black Belt, describes himself as highly data-driven.**
+- LinkedIn profiles supplied by the founder (blocked by this environment's proxy):
+  `linkedin.com/in/udaynadiwade` and `linkedin.com/in/rajesh-saraf-48ab461b`
+
+**How Uday works — inculcate this in every deliverable:**
+- **Always sequences work by first, second, third priority. Never randomly.** He wants
+  this principle spread across the whole organisation.
+- So: **rank everything.** A list of options without a priority order is a failed
+  deliverable, not a neutral one. This reinforces the standing "give the
+  recommendation, not a survey" rule — now it is an explicit organisational value.
+
+**Hiring philosophy:** high **attitude** (good disposition to work, solution mindset)
+and high **aptitude** (capability, and willingness to build it through training).
+
+### Origin story — read this before recommending anything
+
+**D'Cal water softener (2018)** — started with **no capital and no clear plan**, came
+out of home experimentation. Got traction on Amazon, then through
+distributors/dealers/offline sales nationally.
+**The founder's own verdict: not a strong-quality product, recurring customer issues,
+and it could not be built into a proper brand because there was no R&D background or
+investment.**
+
+**Befach Rice (low-GI, diabetic-friendly, ~2020)** — added the same way, with no
+structured business-building process. Could not be expanded into a full brand for lack
+of food-industry background and focus.
+
+**By 2023**, reserves from D'Cal and Befach Rice funded a deliberate move into **import
+simplification for India** — matching Uday's supply chain, sourcing and logistics
+background (China, Indonesia, Malaysia) from prior corporate roles.
+**Both founders prefer sourcing, procurement, distribution and marketing over
+manufacturing and R&D.**
+
+**How the import business was validated:** a **Meta ad, with no website at all**,
+offering end-to-end import services.
+
+**What it produced — and this is the number that matters:**
+- **~100 clients**
+- **Mostly one-off sample orders**
+- **Exactly one client repeated 5–6 times**
+- Real expertise built in customs, logistics and China sourcing
+- Team scaled to ~30 across tech, sourcing, research and marketing
+
+**2023–2025: growth stalled.** No proper website, inconsistent process, could not build
+an Alibaba-style catalogue.
+
+**Last 6–8 months — the thing that changed:** AI tooling made catalogue-building far
+easier.
+- **API access to Alibaba and 1688.com**, and the ability to pull from other
+  sourcing/dropshipping platforms
+- **Landed price calculated systematically** — China base price + customs duty +
+  shipping + margin
+- **Catalogue live at befach.com**
+- Part of the tech team replaced with more AI-savvy hires
+
+### Current state
+
+- **Based in Banjara Hills, Hyderabad**
+- **Sales: 20–30 people** — two sales teams for Befach Rice, two for D'Cal
+- **Digital marketing: 3** — 2 creative, 1 running performance ads
+- **Business development: 1**
+- **No active hiring function**
+
+### Mission, vision, ambition
+
+- **Mission:** simplify international trade for India, starting with imports — easy for
+  **enterprises and B2C buyers** to import
+- **Vision:** a marketplace where suppliers keep adding products (manually or via API)
+  and buyers transact end-to-end through Befach
+- **Ambition: a ₹1,000 crore company within 3–4 years**
+
+---
+
+### Where this corrects earlier entries in this file
+
+**1. The ~100 import clients were almost all one-off sample orders.** Earlier this file
+recorded "~100 B2B import clients, ~₹2 crore revenue" and read it as evidence that B2B
+import customer acquisition works. **That reading was too generous.** One client
+repeating 5–6 times out of ~100 is a repeat rate near zero. Since repeat rate is the
+standing first question in this spec, this is the single most important correction
+here. **Treat the 100 as proof that a Meta ad can generate import enquiries cheaply —
+not as proof of a working customer base.** The warm-list value for GTM survives; the
+"acquisition works" claim does not.
+
+**2. B2C is in scope.** Earlier this file said "B2B only, sells to registered
+businesses." The founder's stated mission now covers **enterprises and B2C buyers.**
+Do not screen B2C models out automatically. Flag the practical consequence when it
+matters — a B2C import parcel makes the end consumer the importer of record, which
+carries the duty-at-the-door and input-tax-credit problems documented in
+`research/2026-08-cjdropshipping-india-check.md`.
+
+**3. The ambition has a number now: ₹1,000 crore in 3–4 years.** Earlier this file said
+"big revenue and IPO, 7–9 year sector clock." **Use the specific target.** It is a hard
+filter: any category or model whose realistic ceiling cannot reach ₹1,000 Cr of revenue
+in 3–4 years should be named as failing the stated ambition, even if it is a good
+business. Say that plainly rather than recommending it and staying quiet about the gap.
+
+**4. Current team is leaner than "~30".** The ~30 figure was the import-era peak.
+**Today: 20–30 in sales, 3 in digital marketing, 1 in business development, no hiring
+function.** Note that the sales headcount is attached to **Befach Rice and D'Cal**, not
+to the import business — so any GTM that assumes a ready import sales force is wrong.
+The people exist, but they are selling the two legacy products.
+
+**5. D'Cal's product quality is a known weakness, in the founder's own words.** This
+matters directly for the Water Scout job: **building the water line further means
+building on a product the founder considers weak, with recurring customer issues.**
+Any water-category recommendation should say whether it fixes that problem or inherits
+it. Product quality is not a detail to skip past here.
