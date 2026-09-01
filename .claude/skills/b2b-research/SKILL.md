@@ -1066,3 +1066,80 @@ Every business-model recommendation in this file bends differently depending on 
 answer. **GMV** points at a marketplace with a modest take rate and huge throughput.
 **Net revenue** rules out pure distribution entirely and forces private label, credit,
 or a high take rate. Ask before building any sizing model on the target.
+
+#### ANSWERED: ₹1,000 Cr is REVENUE, not GMV `[ADDED 2026-08-31, founder]`
+
+Founder's answer: *"right now it is expected to be our revenue. We may change to GMV at
+a later date."*
+
+**This single answer settles the business model. Treat it as one of the hardest
+constraints in this file.**
+
+---
+
+##### It kills the marketplace/commission model outright
+
+If Befach is an **agent** — a marketplace taking a commission — only the commission is
+revenue. ₹1,000 Cr of commission at a 6–7% take rate needs **₹15,000 Cr of GMV** flowing
+through the platform in four years. `ESTIMATE` — my arithmetic.
+
+**That is not happening.** IndiaMART, a 25-year-old listed company with 41 million
+buyers, books ₹1,569 Cr of revenue. Planning to out-earn them in four years from ₹13.5
+Cr is not a plan.
+
+**So: a pure commission marketplace cannot reach the stated goal. Stop proposing one.**
+
+##### It makes the reseller model not just viable but necessary
+
+If Befach is a **principal** — buys from the Chinese supplier, sells to the Indian buyer,
+two separate transactions — then **the full invoice value is Befach's revenue**, not
+just the margin.
+
+**₹1,000 Cr of revenue then means ₹1,000 Cr of goods sold.** At a 16–18% gross margin
+that is **₹160–180 Cr of gross profit.** `ESTIMATE`
+
+**This is a completely different, and far more reachable, proposition than ₹1,000 Cr of
+commission.**
+
+##### The structure this forces — and it is already the one chosen
+
+Principal, not agent. Buy and resell. Never a commission marketplace.
+
+**That is exactly the structure already designed in
+`research/2026-08-building-the-guarantee.md` Phase 1** — *"become the seller, not the
+middleman… we buy from the Chinese supplier, we sell to the Indian buyer, two separate
+transactions."* It was chosen there to avoid needing an RBI payment aggregator licence.
+**The revenue target now independently demands the same structure.** Two separate lines
+of reasoning arriving at the same answer is the strongest signal in this file.
+
+**And it stays compatible with the asset-light constraint.** Being principal means
+taking title, not holding stock. Buy against a confirmed order, ship supplier-direct,
+never warehouse. Title passes through Befach; inventory does not sit with Befach.
+
+---
+
+##### The real binding constraint is working capital, not sales
+
+This is the thing to raise early and repeatedly, because it is where this plan actually
+breaks.
+
+Being principal means **Befach's own money sits in every transaction.** At ₹1,000 Cr of
+annual revenue: `ESTIMATE` — my arithmetic, confirm against real terms
+
+| | |
+|---|---|
+| Receivables at 45-day buyer terms | **~₹125 Cr** |
+| China-side deposits plus 30–40 days transit | **~₹80–100 Cr** |
+| **Working capital required, roughly** | **₹150–200 Cr** |
+
+**A ₹13.5 Cr company cannot fund ₹150–200 Cr of working capital from cash flow.** That
+gap is filled by debt, by equity, by supplier credit, or by not growing that fast.
+
+**So every plan aiming at this target must answer the funding question, not just the
+sales question.** A go-to-market that wins ₹1,000 Cr of orders and cannot fund them has
+not succeeded. Name the working capital requirement in any plan targeting scale — do not
+present a revenue path as if orders were the only constraint.
+
+This also explains why the founder's earlier relaxation on credit-adjacent models
+matters more than it first appeared: **at this target, credit is not an optional
+add-on revenue stream. It is the thing that makes the revenue possible at all.**
