@@ -74,13 +74,36 @@ This philosophy applies internally too: the organization works to do things bett
 ### Location
 - Based in **Banjara Hills, Hyderabad**
 
-### Team Structure
-- **Sales:** 20–30 people total
-  - 2 sales teams for Befach Rice
-  - 2 sales teams for D'Cal
-- **Digital Marketing:** 3 people (2 in creative + 1 running performance ads)
-- **Business Development:** 1 person
-- **Current hiring:** No active hiring function currently (being set up now)
+### Team Structure (2026)
+
+**Leadership & Ownership:**
+- 2 co-founders (Uday Nadiwade, Rajesh Saraf)
+
+**Dedicated Teams (Line-of-Business Specific):**
+- **Rice Sales:** 2 people (dedicated to Befach Rice)
+- **D'Cal Sales:** 2 people (dedicated to D'Cal water softeners)
+- **Import Sales:** 1 person (dedicated to import marketplace)
+
+**Shared Resource Teams (Support all business lines):**
+- **Digital Marketing & AI Automation:** 2 people total
+  - 1 Digital Marketing Manager (primary: paid ads, AI automation, fairly good understanding)
+  - 1 Engineer/Automation specialist (intern, works primarily on automation)
+- **Website & Technology:** 2 people (both interns, fairly good in AI and website development)
+- **Accounts/Finance:** 3 people (shared resource, support all lines)
+- **Warehouse & Dispatch:** 3 people (shared resource, handle logistics/fulfillment)
+- **Sourcing & Research:** 1 person (shared resource, primary focus on vendor research and supply chain)
+
+**Total Team Size:** ~19 people
+- 2 co-founders
+- 5 dedicated sales staff
+- 2 marketing/automation
+- 2 technology/development
+- 3 accounts
+- 3 warehouse/dispatch
+- 1 sourcing/research
+- 1 other/unspecified
+
+**Current Hiring:** No active hiring function currently (being set up now — Raisa AI is establishing this function)
 
 ### Current Products & Services
 1. **D'Cal Water Softeners** — Consumer product, B2C sales
