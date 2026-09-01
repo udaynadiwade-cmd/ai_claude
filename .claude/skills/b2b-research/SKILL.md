@@ -1143,3 +1143,101 @@ present a revenue path as if orders were the only constraint.
 This also explains why the founder's earlier relaxation on credit-adjacent models
 matters more than it first appeared: **at this target, credit is not an optional
 add-on revenue stream. It is the thing that makes the revenue possible at all.**
+
+### Funding position `[ADDED 2026-08-31, founder]`
+
+| Source | Amount | Status |
+|---|---|---|
+| Friends and family — 5 people × ₹5 lakh | **₹25 lakh** | **In hand** |
+| Private investor, Bangalore | **₹50 lakh** | **In hand** |
+| **GAIL (India) startup fund** | **₹1.5 crore** | **In process — not received** |
+| **Total if GAIL closes** | **₹2.25 crore** | |
+| **Total actually in hand today** | **₹75 lakh** | |
+
+Founder's stated approach: **"We will raise funds as we grow."**
+
+---
+
+#### What this money actually buys — do the arithmetic, don't hand-wave it
+
+In a principal/reseller model, capital converts to revenue through the **cash cycle**:
+pay the China deposit, pay the balance at shipping, wait 25–35 days transit, clear
+customs, deliver, then wait for the buyer to pay.
+
+**Assume a ~90-day cash cycle. Working capital turns roughly 4 times a year.**
+`ESTIMATE` — my arithmetic; measure the real cycle on the next 20 orders and replace
+this number.
+
+| Working capital deployed | Annual import revenue it supports |
+|---|---|
+| ₹75 lakh (in hand today) | **~₹3 Cr** |
+| ₹2.25 Cr (if GAIL closes) | **~₹9 Cr** |
+
+**That is the honest ceiling on the import line until the next raise.** Not a
+limitation to apologise for — going from ₹0.5 Cr to ₹5–9 Cr on the import line is
+**10–18x**, and it is fundable with money already raised or in process.
+
+**But it is nowhere near ₹1,000 Cr.** ₹2.25 Cr against a ₹150–200 Cr working capital
+requirement is **roughly 1%.** The gap is closed by serial raising, by supplier credit,
+by buyer advances, or by a slower path. **Say which one, in any plan targeting scale.**
+
+##### Two levers that stretch the same capital — prefer these over raising
+
+1. **Buyer advances.** Every rupee taken upfront from the Indian buyer is a rupee not
+   borrowed. The founder's own pilot ran on sample orders, which are naturally
+   prepaid. **Advance or part-advance terms are worth more to this business than a
+   better China price.**
+2. **Supplier credit.** Any China-side terms beyond deposit-and-balance directly
+   shorten the cash cycle. A 30-day supplier term on a 90-day cycle is a **33%
+   improvement in capital turns** — the same as raising 33% more money, for free.
+
+**Both belong in any GTM or negotiation plan. Neither requires an investor.**
+
+---
+
+#### On the GAIL round specifically
+
+**GAIL's startup initiative is 'Pankh'**, launched July 2017, with a corpus reported at
+**₹500 crore.** `FACT`
+
+Terms that matter here:
+- **It is equity, not grant or debt.** `FACT`
+- **GAIL's stake is capped at 20% of total equity.** `FACT`
+- **The startup must be DPIIT-registered**, incorporated within the last 10 years as a
+  private limited company, partnership or LLP. `FACT`
+- **E-commerce is an explicitly listed focus area**, alongside natural gas,
+  petrochemicals, energy, project management, fintech, IoT and data mining. `FACT`
+  **So Befach qualifies on sector — this is not a stretch application.**
+
+**The point to raise with the founder before signing:**
+
+**₹1.5 crore for 20% implies a post-money valuation of ₹7.5 crore.** `ESTIMATE` — my
+arithmetic on the 20% cap; the actual stake may be smaller and the founder should
+confirm what is on the table.
+
+**Befach's revenue is ₹13.5 crore.** A ₹7.5 crore valuation is **roughly half of one
+year's revenue.** For a trading business with real cash flow, three product lines and
+an operating catalogue, that is cheap. **Push for a materially smaller stake at the
+same cheque size.** The 20% figure is a ceiling in GAIL's rules, not a required
+allocation.
+
+This matters beyond the money: **equity given away at ₹7.5 Cr is equity not available
+for the much larger raises this plan needs later**, when the working capital gap is
+₹150–200 Cr rather than ₹1.5 Cr.
+
+---
+
+#### The rule this produces
+
+> **Every plan must state what it costs in working capital, and where that capital
+> comes from.**
+
+A recommendation is not complete at "here is the category and here is the GTM." It is
+complete at **"here is the category, here is who sells it, here is the cash it ties up,
+and here is whether we can fund it today."** With ₹75 lakh in hand, a plan requiring
+₹5 crore of working capital is not a plan — it is a fundraising deck.
+
+##### Sources
+- [GAIL 'Pankh' startup initiative — focus areas including e-commerce](https://www.business-standard.com/article/news-cm/gail-to-fund-start-ups-in-focus-areas-though-its-pankh-initiative-121040500389_1.html)
+- [GAIL startup funding — 20% equity cap, DPIIT requirement](https://gailebank.gail.co.in/GSUICBG/frmStartUpGAIL.aspx)
+- [GAIL invites equity investment proposals from startups](https://www.indianchemicalnews.com/start-ups/gail-invites-fresh-round-of-proposals-for-equity-investment-in-startups-25704)
