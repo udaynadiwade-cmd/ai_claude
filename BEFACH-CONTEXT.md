@@ -127,6 +127,18 @@ This philosophy applies internally too: the organization works to do things bett
 
 ---
 
+## Funding
+
+### Funding Raised to Date
+- **Friends & Family:** ₹25 lakhs (₹5 lakhs each from 5 friends/family members)
+- **Private Investor (Bangalore):** ₹50 lakhs
+- **GAIL India Startup Fund:** ₹1.5 crore (in process/under approval)
+
+**Total Committed Funding:** ₹2.25 crore (₹1.5 CR pending approval)
+**Funding Strategy:** Raise funds as company grows; no fixed fundraising schedule
+
+---
+
 ## Forward Mission, Vision, Goals
 
 ### Mission
@@ -137,6 +149,11 @@ A marketplace where suppliers keep adding products (manually or via API) and buy
 
 ### Ambition
 Build a **₹1,000 crore company within 3–4 years**.
+
+### Growth Trajectory
+- Current revenue: ₹13.5 CR (annualized)
+- Target: ₹1,000 CR in 3–4 years
+- Funding strategy: Bootstrap from revenue + strategic fundraising from aligned investors (GAIL, F&F, private investors)
 
 ---
 
