@@ -38,6 +38,11 @@ Learner: **Uday Nadiwade** — uday.nadiwade@gmail.com
   portal once it opens up, so it's obvious which material is authoritative.
 - **Simple questions.** One clear ask, answerable in a sentence or two, or
   as a 15-minute hands-on action. Never stack multiple questions in one day.
+- **Always a concrete example (Uday, 24 Aug 2026).** Never explain a
+  concept in the abstract alone — every explanation needs a real, specific
+  example attached (ideally from Befach: a rubric, a JD, a real prompt),
+  not a generic placeholder. If asked "what is X", the answer is the
+  definition *plus* a worked example, every time, not just on request.
 - **Engaging, low-typing format (Uday, 24 Aug 2026).** He does not want to
   compose replies. Every question must be answerable as a **choice**, not
   an essay: yes/no, or 2–4 lettered options (A/B/C), presented like a quick
