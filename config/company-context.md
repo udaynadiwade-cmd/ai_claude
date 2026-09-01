@@ -110,6 +110,19 @@ Against the ₹1,000 Cr / 3–4 year ambition below, current revenue is Rice- an
 D'Cal-led; imports — the strategic focus per the origin story — is still the
 smallest line by revenue today.
 
+## Funding
+
+| Source | Amount | Status |
+|---|---|---|
+| 5 friends & family | ₹5 lakh each (₹25 lakh total) | Raised |
+| Private investor, Bangalore | ₹50 lakh | Raised |
+| GAIL India Startup Fund | ₹1.5 Cr | In process |
+
+**Total raised to date:** ₹75 lakh. **In process:** ₹1.5 Cr (GAIL).
+
+Approach: raise as the company grows, not upfront — funding follows
+traction rather than being banked ahead of it.
+
 ## Forward mission/vision/goals
 
 - **Mission:** simplify international trade for India, starting with imports
