@@ -911,3 +911,84 @@ constraint in the whole file and it cuts two ways:
 hiring function. The first ninety days of any plan must be executable by the people
 listed above. If the plan only works at headcount the company does not have, say so as
 the first line of the recommendation, not as a footnote.
+
+### Definitive org chart `[ADDED 2026-08-31, founder — supersedes both headcount lists above]`
+
+This is the accurate structure. Use these numbers, not the two earlier versions.
+
+| Function | People | Notes |
+|---|---|---|
+| **Co-founders** | **2** | The only experienced people in the company |
+| Digital marketing manager | 1 | Runs paid ads, good grasp of **AI automation** |
+| Automation engineer | 1 | **Intern.** Supports the marketing manager |
+| Website and technology | 2 | **Both interns.** Strong on AI and web development |
+| Accounts | 3 | |
+| **Rice sales** | 2 | Dedicated |
+| **D'Cal sales** | 2 | Dedicated |
+| **Import sales** | **1** | Dedicated |
+| Warehouse and dispatch | 3 | |
+| Sourcing and research | 1 | |
+| **Total** | **~18** | |
+
+**Shared across all three lines of business:** accounts, warehouse, tech, and the
+marketing manager.
+**Dedicated to one line:** the sales people only — 2 rice, 2 D'Cal, 1 imports.
+
+---
+
+#### The three facts that should drive every recommendation
+
+**1. The entire technology capability is three interns.**
+One automation engineer and two web developers, all interns, all reported as strong on
+AI. **They built the thing that unstuck the company** — the catalogue that two years of
+conventional effort could not produce. So this is not a weak team, it is a
+cheap-and-capable one with a specific shape: **excellent at AI-assisted building,
+untested on anything requiring years of production judgement.**
+
+What follows: **favour plans built from AI-assisted assembly of existing pieces.**
+Be honest about plans needing hardened, high-reliability systems — payments,
+credit decisioning, anything where a bug costs real money — that is not what three
+interns should be asked to own.
+
+**Also name the obvious risk:** interns leave. A company whose entire tech function is
+interns has no continuity. Any recommendation that depends on the catalogue platform
+continuing to work should say so.
+
+**2. Marketing is one person.**
+Not three. One digital marketing manager running paid ads, plus an intern. **He is
+shared across rice, D'Cal and imports.**
+
+The founder profile in this file lists **marketing and branding as a core founder
+strength**. That strength sits with the founders, not with a marketing department —
+there isn't one. Any plan needing sustained multi-channel marketing execution is
+asking one shared person to do it. Say what it displaces.
+
+**But note what this one person already proved:** the entire import business was
+validated by **a Meta ad with no website**, producing ~100 clients. **Paid
+acquisition is a demonstrated, in-house, low-cost capability.** For a company with one
+salesperson, that matters enormously — it is the only acquisition channel that does
+not scale with headcount. **Weight paid-acquisition-led GTM above field-sales-led GTM,
+because one is proven here and affordable, and the other needs people who do not
+exist.**
+
+**3. Sourcing and research is one person.**
+For a company whose stated core strength is sourcing, and whose model is built on a
+China-sourced catalogue, **one person carries it.** Any plan needing wide supplier
+discovery, multi-category vendor qualification, or ongoing product research is
+constrained by that single seat, plus whatever the founders do themselves, plus
+whatever AI genuinely absorbs.
+
+**This is the strongest argument in the file for AI-heavy sourcing and research
+workflows** — not because AI is fashionable, but because the alternative is hiring, and
+there is no hiring function.
+
+---
+
+#### The rule this produces
+
+> **Any recommendation must state, in its first lines, which of these eighteen people
+> execute it and what they stop doing to make room.**
+
+A plan is complete only when it names the seat. "Sales will do outreach" is not a plan
+when sales for imports is one person. "We'll build it" is not a plan when building
+means the two web interns who are also maintaining two legacy product sites.
