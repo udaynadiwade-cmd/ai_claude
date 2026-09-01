@@ -189,7 +189,38 @@ margin structures. Ask before building any plan that cites the ₹1,000 cr figur
 
 ---
 
-## 7. Open flag — landed price method
+## 7. Funding — CONFIRMED 2026-09-01
+
+| Source | Amount | Status |
+|---|---|---|
+| Friends and family — 5 people × ₹5 lakh | ₹25 lakh | Raised |
+| Private investor, Bangalore | ₹50 lakh | Raised |
+| **Raised to date** | **₹75 lakh** | |
+| GAIL India startup fund | ₹1.5 cr | **In process** — not yet received |
+| **Total if GAIL closes** | **₹2.25 cr** | |
+
+Stated approach: **raise as we grow** — no fixed round size or timeline, capital
+taken when growth requires it rather than on a schedule.
+
+### Open — NEEDED
+
+- **Equity given and valuation** for the friends-and-family and Bangalore rounds — `[NEEDED]`
+- **Structure of the GAIL money** — equity, grant, or convertible — `[NEEDED]`
+  (it changes whether it dilutes, and what reporting it carries)
+- **Expected close date for GAIL** — `[NEEDED]`
+
+### Why this matters against the ambition
+
+₹75 lakh raised, ₹2.25 cr if GAIL closes, against ₹13.5 cr revenue and a
+₹1,000 cr ambition. The capital raised so far is small relative to the target,
+which means either the imports line has to grow largely on its own cash flow and
+the Rice/D'Cal margin, or a materially larger round is required. Worth being
+explicit about which, because the two paths imply very different hiring, inventory
+and working-capital decisions.
+
+---
+
+## 8. Open flag — landed price method
 
 The catalog's landed price is described as **China base price + customs duty +
 shipping + margin**.
@@ -208,7 +239,7 @@ leak on every order, not a rounding difference.
 
 ---
 
-## 8. What this changes for the recruitment agent
+## 9. What this changes for the recruitment agent
 
 - **"No active hiring function"** is the current state. Roles in
   `config/hiring-brief.md` remain live; do not infer new openings from team gaps.
