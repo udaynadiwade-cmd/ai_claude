@@ -26,6 +26,25 @@ one so a post-mortem can tell what was true on the day a trade happened.
 - *(Add when set: server/hosting details, strategy repo location,
   monitoring/alerting setup.)*
 
+## Data access — read this before trying to fetch anything
+
+- **Claude sessions cannot reach `nseindia.com`.** The sandbox's egress policy
+  is a strict allowlist (GitHub + package registries only). NSE, BSE, Yahoo
+  Finance, Moneycontrol, Trendlyne, Groww, Upstox and Kite all return
+  `403` on CONNECT. This is set at environment level and cannot be fixed
+  from inside a session — don't waste a turn retrying it.
+- **`WebSearch` still works** (it runs server-side, not through the sandbox
+  proxy). `WebFetch` does not, for any blocked host. So news lookups are
+  possible; live price fetches are not.
+- **The working data path** is `fetch_movers.py` in this folder: run it on a
+  machine that has NSE access, commit the output to `business-onlooker/data/`,
+  push. Claude reads it from the repo, which *is* reachable.
+- Manual fallback that also works: download the CSV from the NSE page in a
+  browser and upload it into the chat directly.
+- Longer term the right source is the desk's own **OpenAlgo instance**, not
+  NSE's website — it's authenticated, doesn't fight Cloudflare, and serves
+  intraday OHLCV the public page never exposes.
+
 ## Daily loop
 
 - Every trading day, the previous session's top movers (gainers/losers) are
