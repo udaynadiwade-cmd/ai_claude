@@ -62,6 +62,58 @@ honest instead of just confident-sounding.
 
 ---
 
+## Standing rule — never assert "no news" without searching
+
+Added 2026-09-09 after two failures in one session.
+
+**Never write "no catalyst" or "no specific news" about a stock unless a
+search has actually been run for it.** Absence of news is a claim, and it
+needs the same evidence as any other. Saying it from assumption is worse
+than saying nothing, because it tells the desk to stop looking.
+
+### The trigger to search is structure, not percentage
+
+A % threshold is the wrong screen — it scales with market cap, so it
+systematically hides large-cap news:
+
+- **LTP at or within 0.5% of the session HIGH (or LOW)** → search it. Closing
+  at the extreme means someone is paying up or dumping, whatever the %.
+- **Turnover > ₹100 cr** on a name outside the usual leaders → search it.
+- **Gap > 1% in either direction** → search it.
+- Any of these, not all.
+
+**Worked failure:** on 2026-09-09 ADANIENT printed LTP 3005 = session high,
+₹148 cr turnover, +1.76%. It was logged twice as "no specific catalyst"
+without a search. The actual news was a **₹9,825 cr sale of 5.54% in Adani
+Airport Holdings** — implying a ~₹1.77 lakh crore valuation for a subsidiary
+worth roughly half of AEL's market cap, plus an airport demerger by FY27-28.
+On a ₹3.5 lakh crore company, that news is worth ~1.8% and no more. The 3%
+threshold in use at the time could never have caught it. **LTP = HIGH would
+have.**
+
+---
+
+## Standing rule — macro block before the corporate block
+
+Added 2026-09-09.
+
+The pre-open note leads with macro, then corporate. In that order:
+
+1. US close and US futures.
+2. USD/INR, crude.
+3. **Any US data print in the last 48 hours** (payrolls, CPI, PPI) and the
+   next Fed date.
+4. GIFT Nifty.
+5. Only then: overnight corporate announcements.
+
+**Worked failure:** on 2026-09-09 the pre-open note searched only corporate
+announcements and missed the day's largest move — a 3% Nifty IT collapse
+driven by US non-farm payrolls (+162K vs 56K expected) printing the previous
+Friday. Five of the top five losers were IT. The corporate feed alone will
+never surface a sector event whose cause is a macro print.
+
+---
+
 ## Output style ("Notes")
 
 - Straightforward, bulletised. No fillers, no hedging paragraphs.
