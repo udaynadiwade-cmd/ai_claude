@@ -19,7 +19,7 @@ marital status.
 | Report-only | Experience is exclusively pulling reports or updating trackers on accounts someone else ran |
 | Experience floor | Under ~1 year of actual marketplace work. Judge by what they did, not by job title or tenure |
 | Completeness | No CV, or the "before / changed / after" question blank or pure filler |
-| Compensation | Expected fixed CTC more than 25% above the top of our band — **band is `NEEDED`, so this filter cannot be applied yet** |
+| Compensation | Expected fixed CTC above ₹5 LPA (25% above the ₹4 LPA top of band) |
 
 A candidate blocked at Gate 0 on **unconfirmed** information (e.g. location never
 stated) is *not* a reject. Mark `Gate 0 blocked`, ask, and hold. Only a

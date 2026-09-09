@@ -2,8 +2,10 @@
 
 **Location:** Banjara Hills, Hyderabad · On-site
 **Experience:** 1–2 years
-**Fixed:** `NEEDED` — band not yet set by Uday
+**Fixed:** ₹3.6–4 lakhs per annum (₹30,000–33,300/month)
 **Reports to:** Founder
+**Works with:** Alongside Vamshi on quick-commerce; coordinates our marketplace
+and q-commerce agencies (e.g. PickQuick)
 
 ---
 
@@ -35,6 +37,8 @@ makes it work.
 
 **Sell**
 - Own the sales number on each platform, not just the listing quality
+- Coordinate the external agencies that handle platform registration and
+  q-commerce onboarding — brief them, hold them to timelines, check their work
 - Plan around platform sale events (Great Indian Festival, Big Billion Days,
   Meesho Mega Sale) rather than reacting to them
 - Work with the warehouse team on stock, dispatch SLAs and returns
@@ -86,7 +90,7 @@ experience with our exact product categories.
 - Reports straight to the founder, no layers
 - A company doing ₹13.5 Cr today with a stated target of ₹1,000 Cr in 3–4 years
 - Real budget to run campaigns with, and the authority to spend it
-- Compensation: `NEEDED`
+- ₹3.6–4 LPA fixed, set by role scope and what you demonstrably bring
 
 ---
 
