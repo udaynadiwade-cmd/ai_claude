@@ -88,3 +88,42 @@ Automated daily recruitment outreach to Hyderabad recruiting agencies. Each batc
 2. Complete Batches 3, 5, 6 on their scheduled dates
 3. Continue daily Batch 8+ routine (9 AM IST, M-Sa)
 4. Track incoming candidate referrals and process via Gmail intake procedure
+
+---
+
+# E-commerce Marketing Executive — Sourcing Log
+
+Role opened 2026-09-08. Band set 2026-09-09: ₹3.6–4 LPA.
+
+## Referral request — PickQuick (2026-09-09)
+
+✓ Sent — ferzin@letspickquick.com, cc anuj@letspickquick.com
+
+Not a standard agency batch. PickQuick is an existing commercial partner
+handling our quick-commerce platform registration, so this is a warm referral
+ask rather than cold outreach.
+
+Framed explicitly as a request for names from their wider network, **not** from
+their own team — a referral ask to a live vendor reads as poaching without that
+line, and the commercial relationship is worth more than a recruitment fee.
+
+Rationale: they operate in exactly this talent pool, and whoever we hire will be
+coordinating with them, so a competent hire serves both sides.
+
+**Expected response window:** 2–5 days
+**Next action:** if no reply by 2026-09-14, let it go — do not chase a partner
+on a favour.
+
+## Channels assessed and ruled out
+
+| Channel | Status |
+|---|---|
+| LinkedIn | Blocked by network egress proxy — unreachable |
+| Naukri / LinkedIn Recruiter | Candidate databases need a paid employer login we do not have |
+| Indeed MCP | Job-seeker side only; cannot search candidates |
+| Web search | Returns job advertisements, not sourceable candidate profiles |
+| Recruiting agencies | Available — 25 Hyderabad agencies already contacted for Sales Executive |
+
+**Note for when Sales Executive outreach resumes:** fold both roles into a single
+email per agency rather than running two campaigns at the same contacts. Better
+response rate, and it does not burn the relationship.
