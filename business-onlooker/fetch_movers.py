@@ -23,10 +23,10 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
-try:
-    import requests
-except ImportError:
-    sys.exit("pip install requests")
+import gzip
+import http.cookiejar
+import urllib.error
+import urllib.request
 
 DATA_DIR = Path(__file__).parent / "data"
 
@@ -43,8 +43,8 @@ HEADERS = {
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36"
     ),
-    "Accept": "*/*",
     "Accept-Language": "en-US,en;q=0.9",
+    "Accept-Encoding": "gzip, deflate",
     "Referer": "https://www.nseindia.com/market-data/top-gainers-losers",
 }
 
@@ -53,18 +53,31 @@ COLUMNS = ["symbol", "open_price", "high_price", "low_price",
 
 
 def nse_session():
-    """Cookie handshake. Homepage first, then the market-data page, then API."""
-    s = requests.Session()
-    s.headers.update(HEADERS)
-    s.get("https://www.nseindia.com/", timeout=15)
-    s.get("https://www.nseindia.com/market-data/top-gainers-losers", timeout=15)
-    return s
+    """Cookie handshake. Homepage first, then the market-data page, then API.
+
+    NSE answers the first hit with 403 but still sets the cookies the API
+    needs, so the HTTPError body is read and discarded rather than raised.
+    HTTP/2 gets reset by Cloudflare; urllib speaks HTTP/1.1, which passes.
+    """
+    jar = http.cookiejar.CookieJar()
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(jar))
+    for url in ("https://www.nseindia.com/",
+                "https://www.nseindia.com/market-data/top-gainers-losers"):
+        _read(opener, url, "text/html,application/xhtml+xml,*/*;q=0.8")
+    return opener
+
+
+def _read(opener, url, accept):
+    req = urllib.request.Request(url, headers={**HEADERS, "Accept": accept})
+    try:
+        body = opener.open(req, timeout=30).read()
+    except urllib.error.HTTPError as e:
+        body = e.read()
+    return gzip.decompress(body) if body[:2] == b"\x1f\x8b" else body
 
 
 def fetch(session, index):
-    r = session.get(ENDPOINT.format(index), timeout=15)
-    r.raise_for_status()
-    return r.json()
+    return json.loads(_read(session, ENDPOINT.format(index), "*/*"))
 
 
 def write_csv(path, rows):

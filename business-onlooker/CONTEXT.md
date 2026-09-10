@@ -28,7 +28,7 @@ one so a post-mortem can tell what was true on the day a trade happened.
 
 ## Data access — read this before trying to fetch anything
 
-- **Claude sessions cannot reach `nseindia.com`.** The sandbox's egress policy
+- **NSE access WORKS as of 2026-09-10.** The environment network policy was widened; `nseindia.com` no longer 403s at the proxy. NSE itself still fronts Cloudflare — it resets HTTP/2 and answers the first request with 403 while setting cookies, so `fetch_movers.py` uses HTTP/1.1 + browser headers and reads the 403 body to complete the handshake. Run it directly in-session.
   is a strict allowlist (GitHub + package registries only). NSE, BSE, Yahoo
   Finance, Moneycontrol, Trendlyne, Groww, Upstox and Kite all return
   `403` on CONNECT. This is set at environment level and cannot be fixed
