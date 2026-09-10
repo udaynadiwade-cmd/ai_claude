@@ -37,6 +37,34 @@ for company facts and role parameters. Values marked `NEEDED` are still unknown
 - **Any offer, salary discussion, or commitment to a candidate.**
 - **Anything needing credentials, a new platform, or a policy decision.**
 
+### How to put decisions to Uday
+
+Set by Uday 2026-09-10. Never bury a decision inside prose he has to re-read.
+
+Every open item goes at the end of the message as a numbered list, each one
+answerable with a single **Y/N**, with one short line of context so he knows
+what he is approving and what happens next.
+
+```
+1. Send E-com JD to the 25 agencies?  Y/N
+   Free until it works — Rs 5k only on a hire. Goes out today if yes.
+
+2. Switch Vasavi to WhatsApp?  Y/N
+   No reply to Monday's emails. Follow-up due 12 Sep.
+```
+
+Rules:
+- One decision per line. Never bundle two questions into one number.
+- Say what happens on a yes, in under a line.
+- Carry unanswered items forward to the next message, same numbering style,
+  rather than dropping them or re-explaining them at length.
+- If nothing needs a decision, say so and stop. Do not manufacture questions.
+
+He answers by number ("1 Y, 2 N"), so the numbers must stay stable within a
+conversation.
+
+---
+
 ### Hard rules
 1. Never auto-reject. A rejection is a recommendation until Uday confirms it.
 2. Always cite evidence. Every score points to the specific line that produced it.
