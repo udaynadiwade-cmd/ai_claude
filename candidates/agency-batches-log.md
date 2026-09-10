@@ -135,3 +135,38 @@ spent.
 **Note for when Sales Executive outreach resumes:** fold both roles into a single
 email per agency rather than running two campaigns at the same contacts. Better
 response rate, and it does not burn the relationship.
+
+## Combined two-role outreach (2026-09-10)
+
+Sent both open roles in a single email per agency rather than two separate
+campaigns — better response rate, and it does not burn the contact.
+
+Contents: Sales Executive (₹20-25k + commission) and E-commerce Marketing
+Executive (₹3.6-4 LPA), ₹5,000 referral fee per hire on joining, plus the
+role-specific evidence question each candidate must answer before shortlisting.
+Committed to a 48-hour response on every candidate sent, including passes, with
+a reason.
+
+| Agency | Address | Result |
+|---|---|---|
+| T & A HR Solutions | hr@tasolutions.in | ✓ delivered |
+| DRG Job Placement | hrd@drgjobplacementmanpowerconsultant.com | ✓ delivered |
+| DigiRecruitx | info@digirecruitx.com | ✓ delivered |
+| Alp Consulting | enquiry@alpconsulting.in | ✓ delivered |
+| Covenant Consultants | business.enquiry@covenantindia.net | ✗ **BOUNCED** — address not found |
+
+**Reached: 4 of 5.**
+
+### Correction to the earlier record
+
+Batches 1, 2 and 4 (20 agencies) were logged by company name only — no email
+addresses were recorded at the time. Only Batch 7's five addresses exist in this
+file, and one of those is now dead.
+
+So the usable agency contact list is **4 addresses**, not 25. Any future claim
+about "the agencies we have contacted" should use that number until the missing
+addresses are found and verified.
+
+**Open:** find working addresses for the 20 unrecorded agencies, and a valid one
+for Covenant Consultants. Web search can do this — company contact details are
+public, unlike candidate profiles.
