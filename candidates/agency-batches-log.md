@@ -110,9 +110,17 @@ line, and the commercial relationship is worth more than a recruitment fee.
 Rationale: they operate in exactly this talent pool, and whoever we hire will be
 coordinating with them, so a competent hire serves both sides.
 
-**Expected response window:** 2–5 days
-**Next action:** if no reply by 2026-09-14, let it go — do not chase a partner
-on a favour.
+**Reply received 2026-09-09** (1 hour 45 min turnaround — good sign for the
+commercial relationship):
+
+> "As for marketplace ops talent, we checked and unfortunately don't know of
+> anybody with those specifications for now, but we're more than happy to keep
+> a look out and refer anybody suitable to you if we come across them."
+
+**Outcome: no referrals.** Channel yielded nothing. Left on good terms and they
+have offered to keep watching, so treat it as passively open — but do not ask
+again. Asking a partner twice for the same favour is how the goodwill gets
+spent.
 
 ## Channels assessed and ruled out
 
