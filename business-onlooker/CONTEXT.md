@@ -58,6 +58,20 @@ one so a post-mortem can tell what was true on the day a trade happened.
 - `WebSearch` works for news and runs server-side. Use it to attach a cause to
   every mover the filter flags.
 
+## Daily loop — trade post-mortem
+
+- After close, export the Shoonya **Trade Book** (Reports → Trade Book → CSV),
+  or dump OpenAlgo's `/tradebook` response to JSON. Either format works.
+- Run `python3 analyze_trades.py <file> --n500 <nifty500 list>`. It FIFO-pairs
+  fills into round trips, nets off real Shoonya charges, and audits the result
+  against the rules above — Rs 10k/stock, Nifty 500 only, flat by 11:15.
+- **The rule-breach block is the point, not the P&L.** The broker already
+  shows P&L. What it can't show is which rule cost the money.
+- The breach that matters most is ASYMMETRY (avg loss > avg win) and its
+  cousin DISCIPLINE (losers held longer than winners). Those two compound.
+- Feed the output back here for the written post-mortem: what moved, what the
+  setup missed, what changes tomorrow.
+
 ## Daily loop
 
 - Every trading day, the previous session's top movers (gainers/losers) are
