@@ -28,22 +28,21 @@ one so a post-mortem can tell what was true on the day a trade happened.
 
 ## Data access — read this before trying to fetch anything
 
-- **NSE access WORKS as of 2026-09-10.** The environment network policy was widened; `nseindia.com` no longer 403s at the proxy. NSE itself still fronts Cloudflare — it resets HTTP/2 and answers the first request with 403 while setting cookies, so `fetch_movers.py` uses HTTP/1.1 + browser headers and reads the 403 body to complete the handshake. Run it directly in-session.
-  is a strict allowlist (GitHub + package registries only). NSE, BSE, Yahoo
-  Finance, Moneycontrol, Trendlyne, Groww, Upstox and Kite all return
-  `403` on CONNECT. This is set at environment level and cannot be fixed
-  from inside a session — don't waste a turn retrying it.
-- **`WebSearch` still works** (it runs server-side, not through the sandbox
-  proxy). `WebFetch` does not, for any blocked host. So news lookups are
-  possible; live price fetches are not.
-- **The working data path** is `fetch_movers.py` in this folder: run it on a
-  machine that has NSE access, commit the output to `business-onlooker/data/`,
-  push. Claude reads it from the repo, which *is* reachable.
-- Manual fallback that also works: download the CSV from the NSE page in a
-  browser and upload it into the chat directly.
-- Longer term the right source is the desk's own **OpenAlgo instance**, not
-  NSE's website — it's authenticated, doesn't fight Cloudflare, and serves
-  intraday OHLCV the public page never exposes.
+- **NSE access WORKS as of 2026-09-10.** The environment's network policy was
+  widened, so `nseindia.com` no longer 403s at the egress proxy.
+- **NSE's own Cloudflare is the remaining hurdle**, and `fetch_movers.py`
+  handles it: it resets HTTP/2 (so use HTTP/1.1 — urllib does, `requests`
+  with HTTP/2 does not) and answers the first request with **403 while still
+  setting the cookies the API needs**, so the 403 body is read, not raised.
+  Browser User-Agent and a Referer are required.
+- **Run `fetch_movers.py` directly in-session** — it writes CSV + raw JSON to
+  `business-onlooker/data/<date>/`. No more screenshot reading.
+- **Always pull `allSec`, not just `FOSec`.** Proven on 2026-09-09: allSec had
+  nine names at +20% upper circuit and two at -20%, while FOSec's best was
+  +3.49% and worst -6.75%. A ~6x difference in available range. The desk's
+  target R:R only exists in the cash market.
+- `WebSearch` works for news and runs server-side. Use it to attach a cause to
+  every mover the filter flags.
 
 ## Daily loop
 
