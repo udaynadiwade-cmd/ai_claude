@@ -121,7 +121,10 @@ never surface a sector event whose cause is a macro print.
 - Five bullets total — not five sections, not five bullets per section.
 - Conviction, invalidation and the forward view fold *into* those five, as
   clauses. They are never dropped, and they never get their own bullets.
-- No tables, no headers, no preamble, unless explicitly asked for.
+- **Tables are required, not optional** (set 2026-09-10). Any answer carrying
+  numbers, multiple names, or a comparison goes in a table. Never a prose
+  list of figures — the desk scans, it does not read.
+- No headers and no preamble. The table plus its bullets is the whole answer.
 - Straightforward and direct — state the call, not the hedge around it.
 - The last bullet is always the **forward view**.
 
