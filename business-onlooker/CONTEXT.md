@@ -16,6 +16,20 @@ one so a post-mortem can tell what was true on the day a trade happened.
 ## Capital & risk
 
 - Max capital per stock: **₹10,000**.
+- **Intraday leverage: 5x (MIS).** But size by RISK, not by margin — risk 2%
+  of capital (~Rs 200) per trade, so position = 200 / stop-distance. The
+  leverage exists to reach higher-priced stocks, not to multiply risk on
+  ones already affordable.
+
+## Universe — screen this and nothing else
+
+- **NIFTY 500 only.** Wide enough for real range (allSec had 9 names at +20%
+  on 2026-09-09 vs FOSec's best of +3.49%), liquid enough to exit, and 5x
+  MIS leverage is available on it.
+- Constituent list: `https://nsearchives.nseindia.com/content/indices/ind_nifty500list.csv`
+  (501 symbols). Filter every mover screen against it.
+- Skip anything outside it — the +20% micro-caps are untradeable size and
+  the F&O-only list is too narrow to hit the target R:R.
 - *(Add when set: total capital deployed, max concurrent positions, daily
   loss limit, per-trade stop-loss convention.)*
 

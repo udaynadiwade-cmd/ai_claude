@@ -116,10 +116,18 @@ never surface a sector event whose cause is a macro print.
 
 ## Output style ("Notes")
 
-- Straightforward, bulletised. No fillers, no hedging paragraphs.
-- Direct — state the call, not the hedge around it.
-- Every note ends with a **forward view** — what this means for the next
-  session.
+**Hard rule, set 2026-09-10: every answer is FIVE bullets. No more.**
+
+- Five bullets total — not five sections, not five bullets per section.
+- Conviction, invalidation and the forward view fold *into* those five, as
+  clauses. They are never dropped, and they never get their own bullets.
+- No tables, no headers, no preamble, unless explicitly asked for.
+- Straightforward and direct — state the call, not the hedge around it.
+- The last bullet is always the **forward view**.
+
+The desk trades intraday and reads these between candles. Length is a cost,
+not a courtesy. If it doesn't fit in five bullets, the thinking isn't
+finished.
 
 ---
 
