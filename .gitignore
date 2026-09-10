@@ -12,3 +12,7 @@ cvs/
 # Local scratch
 .DS_Store
 *.tmp
+
+# Broker credentials — never commit
+business-onlooker/.env
+.env
