@@ -29,3 +29,4 @@ ones as they come up in the week. `/daily-post` reads this and `posts/log.md`.
 (none yet)
 - ~~Maths and creativity (Guwahati airport video)~~ → drafted 2026-09-17
 - ~~Aerospace backlog and production tooling~~ → drafted 2026-09-18
+- ~~Hangar capacity: GSE and MRO kit for the airline side~~ → drafted 2026-09-25

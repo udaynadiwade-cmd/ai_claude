@@ -50,6 +50,9 @@ dash is treated as a row.
   those, sell by showing a number only Befach can show, then invite the reader
   to check their own. Never "DM me", never "limited stock", never a price
   claim that is not on the site.
+- **The ask is always to buy on befach.com.** Search, read the landed price,
+  order. Never "send us an RFQ", "request a quote", or "let's talk" as the
+  close (Uday, 2026-09-14). The site is a marketplace, not a quote desk.
 - Never publish without Uday's Y.
 - Never restate someone else's video or article as first-hand knowledge.
   Attribute the claim to the source in the copy ("as the video tells it"),
