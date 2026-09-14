@@ -29,7 +29,12 @@ import urllib.request
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-FIELDS = ("exw", "duty", "freight", "landed", "currency", "title", "moq")
+# Matches how befach.com actually itemises an order: the product price, then a
+# single "procurement charges" line covering duties, taxes and freight to the
+# door. Do not split procurement into duty and freight unless the source does.
+FIELDS = ("exw", "procurement", "subtotal", "discount", "final", "currency",
+          "title", "brand_name", "origin", "moq", "unit_weight_kg",
+          "lead_time_days", "stock", "comparables")
 
 
 def load_env():
