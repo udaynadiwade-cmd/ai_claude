@@ -12,6 +12,7 @@ ones as they come up in the week. `/daily-post` reads this and `posts/log.md`.
 
 ## Ready to write
 - ~~Landed cost, line by line~~ → used 2026-09-14 (AI smart glasses, 17x spread)
+- ~~Befach USPs as scars~~ → drafted 2026-09-16
 - The one-off sample-order problem: 100 clients, one repeat. What we learned.
 - Why we replaced part of the tech team with AI-native hires (and what that meant for the people)
 - D'Cal, seven years on: the product we couldn't make into a brand, and why

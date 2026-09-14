@@ -32,6 +32,13 @@ Befach low-GI rice. ~19 people, ₹13.5 Cr revenue, aiming at ₹1,000 Cr in 3�
 4. Close: a question he actually wants answered, or a flat statement. No CTA
    to "follow for more".
 
+## Formatting on LinkedIn
+LinkedIn renders no markup. `**bold**`, `_italic_` and `#` headings post as
+literal characters, so `post.py` strips them. To emphasise, give the line its
+own paragraph. Every newline is rendered literally, so drafts are unwrapped
+before sending; price tables survive because a currency figure followed by a
+dash is treated as a row.
+
 ## Never
 - Never invent revenue, client names, or results. If a number is uncertain,
   write the post without it.

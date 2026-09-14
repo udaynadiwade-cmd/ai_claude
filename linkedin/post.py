@@ -47,10 +47,13 @@ def unwrap(text: str) -> str:
         lines = [ln.rstrip() for ln in para.split("\n")]
         buf = ""
         for ln in lines:
-            # Keep the break before a list marker, a numbered item, or a data
-            # row that opens with a currency figure (a price table).
+            # Keep the break before a list marker, a numbered item, or a
+            # table row. A row is a currency figure followed by a separator
+            # ("Rs 6,028 - 0.8 kg"); a wrapped sentence that merely happens to
+            # start with a figure ("Rs 4,417. That is not a footnote.") is not.
             starts_item = bool(re.match(
-                r"^\s*([-*\u2022]|\d+[.)]\s|[\u20b9$\u20ac\u00a3]\s?[\d,])", ln))
+                r"^\s*([-*\u2022]\s|\d+[.)]\s"
+                r"|[\u20b9$\u20ac\u00a3]\s?[\d,]+\s*[\u2014\u2013|:-])", ln))
             if buf and not starts_item:
                 buf += " " + ln.lstrip()
             else:
@@ -63,6 +66,14 @@ def unwrap(text: str) -> str:
     return "\n".join(out).strip()
 
 
+def strip_markup(text: str) -> str:
+    """LinkedIn renders no markup, so **bold** would post as literal asterisks."""
+    text = re.sub(r"\*\*(.+?)\*\*", r"\1", text, flags=re.S)
+    text = re.sub(r"(?<![*\w])\*(?!\s)(.+?)(?<!\s)\*(?![*\w])", r"\1", text, flags=re.S)
+    text = re.sub(r"^#{1,6}\s+", "", text, flags=re.M)
+    return text
+
+
 def parse_post(path: Path):
     raw = path.read_text(encoding="utf-8")
     head, _, body = raw.partition("\n\n")
@@ -71,7 +82,7 @@ def parse_post(path: Path):
     for line in head.splitlines()[1:]:
         if line.lower().startswith("card:"):
             card = line.split(":", 1)[1].strip() or None
-    return title, card, unwrap(body.strip())
+    return title, card, strip_markup(unwrap(body.strip()))
 
 
 def payload(title, text, card_path, author):
