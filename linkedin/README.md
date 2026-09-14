@@ -35,6 +35,22 @@ python3 linkedin/post.py linkedin/posts/2026-09-14.md --dry-run
 python3 linkedin/post.py linkedin/posts/2026-09-14.md
 ```
 
+## Getting it onto the feed
+
+`post.py` sends to `WEBHOOK_URL`. It does not talk to LinkedIn. LinkedIn's API
+only grants direct posting to approved partner apps, so the webhook is the
+practical route: point it at a Zapier / Make / n8n scenario whose action is
+"LinkedIn → Create post", and that scenario holds the LinkedIn auth, not this
+repo. That is almost certainly what the old `30-config.md` URL already was.
+
+The payload it posts is `{title, text, image_name, image_base64, date, author}`.
+Map `text` to the post body and `image_base64` to the image in that scenario.
+
+## Safety rails in post.py
+- Refuses to send if the draft still contains `[[PLACEHOLDER]]` markers, so a
+  post with unverified numbers cannot go out. `--dry-run` still previews it.
+- Unwraps editor line breaks; LinkedIn renders every newline literally.
+
 ## Later
 Cron/routine is deliberately off. Get a week of good posts out by hand, then
 automate the trigger (a Routine that fires `/daily-post` at 8:00 IST).

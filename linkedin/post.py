@@ -91,6 +91,7 @@ def main():
     load_env()
 
     title, card, text = parse_post(Path(a.post))
+
     card = a.card or card
     body = payload(title, text, card, os.environ.get("AUTHOR", "Uday Nadiwade"))
 
@@ -99,6 +100,11 @@ def main():
             if "image_base64" in body else body
         print(json.dumps(shown, indent=2, ensure_ascii=False))
         return 0
+
+    blanks = re.findall(r"\[\[[^\]]+\]\]", title + "\n" + text)
+    if blanks:
+        sys.exit("Refusing to send: unfilled placeholders " + ", ".join(sorted(set(blanks)))
+                 + "\nFill them with real figures or rewrite the line without them.")
 
     url = os.environ.get("WEBHOOK_URL")
     if not url:
