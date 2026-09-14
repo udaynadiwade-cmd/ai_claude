@@ -2,7 +2,7 @@
 """
 Render every day's tradebook under reports/ into one dashboard.
 
-    python3 dashboard.py                   # reads reports/*/tradebook.json
+    python3 dashboard.py                   # reads reports/*/tradebook.{json,csv}
     python3 dashboard.py --reports DIR     # another folder (tests)
 
 Writes two files, both self-contained - no libraries, no network:
@@ -46,7 +46,10 @@ EXITS = ("SIGNAL", "SQUARE-OFF")
 # ----------------------------------------------------------------- numbers
 
 def load_day(folder, args, universe):
-    fills = at.load(folder / "tradebook.json")
+    src = next((folder / f for f in ("tradebook.json", "tradebook.csv") if (folder / f).exists()), None)
+    if src is None:
+        return None
+    fills = at.load(src)
     trades, open_legs = at.pair_trades(fills)
     trades = at.merge_partials(trades)
     if not trades:
@@ -426,7 +429,7 @@ def main():
     root = Path(args.reports)
     universe = at.read_universe(args.n500)
     days = []
-    for folder in sorted(p for p in root.iterdir() if p.is_dir() and (p / "tradebook.json").exists()):
+    for folder in sorted(p for p in root.iterdir() if p.is_dir()):
         try:
             day = load_day(folder, args, universe)
         except Exception as e:  # one bad day must not kill the dashboard

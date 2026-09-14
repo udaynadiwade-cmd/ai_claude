@@ -10,6 +10,11 @@ pushes. Nothing to upload by hand, ever.
     python3 daily_report.py            # today
     python3 daily_report.py --no-push  # dry run, leaves files uncommitted
 
+Backfill a past day (the broker API only serves today's fills, so use the
+web export: Shoonya -> Reports -> Trade Book -> pick the date -> CSV):
+
+    python3 daily_report.py --file ~/Downloads/TradeBook.csv --date 2026-09-11
+
 Credentials come from a .env beside this file and never leave that machine.
 Two sources, tried in order:
 
@@ -31,6 +36,7 @@ Optional:
 
 import argparse
 import hashlib
+import shutil
 import json
 import os
 import subprocess
@@ -140,23 +146,30 @@ def main():
     ap.add_argument("--no-push", action="store_true", help="write files, skip git")
     ap.add_argument("--date", default=datetime.now().strftime("%Y-%m-%d"),
                     help="folder name; the broker only serves today's fills")
+    ap.add_argument("--file", help="ingest an exported Trade Book (CSV/JSON) "
+                    "instead of fetching — backfill, pair with --date")
     args = ap.parse_args()
 
     env = load_env()
     out = REPORTS / args.date
     out.mkdir(parents=True, exist_ok=True)
 
-    print(f"Fetching tradebook for {args.date}...")
-    fills = from_openalgo(env)
-    if fills is None:
-        fills = from_shoonya(env)
-    if not fills:
-        print("No trades today. Nothing to report.")
-        return
-
-    raw = out / "tradebook.json"
-    raw.write_text(json.dumps(fills, indent=1))
-    print(f"  {len(fills)} fills -> {raw}")
+    if args.file:
+        src = Path(args.file).expanduser()
+        raw = out / f"tradebook{src.suffix.lower() if src.suffix.lower() in ('.csv', '.json') else '.csv'}"
+        shutil.copy(src, raw)
+        print(f"Backfilling {args.date} from {src} -> {raw}")
+    else:
+        print(f"Fetching tradebook for {args.date}...")
+        fills = from_openalgo(env)
+        if fills is None:
+            fills = from_shoonya(env)
+        if not fills:
+            print("No trades today. Nothing to report.")
+            return
+        raw = out / "tradebook.json"
+        raw.write_text(json.dumps(fills, indent=1))
+        print(f"  {len(fills)} fills -> {raw}")
 
     common = []
     n500 = HERE / "data" / "nifty500.txt"
