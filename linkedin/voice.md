@@ -48,3 +48,7 @@ dash is treated as a row.
   to check their own. Never "DM me", never "limited stock", never a price
   claim that is not on the site.
 - Never publish without Uday's Y.
+- Never restate someone else's video or article as first-hand knowledge.
+  Attribute the claim to the source in the copy ("as the video tells it"),
+  credit the creator by handle, and flag anything unverified to Uday before
+  posting.
