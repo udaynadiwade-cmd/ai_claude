@@ -91,6 +91,9 @@ def payload(title, text, card_path, author):
         cp = Path(card_path)
         if not cp.is_absolute():
             cp = HERE / cp
+        if not cp.exists():
+            sys.exit(f"Card not found: {cp}\nRender it first with cardgen.py, "
+                     f"or correct the 'card:' line in the post file.")
         p["image_name"] = cp.name
         p["image_base64"] = base64.b64encode(cp.read_bytes()).decode()
     return p
