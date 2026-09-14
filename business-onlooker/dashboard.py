@@ -24,10 +24,12 @@ What it answers, per day and across days:
     cutoff, or one sharing a second with 2+ other exits, is the timer)
   - concentration: how much of the day's profit one trade carried
   - every rule breach from CONTEXT.md
+  - REJECTED orders with the broker's reason, from orderbook.json
 """
 
 import argparse
 import html
+import json
 import sys
 from collections import Counter
 from datetime import datetime, time
@@ -69,6 +71,7 @@ def load_day(folder, args, universe):
 
     s = at.summarise(trades)
     best = max(trades, key=lambda t: t["net"])
+    rejected = load_rejected(folder / "orderbook.json")
     share = (best["net"] / s["gross_profit"] * 100
              if best["net"] > 0 and s["gross_profit"] else 0.0)
     return {
@@ -78,7 +81,29 @@ def load_day(folder, args, universe):
         "by_dir": {k: at.summarise([t for t in trades if t["direction"] == k]) for k in DIRS},
         "by_exit": {k: at.summarise([t for t in trades if t["exit_mode"] == k]) for k in EXITS},
         "best": best, "best_share": share, "net_ex_best": s["net"] - max(best["net"], 0),
+        "rejected": rejected,
     }
+
+
+def load_rejected(path):
+    """REJECTED rows from Shoonya's order book, if the day has one."""
+    if not path.exists():
+        return []
+    try:
+        rows = json.loads(path.read_text())
+    except ValueError:
+        return []
+    out = []
+    for o in rows if isinstance(rows, list) else []:
+        if isinstance(o, dict) and str(o.get("status", "")).upper() == "REJECTED":
+            out.append({
+                "symbol": str(o.get("tsym", "")).replace("-EQ", "").upper(),
+                "side": "BUY" if str(o.get("trantype", "")).upper().startswith("B") else "SELL",
+                "qty": o.get("qty", ""),
+                "time": str(o.get("norentm", ""))[:8],
+                "reason": str(o.get("rejreason", "")),
+            })
+    return out
 
 
 def rs(x, sign=True):
@@ -138,7 +163,12 @@ def headline_rows(d):
 
 
 HIST_HEAD = ["Date", "Trades", "Win %", "Net", "PF", "Before 12", "After 12",
-             "Square-offs", "Breaches"]
+             "Square-offs", "Rejected", "Breaches"]
+REJ_HEAD = ["Symbol", "Side", "Qty", "Time", "Reason"]
+
+
+def rejected_rows(d):
+    return [[r["symbol"], r["side"], r["qty"], r["time"], r["reason"]] for r in d["rejected"]]
 
 
 def history_rows(days):
@@ -147,7 +177,7 @@ def history_rows(days):
              rs(d["by_session"]["BEFORE 12"]["net"]),
              rs(d["by_session"]["AFTER 12"]["net"]),
              f"{d['by_exit']['SQUARE-OFF']['n']}/{d['stats']['n']}",
-             len(d["breaches"])] for d in days]
+             len(d["rejected"]), len(d["breaches"])] for d in days]
 
 
 def concentration_line(d):
@@ -288,7 +318,7 @@ summary .m{color:var(--mute);font-weight:400}
 """
 
 NUMERIC = {"Trades", "Win %", "Net", "Avg win", "Avg loss", "PF", "Qty", "Entry",
-           "Exit", "Hold", "Breaches", "Square-offs"}
+           "Exit", "Hold", "Breaches", "Square-offs", "Rejected"}
 
 
 def h_table(head, rows):
@@ -317,6 +347,8 @@ def h_day(d, is_latest):
         for l, v in kpis)
     breaches = ("".join(f'<div class="breach">{html.escape(b)}</div>' for b in d["breaches"])
                 or '<p class="clean">Clean. Every rule held.</p>')
+    rej_html = (f'<h2 style="margin-top:14px">Rejected orders — {len(d["rejected"])}</h2>'
+                + h_table(REJ_HEAD, rejected_rows(d)) if d["rejected"] else "")
     body = f"""
 <div class="grid">{kpi_html}</div>
 <div class="row">
@@ -327,7 +359,7 @@ def h_day(d, is_latest):
 <div class="row">
  <div class="card"><h2>Signal exit vs timer square-off</h2>{h_table(SPLIT_HEAD, split_rows(d["by_exit"]))}
   <p class="sub" style="margin:10px 0 0">{html.escape(concentration_line(d))}</p></div>
- <div class="card"><h2>Rule check — CONTEXT.md</h2>{breaches}</div>
+ <div class="card"><h2>Rule check — CONTEXT.md</h2>{breaches}{rej_html}</div>
 </div>
 <div class="card"><h2>Trades</h2>{h_table(TRADE_HEAD, trade_rows(d["trades"]))}</div>"""
     if is_latest:
@@ -376,6 +408,8 @@ def render_md(days, stamp):
     d = days[-1]
     total = sum(x["stats"]["net"] for x in days)
     breaches = "\n".join(f"- [!] {b}" for b in d["breaches"]) or "- Clean. Every rule held."
+    rej_md = (f"\n### Rejected orders — {len(d['rejected'])}\n\n{md_table(REJ_HEAD, rejected_rows(d))}\n"
+              if d["rejected"] else "")
     return f"""# Trading dashboard
 
 Updated {stamp} by `daily_report.py`. Open `dashboard.html` from this folder for charts.
@@ -406,7 +440,7 @@ Running total over {len(days)} day(s): **{rs(total)}**.
 ### Rule check — CONTEXT.md
 
 {breaches}
-
+{rej_md}
 ### Trades
 
 {md_table(TRADE_HEAD, trade_rows(d['trades']))}

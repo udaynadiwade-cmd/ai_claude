@@ -1,50 +1,52 @@
 #!/usr/bin/env python3
 """
-Pull today's fills, analyse them, rebuild the dashboard, commit. Unattended.
-
-Runs on the machine that hosts OpenAlgo — a scheduler fires it at 15:35 IST
-on weekdays. It fetches the day's tradebook, runs analyze_trades.py over it,
-rebuilds reports/dashboard.html + reports/README.md via dashboard.py, and
-pushes. Nothing to upload by hand, ever.
+Pull today's books from Shoonya, analyse them, rebuild the dashboard, commit.
+Runs unattended on a machine in India — Shoonya's API answers foreign
+addresses with 502, so this cannot run from a cloud session abroad.
 
     python3 daily_report.py            # today
     python3 daily_report.py --no-push  # dry run, leaves files uncommitted
 
-Backfill a past day (the broker API only serves today's fills, so use the
-web export: Shoonya -> Reports -> Trade Book -> pick the date -> CSV):
+Backfill a past day (the API only serves today; use the web export from
+trade.shoonya.com -> Reports -> Trade Book -> pick the date -> CSV):
 
     python3 daily_report.py --file ~/Downloads/TradeBook.csv --date 2026-09-11
 
-Credentials come from environment variables or a .env beside this file.
-Two sources, tried in order:
+Source of truth is Shoonya's own API at api.shoonya.com — the same backend
+trade.shoonya.com talks to, same login, same data. Three books are pulled
+and saved raw under reports/<date>/:
 
-  OpenAlgo (preferred — it already holds your Shoonya login):
-      OPENALGO_URL=http://127.0.0.1:5000
-      OPENALGO_APIKEY=...
+    tradebook.json   every fill                       -> the analysis
+    orderbook.json   every order, incl. REJECTED + rejreason
+    positions.json   net positions with realised / MTM
 
-  Shoonya direct (fallback):
-      SHOONYA_USER=...          # client id
-      SHOONYA_PWD=...           # plain password, hashed here
-      SHOONYA_TOTP_SECRET=...   # base32 secret from the TOTP setup QR
-      SHOONYA_VENDOR=...        # vendor code, usually <userid>_U
-      SHOONYA_APIKEY=...        # API secret from Shoonya
+Credentials: environment variables first, then a .env beside this file.
+connect.py writes that file. Never commit it.
+
+    SHOONYA_USER          client id
+    SHOONYA_PWD           plain password, SHA-256'd here before sending
+    SHOONYA_TOTP_SECRET   base32 secret from the API TOTP setup QR
+    SHOONYA_VENDOR        vendor code, usually <client id>_U
+    SHOONYA_APIKEY        API key from the Shoonya API page
 
 Optional:
-      CAPITAL_PER_STOCK=10000   # SIZE rule
-      FLAT_BY=15:00             # WINDOW rule + square-off cutoff
+    OPENALGO_URL + OPENALGO_APIKEY   used ONLY if no SHOONYA_* set; gives
+                                     the tradebook alone, no order book
+    CAPITAL_PER_STOCK=10000          SIZE rule
+    FLAT_BY=15:00                    WINDOW rule + square-off cutoff
 """
 
 import argparse
 import base64
 import hashlib
 import hmac
-import shutil
-import struct
-import time
 import json
 import os
+import shutil
+import struct
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.request
 from datetime import datetime
@@ -52,7 +54,9 @@ from pathlib import Path
 
 HERE = Path(__file__).parent
 REPORTS = HERE / "reports"
-SHOONYA = "https://api.shoonya.com/NorenWClientTP"
+SHOONYA_KEYS = ["SHOONYA_USER", "SHOONYA_PWD", "SHOONYA_TOTP_SECRET",
+                "SHOONYA_VENDOR", "SHOONYA_APIKEY"]
+FORM = {"Content-Type": "application/x-www-form-urlencoded"}
 
 
 def load_env():
@@ -75,28 +79,6 @@ def post(url, data, headers=None):
         return json.loads(r.read())
 
 
-def from_openalgo(env):
-    """OpenAlgo already authenticates to Shoonya, so this needs one key.
-
-    POST /api/v1/tradebook {"apikey"} -> {"status": "success", "data": [
-      {action, symbol, exchange, orderid, product, quantity, average_price,
-       timestamp "HH:MM:SS", trade_value}, ...]}
-    """
-    url, key = env.get("OPENALGO_URL"), env.get("OPENALGO_APIKEY")
-    if not (url and key):
-        return None
-    try:
-        res = post(f"{url.rstrip('/')}/api/v1/tradebook", {"apikey": key})
-    except (urllib.error.URLError, OSError) as e:
-        print(f"  OpenAlgo unreachable ({e}) — falling back to Shoonya", file=sys.stderr)
-        return None
-    if res.get("status") == "error":
-        print(f"  OpenAlgo error: {res.get('message')}", file=sys.stderr)
-        return None
-    data = res.get("data", res)
-    return data if isinstance(data, list) else []
-
-
 def totp(secret, digits=6, period=30):
     """RFC 6238 time-based OTP, SHA-1, from a base32 secret. No dependency."""
     key = base64.b32decode(secret.replace(" ", "").upper() + "=" * (-len(secret.strip()) % 8))
@@ -107,18 +89,17 @@ def totp(secret, digits=6, period=30):
     return f"{code:0{digits}d}"
 
 
-def from_shoonya(env):
-    """Direct Noren API. TOTP is computed here, so nothing to pip install.
+# ------------------------------------------------------------------ Shoonya
 
-    /TradeBook rows carry flqty/flprc/fltm for THIS fill and
-    fillshares/avgprc as the parent order's running totals; the analyzer
-    reads the former.
-    """
-    need = ["SHOONYA_USER", "SHOONYA_PWD", "SHOONYA_TOTP_SECRET",
-            "SHOONYA_VENDOR", "SHOONYA_APIKEY"]
-    if any(not env.get(k) for k in need):
-        sys.exit("No usable credentials. Set OPENALGO_* or all SHOONYA_* in .env")
+def shoonya_base(env):
+    return env.get("SHOONYA_URL", "https://api.shoonya.com/NorenWClientTP").rstrip("/")
 
+
+def shoonya_login(env):
+    """QuickAuth. Returns (uid, session token). Exits with a plain reason."""
+    missing = [k for k in SHOONYA_KEYS if not env.get(k)]
+    if missing:
+        sys.exit(f"Missing {', '.join(missing)}. Run: python3 connect.py")
     uid = env["SHOONYA_USER"]
     sha = lambda s: hashlib.sha256(s.encode()).hexdigest()
     payload = {
@@ -129,20 +110,58 @@ def from_shoonya(env):
         "appkey": sha(f"{uid}|{env['SHOONYA_APIKEY']}"),
         "imei": env.get("SHOONYA_IMEI", "abc1234"), "source": "API",
     }
-    hdr = {"Content-Type": "application/x-www-form-urlencoded"}
-    res = post(f"{SHOONYA}/QuickAuth", "jData=" + json.dumps(payload), hdr)
+    try:
+        res = post(f"{shoonya_base(env)}/QuickAuth", "jData=" + json.dumps(payload), FORM)
+    except urllib.error.HTTPError as e:
+        sys.exit(f"Shoonya API returned HTTP {e.code} on login. Shoonya refuses "
+                 f"non-India addresses — this must run from India.")
+    except (urllib.error.URLError, OSError) as e:
+        sys.exit(f"Shoonya API unreachable: {e}")
     if res.get("stat") != "Ok":
         sys.exit(f"Shoonya login failed: {res.get('emsg')}")
+    return uid, res["susertoken"]
 
-    token = res["susertoken"]
-    tb = post(f"{SHOONYA}/TradeBook",
-              f"jData={json.dumps({'uid': uid, 'actid': uid})}&jKey={token}", hdr)
-    return tb if isinstance(tb, list) else []   # {"stat":"Not_Ok"} on an empty day
 
+def noren(env, path, uid, token, **extra):
+    """One authenticated Noren call. Empty books come back as Not_Ok -> []."""
+    body = f"jData={json.dumps({'uid': uid, **extra})}&jKey={token}"
+    res = post(f"{shoonya_base(env)}/{path}", body, FORM)
+    return res if isinstance(res, list) else []
+
+
+def from_shoonya(env):
+    """All three books. Fill rows carry flqty/flprc/fltm for THIS fill."""
+    uid, token = shoonya_login(env)
+    return {
+        "tradebook": noren(env, "TradeBook", uid, token, actid=uid),
+        "orderbook": noren(env, "OrderBook", uid, token),
+        "positions": noren(env, "PositionBook", uid, token, actid=uid),
+    }
+
+
+# ----------------------------------------------------------------- OpenAlgo
+
+def from_openalgo(env):
+    """Tradebook only, via OpenAlgo's REST. Used when no SHOONYA_* is set."""
+    url, key = env.get("OPENALGO_URL"), env.get("OPENALGO_APIKEY")
+    if not (url and key):
+        return None
+    try:
+        res = post(f"{url.rstrip('/')}/api/v1/tradebook", {"apikey": key})
+    except (urllib.error.URLError, OSError) as e:
+        print(f"  OpenAlgo unreachable ({e})", file=sys.stderr)
+        return None
+    if res.get("status") == "error":
+        print(f"  OpenAlgo error: {res.get('message')}", file=sys.stderr)
+        return None
+    data = res.get("data", res)
+    return {"tradebook": data if isinstance(data, list) else []}
+
+
+# --------------------------------------------------------------------- main
 
 def git(*args):
-    return subprocess.run(["git", *args], cwd=HERE.parent,
-                          capture_output=True, text=True)
+    return subprocess.run(["git", *args], cwd=HERE.parent, capture_output=True, text=True)
 
 
 def run_py(script, *args):
@@ -155,7 +174,7 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--no-push", action="store_true", help="write files, skip git")
     ap.add_argument("--date", default=datetime.now().strftime("%Y-%m-%d"),
-                    help="folder name; the broker only serves today's fills")
+                    help="folder name; the API only serves today's books")
     ap.add_argument("--file", help="ingest an exported Trade Book (CSV/JSON) "
                     "instead of fetching — backfill, pair with --date")
     args = ap.parse_args()
@@ -166,20 +185,30 @@ def main():
 
     if args.file:
         src = Path(args.file).expanduser()
-        raw = out / f"tradebook{src.suffix.lower() if src.suffix.lower() in ('.csv', '.json') else '.csv'}"
+        ext = src.suffix.lower() if src.suffix.lower() in (".csv", ".json") else ".csv"
+        raw = out / f"tradebook{ext}"
         shutil.copy(src, raw)
         print(f"Backfilling {args.date} from {src} -> {raw}")
+        have_fills = True
     else:
-        print(f"Fetching tradebook for {args.date}...")
-        fills = from_openalgo(env)
-        if fills is None:
-            fills = from_shoonya(env)
-        if not fills:
-            print("No trades today. Nothing to report.")
-            return
+        print(f"Fetching Shoonya books for {args.date}...")
+        if all(env.get(k) for k in SHOONYA_KEYS):
+            books = from_shoonya(env)
+        else:
+            books = from_openalgo(env)
+            if books is None:
+                sys.exit("No credentials. Run: python3 connect.py")
+        for name, rows in books.items():
+            if rows:
+                (out / f"{name}.json").write_text(json.dumps(rows, indent=1))
+                print(f"  {name:<10} {len(rows):>4} rows")
         raw = out / "tradebook.json"
-        raw.write_text(json.dumps(fills, indent=1))
-        print(f"  {len(fills)} fills -> {raw}")
+        have_fills = bool(books.get("tradebook"))
+        rejected = [o for o in books.get("orderbook", []) if o.get("status") == "REJECTED"]
+        if not have_fills:
+            print("No fills today." + (f" {len(rejected)} rejected order(s) saved." if rejected else ""))
+            if not rejected:
+                return
 
     common = []
     n500 = HERE / "data" / "nifty500.txt"
@@ -190,18 +219,18 @@ def main():
     if env.get("FLAT_BY"):
         common += ["--flat-by", env["FLAT_BY"]]
 
-    report = run_py("analyze_trades.py", str(raw), *common)
-    (out / "report.txt").write_text(report + "\n")
-    print(report)
-
-    dash_args = common + (["--squareoff-after", env["FLAT_BY"]] if env.get("FLAT_BY") else [])
-    print(run_py("dashboard.py", "--reports", str(REPORTS), *dash_args))
+    if have_fills:
+        report = run_py("analyze_trades.py", str(raw), *common)
+        (out / "report.txt").write_text(report + "\n")
+        print(report)
+        dash = common + (["--squareoff-after", env["FLAT_BY"]] if env.get("FLAT_BY") else [])
+        print(run_py("dashboard.py", "--reports", str(REPORTS), *dash))
 
     if args.no_push:
         print("--no-push: files written, nothing committed.")
         return
 
-    rel = f"business-onlooker/reports"
+    rel = "business-onlooker/reports"
     git("add", f"{rel}/{args.date}", f"{rel}/dashboard.html", f"{rel}/README.md")
     if not git("diff", "--cached", "--quiet").returncode:
         print("No change to commit.")

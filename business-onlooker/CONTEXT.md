@@ -35,8 +35,14 @@ one so a post-mortem can tell what was true on the day a trade happened.
 
 ## Infrastructure
 
-- Platform: **OpenAlgo**, self-hosted.
-- Broker: **Shoonya** (Finvasia).
+- Broker: **Shoonya** (Finvasia). Web terminal `trade.shoonya.com`; API host
+  `api.shoonya.com` — same backend, same login, same data.
+- **Data source of truth for analysis: Shoonya's API directly** (set
+  2026-09-14, at Uday's call). Trade book, order book (with REJECTED +
+  reason) and position book are pulled raw every close.
+- Execution platform: **OpenAlgo**, self-hosted. It places the orders; it is
+  not in the analysis path. Its REST tradebook remains an optional fallback
+  only when no Shoonya API credentials are set.
 - *(Add when set: server/hosting details, strategy repo location,
   monitoring/alerting setup.)*
 
@@ -68,20 +74,26 @@ one so a post-mortem can tell what was true on the day a trade happened.
 
 ## Daily loop — trade post-mortem (automated 2026-09-14)
 
-- **One-time setup: `python3 business-onlooker/connect.py` on the OpenAlgo
-  machine.** It asks for the OpenAlgo key, proves the connection by pulling
-  the tradebook, pushes the first report, and installs the 15:35 IST schedule.
-- **Nothing is uploaded by hand.** `daily_report.py` runs on the machine that
-  hosts OpenAlgo — a scheduler fires it at 15:35 IST on weekdays. It pulls the
-  day's fills from OpenAlgo's `/api/v1/tradebook` (falls back to Shoonya's own
-  `/TradeBook`), writes `reports/<date>/tradebook.json` + `report.txt`, then
-  runs `dashboard.py` and pushes.
+- **One-time setup: `python3 business-onlooker/connect.py` on any machine
+  in India that is on at 15:35** (the OpenAlgo box is the obvious one). It
+  asks for the five Shoonya API values, proves the connection by logging in
+  and pulling the books, pushes the first report, and installs the 15:35 IST
+  schedule. Where the values live: client id + password = the
+  `trade.shoonya.com` login; vendor code + API key = Shoonya's API page after
+  enabling API access; TOTP secret = the base32 text under the QR at
+  Profile → Security → TOTP Setup, shown once — if it wasn't kept, re-enrol.
+- **Nothing is uploaded by hand.** `daily_report.py` logs in to Shoonya's API
+  and pulls `TradeBook`, `OrderBook`, `PositionBook`, saving each raw under
+  `reports/<date>/` (`tradebook.json`, `orderbook.json`, `positions.json`),
+  writes `report.txt`, runs `dashboard.py` and pushes. The order book is why
+  direct beats OpenAlgo: it carries REJECTED orders with the broker's reason
+  (2026-09-10 had three — ABDL, GALLANTT, EMCURE), which no fills-only feed
+  can show.
 - **The dashboard is two files, rebuilt every run:** `reports/dashboard.html`
   (charts — open it locally) and `reports/README.md` (GitHub renders it at the
   `reports/` folder URL, so that is the daily dashboard on a phone).
 - **Credentials live only in `business-onlooker/.env` on that machine**
-  (gitignored). The OpenAlgo key alone is enough; Shoonya password/TOTP are
-  only for the fallback path. Never paste any of them into a chat session —
+  (gitignored, owner-only). Never paste any of them into a chat session —
   the remote Claude container cannot reach OpenAlgo (`127.0.0.1:5000` is
   local) and must never hold broker credentials. The connection runs there;
   the analysis reads the pushed files here.
@@ -131,3 +143,6 @@ one so a post-mortem can tell what was true on the day a trade happened.
 - **2026-09-14** — Shoonya API confirmed India-fenced (502 from US egress).
   `connect.py` added: one command on the OpenAlgo machine sets up the whole
   daily connection. Shoonya direct path no longer needs `pyotp`.
+- **2026-09-14** — Uday's call: everything comes from Shoonya, not OpenAlgo.
+  Shoonya direct is now the primary source; three books pulled; rejected
+  orders on the dashboard. OpenAlgo demoted to optional fallback.

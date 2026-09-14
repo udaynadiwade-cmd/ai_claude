@@ -1,21 +1,27 @@
 #!/usr/bin/env python3
 """
-Connect Business Onlooker to Shoonya. One command, once, on the machine that
-hosts OpenAlgo:
+Connect Business Onlooker to Shoonya. One command, once, on any machine in
+India that stays on at 15:35 — the OpenAlgo box is the obvious one:
 
     python3 business-onlooker/connect.py
 
-It asks for the OpenAlgo URL and API key (typed hidden, saved only to the
-gitignored .env beside this file), proves the connection by pulling today's
-tradebook, runs and pushes the first report if there are fills, and schedules
-daily_report.py for 15:35 IST on weekdays. After that nothing is manual:
-fills flow Shoonya -> OpenAlgo -> this repo -> the dashboard, every close.
+It asks for the five Shoonya API values (secrets typed hidden, saved only to
+the gitignored .env beside this file, owner-only permissions), proves the
+connection by logging in and pulling today's books, runs and pushes the
+first report if there are fills, and schedules daily_report.py for 15:35
+IST on weekdays. After that nothing is manual: fills flow
+trade.shoonya.com -> this repo -> the dashboard, every close.
+
+Where the values come from (all on Shoonya's side, nothing from OpenAlgo):
+    client id, password   your trade.shoonya.com login
+    vendor code, API key  Shoonya API page — enable API access (free)
+    TOTP secret           the base32 text shown under the QR when you set
+                          up TOTP for API login (Shoonya's TOTP setup guide)
 
 Why here and not in the cloud: Shoonya's API answers non-India addresses
-with 502 (verified from a US egress, 2026-09-14) and OpenAlgo listens on
-localhost. The connection has to live where OpenAlgo lives.
+with 502 (verified from a US egress, 2026-09-14).
 
-    --shoonya        skip OpenAlgo; ask for Shoonya direct credentials
+    --openalgo       use OpenAlgo's REST instead (tradebook only)
     --no-schedule    set up and test, but leave cron / Task Scheduler alone
     --no-push        run the first report without committing (testing)
 """
@@ -50,8 +56,7 @@ def ask(label, default="", secret=False):
 def write_env(values):
     """Merge into .env, keeping anything already there. Owner-only perms."""
     lines = ENV.read_text().splitlines() if ENV.exists() else []
-    seen = set()
-    out = []
+    seen, out = set(), []
     for line in lines:
         k = line.split("=", 1)[0].strip() if "=" in line and not line.startswith("#") else None
         if k in values:
@@ -86,13 +91,11 @@ def schedule():
         return (r.returncode == 0,
                 f"Task Scheduler '{TASK}' at {h:02d}:{m:02d} {tz}, weekdays"
                 if r.returncode == 0 else r.stderr.strip() or r.stdout.strip())
-    line = (f"{m} {h} * * 1-5 cd {REPO} && {py} {script} >> {LOG} 2>&1"
-            f"  # Business Onlooker daily report, 15:35 IST")
+    tag = "# Business Onlooker daily report, 15:35 IST"
+    line = f"{m} {h} * * 1-5 cd {REPO} && {py} {script} >> {LOG} 2>&1  {tag}"
     cur = subprocess.run(["crontab", "-l"], capture_output=True, text=True)
-    existing = cur.stdout if cur.returncode == 0 else ""
-    if "Business Onlooker daily report" in existing:
-        existing = "\n".join(l for l in existing.splitlines()
-                             if "Business Onlooker daily report" not in l)
+    existing = "\n".join(l for l in (cur.stdout if cur.returncode == 0 else "").splitlines()
+                         if tag not in l)
     new = existing.rstrip("\n") + ("\n" if existing.strip() else "") + line + "\n"
     r = subprocess.run(["crontab", "-"], input=new, capture_output=True, text=True)
     return (r.returncode == 0,
@@ -113,26 +116,26 @@ def dashboard_url():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--shoonya", action="store_true", help="Shoonya direct instead of OpenAlgo")
+    ap.add_argument("--openalgo", action="store_true", help="OpenAlgo REST instead of Shoonya direct")
     ap.add_argument("--no-schedule", action="store_true")
     ap.add_argument("--no-push", action="store_true")
     args = ap.parse_args()
 
     print("Business Onlooker — connect to Shoonya\n"
           "Values are saved to business-onlooker/.env (gitignored) and nowhere else.\n")
-    if args.shoonya:
-        values = {
-            "SHOONYA_USER": ask("Shoonya client id"),
-            "SHOONYA_PWD": ask("Shoonya password", secret=True),
-            "SHOONYA_TOTP_SECRET": ask("TOTP secret (base32, from the API 2FA QR)", secret=True),
-            "SHOONYA_VENDOR": ask("Vendor code", default=""),
-            "SHOONYA_APIKEY": ask("API key", secret=True),
-        }
-        values["SHOONYA_VENDOR"] = values["SHOONYA_VENDOR"] or f"{values['SHOONYA_USER']}_U"
-    else:
+    if args.openalgo:
         values = {
             "OPENALGO_URL": ask("OpenAlgo URL", default="http://127.0.0.1:5000"),
-            "OPENALGO_APIKEY": ask("OpenAlgo API key (OpenAlgo -> profile -> API key)", secret=True),
+            "OPENALGO_APIKEY": ask("OpenAlgo API key", secret=True),
+        }
+    else:
+        uid = ask("Shoonya client id")
+        values = {
+            "SHOONYA_USER": uid,
+            "SHOONYA_PWD": ask("Shoonya password", secret=True),
+            "SHOONYA_TOTP_SECRET": ask("TOTP secret (base32 text under the API 2FA QR)", secret=True),
+            "SHOONYA_VENDOR": ask("Vendor code", default=f"{uid}_U"),
+            "SHOONYA_APIKEY": ask("API key", secret=True),
         }
     values.setdefault("CAPITAL_PER_STOCK", "10000")
     values.setdefault("FLAT_BY", "15:00")
@@ -140,13 +143,16 @@ def main():
     print("\nTesting the connection...")
     env = {**dict(os.environ), **values}
     try:
-        fills = dr.from_shoonya(env) if args.shoonya else dr.from_openalgo(env)
+        books = dr.from_openalgo(env) if args.openalgo else dr.from_shoonya(env)
     except SystemExit as e:
-        fills = None
+        books = None
         print(f"  {e}")
-    if fills is None:
+    if books is None:
         sys.exit("\nConnection failed. Nothing saved. Check the values and run again.")
-    print(f"  Connected. {len(fills)} fill(s) in today's tradebook.")
+    fills = books.get("tradebook") or []
+    orders = books.get("orderbook") or []
+    print(f"  Connected. Today: {len(fills)} fill(s)"
+          + (f", {len(orders)} order(s)" if not args.openalgo else "") + ".")
 
     write_env(values)
     print(f"  Saved -> {ENV}")
