@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Connect Business Onlooker to Shoonya. One command, once, on any machine in
-India that stays on at 15:35 — the OpenAlgo box is the obvious one:
+India that stays on at 15:35 — the machine your algo runs on is the obvious one:
 
     python3 business-onlooker/connect.py
 
@@ -12,7 +12,7 @@ first report if there are fills, and schedules daily_report.py for 15:35
 IST on weekdays. After that nothing is manual: fills flow
 trade.shoonya.com -> this repo -> the dashboard, every close.
 
-Where the values come from (all on Shoonya's side, nothing from OpenAlgo):
+Where the values come from (all on Shoonya's side):
     client id, password   your trade.shoonya.com login
     vendor code, API key  Shoonya API page — enable API access (free)
     TOTP secret           the base32 text shown under the QR when you set
@@ -21,7 +21,6 @@ Where the values come from (all on Shoonya's side, nothing from OpenAlgo):
 Why here and not in the cloud: Shoonya's API answers non-India addresses
 with 502 (verified from a US egress, 2026-09-14).
 
-    --openalgo       use OpenAlgo's REST instead (tradebook only)
     --no-schedule    set up and test, but leave cron / Task Scheduler alone
     --no-push        run the first report without committing (testing)
 """
@@ -116,34 +115,27 @@ def dashboard_url():
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--openalgo", action="store_true", help="OpenAlgo REST instead of Shoonya direct")
     ap.add_argument("--no-schedule", action="store_true")
     ap.add_argument("--no-push", action="store_true")
     args = ap.parse_args()
 
     print("Business Onlooker — connect to Shoonya\n"
           "Values are saved to business-onlooker/.env (gitignored) and nowhere else.\n")
-    if args.openalgo:
-        values = {
-            "OPENALGO_URL": ask("OpenAlgo URL", default="http://127.0.0.1:5000"),
-            "OPENALGO_APIKEY": ask("OpenAlgo API key", secret=True),
-        }
-    else:
-        uid = ask("Shoonya client id")
-        values = {
-            "SHOONYA_USER": uid,
-            "SHOONYA_PWD": ask("Shoonya password", secret=True),
-            "SHOONYA_TOTP_SECRET": ask("TOTP secret (base32 text under the API 2FA QR)", secret=True),
-            "SHOONYA_VENDOR": ask("Vendor code", default=f"{uid}_U"),
-            "SHOONYA_APIKEY": ask("API key", secret=True),
-        }
+    uid = ask("Shoonya client id")
+    values = {
+        "SHOONYA_USER": uid,
+        "SHOONYA_PWD": ask("Shoonya password", secret=True),
+        "SHOONYA_TOTP_SECRET": ask("TOTP secret (base32 text under the API 2FA QR)", secret=True),
+        "SHOONYA_VENDOR": ask("Vendor code", default=f"{uid}_U"),
+        "SHOONYA_APIKEY": ask("API key", secret=True),
+    }
     values.setdefault("CAPITAL_PER_STOCK", "10000")
     values.setdefault("FLAT_BY", "15:00")
 
     print("\nTesting the connection...")
     env = {**dict(os.environ), **values}
     try:
-        books = dr.from_openalgo(env) if args.openalgo else dr.from_shoonya(env)
+        books = dr.from_shoonya(env)
     except SystemExit as e:
         books = None
         print(f"  {e}")
@@ -151,8 +143,7 @@ def main():
         sys.exit("\nConnection failed. Nothing saved. Check the values and run again.")
     fills = books.get("tradebook") or []
     orders = books.get("orderbook") or []
-    print(f"  Connected. Today: {len(fills)} fill(s)"
-          + (f", {len(orders)} order(s)" if not args.openalgo else "") + ".")
+    print(f"  Connected. Today: {len(fills)} fill(s), {len(orders)} order(s).")
 
     write_env(values)
     print(f"  Saved -> {ENV}")

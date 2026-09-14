@@ -30,8 +30,6 @@ connect.py writes that file. Never commit it.
     SHOONYA_APIKEY        API key from the Shoonya API page
 
 Optional:
-    OPENALGO_URL + OPENALGO_APIKEY   used ONLY if no SHOONYA_* set; gives
-                                     the tradebook alone, no order book
     CAPITAL_PER_STOCK=10000          SIZE rule
     FLAT_BY=15:00                    WINDOW rule + square-off cutoff
 """
@@ -139,25 +137,6 @@ def from_shoonya(env):
     }
 
 
-# ----------------------------------------------------------------- OpenAlgo
-
-def from_openalgo(env):
-    """Tradebook only, via OpenAlgo's REST. Used when no SHOONYA_* is set."""
-    url, key = env.get("OPENALGO_URL"), env.get("OPENALGO_APIKEY")
-    if not (url and key):
-        return None
-    try:
-        res = post(f"{url.rstrip('/')}/api/v1/tradebook", {"apikey": key})
-    except (urllib.error.URLError, OSError) as e:
-        print(f"  OpenAlgo unreachable ({e})", file=sys.stderr)
-        return None
-    if res.get("status") == "error":
-        print(f"  OpenAlgo error: {res.get('message')}", file=sys.stderr)
-        return None
-    data = res.get("data", res)
-    return {"tradebook": data if isinstance(data, list) else []}
-
-
 # --------------------------------------------------------------------- main
 
 def git(*args):
@@ -192,12 +171,7 @@ def main():
         have_fills = True
     else:
         print(f"Fetching Shoonya books for {args.date}...")
-        if all(env.get(k) for k in SHOONYA_KEYS):
-            books = from_shoonya(env)
-        else:
-            books = from_openalgo(env)
-            if books is None:
-                sys.exit("No credentials. Run: python3 connect.py")
+        books = from_shoonya(env)
         for name, rows in books.items():
             if rows:
                 (out / f"{name}.json").write_text(json.dumps(rows, indent=1))

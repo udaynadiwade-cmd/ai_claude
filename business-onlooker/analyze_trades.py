@@ -5,9 +5,9 @@ Post-mortem a day's Shoonya trading against the desk's own rules.
     python3 analyze_trades.py tradebook.csv
     python3 analyze_trades.py tradebook.json --n500 data/nifty500.txt
 
-Export from Shoonya: Reports -> Trade Book -> download CSV. Or take
-OpenAlgo's /api/v1/tradebook response (or Shoonya's /TradeBook) as JSON.
-daily_report.py does the latter automatically.
+Input is Shoonya's own data: the /TradeBook JSON that daily_report.py pulls
+every close, or the Trade Book CSV exported from trade.shoonya.com for a
+past day.
 
 This is not a P&L report - the broker already gives you one. It pairs fills
 into round trips and then checks them against the rules in CONTEXT.md:
@@ -27,8 +27,12 @@ from collections import defaultdict, deque
 from datetime import datetime
 from pathlib import Path
 
-# Shoonya intraday equity, as fractions of turnover unless stated.
-BROKERAGE_PER_ORDER = 20.0      # Rs 20 or 0.03%, whichever is lower
+# Shoonya NSE equity intraday rate card, shoonya.com/pricing as of
+# 2026-09-14. Fractions of turnover unless stated. Until 2026-09-14 this
+# file modelled brokerage at Rs 20/order - four times the real cap - so
+# every cost figure before that date was overstated. The contract note is
+# the final word; this is the rate card applied to the fills.
+BROKERAGE_PER_ORDER = 5.0       # Rs 5 or 0.03% per executed order, whichever is lower
 BROKERAGE_PCT = 0.0003
 STT_SELL = 0.00025              # sell side only, intraday equity
 EXCHANGE_TXN = 0.0000297        # NSE
@@ -38,13 +42,12 @@ GST = 0.18                      # on brokerage + exchange + SEBI
 
 FLAT_BY = "15:00"               # CONTEXT.md session window ends here
 
-# Column aliases. Shoonya's TradeBook, its web export and OpenAlgo all
-# disagree on names. Order matters: first match wins.
+# Column aliases. Shoonya's TradeBook API and its web CSV export disagree
+# on names; the generic ones cover any hand-made file. First match wins.
 #
-# Shoonya: flqty/flprc/fltm are THIS fill. fillshares/avgprc are the parent
-# order's running totals, so a partially filled order shows them repeated
-# on every row - summing fillshares would count the same shares twice.
-# OpenAlgo: action/symbol/quantity/average_price/timestamp(HH:MM:SS).
+# Shoonya API: flqty/flprc/fltm are THIS fill. fillshares/avgprc are the
+# parent order's running totals, so a partially filled order shows them
+# repeated on every row - summing fillshares would count shares twice.
 ALIASES = {
     "symbol": ["tsym", "tradingsymbol", "symbol", "scrip", "instrument"],
     "side": ["trantype", "buy/sell", "side", "action", "type"],
@@ -75,7 +78,6 @@ def parse_time(raw):
 
 
 def load(path):
-    """Read Shoonya CSV, or Shoonya/OpenAlgo JSON, into a flat list of fills."""
     text = Path(path).read_text()
     if text.lstrip().startswith(("[", "{")):
         blob = json.loads(text)
@@ -173,20 +175,39 @@ def merge_partials(trades):
     return list(merged.values())
 
 
-def costs(trade, brokerage_per_order=BROKERAGE_PER_ORDER):
-    """Round-trip charges. Two orders, STT on the sell, stamp on the buy."""
-    half = trade["turnover"] / 2
-    brok = 2 * min(brokerage_per_order, half * BROKERAGE_PCT)
+CHARGE_KEYS = ["brokerage", "stt", "exchange", "sebi", "stamp", "gst"]
+CHARGE_LABELS = {
+    "brokerage": "Brokerage (Rs 5 or 0.03% per order)",
+    "stt": "STT (0.025% on sell)",
+    "exchange": "Exchange txn (0.00297%)",
+    "sebi": "SEBI (Rs 10/crore)",
+    "stamp": "Stamp duty (0.003% on buy)",
+    "gst": "GST (18% on brokerage + exchange + SEBI)",
+}
+
+
+def charge_parts(trade, brokerage_per_order=BROKERAGE_PER_ORDER):
+    """Round-trip charges by component. Two orders, STT on the sell leg's
+    value, stamp on the buy leg's value, GST on the broker/exchange items."""
+    buy_val = (trade["entry"] if trade["direction"] == "LONG" else trade["exit"]) * trade["qty"]
+    sell_val = trade["turnover"] - buy_val
+    brok = (min(brokerage_per_order, buy_val * BROKERAGE_PCT)
+            + min(brokerage_per_order, sell_val * BROKERAGE_PCT))
     txn = trade["turnover"] * EXCHANGE_TXN
     sebi = trade["turnover"] * SEBI_FEES
-    return (brok + txn + sebi + GST * (brok + txn + sebi)
-            + half * STT_SELL + half * STAMP_DUTY_BUY)
+    return {"brokerage": brok, "stt": sell_val * STT_SELL, "exchange": txn,
+            "sebi": sebi, "stamp": buy_val * STAMP_DUTY_BUY, "gst": GST * (brok + txn + sebi)}
+
+
+def costs(trade, brokerage_per_order=BROKERAGE_PER_ORDER):
+    return sum(charge_parts(trade, brokerage_per_order).values())
 
 
 def price_trades(trades, brokerage_per_order=BROKERAGE_PER_ORDER):
     """Attach cost, net and hold time to every round trip. In place."""
     for t in trades:
-        t["cost"] = costs(t, brokerage_per_order)
+        t["charges"] = charge_parts(t, brokerage_per_order)
+        t["cost"] = sum(t["charges"].values())
         t["net"] = t["gross"] - t["cost"]
         t["hold_min"] = ((t["exit_time"] - t["entry_time"]).total_seconds() / 60
                          if t["entry_time"] and t["exit_time"] else None)
@@ -205,7 +226,9 @@ def summarise(trades):
     avg_loss = gl / len(losses) if losses else 0.0
     win_hold = [t["hold_min"] for t in wins if t["hold_min"] is not None]
     loss_hold = [t["hold_min"] for t in losses if t["hold_min"] is not None]
+    charges = {k: sum(t["charges"][k] for t in trades) for k in CHARGE_KEYS}
     return {
+        "charges": charges, "orders": 2 * len(trades),
         "n": len(trades), "wins": len(wins), "losses": len(losses),
         "win_rate": len(wins) / len(trades) * 100 if trades else 0.0,
         "gross": gross, "cost": cost, "net": gross - cost,
@@ -278,7 +301,7 @@ def read_universe(path):
 
 
 def rupees(x):
-    return f"{'-' if x < 0 else ''}Rs {abs(x):,.0f}"
+    return f"{'-' if x < 0 else ''}Rs {abs(x):,.2f}" if abs(x) < 10 else f"{'-' if x < 0 else ''}Rs {abs(x):,.0f}"
 
 
 def main():
@@ -318,6 +341,11 @@ def main():
     print(f"  Expectancy/trade {rupees(s['expectancy']):>16}")
     if s["win_hold"] is not None and s["loss_hold"] is not None:
         print(f"  Avg hold — winners {s['win_hold']:.0f} min, losers {s['loss_hold']:.0f} min")
+
+    print(f"\n{'-'*62}\n  TAXES & CHARGES — Shoonya rate card, {s['orders']} orders\n{'-'*62}")
+    for k in CHARGE_KEYS:
+        print(f"  {CHARGE_LABELS[k]:<44}{rupees(s['charges'][k]):>14}")
+    print(f"  {'Total':<44}{rupees(s['cost']):>14}")
 
     print(f"\n{'-'*62}\n  RULE CHECK — against CONTEXT.md\n{'-'*62}")
     breaches = rule_check(trades, open_legs, s, args.capital,

@@ -18,6 +18,7 @@ dashboard and the text report cannot disagree.
 
 What it answers, per day and across days:
   - net, win rate, profit factor, expectancy, realised R:R
+  - taxes and charges by component, from Shoonya's rate card
   - BEFORE-12 vs AFTER-12 by ENTRY time (the desk runs two strategies)
   - LONG vs SHORT
   - exits that fired on SIGNAL vs the timer SQUARE-OFF (an exit after the
@@ -162,8 +163,16 @@ def headline_rows(d):
              if s["win_hold"] is not None and s["loss_hold"] is not None else "—"]]
 
 
-HIST_HEAD = ["Date", "Trades", "Win %", "Net", "PF", "Before 12", "After 12",
-             "Square-offs", "Rejected", "Breaches"]
+HIST_HEAD = ["Date", "Trades", "Win %", "Gross", "Charges", "Net", "PF", "Before 12",
+             "After 12", "Square-offs", "Rejected", "Breaches"]
+CHARGE_HEAD = ["Charge", "Amount"]
+
+
+def charge_rows(d):
+    s = d["stats"]
+    rows = [[at.CHARGE_LABELS[k], rs(-s["charges"][k])] for k in at.CHARGE_KEYS]
+    rows.append([f"Total on {s['orders']} orders", rs(-s["cost"])])
+    return rows
 REJ_HEAD = ["Symbol", "Side", "Qty", "Time", "Reason"]
 
 
@@ -173,6 +182,7 @@ def rejected_rows(d):
 
 def history_rows(days):
     return [[d["date"], d["stats"]["n"], pct(d["stats"]["win_rate"]),
+             rs(d["stats"]["gross"]), rs(-d["stats"]["cost"]),
              rs(d["stats"]["net"]), ratio(d["stats"]["pf"]),
              rs(d["by_session"]["BEFORE 12"]["net"]),
              rs(d["by_session"]["AFTER 12"]["net"]),
@@ -318,7 +328,7 @@ summary .m{color:var(--mute);font-weight:400}
 """
 
 NUMERIC = {"Trades", "Win %", "Net", "Avg win", "Avg loss", "PF", "Qty", "Entry",
-           "Exit", "Hold", "Breaches", "Square-offs", "Rejected"}
+           "Exit", "Hold", "Breaches", "Square-offs", "Rejected", "Amount", "Charges", "Gross"}
 
 
 def h_table(head, rows):
@@ -359,6 +369,8 @@ def h_day(d, is_latest):
 <div class="row">
  <div class="card"><h2>Signal exit vs timer square-off</h2>{h_table(SPLIT_HEAD, split_rows(d["by_exit"]))}
   <p class="sub" style="margin:10px 0 0">{html.escape(concentration_line(d))}</p></div>
+ <div class="card"><h2>Taxes &amp; charges — Shoonya rate card</h2>{h_table(CHARGE_HEAD, charge_rows(d))}
+  <p class="sub" style="margin:10px 0 0">Applied to each fill at shoonya.com/pricing rates. The contract note is final.</p></div>
  <div class="card"><h2>Rule check — CONTEXT.md</h2>{breaches}{rej_html}</div>
 </div>
 <div class="card"><h2>Trades</h2>{h_table(TRADE_HEAD, trade_rows(d["trades"]))}</div>"""
@@ -422,6 +434,12 @@ Running total over {len(days)} day(s): **{rs(total)}**.
 ## {d['date']} — {rs(d['stats']['net'])}
 
 {md_table(["Metric", "Value"], headline_rows(d))}
+
+### Taxes and charges — Shoonya rate card
+
+{md_table(CHARGE_HEAD, charge_rows(d))}
+
+Applied to each fill at shoonya.com/pricing rates. The contract note is final.
 
 ### Two strategies, by entry time
 

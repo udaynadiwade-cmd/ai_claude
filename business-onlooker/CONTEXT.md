@@ -40,9 +40,21 @@ one so a post-mortem can tell what was true on the day a trade happened.
 - **Data source of truth for analysis: Shoonya's API directly** (set
   2026-09-14, at Uday's call). Trade book, order book (with REJECTED +
   reason) and position book are pulled raw every close.
-- Execution platform: **OpenAlgo**, self-hosted. It places the orders; it is
-  not in the analysis path. Its REST tradebook remains an optional fallback
-  only when no Shoonya API credentials are set.
+- Execution platform: **OpenAlgo**, self-hosted. It places the orders and
+  that is all. **It is not in the analysis path at all** (Uday, 2026-09-14:
+  "OpenAlgo is not designed to give taxes, expenses, etc. Connect to Shoonya
+  only"). No fallback to it exists in the code.
+- **Shoonya rate card, NSE equity intraday** (shoonya.com/pricing, read
+  2026-09-14): brokerage **Rs 5 or 0.03% per executed order, whichever is
+  lower**; STT 0.025% on sell; exchange txn 0.00297%; SEBI Rs 10/crore; stamp
+  0.003% on buy; GST 18% on brokerage + exchange + SEBI; call-and-trade 0.
+  **Correction:** the analyzer modelled brokerage at Rs 20/order until
+  2026-09-14, and the "roughly Rs 2,000 brokerage on 98 orders" remark about
+  2026-09-10 was built on it. At the real cap that day's brokerage was about
+  Rs 490, so the day was net positive after charges, not negative.
+- The API books (Trade/Order/Position) carry **no charges**. Taxes and
+  expenses on the dashboard are the rate card applied to each fill. The
+  contract note is the final word — reconcile against it when it differs.
 - *(Add when set: server/hosting details, strategy repo location,
   monitoring/alerting setup.)*
 
@@ -146,3 +158,6 @@ one so a post-mortem can tell what was true on the day a trade happened.
 - **2026-09-14** — Uday's call: everything comes from Shoonya, not OpenAlgo.
   Shoonya direct is now the primary source; three books pulled; rejected
   orders on the dashboard. OpenAlgo demoted to optional fallback.
+- **2026-09-14** — OpenAlgo removed from the analysis path entirely. Real
+  Shoonya rate card applied (brokerage Rs 5/order cap, not Rs 20); taxes and
+  charges broken out by component on the report and dashboard.
