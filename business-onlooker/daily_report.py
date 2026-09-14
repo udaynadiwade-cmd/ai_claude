@@ -15,14 +15,14 @@ web export: Shoonya -> Reports -> Trade Book -> pick the date -> CSV):
 
     python3 daily_report.py --file ~/Downloads/TradeBook.csv --date 2026-09-11
 
-Credentials come from a .env beside this file and never leave that machine.
+Credentials come from environment variables or a .env beside this file.
 Two sources, tried in order:
 
   OpenAlgo (preferred — it already holds your Shoonya login):
       OPENALGO_URL=http://127.0.0.1:5000
       OPENALGO_APIKEY=...
 
-  Shoonya direct (fallback, needs: pip install pyotp):
+  Shoonya direct (fallback):
       SHOONYA_USER=...          # client id
       SHOONYA_PWD=...           # plain password, hashed here
       SHOONYA_TOTP_SECRET=...   # base32 secret from the TOTP setup QR
@@ -35,8 +35,12 @@ Optional:
 """
 
 import argparse
+import base64
 import hashlib
+import hmac
 import shutil
+import struct
+import time
 import json
 import os
 import subprocess
@@ -93,8 +97,18 @@ def from_openalgo(env):
     return data if isinstance(data, list) else []
 
 
+def totp(secret, digits=6, period=30):
+    """RFC 6238 time-based OTP, SHA-1, from a base32 secret. No dependency."""
+    key = base64.b32decode(secret.replace(" ", "").upper() + "=" * (-len(secret.strip()) % 8))
+    counter = struct.pack(">Q", int(time.time()) // period)
+    mac = hmac.new(key, counter, hashlib.sha1).digest()
+    offset = mac[-1] & 0x0F
+    code = (struct.unpack(">I", mac[offset:offset + 4])[0] & 0x7FFFFFFF) % 10 ** digits
+    return f"{code:0{digits}d}"
+
+
 def from_shoonya(env):
-    """Direct Noren API. Needs TOTP, so pyotp is required for this path.
+    """Direct Noren API. TOTP is computed here, so nothing to pip install.
 
     /TradeBook rows carry flqty/flprc/fltm for THIS fill and
     fillshares/avgprc as the parent order's running totals; the analyzer
@@ -104,17 +118,13 @@ def from_shoonya(env):
             "SHOONYA_VENDOR", "SHOONYA_APIKEY"]
     if any(not env.get(k) for k in need):
         sys.exit("No usable credentials. Set OPENALGO_* or all SHOONYA_* in .env")
-    try:
-        import pyotp
-    except ImportError:
-        sys.exit("pip install pyotp  (needed for the Shoonya direct path)")
 
     uid = env["SHOONYA_USER"]
     sha = lambda s: hashlib.sha256(s.encode()).hexdigest()
     payload = {
         "apkversion": "1.0.0", "uid": uid,
         "pwd": sha(env["SHOONYA_PWD"]),
-        "factor2": pyotp.TOTP(env["SHOONYA_TOTP_SECRET"]).now(),
+        "factor2": totp(env["SHOONYA_TOTP_SECRET"]),
         "vc": env["SHOONYA_VENDOR"],
         "appkey": sha(f"{uid}|{env['SHOONYA_APIKEY']}"),
         "imei": env.get("SHOONYA_IMEI", "abc1234"), "source": "API",
