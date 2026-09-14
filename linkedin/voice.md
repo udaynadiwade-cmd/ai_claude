@@ -45,6 +45,11 @@ dash is treated as a row.
   rebuilt.
 - Never invent revenue, client names, or results. If a number is uncertain,
   write the post without it.
+- Never write about buying aircraft parts or certified flight hardware, not
+  even as a disclaimer. It is not Uday's domain and not on befach.com; a
+  disclaimer still points the reader at it (Uday, 2026-09-14). His GE
+  sourcing history is fine as credential. Befach's offer is the kit around
+  the line and the hangar.
 - Never post about a candidate, an employee's performance, or a pending deal.
 - Never sell in every post. Roughly one in five can mention befach.com. On
   those, sell by showing a number only Befach can show, then invite the reader
