@@ -14,8 +14,9 @@ One post a day, written in Uday's voice, with a card, sent through the webhook.
 ```
 /daily-post
 ```
-Claude picks a pillar, drafts three options, you pick and edit by number,
-it renders the card, shows the payload, and sends only on your **Y**.
+Claude asks you three to six numbered questions first (always — see
+`INTERVIEW.md`), then drafts, you pick and edit by number, it renders the
+card, shows the payload, and sends only on your **Y**.
 
 ## Files
 | | |

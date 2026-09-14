@@ -40,6 +40,9 @@ before sending; price tables survive because a currency figure followed by a
 dash is treated as a row.
 
 ## Never
+- Never build a post without asking Uday questions first. See
+  `INTERVIEW.md`. A draft written before the questions is a draft that gets
+  rebuilt.
 - Never invent revenue, client names, or results. If a number is uncertain,
   write the post without it.
 - Never post about a candidate, an employee's performance, or a pending deal.

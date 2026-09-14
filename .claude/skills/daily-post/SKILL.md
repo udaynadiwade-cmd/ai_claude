@@ -7,6 +7,13 @@ description: Draft, card, and send today's LinkedIn post for Uday. Run once each
 
 Everything lives in `linkedin/`. Work in this order and do not skip the gate.
 
+0. **Ask first — always.** Standing instruction from Uday (2026-09-14).
+   Before drafting anything, read `linkedin/INTERVIEW.md`, then put three to
+   six numbered questions to him about the topic: his own angle, the one fact
+   only he knows, who it should reach and who to tag, the ask, sell or no
+   sell, anything off limits. Wait for the answers. Do not draft until he has
+   replied. If he says "just write it", draft with placeholders for what you
+   would have asked and let `post.py` hold the send.
 1. **Read context**: `linkedin/voice.md`, `linkedin/topics.md`, the last five
    rows of `linkedin/posts/log.md`, and yesterday's `linkedin/posts/*.md`.
    Pick the next pillar in rotation and a topic not yet used. If Uday gave a
@@ -38,6 +45,6 @@ Everything lives in `linkedin/`. Work in this order and do not skip the gate.
    the response status, confirm the log row. On **N**: leave the file as draft,
    set `status: held`, stop.
 
-Rules: never send without the Y. Never invent numbers (voice.md). If
+Rules: never draft without asking first. Never send without the Y. Never invent numbers (voice.md). If
 `WEBHOOK_URL` is missing, say so and stop at step 6. If `cardgen.py` is still
 the placeholder, say so once in the message and carry on.
