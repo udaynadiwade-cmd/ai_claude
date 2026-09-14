@@ -50,6 +50,10 @@ Dates are aggregator-reported; confirm with Uday before quoting a year publicly.
 - Awards: CII Product Innovation Award 2019; Coca-Cola Sustainable Enterprise
   Award 2019; Telangana State Industries Awards 2019, Best Innovation (micro
   enterprise); Retail Startup Award 2020.
+- Prospect list for aerospace posts (Uday-approved 2026-09-14): MTAR
+  Technologies, Azad Engineering, Rossell Techsys, Ananth Technologies, Tata
+  Advanced Systems, Skyroot Aerospace, BHEL (makes aerospace parts), Godrej
+  Aerospace, L&T Defence.
 - Usable in posts: the GE Aircraft Engines sourcing years are the aerospace
   credential. Frame as supplier qualification and approval chains, not as
   parts trading. Befach does not supply certified flight hardware.
