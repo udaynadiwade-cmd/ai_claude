@@ -35,7 +35,7 @@ Dates are aggregator-reported; confirm with Uday before quoting a year publicly.
 |---|---|
 | 1990 onward | Tata Motors — started career; Assistant Manager, Procurement |
 | — | General Motors |
-| 1999–2003 | **GE Aircraft Engines — Country Sourcing Leader** (the aerospace credential) |
+| 1999–2003 | **GE Aircraft Engines — sourcing across Asia** (China, Indonesia, Malaysia, India) for US/EU engine plants; supplier search and qualification. Uday's own description, 2026-09-14. Aggregators list the title as Country Sourcing Leader. |
 | — | GE — Lean Six Sigma Master Black Belt |
 | — | Genpact — Assistant Vice President (IT Operations), then Vice President, Commodity Procurement Practice / Strategic Sourcing |
 | — | Acme Solar Holdings — SCM Vice President, Operational Excellence |
