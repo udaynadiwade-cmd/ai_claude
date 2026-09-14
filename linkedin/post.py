@@ -35,6 +35,31 @@ def load_env():
                 os.environ.setdefault(k.strip(), v.strip().strip('"').strip("'"))
 
 
+def unwrap(text: str) -> str:
+    """Join lines the editor wrapped, keep real paragraph and list breaks.
+
+    LinkedIn renders every newline literally, so a post hard-wrapped at 80
+    columns arrives broken mid-sentence. A line break is kept only before a
+    blank line, a list marker, or an indented continuation.
+    """
+    out = []
+    for para in text.split("\n\n"):
+        lines = [ln.rstrip() for ln in para.split("\n")]
+        buf = ""
+        for ln in lines:
+            starts_item = bool(re.match(r"^\s*([-*\u2022]|\d+[.)])\s", ln))
+            if buf and not starts_item:
+                buf += " " + ln.lstrip()
+            else:
+                if buf:
+                    out.append(buf)
+                buf = ln
+        if buf:
+            out.append(buf)
+        out.append("")
+    return "\n".join(out).strip()
+
+
 def parse_post(path: Path):
     raw = path.read_text(encoding="utf-8")
     head, _, body = raw.partition("\n\n")
@@ -43,7 +68,7 @@ def parse_post(path: Path):
     for line in head.splitlines()[1:]:
         if line.lower().startswith("card:"):
             card = line.split(":", 1)[1].strip() or None
-    return title, card, body.strip()
+    return title, card, unwrap(body.strip())
 
 
 def payload(title, text, card_path, author):
@@ -67,7 +92,7 @@ def main():
 
     title, card, text = parse_post(Path(a.post))
     card = a.card or card
-    body = payload(title, text, card, os.environ.get("AUTHOR", ""))
+    body = payload(title, text, card, os.environ.get("AUTHOR", "Uday Nadiwade"))
 
     if a.dry_run:
         shown = {**body, "image_base64": f"<{len(body.get('image_base64', ''))} chars>"} \
