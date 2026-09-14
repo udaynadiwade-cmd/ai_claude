@@ -25,6 +25,35 @@ This philosophy applies internally too: the organization works to do things bett
 - **Hiring philosophy:** Looks for high attitude (good disposition to work, solution mindset) and high aptitude (capability, willingness to build through training)
 - **LinkedIn:** https://www.linkedin.com/in/udaynadiwade?utm_source=share_via&utm_content=profile&utm_medium=member_android
 
+#### Career before Befach (added 2026-09-14)
+LinkedIn cannot be read from a cloud session (HTTP 999). The following was
+assembled from public aggregators (ZoomInfo, RocketReach, MentorBox mentor bio,
+GlobalLinker) via web search and is consistent with Uday's own summary above.
+Dates are aggregator-reported; confirm with Uday before quoting a year publicly.
+
+| Period | Role |
+|---|---|
+| 1990 onward | Tata Motors — started career; Assistant Manager, Procurement |
+| — | General Motors |
+| 1999–2003 | **GE Aircraft Engines — Country Sourcing Leader** (the aerospace credential) |
+| — | GE — Lean Six Sigma Master Black Belt |
+| — | Genpact — Assistant Vice President (IT Operations), then Vice President, Commodity Procurement Practice / Strategic Sourcing |
+| — | Acme Solar Holdings — SCM Vice President, Operational Excellence |
+| — | Sun Global Solutions — Management Consultant, Operations/Quality/SCM |
+| 2018 | Co-founded Befach 4x Private Limited |
+
+- Education: BE, NIT Allahabad; MBA, XLRI; PMP (2009).
+- Roughly 20 years in the corporate sector before founding.
+- Earlier ventures (GlobalLinker interview): an IoT school-bus tracking service
+  (2010, ~6,000 students, failed on telecom infrastructure); "Dial a Doctor"
+  telemedicine (failed on 3G quality); grocery delivery experiments.
+- Awards: CII Product Innovation Award 2019; Coca-Cola Sustainable Enterprise
+  Award 2019; Telangana State Industries Awards 2019, Best Innovation (micro
+  enterprise); Retail Startup Award 2020.
+- Usable in posts: the GE Aircraft Engines sourcing years are the aerospace
+  credential. Frame as supplier qualification and approval chains, not as
+  parts trading. Befach does not supply certified flight hardware.
+
 ### Rajesh Saraf
 - Co-founder of Befach
 - **Core expertise:** Sales, distribution

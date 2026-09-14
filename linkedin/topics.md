@@ -28,3 +28,4 @@ ones as they come up in the week. `/daily-post` reads this and `posts/log.md`.
 ## Used
 (none yet)
 - ~~Maths and creativity (Guwahati airport video)~~ → drafted 2026-09-17
+- ~~Aerospace backlog and production tooling~~ → drafted 2026-09-18
