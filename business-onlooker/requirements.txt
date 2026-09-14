@@ -1,0 +1,3 @@
+# Only shoonya_mcp.py (the Claude connector) needs these. Everything else is stdlib.
+mcp>=2
+uvicorn

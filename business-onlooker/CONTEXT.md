@@ -85,6 +85,26 @@ one so a post-mortem can tell what was true on the day a trade happened.
   pushes. Do not spend another session retrying from here; the answer is the
   egress address, not the code.
 
+## Claude connector for Shoonya (added 2026-09-14)
+
+- **There is no Shoonya connector in Claude's connector directory** — checked
+  2026-09-14; nothing under Shoonya, Finvasia or Noren. Shoonya publishes no
+  MCP server. So the desk runs its own: `shoonya_mcp.py`.
+- It is a read-only MCP server (tools: `status`, `tradebook`, `orderbook`,
+  `positions`, `report`) that logs in with the `.env` credentials. It runs on
+  the same India machine as the daily report, on `127.0.0.1:8765`, behind a
+  secret path, and is exposed to Anthropic's servers through a tunnel
+  (`cloudflared tunnel --url http://127.0.0.1:8765`, or ngrok with a static
+  domain so the URL survives restarts).
+- Registered in claude.ai at **Customize → Connectors → + → Add custom
+  connector**, name Shoonya, URL `https://<tunnel-host>/<secret>/mcp`, no
+  OAuth. Then enable it in the chat's connector settings. Any chat, this
+  agent included, can then pull today's books on demand.
+- The full URL is a credential. No order placement exists in it and none
+  will be added — it is an analysis feed, nothing else.
+- The daily report at 15:35 still runs; the connector is for on-demand pulls
+  during the session, the report is the permanent record.
+
 ## Daily loop — trade post-mortem (automated 2026-09-14)
 
 - **One-time setup: `python3 business-onlooker/connect.py` on any machine
@@ -162,3 +182,5 @@ one so a post-mortem can tell what was true on the day a trade happened.
 - **2026-09-14** — OpenAlgo removed from the analysis path entirely. Real
   Shoonya rate card applied (brokerage Rs 5/order cap, not Rs 20); taxes and
   charges broken out by component on the report and dashboard.
+- **2026-09-14** — `shoonya_mcp.py` added: the desk's own read-only Claude
+  connector for Shoonya, since none exists in the directory.
