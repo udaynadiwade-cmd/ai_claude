@@ -57,9 +57,20 @@ one so a post-mortem can tell what was true on the day a trade happened.
   target R:R only exists in the cash market.
 - `WebSearch` works for news and runs server-side. Use it to attach a cause to
   every mover the filter flags.
+- **Shoonya's API is NOT reachable from the remote session — and never will
+  be from here.** Verified 2026-09-14: every `api.shoonya.com/NorenWClientTP/*`
+  call from the container's US egress (Google Cloud, Ohio) returns 502 from
+  Shoonya's own nginx, while the static site returns 200. Shoonya fences its
+  API to India. So the broker connection lives on the OpenAlgo machine
+  (`connect.py` sets it up in one command) and this session reads what it
+  pushes. Do not spend another session retrying from here; the answer is the
+  egress address, not the code.
 
 ## Daily loop — trade post-mortem (automated 2026-09-14)
 
+- **One-time setup: `python3 business-onlooker/connect.py` on the OpenAlgo
+  machine.** It asks for the OpenAlgo key, proves the connection by pulling
+  the tradebook, pushes the first report, and installs the 15:35 IST schedule.
 - **Nothing is uploaded by hand.** `daily_report.py` runs on the machine that
   hosts OpenAlgo — a scheduler fires it at 15:35 IST on weekdays. It pulls the
   day's fills from OpenAlgo's `/api/v1/tradebook` (falls back to Shoonya's own
@@ -117,3 +128,6 @@ one so a post-mortem can tell what was true on the day a trade happened.
 - **2026-09-14** — Dashboard added (`dashboard.py` → `reports/dashboard.html`
   + `reports/README.md`), wired into `daily_report.py`. Shoonya `flqty` vs
   `fillshares` fix; partial fills merged; WINDOW cutoff moved to 15:00.
+- **2026-09-14** — Shoonya API confirmed India-fenced (502 from US egress).
+  `connect.py` added: one command on the OpenAlgo machine sets up the whole
+  daily connection. Shoonya direct path no longer needs `pyotp`.

@@ -20,3 +20,6 @@ business-onlooker/.env
 # Python bytecode
 __pycache__/
 *.pyc
+
+# Scheduler output
+*.log
