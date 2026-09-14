@@ -1,33 +1,41 @@
 #!/usr/bin/env python3
 """
-Pull today's fills, analyse them, commit the report. Runs unattended.
+Pull today's fills, analyse them, rebuild the dashboard, commit. Unattended.
 
-Put this on a scheduler at 15:35 IST on weekdays. It fetches the day's
-tradebook, runs analyze_trades.py over it, writes both under
-business-onlooker/reports/<date>/ and pushes. Nothing to upload by hand.
+Runs on the machine that hosts OpenAlgo — a scheduler fires it at 15:35 IST
+on weekdays. It fetches the day's tradebook, runs analyze_trades.py over it,
+rebuilds reports/dashboard.html + reports/README.md via dashboard.py, and
+pushes. Nothing to upload by hand, ever.
 
-Credentials come from a .env beside this file and never leave your machine.
+    python3 daily_report.py            # today
+    python3 daily_report.py --no-push  # dry run, leaves files uncommitted
+
+Credentials come from a .env beside this file and never leave that machine.
 Two sources, tried in order:
 
   OpenAlgo (preferred — it already holds your Shoonya login):
       OPENALGO_URL=http://127.0.0.1:5000
       OPENALGO_APIKEY=...
 
-  Shoonya direct (fallback):
+  Shoonya direct (fallback, needs: pip install pyotp):
       SHOONYA_USER=...          # client id
       SHOONYA_PWD=...           # plain password, hashed here
       SHOONYA_TOTP_SECRET=...   # base32 secret from the TOTP setup QR
       SHOONYA_VENDOR=...        # vendor code, usually <userid>_U
       SHOONYA_APIKEY=...        # API secret from Shoonya
+
+Optional:
+      CAPITAL_PER_STOCK=10000   # SIZE rule
+      FLAT_BY=15:00             # WINDOW rule + square-off cutoff
 """
 
+import argparse
 import hashlib
 import json
 import os
 import subprocess
 import sys
 import urllib.error
-import urllib.parse
 import urllib.request
 from datetime import datetime
 from pathlib import Path
@@ -58,7 +66,12 @@ def post(url, data, headers=None):
 
 
 def from_openalgo(env):
-    """OpenAlgo already authenticates to Shoonya, so this needs one key."""
+    """OpenAlgo already authenticates to Shoonya, so this needs one key.
+
+    POST /api/v1/tradebook {"apikey"} -> {"status": "success", "data": [
+      {action, symbol, exchange, orderid, product, quantity, average_price,
+       timestamp "HH:MM:SS", trade_value}, ...]}
+    """
     url, key = env.get("OPENALGO_URL"), env.get("OPENALGO_APIKEY")
     if not (url and key):
         return None
@@ -70,11 +83,17 @@ def from_openalgo(env):
     if res.get("status") == "error":
         print(f"  OpenAlgo error: {res.get('message')}", file=sys.stderr)
         return None
-    return res.get("data", res)
+    data = res.get("data", res)
+    return data if isinstance(data, list) else []
 
 
 def from_shoonya(env):
-    """Direct Noren API. Needs TOTP, so pyotp is required for this path."""
+    """Direct Noren API. Needs TOTP, so pyotp is required for this path.
+
+    /TradeBook rows carry flqty/flprc/fltm for THIS fill and
+    fillshares/avgprc as the parent order's running totals; the analyzer
+    reads the former.
+    """
     need = ["SHOONYA_USER", "SHOONYA_PWD", "SHOONYA_TOTP_SECRET",
             "SHOONYA_VENDOR", "SHOONYA_APIKEY"]
     if any(not env.get(k) for k in need):
@@ -102,7 +121,7 @@ def from_shoonya(env):
     token = res["susertoken"]
     tb = post(f"{SHOONYA}/TradeBook",
               f"jData={json.dumps({'uid': uid, 'actid': uid})}&jKey={token}", hdr)
-    return tb if isinstance(tb, list) else []
+    return tb if isinstance(tb, list) else []   # {"stat":"Not_Ok"} on an empty day
 
 
 def git(*args):
@@ -110,17 +129,27 @@ def git(*args):
                           capture_output=True, text=True)
 
 
+def run_py(script, *args):
+    r = subprocess.run([sys.executable, str(HERE / script), *args],
+                       capture_output=True, text=True)
+    return (r.stdout + r.stderr).strip()
+
+
 def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--no-push", action="store_true", help="write files, skip git")
+    ap.add_argument("--date", default=datetime.now().strftime("%Y-%m-%d"),
+                    help="folder name; the broker only serves today's fills")
+    args = ap.parse_args()
+
     env = load_env()
-    stamp = datetime.now().strftime("%Y-%m-%d")
-    out = REPORTS / stamp
+    out = REPORTS / args.date
     out.mkdir(parents=True, exist_ok=True)
 
-    print(f"Fetching tradebook for {stamp}...")
+    print(f"Fetching tradebook for {args.date}...")
     fills = from_openalgo(env)
     if fills is None:
         fills = from_shoonya(env)
-
     if not fills:
         print("No trades today. Nothing to report.")
         return
@@ -129,26 +158,37 @@ def main():
     raw.write_text(json.dumps(fills, indent=1))
     print(f"  {len(fills)} fills -> {raw}")
 
-    cmd = [sys.executable, str(HERE / "analyze_trades.py"), str(raw)]
+    common = []
     n500 = HERE / "data" / "nifty500.txt"
     if n500.exists():
-        cmd += ["--n500", str(n500)]
+        common += ["--n500", str(n500)]
     if env.get("CAPITAL_PER_STOCK"):
-        cmd += ["--capital", env["CAPITAL_PER_STOCK"]]
+        common += ["--capital", env["CAPITAL_PER_STOCK"]]
+    if env.get("FLAT_BY"):
+        common += ["--flat-by", env["FLAT_BY"]]
 
-    run = subprocess.run(cmd, capture_output=True, text=True)
-    report = run.stdout or run.stderr
-    (out / "report.txt").write_text(report)
+    report = run_py("analyze_trades.py", str(raw), *common)
+    (out / "report.txt").write_text(report + "\n")
     print(report)
 
-    rel = f"business-onlooker/reports/{stamp}"
-    git("add", rel)
-    if git("diff", "--cached", "--quiet").returncode:
-        git("commit", "-m", f"Trade report {stamp}")
-        push = git("push")
-        print("Pushed." if push.returncode == 0 else f"Push failed:\n{push.stderr}")
-    else:
+    dash_args = common + (["--squareoff-after", env["FLAT_BY"]] if env.get("FLAT_BY") else [])
+    print(run_py("dashboard.py", "--reports", str(REPORTS), *dash_args))
+
+    if args.no_push:
+        print("--no-push: files written, nothing committed.")
+        return
+
+    rel = f"business-onlooker/reports"
+    git("add", f"{rel}/{args.date}", f"{rel}/dashboard.html", f"{rel}/README.md")
+    if not git("diff", "--cached", "--quiet").returncode:
         print("No change to commit.")
+        return
+    git("commit", "-m", f"Trade report {args.date}")
+    push = git("push")
+    if push.returncode and "rejected" in push.stderr:      # someone else pushed
+        git("pull", "--rebase")
+        push = git("push")
+    print("Pushed." if push.returncode == 0 else f"Push failed:\n{push.stderr}")
 
 
 if __name__ == "__main__":

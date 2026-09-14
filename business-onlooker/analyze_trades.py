@@ -3,16 +3,20 @@
 Post-mortem a day's Shoonya trading against the desk's own rules.
 
     python3 analyze_trades.py tradebook.csv
-    python3 analyze_trades.py tradebook.csv --capital 10000 --brokerage 20
+    python3 analyze_trades.py tradebook.json --n500 data/nifty500.txt
 
-Export from Shoonya: Reports -> Trade Book -> download CSV. Or dump
-OpenAlgo's /tradebook response to JSON and pass that instead.
+Export from Shoonya: Reports -> Trade Book -> download CSV. Or take
+OpenAlgo's /api/v1/tradebook response (or Shoonya's /TradeBook) as JSON.
+daily_report.py does the latter automatically.
 
 This is not a P&L report - the broker already gives you one. It pairs fills
 into round trips and then checks them against the rules in CONTEXT.md:
-Rs 10,000 a stock, Nifty 500 only, 2% risk, flat by 11:15. The point is to
-show which rule you broke and what it cost, because that is the number that
-changes behaviour.
+Rs 10,000 a stock, Nifty 500 only, flat by the session cutoff. The point is
+to show which rule you broke and what it cost, because that is the number
+that changes behaviour.
+
+dashboard.py imports the functions below, so the numbers on the dashboard
+and in this report can never disagree.
 """
 
 import argparse
@@ -32,13 +36,21 @@ SEBI_FEES = 0.000001
 STAMP_DUTY_BUY = 0.00003        # buy side only
 GST = 0.18                      # on brokerage + exchange + SEBI
 
-# Column aliases. Shoonya's web export and OpenAlgo disagree on names.
+FLAT_BY = "15:00"               # CONTEXT.md session window ends here
+
+# Column aliases. Shoonya's TradeBook, its web export and OpenAlgo all
+# disagree on names. Order matters: first match wins.
+#
+# Shoonya: flqty/flprc/fltm are THIS fill. fillshares/avgprc are the parent
+# order's running totals, so a partially filled order shows them repeated
+# on every row - summing fillshares would count the same shares twice.
+# OpenAlgo: action/symbol/quantity/average_price/timestamp(HH:MM:SS).
 ALIASES = {
     "symbol": ["tsym", "tradingsymbol", "symbol", "scrip", "instrument"],
     "side": ["trantype", "buy/sell", "side", "action", "type"],
-    "qty": ["fillshares", "qty", "quantity", "filled qty", "tradeqty"],
-    "price": ["flprc", "price", "avg price", "average_price", "fillprice"],
-    "time": ["fltm", "time", "norentm", "timestamp", "order time", "exch_tm"],
+    "qty": ["flqty", "fillshares", "qty", "quantity", "filled qty", "tradeqty"],
+    "price": ["flprc", "price", "average_price", "avg price", "fillprice"],
+    "time": ["fltm", "exch_tm", "time", "norentm", "timestamp", "order time"],
     "product": ["prd", "product", "producttype"],
 }
 
@@ -63,7 +75,7 @@ def parse_time(raw):
 
 
 def load(path):
-    """Read Shoonya CSV or OpenAlgo JSON into a flat list of fills."""
+    """Read Shoonya CSV, or Shoonya/OpenAlgo JSON, into a flat list of fills."""
     text = Path(path).read_text()
     if text.lstrip().startswith(("[", "{")):
         blob = json.loads(text)
@@ -73,15 +85,20 @@ def load(path):
 
     fills = []
     for row in rows:
+        if not isinstance(row, dict):
+            continue
         sym, side = pick(row, "symbol"), pick(row, "side").upper()
         qty, price = pick(row, "qty"), pick(row, "price")
         if not (sym and side and qty and price):
             continue
+        qty, price = int(float(qty)), float(price)
+        if qty <= 0 or price <= 0:          # rejected / unfilled rows
+            continue
         fills.append({
             "symbol": sym.replace("-EQ", "").upper(),
             "buy": side.startswith("B"),
-            "qty": int(float(qty)),
-            "price": float(price),
+            "qty": qty,
+            "price": price,
             "time": parse_time(pick(row, "time")),
             "product": pick(row, "product").upper(),
         })
@@ -129,7 +146,34 @@ def pair_trades(fills):
     return trades, open_legs
 
 
-def costs(trade, brokerage_per_order):
+def merge_partials(trades):
+    """Collapse partial fills of one position back into one round trip.
+
+    A 6-share exit filled as 4 + 2 pairs into two rows above. For win rate
+    and expectancy that is one trade, not two, so rows sharing symbol,
+    direction and entry time are combined at volume-weighted prices. It also
+    gets brokerage right: a partial fill is still one order.
+    """
+    merged = {}
+    for t in trades:
+        key = ((t["symbol"], t["direction"], t["entry_time"])
+               if t["entry_time"] else (t["symbol"], t["direction"], id(t)))
+        m = merged.get(key)
+        if m is None:
+            merged[key] = dict(t)
+            continue
+        q = m["qty"] + t["qty"]
+        m["entry"] = (m["entry"] * m["qty"] + t["entry"] * t["qty"]) / q
+        m["exit"] = (m["exit"] * m["qty"] + t["exit"] * t["qty"]) / q
+        m["qty"] = q
+        for k in ("gross", "turnover", "exposure"):
+            m[k] += t[k]
+        if t["exit_time"] and (not m["exit_time"] or t["exit_time"] > m["exit_time"]):
+            m["exit_time"] = t["exit_time"]
+    return list(merged.values())
+
+
+def costs(trade, brokerage_per_order=BROKERAGE_PER_ORDER):
     """Round-trip charges. Two orders, STT on the sell, stamp on the buy."""
     half = trade["turnover"] / 2
     brok = 2 * min(brokerage_per_order, half * BROKERAGE_PCT)
@@ -137,6 +181,100 @@ def costs(trade, brokerage_per_order):
     sebi = trade["turnover"] * SEBI_FEES
     return (brok + txn + sebi + GST * (brok + txn + sebi)
             + half * STT_SELL + half * STAMP_DUTY_BUY)
+
+
+def price_trades(trades, brokerage_per_order=BROKERAGE_PER_ORDER):
+    """Attach cost, net and hold time to every round trip. In place."""
+    for t in trades:
+        t["cost"] = costs(t, brokerage_per_order)
+        t["net"] = t["gross"] - t["cost"]
+        t["hold_min"] = ((t["exit_time"] - t["entry_time"]).total_seconds() / 60
+                         if t["entry_time"] and t["exit_time"] else None)
+    return trades
+
+
+def summarise(trades):
+    """Aggregate priced trades. Works on any subset, so it drives every split."""
+    wins = [t for t in trades if t["net"] > 0]
+    losses = [t for t in trades if t["net"] <= 0]
+    gross = sum(t["gross"] for t in trades)
+    cost = sum(t["cost"] for t in trades)
+    gp = sum(t["net"] for t in wins)
+    gl = abs(sum(t["net"] for t in losses))
+    avg_win = gp / len(wins) if wins else 0.0
+    avg_loss = gl / len(losses) if losses else 0.0
+    win_hold = [t["hold_min"] for t in wins if t["hold_min"] is not None]
+    loss_hold = [t["hold_min"] for t in losses if t["hold_min"] is not None]
+    return {
+        "n": len(trades), "wins": len(wins), "losses": len(losses),
+        "win_rate": len(wins) / len(trades) * 100 if trades else 0.0,
+        "gross": gross, "cost": cost, "net": gross - cost,
+        "gross_profit": gp, "gross_loss": gl,
+        "avg_win": avg_win, "avg_loss": avg_loss,
+        "rr": avg_win / avg_loss if avg_loss else None,
+        "pf": gp / gl if gl else None,
+        "expectancy": (gross - cost) / len(trades) if trades else 0.0,
+        "win_hold": sum(win_hold) / len(win_hold) if win_hold else None,
+        "loss_hold": sum(loss_hold) / len(loss_hold) if loss_hold else None,
+    }
+
+
+def rule_check(trades, open_legs, s, capital=10000.0, universe=None, flat_by=FLAT_BY):
+    """Audit priced trades against CONTEXT.md. Returns breach strings."""
+    breaches = []
+
+    over = [t for t in trades if t["exposure"] > capital * 1.02]
+    if over:
+        worst = max(over, key=lambda t: t["exposure"])
+        breaches.append(
+            f"SIZE: {len(over)} trade(s) above Rs {capital:,.0f}/stock. "
+            f"Worst {worst['symbol']} at {rupees(worst['exposure'])} "
+            f"({worst['exposure'] / capital:.1f}x).")
+
+    if universe:
+        outside = sorted({t["symbol"] for t in trades if t["symbol"] not in universe})
+        if outside:
+            breaches.append(f"UNIVERSE: outside Nifty 500 — {', '.join(outside)}.")
+
+    cutoff = datetime.strptime(flat_by, "%H:%M").time()
+    late = [t for t in trades if t["exit_time"] and t["exit_time"].time() > cutoff]
+    if late:
+        breaches.append(
+            f"WINDOW: {len(late)} exit(s) after {flat_by}, worth "
+            f"{rupees(sum(t['net'] for t in late))} — the signal never fired, "
+            f"the square-off did.")
+
+    if s["wins"] and s["losses"] and s["avg_loss"] > s["avg_win"]:
+        breaches.append(
+            f"ASYMMETRY: avg loss {rupees(s['avg_loss'])} exceeds avg win "
+            f"{rupees(s['avg_win'])}. Losers are running further than winners — "
+            f"this is the one that compounds against you.")
+
+    if s["win_hold"] is not None and s["loss_hold"] is not None \
+            and s["loss_hold"] > s["win_hold"] * 1.3:
+        breaches.append(
+            f"DISCIPLINE: losers held {s['loss_hold']:.0f} min vs winners "
+            f"{s['win_hold']:.0f} min. You are cutting winners early and "
+            f"hoping on losers.")
+
+    if s["net"] > 0 and s["gross"] and s["cost"] > abs(s["gross"]) * 0.25:
+        breaches.append(
+            f"COSTS: charges ate {s['cost'] / abs(s['gross']) * 100:.0f}% of gross. "
+            f"Position sizes are too small for the trade frequency.")
+
+    if open_legs:
+        breaches.append(
+            f"OPEN: {len(open_legs)} unmatched leg(s) — "
+            f"{', '.join(sorted({sym for sym, _, _ in open_legs}))}. "
+            f"Carried overnight, or the export is partial.")
+    return breaches
+
+
+def read_universe(path):
+    p = Path(path) if path else None
+    if p and p.exists():
+        return {x.strip().upper() for x in p.read_text().split() if x.strip()}
+    return None
 
 
 def rupees(x):
@@ -149,103 +287,41 @@ def main():
     ap.add_argument("--capital", type=float, default=10000.0)
     ap.add_argument("--brokerage", type=float, default=BROKERAGE_PER_ORDER)
     ap.add_argument("--n500", default="", help="Nifty 500 symbol list, one per line")
-    ap.add_argument("--flat-by", default="11:15")
+    ap.add_argument("--flat-by", default=FLAT_BY)
     args = ap.parse_args()
 
     fills = load(args.tradebook)
     if not fills:
         sys.exit("No fills parsed. Check the export has symbol/side/qty/price columns.")
     trades, open_legs = pair_trades(fills)
+    trades = merge_partials(trades)
     if not trades:
         sys.exit(f"{len(fills)} fills, no round trips. Positions still open?")
 
-    for t in trades:
-        t["cost"] = costs(t, args.brokerage)
-        t["net"] = t["gross"] - t["cost"]
+    price_trades(trades, args.brokerage)
+    s = summarise(trades)
 
-    wins = [t for t in trades if t["net"] > 0]
-    losses = [t for t in trades if t["net"] <= 0]
-    gross = sum(t["gross"] for t in trades)
-    cost = sum(t["cost"] for t in trades)
-    net = gross - cost
-    avg_win = sum(t["net"] for t in wins) / len(wins) if wins else 0
-    avg_loss = abs(sum(t["net"] for t in losses) / len(losses)) if losses else 0
-
-    print(f"\n{'='*62}\n  {len(trades)} round trips | {len(fills)} fills\n{'='*62}")
-    print(f"  Gross P&L        {rupees(gross):>16}")
-    print(f"  Costs            {rupees(-cost):>16}   "
-          f"({cost / abs(gross) * 100:.0f}% of gross)" if gross else "")
-    print(f"  NET P&L          {rupees(net):>16}   "
-          f"({net / args.capital * 100:+.2f}% on capital)")
-    print(f"\n  Win rate         {len(wins)}/{len(trades)} = "
-          f"{len(wins) / len(trades) * 100:.0f}%")
-    print(f"  Avg win          {rupees(avg_win):>16}")
-    print(f"  Avg loss         {rupees(-avg_loss):>16}")
-    if avg_loss:
-        print(f"  Realised R:R     {avg_win / avg_loss:>13.2f}:1"
-              f"   (target 1:10 — see CONTEXT.md)")
-    gp = sum(t["net"] for t in wins)
-    gl = abs(sum(t["net"] for t in losses))
-    if gl:
-        print(f"  Profit factor    {gp / gl:>16.2f}")
-    print(f"  Expectancy/trade {rupees(net / len(trades)):>16}")
+    print(f"\n{'='*62}\n  {s['n']} round trips | {len(fills)} fills\n{'='*62}")
+    print(f"  Gross P&L        {rupees(s['gross']):>16}")
+    if s["gross"]:
+        print(f"  Costs            {rupees(-s['cost']):>16}   "
+              f"({s['cost'] / abs(s['gross']) * 100:.0f}% of gross)")
+    print(f"  NET P&L          {rupees(s['net']):>16}   "
+          f"({s['net'] / args.capital * 100:+.2f}% on capital)")
+    print(f"\n  Win rate         {s['wins']}/{s['n']} = {s['win_rate']:.0f}%")
+    print(f"  Avg win          {rupees(s['avg_win']):>16}")
+    print(f"  Avg loss         {rupees(-s['avg_loss']):>16}")
+    if s["rr"] is not None:
+        print(f"  Realised R:R     {s['rr']:>13.2f}:1   (target 1:10 — see CONTEXT.md)")
+    if s["pf"] is not None:
+        print(f"  Profit factor    {s['pf']:>16.2f}")
+    print(f"  Expectancy/trade {rupees(s['expectancy']):>16}")
+    if s["win_hold"] is not None and s["loss_hold"] is not None:
+        print(f"  Avg hold — winners {s['win_hold']:.0f} min, losers {s['loss_hold']:.0f} min")
 
     print(f"\n{'-'*62}\n  RULE CHECK — against CONTEXT.md\n{'-'*62}")
-    breaches = []
-
-    over = [t for t in trades if t["exposure"] > args.capital * 1.02]
-    if over:
-        worst = max(over, key=lambda t: t["exposure"])
-        breaches.append(
-            f"SIZE: {len(over)} trade(s) above Rs {args.capital:,.0f}/stock. "
-            f"Worst {worst['symbol']} at {rupees(worst['exposure'])} "
-            f"({worst['exposure'] / args.capital:.1f}x).")
-
-    if args.n500 and Path(args.n500).exists():
-        universe = {s.strip().upper() for s in Path(args.n500).read_text().split()}
-        outside = sorted({t["symbol"] for t in trades if t["symbol"] not in universe})
-        if outside:
-            breaches.append(f"UNIVERSE: outside Nifty 500 — {', '.join(outside)}.")
-
-    cutoff = datetime.strptime(args.flat_by, "%H:%M").time()
-    late = [t for t in trades if t["exit_time"] and t["exit_time"].time() > cutoff]
-    if late:
-        cost_of_late = sum(t["net"] for t in late)
-        breaches.append(
-            f"WINDOW: {len(late)} exit(s) after {args.flat_by}, "
-            f"worth {rupees(cost_of_late)} — kept or lost by holding on.")
-
-    if len(wins) and len(losses) and avg_loss > avg_win:
-        breaches.append(
-            f"ASYMMETRY: avg loss {rupees(avg_loss)} exceeds avg win "
-            f"{rupees(avg_win)}. Losers are running further than winners — "
-            f"this is the one that compounds against you.")
-
-    held = [t for t in trades if t["entry_time"] and t["exit_time"]]
-    if held:
-        def mins(t):
-            return (t["exit_time"] - t["entry_time"]).total_seconds() / 60
-        win_hold = [mins(t) for t in held if t["net"] > 0]
-        loss_hold = [mins(t) for t in held if t["net"] <= 0]
-        if win_hold and loss_hold:
-            w, l = sum(win_hold) / len(win_hold), sum(loss_hold) / len(loss_hold)
-            print(f"  Avg hold — winners {w:.0f} min, losers {l:.0f} min")
-            if l > w * 1.3:
-                breaches.append(
-                    f"DISCIPLINE: losers held {l:.0f} min vs winners {w:.0f} min. "
-                    f"You are cutting winners early and hoping on losers.")
-
-    if net > 0 and cost > abs(gross) * 0.25:
-        breaches.append(
-            f"COSTS: charges ate {cost / abs(gross) * 100:.0f}% of gross. "
-            f"Position sizes are too small for the trade frequency.")
-
-    if open_legs:
-        breaches.append(
-            f"OPEN: {len(open_legs)} unmatched leg(s) — "
-            f"{', '.join(sorted({s for s, _, _ in open_legs}))}. "
-            f"Carried overnight, or the export is partial.")
-
+    breaches = rule_check(trades, open_legs, s, args.capital,
+                          read_universe(args.n500), args.flat_by)
     for b in breaches:
         print(f"  [!] {b}")
     if not breaches:

@@ -58,19 +58,40 @@ one so a post-mortem can tell what was true on the day a trade happened.
 - `WebSearch` works for news and runs server-side. Use it to attach a cause to
   every mover the filter flags.
 
-## Daily loop — trade post-mortem
+## Daily loop — trade post-mortem (automated 2026-09-14)
 
-- After close, export the Shoonya **Trade Book** (Reports → Trade Book → CSV),
-  or dump OpenAlgo's `/tradebook` response to JSON. Either format works.
-- Run `python3 analyze_trades.py <file> --n500 <nifty500 list>`. It FIFO-pairs
-  fills into round trips, nets off real Shoonya charges, and audits the result
-  against the rules above — Rs 10k/stock, Nifty 500 only, flat by 11:15.
+- **Nothing is uploaded by hand.** `daily_report.py` runs on the machine that
+  hosts OpenAlgo — a scheduler fires it at 15:35 IST on weekdays. It pulls the
+  day's fills from OpenAlgo's `/api/v1/tradebook` (falls back to Shoonya's own
+  `/TradeBook`), writes `reports/<date>/tradebook.json` + `report.txt`, then
+  runs `dashboard.py` and pushes.
+- **The dashboard is two files, rebuilt every run:** `reports/dashboard.html`
+  (charts — open it locally) and `reports/README.md` (GitHub renders it at the
+  `reports/` folder URL, so that is the daily dashboard on a phone).
+- **Credentials live only in `business-onlooker/.env` on that machine**
+  (gitignored). The OpenAlgo key alone is enough; Shoonya password/TOTP are
+  only for the fallback path. Never paste any of them into a chat session —
+  the remote Claude container cannot reach OpenAlgo (`127.0.0.1:5000` is
+  local) and must never hold broker credentials. The connection runs there;
+  the analysis reads the pushed files here.
+- Manual fallback still works: export the Shoonya Trade Book CSV and run
+  `python3 analyze_trades.py <file> --n500 data/nifty500.txt`.
 - **The rule-breach block is the point, not the P&L.** The broker already
-  shows P&L. What it can't show is which rule cost the money.
-- The breach that matters most is ASYMMETRY (avg loss > avg win) and its
-  cousin DISCIPLINE (losers held longer than winners). Those two compound.
-- Feed the output back here for the written post-mortem: what moved, what the
-  setup missed, what changes tomorrow.
+  shows P&L. What it can't show is which rule cost the money. The two that
+  compound: ASYMMETRY (avg loss > avg win) and DISCIPLINE (losers held longer
+  than winners).
+- Dashboard splits, because the desk runs two strategies: **BEFORE 12 vs
+  AFTER 12 by ENTRY time**, LONG vs SHORT, **SIGNAL exit vs timer SQUARE-OFF**
+  (exit at/after 15:00, or 3+ symbols exiting in the same second — 2026-09-10
+  had 8 orders at 15:06:02), and **concentration** (share of gross profit in
+  the best trade — 2026-09-10 had 51% in WELCORP).
+- Shoonya field trap, fixed 2026-09-14: `flqty`/`flprc`/`fltm` describe the
+  fill; `fillshares`/`avgprc` are the parent order's running totals and
+  repeat on every partial-fill row. The analyzer reads the former and merges
+  partial fills back into one position before computing anything.
+- WINDOW rule cutoff is **15:00** (was 11:15 in the first analyzer draft; the
+  after-12 strategy runs to the close, so 11:15 flagged every legitimate
+  afternoon exit).
 
 ## Daily loop
 
@@ -88,3 +109,11 @@ one so a post-mortem can tell what was true on the day a trade happened.
 
 - **2026-09-04** — Agent created. Context above is the starting set given by
   Uday; nothing has changed yet.
+- **2026-09-09** — Standing rules added in `AGENT.md`: search before saying
+  "no news" (ADANIENT miss), macro block before corporate (Nifty IT miss).
+- **2026-09-10** — Five-bullet answers, tables required. Universe pinned to
+  Nifty 500. NSE access works; `fetch_movers.py` and `screen.py` added.
+  `analyze_trades.py` + `daily_report.py` added for the Shoonya post-mortem.
+- **2026-09-14** — Dashboard added (`dashboard.py` → `reports/dashboard.html`
+  + `reports/README.md`), wired into `daily_report.py`. Shoonya `flqty` vs
+  `fillshares` fix; partial fills merged; WINDOW cutoff moved to 15:00.
