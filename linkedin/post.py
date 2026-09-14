@@ -47,7 +47,10 @@ def unwrap(text: str) -> str:
         lines = [ln.rstrip() for ln in para.split("\n")]
         buf = ""
         for ln in lines:
-            starts_item = bool(re.match(r"^\s*([-*\u2022]|\d+[.)])\s", ln))
+            # Keep the break before a list marker, a numbered item, or a data
+            # row that opens with a currency figure (a price table).
+            starts_item = bool(re.match(
+                r"^\s*([-*\u2022]|\d+[.)]\s|[\u20b9$\u20ac\u00a3]\s?[\d,])", ln))
             if buf and not starts_item:
                 buf += " " + ln.lstrip()
             else:

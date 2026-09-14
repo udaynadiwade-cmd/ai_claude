@@ -36,5 +36,8 @@ Befach low-GI rice. ~19 people, ₹13.5 Cr revenue, aiming at ₹1,000 Cr in 3�
 - Never invent revenue, client names, or results. If a number is uncertain,
   write the post without it.
 - Never post about a candidate, an employee's performance, or a pending deal.
-- Never sell in every post. Roughly one in five can mention befach.com.
+- Never sell in every post. Roughly one in five can mention befach.com. On
+  those, sell by showing a number only Befach can show, then invite the reader
+  to check their own. Never "DM me", never "limited stock", never a price
+  claim that is not on the site.
 - Never publish without Uday's Y.
