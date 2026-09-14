@@ -11,6 +11,11 @@ Everything lives in `linkedin/`. Work in this order and do not skip the gate.
    rows of `linkedin/posts/log.md`, and yesterday's `linkedin/posts/*.md`.
    Pick the next pillar in rotation and a topic not yet used. If Uday gave a
    topic in chat, use that instead.
+1b. **If the post cites a product**, get its real figures with
+   `python3 linkedin/catalog.py <sku>`. Never read them off a web page and
+   never estimate them. If no channel is configured the script says so —
+   then either ask Uday for the numbers or write a post that needs none.
+   `linkedin/ACCESS.md` explains how to open a channel.
 2. **Draft three options** in voice.md's shape. Label them 1, 2, 3. Each under
    200 words. Different hooks, same topic. Show them in full.
 3. **Ask by number**: "Which one? (1/2/3, or edits)". Wait. Apply edits until
