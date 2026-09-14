@@ -78,6 +78,7 @@ def parse_time(raw):
 
 
 def load(path):
+    """Read a Shoonya Trade Book CSV or /TradeBook JSON into a flat list of fills."""
     text = Path(path).read_text()
     if text.lstrip().startswith(("[", "{")):
         blob = json.loads(text)

@@ -50,8 +50,9 @@ one so a post-mortem can tell what was true on the day a trade happened.
   0.003% on buy; GST 18% on brokerage + exchange + SEBI; call-and-trade 0.
   **Correction:** the analyzer modelled brokerage at Rs 20/order until
   2026-09-14, and the "roughly Rs 2,000 brokerage on 98 orders" remark about
-  2026-09-10 was built on it. At the real cap that day's brokerage was about
-  Rs 490, so the day was net positive after charges, not negative.
+  2026-09-10 was built on it. At the real card, 98 orders of ~Rs 9k each cost
+  about Rs 280 brokerage (0.03% < Rs 5 at that size) and ~Rs 480 all-in, so
+  the day was roughly +Rs 235 net after charges, not negative.
 - The API books (Trade/Order/Position) carry **no charges**. Taxes and
   expenses on the dashboard are the rate card applied to each fill. The
   contract note is the final word — reconcile against it when it differs.
