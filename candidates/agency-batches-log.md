@@ -170,3 +170,39 @@ addresses are found and verified.
 **Open:** find working addresses for the 20 unrecorded agencies, and a valid one
 for Covenant Consultants. Web search can do this — company contact details are
 public, unlike candidate profiles.
+
+## Outcome of the two-role outreach — FAILED (assessed 2026-09-16)
+
+Six calendar days, four business days, four agencies, zero replies.
+
+| Agency | Sent | Reply |
+|---|---|---|
+| T & A HR Solutions | 2026-09-10 | none |
+| DRG Job Placement | 2026-09-10 | none |
+| DigiRecruitx | 2026-09-10 | none |
+| Alp Consulting | 2026-09-10 | none |
+| Covenant Consultants | — | address dead, never delivered |
+
+Assessed as failed rather than left open indefinitely. The stated window was
+two to seven days; four business days with nothing back from any of four is a
+result, not a delay.
+
+**Do not re-send to these four.** A second unsolicited email to an agency that
+ignored the first does not improve the odds and marks the sender as noise.
+
+### What this means for the channel
+
+Agency outreach has now been tried twice: 25 agencies across Batches 1-7 in
+August, and these four in September. Neither has produced a single candidate
+that reached the tracker.
+
+That is worth stating plainly, because the ₹5,000-per-hire model looks free and
+therefore keeps getting retried. It is not free — it costs the time to compose
+and send, and more importantly it has occupied the position of "our sourcing
+plan" for six weeks while producing nothing.
+
+For contrast, over roughly the same fortnight WorkIndia surfaced around fifteen
+applicants with CVs attached, unprompted, while its job post showed as expired.
+
+This is recorded as evidence for whenever the channel question is revisited. It
+is not a recommendation — Uday has considered the point and made his call.
