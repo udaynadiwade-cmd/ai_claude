@@ -1241,3 +1241,96 @@ and here is whether we can fund it today."** With ₹75 lakh in hand, a plan req
 - [GAIL 'Pankh' startup initiative — focus areas including e-commerce](https://www.business-standard.com/article/news-cm/gail-to-fund-start-ups-in-focus-areas-though-its-pankh-initiative-121040500389_1.html)
 - [GAIL startup funding — 20% equity cap, DPIIT requirement](https://gailebank.gail.co.in/GSUICBG/frmStartUpGAIL.aspx)
 - [GAIL invites equity investment proposals from startups](https://www.indianchemicalnews.com/start-ups/gail-invites-fresh-round-of-proposals-for-equity-investment-in-startups-25704)
+
+## Trend sources — standing reference `[ADDED 2026-09-28, founder instruction]`
+
+**Founder instruction: whenever giving any kind of trend, use these as reference.**
+A trend claim without one of these named behind it is not a finding.
+
+### Where trends sit in the source hierarchy
+
+Trend tools are **demand signal**, not market size. They slot in above aggregator blogs
+and below government and paid industry research. They tell you *direction and relative
+interest*. They do not tell you rupees, volumes or who is buying.
+
+---
+
+### The sources, ranked by what they actually prove
+
+| # | Source | What it proves | Cost | Reachable from this environment? |
+|---|---|---|---|---|
+| **1** | **Zauba / Volza customs shipment data** | **Real B2B purchases** — who imported what, how much, how often, at which port | Zauba basic free; Volza paid | zauba.com reachable |
+| **2** | **Amazon Best Sellers + Movers & Shakers (India)** | **Real consumer purchases** and rank velocity | Free | **amazon.in is BLOCKED** — founder must pull |
+| **3** | **Google Trends** | **Search interest** over time, by Indian state and city | Free | Trending-now page reachable; **the `/explore` comparison page rate-limits and is JS-rendered — usually not fetchable** |
+| **4** | **Ahrefs** | **Absolute keyword search volume**, keyword difficulty, competitor traffic | Free tools limited; **Starter $29/month** | Site reachable; **data needs a login — founder must run it** |
+| **5** | Semrush / Ubersuggest | Same class as Ahrefs; use as a cross-check | Paid / freemium | Founder must run |
+| **6** | Google Keyword Planner | Volume ranges, straight from Google Ads | Free with a Google Ads account | Founder must run |
+| **7** | Exploding Topics / Glimpse | Early-stage topics before they show on Trends | Freemium | Partially reachable |
+| **8** | IndiaMART category pages, Alibaba trending | What B2B sellers are pushing | Free | **alibaba.com BLOCKED**; IndiaMART reachable |
+
+**Ahrefs free tools worth knowing:** Free Keyword Generator, Keyword Difficulty Checker,
+**Amazon Keyword Tool** (directly relevant to D'Cal), Bing Keyword Tool, SERP Checker.
+`FACT`
+
+---
+
+### The division of labour — be honest about it
+
+**I cannot log into Ahrefs, Semrush or Keyword Planner, and I cannot reach amazon.in or
+alibaba.com.** Do not pretend otherwise and do not fabricate volume figures.
+
+**The working pattern is:**
+1. **I say which query to run and why** — the exact keyword, geo and timeframe
+2. **The founder runs it** and pastes the numbers back
+3. **I interpret them** against the category screen
+
+When a trend question can only be answered by a tool I cannot reach, **say so and give
+the exact query to run** rather than producing a soft answer from search results.
+
+---
+
+### Interpretation rules — where trend data gets misread
+
+**1. Google Trends numbers are NOT search volume.**
+They are indexed 0–100 *within that query, timeframe and geography*. A 100 means "the
+peak of this chart," nothing more. **Two separate charts cannot be compared.** To compare
+two terms they must be in the same query.
+
+**2. Changing the timeframe changes the shape.** A term can look like it is exploding on
+a 12-month view and flat on a 5-year view. **Always state the window used.**
+
+**3. Low-volume terms return noise, not signal.** If the chart is jagged and mostly zero,
+Google is telling you there is not enough data — not that demand is erratic.
+
+**4. Search interest is not purchase intent, and this matters most for us.**
+Curiosity, news cycles and homework all create searches. **Amazon Best Sellers rank and
+customs shipment data are purchase evidence; Google Trends is not.**
+
+**5. The hard limit for Befach's import business — state it whenever it applies.**
+> **B2B industrial products have almost no search volume.** Nobody googles "bearing
+> distributor Hyderabad" at scale. Keyword tools and Google Trends are **useful for D'Cal
+> and Rice, which are consumer products — and close to useless for the import business,
+> which sells to factories.**
+
+For imports, the real trend source is **customs shipment data**: what is actually
+crossing the border, in what volume, by whom. That is the substitute, and it is better
+evidence than any keyword tool.
+
+---
+
+### The standing rule
+
+> **Every trend claim names the source, the geography and the date window.**
+> *"Rising demand for water softeners"* is not a finding.
+> *"Google Trends, India, 5-year view: 'water softener' interest roughly doubled between
+> 2021 and 2026, peaking each May–June"* is.
+
+And mark it like everything else — `FACT` if pulled from a named tool with the query
+stated, `ESTIMATE` if inferred, `CLAIM` if it came from someone's blog.
+
+### Worth buying?
+
+**Ahrefs Starter at $29/month is trivial against ₹75 lakh in hand** — buy it if the
+question is D'Cal or Rice marketing. **Do not buy it for the import business.** For
+imports the same money goes further on **Volza or Export Genius customs data**, and only
+after the free Zauba route has proved the approach works.
